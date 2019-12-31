@@ -1,0 +1,75 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>coil_heating_water_percent_change</name>
+  <uid>85674ff6-4fdc-463f-9695-36bf6c6a2608</uid>
+  <version_id>c42fe820-2a4b-49d6-9e8a-bcb0cc589d47</version_id>
+  <version_modified>20170911T165710Z</version_modified>
+  <xml_checksum>1F3D2430</xml_checksum>
+  <class_name>CoilHeatingWaterPercentChange</class_name>
+  <display_name>Heating Coils Water Percent Change</display_name>
+  <description>This is a general purpose measure to calibrate Water Heating Coils with a Percent Change.</description>
+  <modeler_description>It will be used for calibration of rated capacity and efficiency and parasitic loads. User can choose between a SINGLE coil or ALL the Coils.</modeler_description>
+  <arguments>
+    <argument>
+      <name>coil</name>
+      <display_name>Apply the Measure to a SINGLE Water Heating Coil, ALL the Water Heating Coils or NONE.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>*All Water Heating Coils*</default_value>
+      <choices>
+        <choice>
+          <value>{ebc035b9-9338-4547-99ab-710fa5af4034}</value>
+          <display_name>*All Water Heating Coils*</display_name>
+        </choice>
+        <choice>
+          <value>0</value>
+          <display_name>*None*</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>ua_factor</name>
+      <display_name>Percent Change for UA coefficient.</display_name>
+      <description>Percent Change for UA coefficient.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>coil_capacity_perc_change</name>
+      <display_name>Percent Change for coil Capacity.</display_name>
+      <description>Percent Change for coil Capacity.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>HVAC.Heating</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>3830997F</checksum>
+    </file>
+  </files>
+</measure>

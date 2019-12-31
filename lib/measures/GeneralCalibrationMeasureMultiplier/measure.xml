@@ -1,0 +1,211 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>general_calibration_measure_multiplier</name>
+  <uid>d622534e-a3c9-4ba5-b616-53dce2a18ac8</uid>
+  <version_id>5ea7209d-ca73-4e45-87c5-4c526e6493e4</version_id>
+  <version_modified>20170801T152202Z</version_modified>
+  <xml_checksum>DEC0D835</xml_checksum>
+  <class_name>GeneralCalibrationMeasureMultiplier</class_name>
+  <display_name>General Calibration Measure Multiplier</display_name>
+  <description>This is a general purpose measure to calibrate space and space type elements with a Multiplier.</description>
+  <modeler_description>It will be used for calibration of space and spaceType loads as well as infiltration, and outdoor air. User can choose between a SINGLE SpaceType or ALL the SpaceTypes as well as a SINGLE Space or ALL the Spaces.</modeler_description>
+  <arguments>
+    <argument>
+      <name>space_type</name>
+      <display_name>Apply the Measure to a SINGLE SpaceType, ALL the SpaceTypes or NONE.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>*All SpaceTypes*</default_value>
+      <choices>
+        <choice>
+          <value>{88429825-a9fc-4950-ab04-c4bbdbd74120}</value>
+          <display_name>*All SpaceTypes*</display_name>
+        </choice>
+        <choice>
+          <value>0</value>
+          <display_name>*None*</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>space</name>
+      <display_name>Apply the Measure to a SINGLE Space, ALL the Spaces or NONE.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>*All Spaces*</default_value>
+      <choices>
+        <choice>
+          <value>{88429825-a9fc-4950-ab04-c4bbdbd74120}</value>
+          <display_name>*All Spaces*</display_name>
+        </choice>
+        <choice>
+          <value>0</value>
+          <display_name>*None*</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>Lights_multiplier</name>
+      <display_name>Multiplier for Lights.</display_name>
+      <description>Multiplier for Lights.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>Luminaire_multiplier</name>
+      <display_name>Multiplier for Luminaire.</display_name>
+      <description>Multiplier for Luminaire.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>ElectricEquipment_multiplier</name>
+      <display_name>Multiplier for Electric Equipment.</display_name>
+      <description>Multiplier for Electric Equipment.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>GasEquipment_multiplier</name>
+      <display_name>Multiplier for Gas Equipment.</display_name>
+      <description>Multiplier for Gas Equipment.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>OtherEquipment_multiplier</name>
+      <display_name>Multiplier for OtherEquipment.</display_name>
+      <description>Multiplier for OtherEquipment.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>People_multiplier</name>
+      <display_name>Multiplier for number of people.</display_name>
+      <description>Multiplier for number of people.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>InternalMass_multiplier</name>
+      <display_name>Multiplier for Internal Mass.</display_name>
+      <description>Multiplier for Internal Mass.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>Infiltration_multiplier</name>
+      <display_name>Multiplier for infiltration.</display_name>
+      <description>Multiplier for infiltration.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>Ventilation_multiplier</name>
+      <display_name>Multiplier for Ventilation.</display_name>
+      <description>Multiplier for Ventilation.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Whole Building.Space Types</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Analysis Spreadsheet</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Calibration</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Sensitivity Analysis</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Analysis Spreadsheet</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Calibration</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Sensitivity Analysis</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>1CEECBAD</checksum>
+    </file>
+  </files>
+</measure>

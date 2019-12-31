@@ -1,0 +1,148 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>fans_percent_change</name>
+  <uid>4c13a935-976b-4d54-bf7f-a4064fb6e11d</uid>
+  <version_id>c6e97f48-8ab4-4bc6-a74f-2886f0c29966</version_id>
+  <version_modified>20170906T225857Z</version_modified>
+  <xml_checksum>3C1DA54F</xml_checksum>
+  <class_name>FansPercentChange</class_name>
+  <display_name>Fans Percent Change</display_name>
+  <description>This is a general purpose measure to calibrate Fans with a Percent Change.</description>
+  <modeler_description>It will be used for calibration maximum flow rate, efficiency, pressure rise and motor efficiency. User can choose between a SINGLE Fan or ALL the Fans.</modeler_description>
+  <arguments>
+    <argument>
+      <name>fan</name>
+      <display_name>Apply the Measure to a SINGLE Fan, ALL the Fans or NONE.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>*All Fans*</default_value>
+      <choices>
+        <choice>
+          <value>{8e728c5e-7d5a-4683-8236-a111b0a7caa7}</value>
+          <display_name>*All Fans*</display_name>
+        </choice>
+        <choice>
+          <value>0</value>
+          <display_name>*None*</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>max_flowrate_perc_change</name>
+      <display_name>Percent Change for Maximum FlowRate.</display_name>
+      <description>Percent Change for Maximum FlowRate.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>fan_efficiency_perc_change</name>
+      <display_name>Percent Change for Fan Efficiency.</display_name>
+      <description>Percent Change for Fan Efficiency.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>pressure_rise_perc_change</name>
+      <display_name>Percent Change for Pressure Rise.</display_name>
+      <description>Percent Change for Pressure Rise.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>motor_efficiency_perc_change</name>
+      <display_name>Percent Change for Motor Efficiency.</display_name>
+      <description>Percent Change for Motor Efficiency.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>HVAC.Whole System</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Analysis Spreadsheet</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Calibration</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Sensitivity Analysis</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Analysis Spreadsheet</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Calibration</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Sensitivity Analysis</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>13E31F6E</checksum>
+    </file>
+  </files>
+</measure>

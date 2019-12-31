@@ -1,0 +1,111 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>coil_cooling_water_multiplier</name>
+  <uid>0fb42580-a644-4291-9a08-05521a6e7940</uid>
+  <version_id>c35d2722-8dbe-4fb9-acc1-08d2bdef195e</version_id>
+  <version_modified>20170911T163616Z</version_modified>
+  <xml_checksum>8CBDDA1B</xml_checksum>
+  <class_name>CoilCoolingWaterMultiplier</class_name>
+  <display_name>Cooling Coils Water Multiplier</display_name>
+  <description>This is a general purpose measure to calibrate Water Cooling Coils with a Multiplier.</description>
+  <modeler_description>It will be used for calibration of inlet water temperatures, inlet and outlet air temperatures and design flowrates. User can choose between a SINGLE coil or ALL the Coils.</modeler_description>
+  <arguments>
+    <argument>
+      <name>coil</name>
+      <display_name>Apply the Measure to a SINGLE Water Cooling Coil, ALL the Water Cooling Coils or NONE.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>*All Water Cooling Coils*</default_value>
+      <choices>
+        <choice>
+          <value>{7d08cb1c-b268-45ee-915b-73b7b8fceb73}</value>
+          <display_name>*All Water Cooling Coils*</display_name>
+        </choice>
+        <choice>
+          <value>0</value>
+          <display_name>*None*</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>design_water_flow_rate</name>
+      <display_name>Multiplier for Design Water Flow Rate.</display_name>
+      <description>Multiplier for Design Water Flow Rate.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>design_air_flow_rate</name>
+      <display_name>Multiplier for Design Air Flow Rate.</display_name>
+      <description>Multiplier for Design Air Flow Rate.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>design_inlet_water_temperature</name>
+      <display_name>Multiplier for Inlet Water Temperature.</display_name>
+      <description>Multiplier for Inlet Water Temperature.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>design_inlet_air_temperature</name>
+      <display_name>Multiplier for Inlet Air Temperature.</display_name>
+      <description>Multiplier for Inlet Air Temperature.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>design_outlet_air_temperature</name>
+      <display_name>Multiplier for Outlet Air Temperature.</display_name>
+      <description>Multiplier for Outlet Air Temperature.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>design_inlet_air_humidity_ratio</name>
+      <display_name>Multiplier for Inlet Air Humidity Ratio.</display_name>
+      <description>Multiplier for Inlet Air Humidity Ratio.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>HVAC.Cooling</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>4F294E77</checksum>
+    </file>
+  </files>
+</measure>

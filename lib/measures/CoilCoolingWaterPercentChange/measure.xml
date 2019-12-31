@@ -1,0 +1,111 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>coil_cooling_water_percent_change</name>
+  <uid>51bc1f02-f01b-4c5e-818a-db76ed783665</uid>
+  <version_id>6bb068f3-39a2-48c3-bc5c-fd3448df9807</version_id>
+  <version_modified>20170911T165709Z</version_modified>
+  <xml_checksum>8CBDDA1B</xml_checksum>
+  <class_name>CoilCoolingWaterPercentChange</class_name>
+  <display_name>Cooling Coils Water PercentChange</display_name>
+  <description>This is a general purpose measure to calibrate Water Cooling Coils with a PercentChange.</description>
+  <modeler_description>It will be used for calibration of inlet water temperatures, inlet and outlet air temperatures and design flowrates. User can choose between a SINGLE coil or ALL the Coils.</modeler_description>
+  <arguments>
+    <argument>
+      <name>coil</name>
+      <display_name>Apply the Measure to a SINGLE Water Cooling Coil, ALL the Water Cooling Coils or NONE.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>*All Water Cooling Coils*</default_value>
+      <choices>
+        <choice>
+          <value>{bf0d46f8-cdb7-4767-b3cd-0bb600bcca4b}</value>
+          <display_name>*All Water Cooling Coils*</display_name>
+        </choice>
+        <choice>
+          <value>0</value>
+          <display_name>*None*</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>design_water_flow_rate</name>
+      <display_name>PercentChange for Design Water Flow Rate.</display_name>
+      <description>PercentChange for Design Water Flow Rate.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>design_air_flow_rate</name>
+      <display_name>PercentChange for Design Air Flow Rate.</display_name>
+      <description>PercentChange for Design Air Flow Rate.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>design_inlet_water_temperature</name>
+      <display_name>PercentChange for Inlet Water Temperature.</display_name>
+      <description>PercentChange for Inlet Water Temperature.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>design_inlet_air_temperature</name>
+      <display_name>PercentChange for Inlet Air Temperature.</display_name>
+      <description>PercentChange for Inlet Air Temperature.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>design_outlet_air_temperature</name>
+      <display_name>PercentChange for Outlet Air Temperature.</display_name>
+      <description>PercentChange for Outlet Air Temperature.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>design_inlet_air_humidity_ratio</name>
+      <display_name>PercentChange for Inlet Air Humidity Ratio.</display_name>
+      <description>PercentChange for Inlet Air Humidity Ratio.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>HVAC.Cooling</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>D306AA93</checksum>
+    </file>
+  </files>
+</measure>

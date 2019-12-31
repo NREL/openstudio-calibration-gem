@@ -1,0 +1,75 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>coil_cooling_dx_single_speed_percent_change</name>
+  <uid>97d0dbdf-6245-4cfd-8dfc-a6a5eb853b37</uid>
+  <version_id>a02067f7-e864-41a3-9868-88502cdbf2c5</version_id>
+  <version_modified>20170911T165709Z</version_modified>
+  <xml_checksum>8CBDDA1B</xml_checksum>
+  <class_name>CoilCoolingDXSingleSpeedPercentChange</class_name>
+  <display_name>Cooling Coils DX Single Speed Percent Change</display_name>
+  <description>This is a general purpose measure to calibrate DX Cooling Coils with a Percent Change.</description>
+  <modeler_description>It will be used for calibration of rated capacity and efficiency and parasitic loads. User can choose between a SINGLE coil or ALL the Coils.</modeler_description>
+  <arguments>
+    <argument>
+      <name>coil</name>
+      <display_name>Apply the Measure to a SINGLE DX Cooling Coil, ALL the DX Cooling Coils or NONE.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>*All DX Cooling Coils*</default_value>
+      <choices>
+        <choice>
+          <value>{81191978-25ee-4a3e-b21f-67c75a0ab6f4}</value>
+          <display_name>*All DX Cooling Coils*</display_name>
+        </choice>
+        <choice>
+          <value>0</value>
+          <display_name>*None*</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>rated_cop_perc_change</name>
+      <display_name>Percent Change for COP.</display_name>
+      <description>Percent Change for COP.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>rated_cooling_capacity_perc_change</name>
+      <display_name>Percent Change for coil cooling Capacity.</display_name>
+      <description>Percent Change for coil cooling Capacity.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>HVAC.Cooling</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>84B43E50</checksum>
+    </file>
+  </files>
+</measure>
