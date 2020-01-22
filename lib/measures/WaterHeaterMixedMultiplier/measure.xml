@@ -1,0 +1,162 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>water_heater_mixed_multiplier</name>
+  <uid>1e4d5053-d2c1-400d-9192-7a470e5a7b5c</uid>
+  <version_id>1f2bd409-1f0a-4407-bd35-3c74c43c452a</version_id>
+  <version_modified>20170816T185343Z</version_modified>
+  <xml_checksum>D28BCE9C</xml_checksum>
+  <class_name>WaterHeaterMixedMultiplier</class_name>
+  <display_name>Water Heater Mixed Multiplier</display_name>
+  <description>This is a general purpose measure to calibrate WaterHeaterMixed with a Multiplier.</description>
+  <modeler_description>It will be used for calibration of WaterHeaterMixed. User can choose between a SINGLE WaterHeaterMixed or ALL the WaterHeaterMixed objects.</modeler_description>
+  <arguments>
+    <argument>
+      <name>water_heater</name>
+      <display_name>Apply the Measure to a SINGLE WaterHeaterMixed, ALL the WaterHeaterMixeds or NONE.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>*All WaterHeaterMixeds*</default_value>
+      <choices>
+        <choice>
+          <value>{31752e3d-115c-43a9-aa21-377506ea210e}</value>
+          <display_name>*All WaterHeaterMixeds*</display_name>
+        </choice>
+        <choice>
+          <value>0</value>
+          <display_name>*None*</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>maximum_capacity_multiplier</name>
+      <display_name>Multiplier for Heater Maximum Capacity.</display_name>
+      <description>Multiplier for Heater Maximum Capacity.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>minimum_capacity_multiplier</name>
+      <display_name>Multiplier for Heater Minimum Capacity.</display_name>
+      <description>Multiplier for Heater Minimum Capacity.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>thermal_efficiency_multiplier</name>
+      <display_name>Multiplier for Thermal Efficiency.</display_name>
+      <description>Multiplier for Thermal Efficiency.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>fuel_type</name>
+      <display_name>Heater Fuel Type.</display_name>
+      <description>Heater Fuel Type.</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>NaturalGas</default_value>
+      <choices>
+        <choice>
+          <value>NaturalGas</value>
+          <display_name>NaturalGas</display_name>
+        </choice>
+        <choice>
+          <value>Electricity</value>
+          <display_name>Electricity</display_name>
+        </choice>
+        <choice>
+          <value>PropaneGas</value>
+          <display_name>PropaneGas</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Service Water Heating.Water Heating</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Analysis Spreadsheet</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Calibration</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Sensitivity Analysis</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Analysis Spreadsheet</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Calibration</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Sensitivity Analysis</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>00E45A92</checksum>
+    </file>
+  </files>
+</measure>

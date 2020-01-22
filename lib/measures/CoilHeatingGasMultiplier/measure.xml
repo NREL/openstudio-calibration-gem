@@ -1,0 +1,93 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>coil_heating_gas_multiplier</name>
+  <uid>a4843fc4-4cc7-4112-b5a9-aef81cbeac63</uid>
+  <version_id>29422bb1-f4b5-4619-9296-51087066601e</version_id>
+  <version_modified>20170911T165709Z</version_modified>
+  <xml_checksum>1F3D2430</xml_checksum>
+  <class_name>CoilHeatingGasMultiplier</class_name>
+  <display_name>Heating Coils Gas Multiplier</display_name>
+  <description>This is a general purpose measure to calibrate Gas Heating Coils with a Multiplier.</description>
+  <modeler_description>It will be used for calibration of rated capacity and efficiency and parasitic loads. User can choose between a SINGLE coil or ALL the Coils.</modeler_description>
+  <arguments>
+    <argument>
+      <name>coil</name>
+      <display_name>Apply the Measure to a SINGLE Gas Heating Coil, ALL the Gas Heating Coils or NONE.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>*All Gas Heating Coils*</default_value>
+      <choices>
+        <choice>
+          <value>{d3858216-1e01-49cd-8d61-e2a34fb5f247}</value>
+          <display_name>*All Gas Heating Coils*</display_name>
+        </choice>
+        <choice>
+          <value>0</value>
+          <display_name>*None*</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>coil_efficiency_multiplier</name>
+      <display_name>Multiplier for coil Efficiency.</display_name>
+      <description>Multiplier for coil Efficiency.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>coil_capacity_multiplier</name>
+      <display_name>Multiplier for coil Capacity.</display_name>
+      <description>Multiplier for coil Capacity.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>coil_parasitic_electric_multiplier</name>
+      <display_name>Multiplier for coil parasitic electric load.</display_name>
+      <description>Multiplier for coil parasitic electric load.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>coil_parasitic_gas_multiplier</name>
+      <display_name>Multiplier for coil parasitic gas load.</display_name>
+      <description>Multiplier for coil parasitic gas load.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>HVAC.Heating</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>130FAC85</checksum>
+    </file>
+  </files>
+</measure>

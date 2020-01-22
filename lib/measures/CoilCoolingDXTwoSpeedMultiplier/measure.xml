@@ -1,0 +1,93 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>coil_cooling_dx_two_speed_multiplier</name>
+  <uid>fe4f36db-e296-4c9f-8199-19f2249384dd</uid>
+  <version_id>0e71cb13-f45d-4691-94c5-f1baa12c43b0</version_id>
+  <version_modified>20170911T165709Z</version_modified>
+  <xml_checksum>8CBDDA1B</xml_checksum>
+  <class_name>CoilCoolingDXTwoSpeedMultiplier</class_name>
+  <display_name>Cooling Coils DX Two Speed Multiplier</display_name>
+  <description>This is a general purpose measure to calibrate DX Cooling Coils with a Multiplier.</description>
+  <modeler_description>It will be used for calibration of rated capacity and COP. User can choose between a Two coil or ALL the Coils.</modeler_description>
+  <arguments>
+    <argument>
+      <name>coil</name>
+      <display_name>Apply the Measure to a Two DX Cooling Coil, ALL the DX Cooling Coils or NONE.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>*All DX Cooling Coils*</default_value>
+      <choices>
+        <choice>
+          <value>{18f92092-ab60-47b9-8b75-4eb740f1da0f}</value>
+          <display_name>*All DX Cooling Coils*</display_name>
+        </choice>
+        <choice>
+          <value>0</value>
+          <display_name>*None*</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>rated_highspeed_cop_multiplier</name>
+      <display_name>Multiplier for High Speed COP.</display_name>
+      <description>Multiplier for High Speed COP.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>rated_lowspeed_cop_multiplier</name>
+      <display_name>Multiplier for Low Speed COP.</display_name>
+      <description>Multiplier for Low Speed COP.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>rated_highspeed_cooling_capacity_multiplier</name>
+      <display_name>Multiplier for High Speed rated cooling Capacity.</display_name>
+      <description>Multiplier for High Speed rated cooling Capacity.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>rated_lowspeed_cooling_capacity_multiplier</name>
+      <display_name>Multiplier for Low Speed rated cooling Capacity.</display_name>
+      <description>Multiplier for Low Speed rated cooling Capacity.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>HVAC.Cooling</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>BCED0ABA</checksum>
+    </file>
+  </files>
+</measure>
