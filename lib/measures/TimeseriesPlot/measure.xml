@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>timeseries_plot</name>
   <uid>6804217d-4737-45f3-82df-b81393c29ce7</uid>
-  <version_id>b51e1e0f-130a-4699-bef6-958de2e6b467</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>9cae0e8f-cab7-4504-90dc-f33dba6ee966</version_id>
+  <version_modified>20200316T215428Z</version_modified>
   <xml_checksum>FFE04372</xml_checksum>
   <class_name>TimeseriesPlot</class_name>
   <display_name>Timeseries Plot</display_name>
@@ -106,17 +106,6 @@
       <checksum>B1E77BD5</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>D423E099</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -133,6 +122,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>A3A04D6D</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>3EA026E9</checksum>
     </file>
   </files>
 </measure>

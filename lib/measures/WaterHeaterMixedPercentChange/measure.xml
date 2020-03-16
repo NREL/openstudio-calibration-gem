@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>water_heater_mixed_percent_change</name>
   <uid>c42bf4e7-2bbb-44c6-ab91-e6ddb53e050d</uid>
-  <version_id>c22d032f-fa2c-471a-b218-d642e2004158</version_id>
-  <version_modified>20200316T212136Z</version_modified>
+  <version_id>b5f3263f-88a9-43aa-9072-3426dfff45b9</version_id>
+  <version_modified>20200316T215431Z</version_modified>
   <xml_checksum>D28BCE9C</xml_checksum>
   <class_name>WaterHeaterMixedPercentChange</class_name>
   <display_name>Water Heater Mixed Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{cf397cd1-8332-4c33-8865-4fc70907a7c1}</default_value>
+      <default_value>{a9fe74ae-c550-4437-b717-1ad81a8f5572}</default_value>
       <choices>
         <choice>
-          <value>{cf397cd1-8332-4c33-8865-4fc70907a7c1}</value>
+          <value>{a9fe74ae-c550-4437-b717-1ad81a8f5572}</value>
           <display_name>*All WaterHeaterMixeds*</display_name>
         </choice>
         <choice>
@@ -149,17 +149,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>73A24CE7</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -176,6 +165,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>04987893</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>5E06B3F1</checksum>
     </file>
   </files>
 </measure>

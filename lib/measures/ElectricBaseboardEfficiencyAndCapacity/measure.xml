@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>electric_baseboard_efficiency_and_capacity</name>
   <uid>4253e38c-6b48-4e96-8da7-002cec68d376</uid>
-  <version_id>a1b66f68-94fd-4fcb-8ce6-bed8c1717489</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>f5ebbb58-2de6-4c0a-873a-c3e52cdccea8</version_id>
+  <version_modified>20200316T215428Z</version_modified>
   <xml_checksum>0DA5C9E6</xml_checksum>
   <class_name>ElectricBaseboardEfficiencyAndCapacity</class_name>
   <display_name>Electric Baseboard Efficiency And Capacity</display_name>
@@ -47,17 +47,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.1</identifier>
-        <min_compatible>2.1.1</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>071DA324</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -74,6 +63,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>5B77F668</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.1</identifier>
+        <min_compatible>2.1.1</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>B460548F</checksum>
     </file>
   </files>
 </measure>

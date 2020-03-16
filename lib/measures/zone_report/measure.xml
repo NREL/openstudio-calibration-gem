@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>zone_report</name>
   <uid>f3531642-27ce-4624-95ab-0bfcd5b9f5fe</uid>
-  <version_id>fb9bcfff-5e50-4a9d-b53a-467f960996d9</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>9f3e26df-4c3b-42d1-b712-5a33d2a15b79</version_id>
+  <version_modified>20200316T215428Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>ZoneReport</class_name>
   <display_name>Zone Report</display_name>
@@ -36,17 +36,6 @@
       <checksum>9863EEC5</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>1.5.0</identifier>
-        <min_compatible>1.8.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>5A79B480</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -63,6 +52,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>C013AECE</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>1.5.0</identifier>
+        <min_compatible>1.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>C7E64C43</checksum>
     </file>
   </files>
 </measure>

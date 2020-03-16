@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>general_calibration_measure_percent_change</name>
   <uid>0f583ac1-fa7e-48bc-9f80-12ed17180669</uid>
-  <version_id>d4dde9ce-7fc3-457d-a86f-52e50e2e5bb2</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>0219c686-5472-47ac-b944-3103894cf524</version_id>
+  <version_modified>20200316T215428Z</version_modified>
   <xml_checksum>DEC0D835</xml_checksum>
   <class_name>GeneralCalibrationMeasurePercentChange</class_name>
   <display_name>General Calibration Measure Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{6c0d1640-02f1-4220-b806-2fc7b1f1c454}</default_value>
+      <default_value>{cc78bbf4-0b6f-498d-8f03-633b3c98e405}</default_value>
       <choices>
         <choice>
-          <value>{6c0d1640-02f1-4220-b806-2fc7b1f1c454}</value>
+          <value>{cc78bbf4-0b6f-498d-8f03-633b3c98e405}</value>
           <display_name>*All SpaceTypes*</display_name>
         </choice>
         <choice>
@@ -35,10 +35,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{6c0d1640-02f1-4220-b806-2fc7b1f1c454}</default_value>
+      <default_value>{cc78bbf4-0b6f-498d-8f03-633b3c98e405}</default_value>
       <choices>
         <choice>
-          <value>{6c0d1640-02f1-4220-b806-2fc7b1f1c454}</value>
+          <value>{cc78bbf4-0b6f-498d-8f03-633b3c98e405}</value>
           <display_name>*All Spaces*</display_name>
         </choice>
         <choice>
@@ -198,17 +198,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>A03A5F81</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -225,6 +214,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>EF5B5EB5</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>DC774659</checksum>
     </file>
   </files>
 </measure>

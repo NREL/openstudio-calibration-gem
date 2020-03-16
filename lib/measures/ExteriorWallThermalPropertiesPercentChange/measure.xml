@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>exterior_wall_thermal_properties_percent_change</name>
   <uid>6ab39cf2-1f9e-4570-a797-360a814aaa64</uid>
-  <version_id>6f1cca91-f2c1-4578-afc1-015f0b4e361c</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>79d82b64-71fb-4563-b512-02ca0c01f793</version_id>
+  <version_modified>20200316T215427Z</version_modified>
   <xml_checksum>31085437</xml_checksum>
   <class_name>ExteriorWallThermalPropertiesPercentChange</class_name>
   <display_name>Exterior Wall Thermal Percent Change</display_name>
@@ -66,17 +66,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>0.11.5</identifier>
-        <min_compatible>0.11.5</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>5EE1563C</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -93,6 +82,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>84E8A9AC</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>0.11.5</identifier>
+        <min_compatible>0.11.5</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>E4C507E5</checksum>
     </file>
   </files>
 </measure>

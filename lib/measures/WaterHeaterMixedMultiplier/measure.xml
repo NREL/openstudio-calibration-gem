@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>water_heater_mixed_multiplier</name>
   <uid>1e4d5053-d2c1-400d-9192-7a470e5a7b5c</uid>
-  <version_id>4643eb78-a1d1-483c-833c-71097fa7d231</version_id>
-  <version_modified>20200316T212132Z</version_modified>
+  <version_id>2ef70245-13fb-4f8d-b263-6e89d0993961</version_id>
+  <version_modified>20200316T215427Z</version_modified>
   <xml_checksum>D28BCE9C</xml_checksum>
   <class_name>WaterHeaterMixedMultiplier</class_name>
   <display_name>Water Heater Mixed Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{f8d317c9-e779-411b-8b31-1255fe6c79e3}</default_value>
+      <default_value>{2fa95b51-7728-4a24-a718-5c5eca8049ba}</default_value>
       <choices>
         <choice>
-          <value>{f8d317c9-e779-411b-8b31-1255fe6c79e3}</value>
+          <value>{2fa95b51-7728-4a24-a718-5c5eca8049ba}</value>
           <display_name>*All WaterHeaterMixeds*</display_name>
         </choice>
         <choice>
@@ -149,17 +149,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>E82F8F9B</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -176,6 +165,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>1626F8CE</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>605ECA5F</checksum>
     </file>
   </files>
 </measure>

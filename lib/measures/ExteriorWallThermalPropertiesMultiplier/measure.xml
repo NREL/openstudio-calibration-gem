@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>exterior_wall_thermal_properties_multiplier</name>
   <uid>6ab39cf2-1f9e-4570-a797-360a814aaa74</uid>
-  <version_id>07f3363e-4309-4f70-990e-72fbf8041048</version_id>
-  <version_modified>20200316T212132Z</version_modified>
+  <version_id>6398cf5b-f853-49eb-a588-0bfb61034327</version_id>
+  <version_modified>20200316T215426Z</version_modified>
   <xml_checksum>31085437</xml_checksum>
   <class_name>ExteriorWallThermalPropertiesMultiplier</class_name>
   <display_name>Exterior Wall Thermal Properties Multiplier</display_name>
@@ -66,17 +66,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>0.11.5</identifier>
-        <min_compatible>0.11.5</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>F51DB7E7</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -93,6 +82,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>922E9893</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>0.11.5</identifier>
+        <min_compatible>0.11.5</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>797984CA</checksum>
     </file>
   </files>
 </measure>

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_cooling_dx_two_speed_percent_change</name>
   <uid>2145d3a3-60fd-4b95-8faf-33e2402934fc</uid>
-  <version_id>bcd72866-d6e0-4602-b551-71db143443e9</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>c09e83c4-df44-425a-b9c9-50519ab2ac44</version_id>
+  <version_modified>20200316T215429Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXTwoSpeedPercentChange</class_name>
   <display_name>Cooling Coils DX Two Speed Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{775131e0-4851-4493-9f1c-789e71c9a2f9}</default_value>
+      <default_value>{0545e8d2-c11b-4097-bb7f-febd544137b3}</default_value>
       <choices>
         <choice>
-          <value>{775131e0-4851-4493-9f1c-789e71c9a2f9}</value>
+          <value>{0545e8d2-c11b-4097-bb7f-febd544137b3}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -80,17 +80,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>AFB9E2E0</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -107,6 +96,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>C6B56E4D</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>ECED602A</checksum>
     </file>
   </files>
 </measure>

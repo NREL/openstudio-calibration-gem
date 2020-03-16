@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_heating_water_multiplier</name>
   <uid>48c50a83-4092-4f2b-9968-8c820759f321</uid>
-  <version_id>12da489e-bc9e-42ab-a71c-283d7bd3e72c</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>862bdb0c-91fe-43fc-bd4b-3ef0b10da687</version_id>
+  <version_modified>20200316T215428Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingWaterMultiplier</class_name>
   <display_name>Heating Coils Water Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{8c1c806f-f7e6-433b-ba2d-e53336c8732d}</default_value>
+      <default_value>{4a16999b-828b-4f75-9722-c42bd3784a6d}</default_value>
       <choices>
         <choice>
-          <value>{8c1c806f-f7e6-433b-ba2d-e53336c8732d}</value>
+          <value>{4a16999b-828b-4f75-9722-c42bd3784a6d}</value>
           <display_name>*All Water Heating Coils*</display_name>
         </choice>
         <choice>
@@ -62,17 +62,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>A28E4C6D</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -89,6 +78,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>AF41656A</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>F31F7935</checksum>
     </file>
   </files>
 </measure>

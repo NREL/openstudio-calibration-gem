@@ -44,18 +44,17 @@ require 'fileutils'
 require 'minitest/autorun'
 
 class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
-
   def is_openstudio_2?
     begin
       workflow = OpenStudio::WorkflowJSON.new
-    rescue
+    rescue StandardError
       return false
     end
-    return true
+    true
   end
 
   def model_in_path_default
-    return "#{File.dirname(__FILE__)}/ExampleModel.osm"
+    "#{File.dirname(__FILE__)}/ExampleModel.osm"
   end
 
   def epw_path_default
@@ -63,7 +62,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     epw = nil
     epw = OpenStudio::Path.new("#{File.dirname(__FILE__)}/USA_CO_Golden-NREL.724666_TMY3.epw")
     assert(File.exist?(epw.to_s))
-    return epw.to_s
+    epw.to_s
   end
 
   def run_dir(test_name)
@@ -77,17 +76,17 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
 
   def workspace_path(test_name)
     if is_openstudio_2?
-      return "#{run_dir(test_name)}/run/in.idf"
+      "#{run_dir(test_name)}/run/in.idf"
     else
-      return "#{run_dir(test_name)}/ModelToIdf/in.idf"
+      "#{run_dir(test_name)}/ModelToIdf/in.idf"
     end
   end
 
   def sql_path(test_name)
     if is_openstudio_2?
-      return "#{run_dir(test_name)}/run/eplusout.sql"
+      "#{run_dir(test_name)}/run/eplusout.sql"
     else
-      return "#{run_dir(test_name)}/ModelToIdf/EnergyPlusPreProcess-0/EnergyPlus-0/eplusout.sql"
+      "#{run_dir(test_name)}/ModelToIdf/EnergyPlusPreProcess-0/EnergyPlus-0/eplusout.sql"
     end
   end
 
@@ -97,15 +96,14 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
 
   # method for running the test simulation using OpenStudio 1.x API
   def setup_test_1(test_name, epw_path)
-
     co = OpenStudio::Runmanager::ConfigOptions.new(true)
     co.findTools(false, true, false, true)
 
-    if !File.exist?(sql_path(test_name))
-      puts "Running EnergyPlus"
+    unless File.exist?(sql_path(test_name))
+      puts 'Running EnergyPlus'
 
-      wf = OpenStudio::Runmanager::Workflow.new("modeltoidf->energypluspreprocess->energyplus")
-      wf.add(co.getTools())
+      wf = OpenStudio::Runmanager::Workflow.new('modeltoidf->energypluspreprocess->energyplus')
+      wf.add(co.getTools)
       job = wf.create(OpenStudio::Path.new(run_dir(test_name)), OpenStudio::Path.new(model_out_path(test_name)), OpenStudio::Path.new(epw_path))
 
       rm = OpenStudio::Runmanager::RunManager.new
@@ -132,15 +130,10 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
 
   # create test files if they do not exist when the test first runs
   def setup_test(test_name, idf_output_requests, model_in_path = model_in_path_default, epw_path = epw_path_default)
-
-    if !File.exist?(run_dir(test_name))
-      FileUtils.mkdir_p(run_dir(test_name))
-    end
+    FileUtils.mkdir_p(run_dir(test_name)) unless File.exist?(run_dir(test_name))
     assert(File.exist?(run_dir(test_name)))
 
-    if File.exist?(report_path(test_name))
-      FileUtils.rm(report_path(test_name))
-    end
+    FileUtils.rm(report_path(test_name)) if File.exist?(report_path(test_name))
 
     assert(File.exist?(model_in_path))
 
@@ -149,14 +142,14 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     end
 
     # convert output requests to OSM for testing, OS App and PAT will add these to the E+ Idf
-    workspace = OpenStudio::Workspace.new("Draft".to_StrictnessLevel, "EnergyPlus".to_IddFileType)
+    workspace = OpenStudio::Workspace.new('Draft'.to_StrictnessLevel, 'EnergyPlus'.to_IddFileType)
     workspace.addObjects(idf_output_requests)
     rt = OpenStudio::EnergyPlus::ReverseTranslator.new
     request_model = rt.translateWorkspace(workspace)
 
     translator = OpenStudio::OSVersion::VersionTranslator.new
     model = translator.loadModel(model_in_path)
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
     model.addObjects(request_model.objects)
     model.save(model_out_path(test_name), true)
@@ -170,7 +163,6 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
 
   # calibration_reports
   def test_CalibrationReportsEnhanced
-
     test_name = 'calibration_reports'
 
     # create an instance of the measure
@@ -189,9 +181,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     # populate argument with specified hash value if specified
     arguments.each do |arg|
       temp_arg_var = arg.clone
-      if args_hash[arg.name]
-        assert(temp_arg_var.setValue(args_hash[arg.name]))
-      end
+      assert(temp_arg_var.setValue(args_hash[arg.name])) if args_hash[arg.name]
       argument_map[arg.name] = temp_arg_var
     end
 
@@ -214,9 +204,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
 
     # delete the output if it exists
-    if File.exist?(report_path(test_name))
-      FileUtils.rm(report_path(test_name))
-    end
+    FileUtils.rm(report_path(test_name)) if File.exist?(report_path(test_name))
     assert(!File.exist?(report_path(test_name)))
 
     # temporarily change directory to the run directory and run the measure
@@ -229,83 +217,75 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
       result = runner.result
       show_output(result)
       assert_equal('Success', result.value.valueName)
-      assert(result.warnings.size == 0)
+      assert(result.warnings.empty?)
     ensure
       Dir.chdir(start_dir)
     end
 
     model = runner.lastOpenStudioModel
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     sqlFile = runner.lastEnergyPlusSqlFile
-    assert((not sqlFile.empty?))
+    assert(!sqlFile.empty?)
     sqlFile = sqlFile.get
 
     model.setSqlFile(sqlFile)
 
     # must have a runPeriod
     runPeriod = model.runPeriod
-    assert((not runPeriod.empty?))
+    assert(!runPeriod.empty?)
 
     # must have a calendarYear
     yearDescription = model.yearDescription
-    assert((not yearDescription.empty?))
+    assert(!yearDescription.empty?)
     calendarYear = yearDescription.get.calendarYear
-    assert((not calendarYear.empty?))
+    assert(!calendarYear.empty?)
 
     # check for varying demand
     model.getUtilityBills.each do |utilityBill|
-      if not utilityBill.peakDemandUnitConversionFactor.empty?
-        hasVaryingDemand = false
-        modelPeakDemand = 0.0
-        count = 0
-        utilityBill.billingPeriods.each do |billingPeriod|
-          peakDemand = billingPeriod.modelPeakDemand
-          if not peakDemand.empty?
-            temp = peakDemand.get
-            if count == 0
-              modelPeakDemand = temp
-            else
-              if modelPeakDemand != temp
-                hasVaryingDemand = true
-                break
-              end
-            end
-            count = count + 1
+      next if utilityBill.peakDemandUnitConversionFactor.empty?
+      hasVaryingDemand = false
+      modelPeakDemand = 0.0
+      count = 0
+      utilityBill.billingPeriods.each do |billingPeriod|
+        peakDemand = billingPeriod.modelPeakDemand
+        next if peakDemand.empty?
+        temp = peakDemand.get
+        if count == 0
+          modelPeakDemand = temp
+        else
+          if modelPeakDemand != temp
+            hasVaryingDemand = true
+            break
           end
         end
-        if count > 1
-          assert(hasVaryingDemand)
-        end
+        count += 1
       end
+      assert(hasVaryingDemand) if count > 1
     end
 
     # make sure the report file exists
     assert(File.exist?(report_path(test_name)))
-
   end
 
   # calibration_reports_no_gas
   def test_CalibrationReportsEnhanced_NoGas
-
     test_name = 'calibration_reports_no_gas'
 
     # load model, remove gas bills, save to new file
     raw_model_path = "#{File.dirname(__FILE__)}/ExampleModel.osm"
     vt = OpenStudio::OSVersion::VersionTranslator.new
     model = vt.loadModel(raw_model_path)
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
     utilityBills = model.getUtilityBills
-    assert_equal(2, utilityBills.size())
+    assert_equal(2, utilityBills.size)
     utilityBills.each do |utilityBill|
-      if utilityBill.fuelType == "Gas".to_FuelType
-        utilityBill.remove
-      end
+      utilityBill.remove if utilityBill.fuelType == 'Gas'.to_FuelType
     end
     utilityBills = model.getUtilityBills
-    assert_equal(1, utilityBills.size())
+    assert_equal(1, utilityBills.size)
     altered_model_path = OpenStudio::Path.new("#{run_dir(test_name)}/ExampleModelNoGasInput.osm")
     FileUtils.mkdir_p run_dir(test_name)
     model.save(altered_model_path, true)
@@ -329,9 +309,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     # populate argument with specified hash value if specified
     arguments.each do |arg|
       temp_arg_var = arg.clone
-      if args_hash[arg.name]
-        assert(temp_arg_var.setValue(args_hash[arg.name]))
-      end
+      assert(temp_arg_var.setValue(args_hash[arg.name])) if args_hash[arg.name]
       argument_map[arg.name] = temp_arg_var
     end
 
@@ -354,9 +332,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
 
     # delete the output if it exists
-    if File.exist?(report_path(test_name))
-      FileUtils.rm(report_path(test_name))
-    end
+    FileUtils.rm(report_path(test_name)) if File.exist?(report_path(test_name))
     assert(!File.exist?(report_path(test_name)))
 
     # temporarily change directory to the run directory and run the measure
@@ -369,86 +345,76 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
       result = runner.result
       show_output(result)
       assert_equal('Success', result.value.valueName)
-      assert(result.warnings.size == 0)
+      assert(result.warnings.empty?)
     ensure
       Dir.chdir(start_dir)
     end
 
     model = runner.lastOpenStudioModel
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     sqlFile = runner.lastEnergyPlusSqlFile
-    assert((not sqlFile.empty?))
+    assert(!sqlFile.empty?)
     sqlFile = sqlFile.get
 
     model.setSqlFile(sqlFile)
 
     # must have a runPeriod
     runPeriod = model.runPeriod
-    assert((not runPeriod.empty?))
+    assert(!runPeriod.empty?)
 
     # must have a calendarYear
     yearDescription = model.yearDescription
-    assert((not yearDescription.empty?))
+    assert(!yearDescription.empty?)
     calendarYear = yearDescription.get.calendarYear
-    assert((not calendarYear.empty?))
+    assert(!calendarYear.empty?)
 
     # check for varying demand
     model.getUtilityBills.each do |utilityBill|
-      if not utilityBill.peakDemandUnitConversionFactor.empty?
-        hasVaryingDemand = false
-        modelPeakDemand = 0.0
-        count = 0
-        utilityBill.billingPeriods.each do |billingPeriod|
-          peakDemand = billingPeriod.modelPeakDemand
-          if not peakDemand.empty?
-            temp = peakDemand.get
-            if count == 0
-              modelPeakDemand = temp
-            else
-              if modelPeakDemand != temp
-                hasVaryingDemand = true
-                break
-              end
-            end
-            count = count + 1
+      next if utilityBill.peakDemandUnitConversionFactor.empty?
+      hasVaryingDemand = false
+      modelPeakDemand = 0.0
+      count = 0
+      utilityBill.billingPeriods.each do |billingPeriod|
+        peakDemand = billingPeriod.modelPeakDemand
+        next if peakDemand.empty?
+        temp = peakDemand.get
+        if count == 0
+          modelPeakDemand = temp
+        else
+          if modelPeakDemand != temp
+            hasVaryingDemand = true
+            break
           end
         end
-        if count > 1
-          assert(hasVaryingDemand)
-        end
+        count += 1
       end
+      assert(hasVaryingDemand) if count > 1
     end
 
     # make sure the report file exists
     assert(File.exist?(report_path(test_name)))
-
   end
 
   # calibration_reports_no_demand
   def test_CalibrationReportsEnhanced_NoDemand
-
     test_name = 'calibration_reports_no_demand'
-
 
     # load model, remove gas bills, save to new file
     raw_model_path = "#{File.dirname(__FILE__)}/ExampleModel.osm"
     vt = OpenStudio::OSVersion::VersionTranslator.new
     model = vt.loadModel(raw_model_path)
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
     utilityBills = model.getUtilityBills
-    assert_equal(2, utilityBills.size())
+    assert_equal(2, utilityBills.size)
     utilityBills.each do |utilityBill|
-      if utilityBill.fuelType == "Electricity".to_FuelType
-        utilityBill.billingPeriods.each do |billingPeriod|
-          billingPeriod.resetPeakDemand
-        end
-      end
+      next unless utilityBill.fuelType == 'Electricity'.to_FuelType
+      utilityBill.billingPeriods.each(&:resetPeakDemand)
     end
     utilityBills = model.getUtilityBills
-    assert_equal(2, utilityBills.size())
+    assert_equal(2, utilityBills.size)
     altered_model_path = OpenStudio::Path.new("#{run_dir(test_name)}/ExampleModelNoDemandInput.osm")
     FileUtils.mkdir_p run_dir(test_name)
     model.save(altered_model_path, true)
@@ -472,9 +438,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     # populate argument with specified hash value if specified
     arguments.each do |arg|
       temp_arg_var = arg.clone
-      if args_hash[arg.name]
-        assert(temp_arg_var.setValue(args_hash[arg.name]))
-      end
+      assert(temp_arg_var.setValue(args_hash[arg.name])) if args_hash[arg.name]
       argument_map[arg.name] = temp_arg_var
     end
 
@@ -497,9 +461,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
 
     # delete the output if it exists
-    if File.exist?(report_path(test_name))
-      FileUtils.rm(report_path(test_name))
-    end
+    FileUtils.rm(report_path(test_name)) if File.exist?(report_path(test_name))
     assert(!File.exist?(report_path(test_name)))
 
     # temporarily change directory to the run directory and run the measure
@@ -512,30 +474,30 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
       result = runner.result
       show_output(result)
       assert_equal('Success', result.value.valueName)
-      assert(result.warnings.size == 0)
+      assert(result.warnings.empty?)
     ensure
       Dir.chdir(start_dir)
     end
 
     model = runner.lastOpenStudioModel
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     sqlFile = runner.lastEnergyPlusSqlFile
-    assert((not sqlFile.empty?))
+    assert(!sqlFile.empty?)
     sqlFile = sqlFile.get
 
     model.setSqlFile(sqlFile)
 
     # must have a runPeriod
     runPeriod = model.runPeriod
-    assert((not runPeriod.empty?))
+    assert(!runPeriod.empty?)
 
     # must have a calendarYear
     yearDescription = model.yearDescription
-    assert((not yearDescription.empty?))
+    assert(!yearDescription.empty?)
     calendarYear = yearDescription.get.calendarYear
-    assert((not calendarYear.empty?))
+    assert(!calendarYear.empty?)
 
     # check for no demand
     model.getUtilityBills.each do |utilityBill|
@@ -546,29 +508,25 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
 
     # make sure the report file exists
     assert(File.exist?(report_path(test_name)))
-
   end
 
   # calibration_reports_with_two_gas_bills
   def test_CalibrationReportsEnhanced_TwoGas
-
     test_name = 'calibration_reports_two_gas'
 
     # load model, remove gas bills, save to new file
     raw_model_path = "#{File.dirname(__FILE__)}/ExampleModel.osm"
     vt = OpenStudio::OSVersion::VersionTranslator.new
     model = vt.loadModel(raw_model_path)
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
     utilityBills = model.getUtilityBills
-    assert_equal(2, utilityBills.size())
+    assert_equal(2, utilityBills.size)
     utilityBills.each do |utilityBill|
-      if utilityBill.fuelType == "Gas".to_FuelType
-        utilityBill.clone(model)
-      end
+      utilityBill.clone(model) if utilityBill.fuelType == 'Gas'.to_FuelType
     end
     utilityBills = model.getUtilityBills
-    assert_equal(3, utilityBills.size())
+    assert_equal(3, utilityBills.size)
     altered_model_path = OpenStudio::Path.new("#{run_dir(test_name)}/ExampleModelTwoGasInput.osm")
     FileUtils.mkdir_p run_dir(test_name)
     model.save(altered_model_path, true)
@@ -592,9 +550,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     # populate argument with specified hash value if specified
     arguments.each do |arg|
       temp_arg_var = arg.clone
-      if args_hash[arg.name]
-        assert(temp_arg_var.setValue(args_hash[arg.name]))
-      end
+      assert(temp_arg_var.setValue(args_hash[arg.name])) if args_hash[arg.name]
       argument_map[arg.name] = temp_arg_var
     end
 
@@ -617,9 +573,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
 
     # delete the output if it exists
-    if File.exist?(report_path(test_name))
-      FileUtils.rm(report_path(test_name))
-    end
+    FileUtils.rm(report_path(test_name)) if File.exist?(report_path(test_name))
     assert(!File.exist?(report_path(test_name)))
 
     # temporarily change directory to the run directory and run the measure
@@ -638,33 +592,32 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     end
 
     model = runner.lastOpenStudioModel
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     sqlFile = runner.lastEnergyPlusSqlFile
-    assert((not sqlFile.empty?))
+    assert(!sqlFile.empty?)
     sqlFile = sqlFile.get
 
     model.setSqlFile(sqlFile)
 
     # must have a runPeriod
     runPeriod = model.runPeriod
-    assert((not runPeriod.empty?))
+    assert(!runPeriod.empty?)
 
     # must have a calendarYear
     yearDescription = model.yearDescription
-    assert((not yearDescription.empty?))
+    assert(!yearDescription.empty?)
     calendarYear = yearDescription.get.calendarYear
-    assert((not calendarYear.empty?))
+    assert(!calendarYear.empty?)
 
     # make sure the report file exists
     assert(File.exist?(report_path(test_name)))
-
   end
 
   # calibration_reports
   def test_CalibrationFuelOil2
-    skip "Remove once CI is using 2.7.0 or later"
+    skip 'Remove once CI is using 2.7.0 or later'
 
     test_name = 'calibration_fuel_oil2'
     model_in_path = "#{File.dirname(__FILE__)}/ExampleModel_FuelOil.osm"
@@ -685,9 +638,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     # populate argument with specified hash value if specified
     arguments.each do |arg|
       temp_arg_var = arg.clone
-      if args_hash[arg.name]
-        assert(temp_arg_var.setValue(args_hash[arg.name]))
-      end
+      assert(temp_arg_var.setValue(args_hash[arg.name])) if args_hash[arg.name]
       argument_map[arg.name] = temp_arg_var
     end
 
@@ -697,7 +648,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
 
     # mimic the process of running this measure in OS App or PAT. Optionally set custom model_in_path and custom epw_path.
     epw_path = epw_path_default
-    setup_test(test_name, idf_output_requests,model_in_path)
+    setup_test(test_name, idf_output_requests, model_in_path)
 
     assert(File.exist?(model_out_path(test_name)))
     assert(File.exist?(sql_path(test_name)))
@@ -710,9 +661,7 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
     runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
 
     # delete the output if it exists
-    if File.exist?(report_path(test_name))
-      FileUtils.rm(report_path(test_name))
-    end
+    FileUtils.rm(report_path(test_name)) if File.exist?(report_path(test_name))
     assert(!File.exist?(report_path(test_name)))
 
     # temporarily change directory to the run directory and run the measure
@@ -725,68 +674,61 @@ class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
       result = runner.result
       show_output(result)
       assert_equal('Success', result.value.valueName)
-      #assert(result.warnings.size == 0)
+      # assert(result.warnings.size == 0)
     ensure
       Dir.chdir(start_dir)
     end
 
     model = runner.lastOpenStudioModel
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     sqlFile = runner.lastEnergyPlusSqlFile
-    assert((not sqlFile.empty?))
+    assert(!sqlFile.empty?)
     sqlFile = sqlFile.get
 
     model.setSqlFile(sqlFile)
 
     # must have a runPeriod
     runPeriod = model.runPeriod
-    assert((not runPeriod.empty?))
+    assert(!runPeriod.empty?)
 
     # must have a calendarYear
     yearDescription = model.yearDescription
-    assert((not yearDescription.empty?))
+    assert(!yearDescription.empty?)
     calendarYear = yearDescription.get.calendarYear
-    assert((not calendarYear.empty?))
+    assert(!calendarYear.empty?)
 
     # check for varying demand
     assert_equal(3, model.getUtilityBills.size)
     model.getUtilityBills.each do |utilityBill|
-    
       assert(!utilityBill.billingPeriods.empty?)
       utilityBill.billingPeriods.each do |billingPeriod|
         assert(!billingPeriod.modelConsumption.empty?)
       end
-      
-      if not utilityBill.peakDemandUnitConversionFactor.empty?
-        hasVaryingDemand = false
-        modelPeakDemand = 0.0
-        count = 0
-        utilityBill.billingPeriods.each do |billingPeriod|
-          peakDemand = billingPeriod.modelPeakDemand
-          if not peakDemand.empty?
-            temp = peakDemand.get
-            if count == 0
-              modelPeakDemand = temp
-            else
-              if modelPeakDemand != temp
-                hasVaryingDemand = true
-                break
-              end
-            end
-            count = count + 1
+
+      next if utilityBill.peakDemandUnitConversionFactor.empty?
+      hasVaryingDemand = false
+      modelPeakDemand = 0.0
+      count = 0
+      utilityBill.billingPeriods.each do |billingPeriod|
+        peakDemand = billingPeriod.modelPeakDemand
+        next if peakDemand.empty?
+        temp = peakDemand.get
+        if count == 0
+          modelPeakDemand = temp
+        else
+          if modelPeakDemand != temp
+            hasVaryingDemand = true
+            break
           end
         end
-        if count > 1
-          assert(hasVaryingDemand)
-        end
+        count += 1
       end
+      assert(hasVaryingDemand) if count > 1
     end
 
     # make sure the report file exists
     assert(File.exist?(report_path(test_name)))
-
   end
-
 end

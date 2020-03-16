@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_heating_electric_multiplier</name>
   <uid>122e854c-d939-4bea-822a-89f2a5584a01</uid>
-  <version_id>abfa5f81-c152-4ab1-869a-52b806bcb766</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>efda5338-a36a-4fea-ab0c-7736655cd828</version_id>
+  <version_modified>20200316T215428Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingElectricMultiplier</class_name>
   <display_name>Heating Coils Electric Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{5ba6a2af-8cdc-4fbc-90ad-7c9b2ed1b166}</default_value>
+      <default_value>{543882aa-a4a4-4988-9c47-27ec0ff7825f}</default_value>
       <choices>
         <choice>
-          <value>{5ba6a2af-8cdc-4fbc-90ad-7c9b2ed1b166}</value>
+          <value>{543882aa-a4a4-4988-9c47-27ec0ff7825f}</value>
           <display_name>*All Electric Heating Coils*</display_name>
         </choice>
         <choice>
@@ -62,17 +62,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>8DB15BC8</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -89,6 +78,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>7C069839</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>24B360B9</checksum>
     </file>
   </files>
 </measure>

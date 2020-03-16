@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>timeseries_objective_function</name>
   <uid>6804217d-4737-45f3-82df-b81393c29ce3</uid>
-  <version_id>dd0ca966-d993-4727-a8ec-aaa026c0dc15</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>08112dff-315d-4b0d-9937-768ce2a9660d</version_id>
+  <version_modified>20200316T215427Z</version_modified>
   <xml_checksum>FFE04372</xml_checksum>
   <class_name>TimeseriesObjectiveFunction</class_name>
   <display_name>TimeSeries Objective Function</display_name>
@@ -410,17 +410,6 @@
       <checksum>3F176FE0</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>BA67338B</checksum>
-    </file>
-    <file>
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
@@ -431,6 +420,17 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>F3A8356C</checksum>
     </file>
   </files>
 </measure>

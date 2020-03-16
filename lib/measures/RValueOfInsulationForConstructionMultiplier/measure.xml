@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>r_value_of_insulation_for_construction_multiplier</name>
   <uid>3c7a6751-bb54-4600-9410-8f042e1a513b</uid>
-  <version_id>4d50c058-9a33-4a73-a600-8bf1c3c86f07</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>2a762b12-2d9d-4638-95c5-f05d791cfd7a</version_id>
+  <version_modified>20200316T215427Z</version_modified>
   <xml_checksum>0BF71A3E</xml_checksum>
   <class_name>RValueOfInsulationForConstructionMultiplier</class_name>
   <display_name>Change R-value of Insulation Layer for Construction By a Multiplier</display_name>
@@ -101,17 +101,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>0.11.5</identifier>
-        <min_compatible>0.11.5</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>24551B66</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -128,6 +117,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>CE5C5F28</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>0.11.5</identifier>
+        <min_compatible>0.11.5</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>BC24CDED</checksum>
     </file>
   </files>
 </measure>

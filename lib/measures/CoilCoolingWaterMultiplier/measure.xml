@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_cooling_water_multiplier</name>
   <uid>0fb42580-a644-4291-9a08-05521a6e7940</uid>
-  <version_id>9334d758-05a6-4bdb-aa80-659cc25752a0</version_id>
-  <version_modified>20200316T212134Z</version_modified>
+  <version_id>4aa5a3e8-cd74-4d40-becf-84f030acebdf</version_id>
+  <version_modified>20200316T215429Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingWaterMultiplier</class_name>
   <display_name>Cooling Coils Water Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{b33ea5c6-382b-4c5f-9c0f-8f62907cf5a1}</default_value>
+      <default_value>{d14e8351-f2bd-4c1b-b55c-7167a2ddc21f}</default_value>
       <choices>
         <choice>
-          <value>{b33ea5c6-382b-4c5f-9c0f-8f62907cf5a1}</value>
+          <value>{d14e8351-f2bd-4c1b-b55c-7167a2ddc21f}</value>
           <display_name>*All Water Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -98,17 +98,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>3B6FFBD1</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -125,6 +114,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>3C509F3A</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>C431B526</checksum>
     </file>
   </files>
 </measure>

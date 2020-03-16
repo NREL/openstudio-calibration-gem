@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_cooling_dx_two_speed_multiplier</name>
   <uid>fe4f36db-e296-4c9f-8199-19f2249384dd</uid>
-  <version_id>d1035861-95b1-4319-8fa8-41dc4da3d538</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>88b997ba-329b-4678-bcb0-b519415fc48c</version_id>
+  <version_modified>20200316T215428Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXTwoSpeedMultiplier</class_name>
   <display_name>Cooling Coils DX Two Speed Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{ce350186-0f2c-4da5-aa5a-40a1a383ec9c}</default_value>
+      <default_value>{43db0a62-a3cb-4cf0-ba63-8788a7aa3eb8}</default_value>
       <choices>
         <choice>
-          <value>{ce350186-0f2c-4da5-aa5a-40a1a383ec9c}</value>
+          <value>{43db0a62-a3cb-4cf0-ba63-8788a7aa3eb8}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -80,17 +80,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>36F1AF2D</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -107,6 +96,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>59139ABC</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>248AA256</checksum>
     </file>
   </files>
 </measure>

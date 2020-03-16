@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>calibration_reports_enhanced_21</name>
   <uid>e6642d40-7366-4647-8724-53a37991d669</uid>
-  <version_id>51acddd8-cdeb-4f0d-a934-800ceca63399</version_id>
-  <version_modified>20200316T212132Z</version_modified>
+  <version_id>0a8306d9-7476-4920-9414-f67318640c0c</version_id>
+  <version_modified>20200316T215427Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>CalibrationReportsEnhanced21</class_name>
   <display_name>Calibration Reports Enhanced</display_name>
@@ -238,17 +238,6 @@
       <checksum>22F45739</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>1.11.0</identifier>
-        <min_compatible>1.11.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>D44D3714</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -265,6 +254,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>6EC9831E</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>1.11.0</identifier>
+        <min_compatible>1.11.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>4DD92227</checksum>
     </file>
   </files>
 </measure>

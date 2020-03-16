@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>maalka_monthly_json_utility_data</name>
   <uid>afe82cf5-3e3a-43ea-b31e-8289ff268bed</uid>
-  <version_id>27584952-54d6-4580-aebe-8fd11c2d4eca</version_id>
-  <version_modified>20200316T212133Z</version_modified>
+  <version_id>5ee73d0c-5929-4b84-b4f0-cb359bf34b2b</version_id>
+  <version_modified>20200316T215428Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>MaalkaMonthlyJSONUtilityData</class_name>
   <display_name>Maalka Formatted Monthly JSON Utility Data</display_name>
@@ -185,17 +185,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>D0FD7E9F</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -212,6 +201,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>6B54533E</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>7BD75E75</checksum>
     </file>
   </files>
 </measure>

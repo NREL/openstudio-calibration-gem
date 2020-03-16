@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_cooling_dx_single_speed_percent_change</name>
   <uid>97d0dbdf-6245-4cfd-8dfc-a6a5eb853b37</uid>
-  <version_id>55a8390a-3dfd-406a-8bfe-b231c0a7d48d</version_id>
-  <version_modified>20200316T212132Z</version_modified>
+  <version_id>3dbbce71-0c7d-415e-85d7-7f27d1fe1c5a</version_id>
+  <version_modified>20200316T215427Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXSingleSpeedPercentChange</class_name>
   <display_name>Cooling Coils DX Single Speed Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{400bd3fc-ffd7-4c8c-a7a2-88d8a0748693}</default_value>
+      <default_value>{e3fd8135-e56e-422d-9bdb-63a79815856c}</default_value>
       <choices>
         <choice>
-          <value>{400bd3fc-ffd7-4c8c-a7a2-88d8a0748693}</value>
+          <value>{e3fd8135-e56e-422d-9bdb-63a79815856c}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -62,17 +62,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>57F5D17E</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -89,6 +78,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>1DD68BE3</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>0F8F2F07</checksum>
     </file>
   </files>
 </measure>

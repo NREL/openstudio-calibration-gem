@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>hard_size_hvac</name>
   <uid>d7da749f-6318-4077-b502-25994a713b27</uid>
-  <version_id>00ed1d8b-d257-44e4-9325-2ff3b263d6d6</version_id>
-  <version_modified>20200316T212136Z</version_modified>
+  <version_id>af29be1f-5256-4da1-9e8b-c9185ab8c228</version_id>
+  <version_modified>20200316T215429Z</version_modified>
   <xml_checksum>2B526343</xml_checksum>
   <class_name>HardSizeHVAC</class_name>
   <display_name>Hard Size HVAC</display_name>
@@ -50,17 +50,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>1.5.0</identifier>
-        <min_compatible>1.5.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>4A0ED1E6</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -77,6 +66,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>960BFA6F</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>1.5.0</identifier>
+        <min_compatible>1.5.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>1CD94840</checksum>
     </file>
   </files>
 </measure>

@@ -35,95 +35,91 @@
 
 # start the measure
 class CoilHeatingWaterPercentChange < OpenStudio::Ruleset::ModelUserScript
-
   # human readable name
   def name
-    return "Heating Coils Water Percent Change"
+    'Heating Coils Water Percent Change'
   end
 
   # human readable description
   def description
-    return "This is a general purpose measure to calibrate Water Heating Coils with a Percent Change."
+    'This is a general purpose measure to calibrate Water Heating Coils with a Percent Change.'
   end
 
   # human readable description of modeling approach
   def modeler_description
-    return "It will be used for calibration of rated capacity and efficiency and parasitic loads. User can choose between a SINGLE coil or ALL the Coils."
+    'It will be used for calibration of rated capacity and efficiency and parasitic loads. User can choose between a SINGLE coil or ALL the Coils.'
   end
-  
-  def change_name(object,ua_factor,coil_capacity_perc_change)
-    nameString = "#{object.name.get}"
-    if ua_factor != 1.0
-      nameString = nameString + " #{ua_factor.round(2)}percng UA"
-    end
+
+  def change_name(object, ua_factor, coil_capacity_perc_change)
+    nameString = object.name.get.to_s
+    nameString += " #{ua_factor.round(2)}percng UA" if ua_factor != 1.0
     if coil_capacity_perc_change != 1.0
-      nameString = nameString + " #{coil_capacity_perc_change.round(2)}percng coilCap"
+      nameString += " #{coil_capacity_perc_change.round(2)}percng coilCap"
     end
     object.setName(nameString)
   end
-  
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Ruleset::OSArgumentVector.new
 
-    #populate choice argument for constructions that are applied to surfaces in the model
+    # populate choice argument for constructions that are applied to surfaces in the model
     loop_handles = OpenStudio::StringVector.new
     loop_display_names = OpenStudio::StringVector.new
 
-    #putting air loops and names into hash
+    # putting air loops and names into hash
     loop_args = model.getAirLoopHVACs
     loop_args_hash = {}
     loop_args.each do |loop_arg|
       loop_args_hash[loop_arg.name.to_s] = loop_arg
     end
 
-    #looping through sorted hash of air loops
-    loop_args_hash.sort.map do |key,value|
+    # looping through sorted hash of air loops
+    loop_args_hash.sort.map do |_key, value|
       show_loop = false
       components = value.supplyComponents
       components.each do |component|
-        if not component.to_CoilHeatingWater.empty?
-          show_loop = true
-          loop_handles << component.handle.to_s
-          loop_display_names << component.name.to_s
-        end
+        next if component.to_CoilHeatingWater.empty?
+        show_loop = true
+        loop_handles << component.handle.to_s
+        loop_display_names << component.name.to_s
       end
 
-      #if loop as object of correct type then add to hash.
+      # if loop as object of correct type then add to hash.
       # if show_loop == true
-        # loop_handles << value.handle.to_s
-        # loop_display_names << key
+      # loop_handles << value.handle.to_s
+      # loop_display_names << key
       # end
     end
 
-    #add building to string vector with space type
+    # add building to string vector with space type
     building = model.getBuilding
     loop_handles << building.handle.to_s
-    loop_display_names << "*All Water Heating Coils*"
-    loop_handles << "0"
-    loop_display_names << "*None*"
+    loop_display_names << '*All Water Heating Coils*'
+    loop_handles << '0'
+    loop_display_names << '*None*'
 
-    #make a choice argument for space type
-    coil_arg = OpenStudio::Ruleset::OSArgument::makeChoiceArgument("coil", loop_handles, loop_display_names)
-    coil_arg.setDisplayName("Apply the Measure to a SINGLE Water Heating Coil, ALL the Water Heating Coils or NONE.")
-    coil_arg.setDefaultValue("*All Water Heating Coils*") #if no space type is chosen this will run on the entire building
+    # make a choice argument for space type
+    coil_arg = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
+    coil_arg.setDisplayName('Apply the Measure to a SINGLE Water Heating Coil, ALL the Water Heating Coils or NONE.')
+    coil_arg.setDefaultValue('*All Water Heating Coils*') # if no space type is chosen this will run on the entire building
     args << coil_arg
-    
+
     # ua_factor
-    ua_factor = OpenStudio::Ruleset::OSArgument.makeDoubleArgument("ua_factor", true)
-    ua_factor.setDisplayName("Percent Change for UA coefficient.")
-    ua_factor.setDescription("Percent Change for UA coefficient.")
+    ua_factor = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('ua_factor', true)
+    ua_factor.setDisplayName('Percent Change for UA coefficient.')
+    ua_factor.setDescription('Percent Change for UA coefficient.')
     ua_factor.setDefaultValue(0.0)
     args << ua_factor
-    
+
     # coil_capacity_perc_change
-    coil_capacity_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument("coil_capacity_perc_change", true)
-    coil_capacity_perc_change.setDisplayName("Percent Change for coil Capacity.")
-    coil_capacity_perc_change.setDescription("Percent Change for coil Capacity.")
+    coil_capacity_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('coil_capacity_perc_change', true)
+    coil_capacity_perc_change.setDisplayName('Percent Change for coil Capacity.')
+    coil_capacity_perc_change.setDescription('Percent Change for coil Capacity.')
     coil_capacity_perc_change.setDefaultValue(0.0)
-    args << coil_capacity_perc_change     
-    
-    return args
+    args << coil_capacity_perc_change
+
+    args
   end
 
   # define what happens when the measure is run
@@ -131,53 +127,53 @@ class CoilHeatingWaterPercentChange < OpenStudio::Ruleset::ModelUserScript
     super(model, runner, user_arguments)
 
     # use the built-in error checking
-    if !runner.validateUserArguments(arguments(model), user_arguments)
+    unless runner.validateUserArguments(arguments(model), user_arguments)
       return false
     end
-    
+
     # assign the user inputs to variables
-    coil_object = runner.getOptionalWorkspaceObjectChoiceValue("coil",user_arguments,model)
-    coil_handle = runner.getStringArgumentValue("coil",user_arguments)
+    coil_object = runner.getOptionalWorkspaceObjectChoiceValue('coil', user_arguments, model)
+    coil_handle = runner.getStringArgumentValue('coil', user_arguments)
 
-    coil_capacity_perc_change = runner.getDoubleArgumentValue("coil_capacity_perc_change",user_arguments)
-    ua_factor = runner.getDoubleArgumentValue("ua_factor",user_arguments)
+    coil_capacity_perc_change = runner.getDoubleArgumentValue('coil_capacity_perc_change', user_arguments)
+    ua_factor = runner.getDoubleArgumentValue('ua_factor', user_arguments)
 
-    #find objects to change
+    # find objects to change
     coils = []
     building = model.getBuilding
     building_handle = building.handle.to_s
     runner.registerInfo("coil_handle: #{coil_handle}")
-    #setup coils
+    # setup coils
     if coil_handle == building_handle
-      #Use ALL coils
-      runner.registerInfo("Applying change to ALL Coils")
+      # Use ALL coils
+      runner.registerInfo('Applying change to ALL Coils')
       loops = model.getAirLoopHVACs
-      #loop through air loops
+      # loop through air loops
       loops.each do |loop|
         supply_components = loop.supplyComponents
-        #find coils on loops
+        # find coils on loops
         supply_components.each do |supply_component|
-          if not supply_component.to_CoilHeatingWater.empty?
+          unless supply_component.to_CoilHeatingWater.empty?
             coils << supply_component.to_CoilHeatingWater.get
           end
-        end   
-      end      
+        end
+      end
     elsif coil_handle == 0.to_s
-      #coils set to NONE so do nothing
-      runner.registerInfo("Applying change to NONE Coils")
-    elsif not coil_handle.empty?
-      #Single coil handle found, check if object is good    
-      if not coil_object.get.to_CoilHeatingWater.empty?
-        runner.registerInfo("Applying change to #{coil_object.get.name.to_s} coil")
+      # coils set to NONE so do nothing
+      runner.registerInfo('Applying change to NONE Coils')
+    elsif !coil_handle.empty?
+      # Single coil handle found, check if object is good
+      if !coil_object.get.to_CoilHeatingWater.empty?
+        runner.registerInfo("Applying change to #{coil_object.get.name} coil")
         coils << coil_object.get.to_CoilHeatingWater.get
       else
         runner.registerError("coil with handle #{coil_handle} could not be found.")
       end
     else
-      runner.registerError("coil handle is empty.")
+      runner.registerError('coil handle is empty.')
       return false
     end
-       
+
     # report initial condition of model
     runner.registerInitialCondition("Coils to change: #{coils.size}")
     runner.registerInfo("Coils to change: #{coils.size}")
@@ -191,42 +187,39 @@ class CoilHeatingWaterPercentChange < OpenStudio::Ruleset::ModelUserScript
       if coil_capacity_perc_change != 0.0
         if coil.ratedCapacity.is_initialized
           runner.registerInfo("Applying ratedCapacity #{coil_capacity_perc_change} Percent Change to #{coil.name.get}.")
-          coil.setRatedCapacity(coil.ratedCapacity.get + coil.ratedCapacity.get * coil_capacity_perc_change * 0.01)          
+          coil.setRatedCapacity(coil.ratedCapacity.get + coil.ratedCapacity.get * coil_capacity_perc_change * 0.01)
           altered_capacity << coil.handle.to_s
           altered_coil = true
         end
       end
-      
+
       # modify ua_factor
       if ua_factor != 0.0
         if coil.uFactorTimesAreaValue.is_initialized
           runner.registerInfo("Applying uFactorTimesAreaValue #{ua_factor} Percent Change to #{coil.name.get}.")
-          coil.setUFactorTimesAreaValue(coil.uFactorTimesAreaValue.get + coil.uFactorTimesAreaValue.get * ua_factor * 0.01)       
+          coil.setUFactorTimesAreaValue(coil.uFactorTimesAreaValue.get + coil.uFactorTimesAreaValue.get * ua_factor * 0.01)
           altered_coilefficiency << coil.handle.to_s
           altered_coil = true
         end
       end
-      
-      if altered_coil
-        altered_coils << coil.handle.to_s
-        change_name(coil,ua_factor,coil_capacity_perc_change)
-        runner.registerInfo("coil name changed to: #{coil.name.get}")
-      end
-    end #end coil loop
-    
+
+      next unless altered_coil
+      altered_coils << coil.handle.to_s
+      change_name(coil, ua_factor, coil_capacity_perc_change)
+      runner.registerInfo("coil name changed to: #{coil.name.get}")
+    end # end coil loop
+
     # na if nothing in model to look at
-    if altered_coils.size == 0
-      runner.registerAsNotApplicable("No Coils were altered in the model")
+    if altered_coils.empty?
+      runner.registerAsNotApplicable('No Coils were altered in the model')
       return true
     end
 
     # report final condition of model
     runner.registerFinalCondition("#{altered_coils.size} Coils objects were altered.")
 
-    return true
-
+    true
   end
-
 end
 
 # register the measure to be used by the application
