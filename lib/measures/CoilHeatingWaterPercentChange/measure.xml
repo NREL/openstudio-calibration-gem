@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_heating_water_percent_change</name>
   <uid>85674ff6-4fdc-463f-9695-36bf6c6a2608</uid>
-  <version_id>c42fe820-2a4b-49d6-9e8a-bcb0cc589d47</version_id>
-  <version_modified>20170911T165710Z</version_modified>
+  <version_id>848e4a63-790d-41e1-9cac-bbb5dc25b92d</version_id>
+  <version_modified>20200316T212133Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingWaterPercentChange</class_name>
   <display_name>Heating Coils Water Percent Change</display_name>
@@ -16,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*All Water Heating Coils*</default_value>
+      <default_value>{d86d4279-1b85-4c75-9e15-4ed28702ba95}</default_value>
       <choices>
         <choice>
-          <value>{ebc035b9-9338-4547-99ab-710fa5af4034}</value>
+          <value>{d86d4279-1b85-4c75-9e15-4ed28702ba95}</value>
           <display_name>*All Water Heating Coils*</display_name>
         </choice>
         <choice>
@@ -47,8 +48,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Heating</tag>
   </tags>
@@ -69,7 +70,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>3830997F</checksum>
+      <checksum>B4CDB58F</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>FC6EE25F</checksum>
     </file>
   </files>
 </measure>

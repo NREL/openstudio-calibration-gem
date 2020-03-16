@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>electric_baseboard_efficiency_and_capacity</name>
   <uid>4253e38c-6b48-4e96-8da7-002cec68d376</uid>
-  <version_id>834b3275-b0d9-4f4a-8d80-679801fa8671</version_id>
-  <version_modified>20170710T155907Z</version_modified>
+  <version_id>a1b66f68-94fd-4fcb-8ce6-bed8c1717489</version_id>
+  <version_modified>20200316T212133Z</version_modified>
   <xml_checksum>0DA5C9E6</xml_checksum>
   <class_name>ElectricBaseboardEfficiencyAndCapacity</class_name>
   <display_name>Electric Baseboard Efficiency And Capacity</display_name>
@@ -27,8 +28,8 @@
       <default_value>1500</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Heating</tag>
   </tags>
@@ -54,7 +55,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>459797DB</checksum>
+      <checksum>071DA324</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>5B77F668</checksum>
     </file>
   </files>
 </measure>

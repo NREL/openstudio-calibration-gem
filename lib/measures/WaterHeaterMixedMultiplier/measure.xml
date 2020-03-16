@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>water_heater_mixed_multiplier</name>
   <uid>1e4d5053-d2c1-400d-9192-7a470e5a7b5c</uid>
-  <version_id>1f2bd409-1f0a-4407-bd35-3c74c43c452a</version_id>
-  <version_modified>20170816T185343Z</version_modified>
+  <version_id>4643eb78-a1d1-483c-833c-71097fa7d231</version_id>
+  <version_modified>20200316T212132Z</version_modified>
   <xml_checksum>D28BCE9C</xml_checksum>
   <class_name>WaterHeaterMixedMultiplier</class_name>
   <display_name>Water Heater Mixed Multiplier</display_name>
@@ -16,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*All WaterHeaterMixeds*</default_value>
+      <default_value>{f8d317c9-e779-411b-8b31-1255fe6c79e3}</default_value>
       <choices>
         <choice>
-          <value>{31752e3d-115c-43a9-aa21-377506ea210e}</value>
+          <value>{f8d317c9-e779-411b-8b31-1255fe6c79e3}</value>
           <display_name>*All WaterHeaterMixeds*</display_name>
         </choice>
         <choice>
@@ -79,8 +80,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Service Water Heating.Water Heating</tag>
   </tags>
@@ -156,7 +157,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>00E45A92</checksum>
+      <checksum>E82F8F9B</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>1626F8CE</checksum>
     </file>
   </files>
 </measure>

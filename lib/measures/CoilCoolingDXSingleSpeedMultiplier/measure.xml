@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_cooling_dx_single_speed_multiplier</name>
   <uid>97d0dbdf-6245-4cfd-8dfc-a6a5eb853b16</uid>
-  <version_id>27bdcbd3-d970-4e29-ac57-c7ba8429c649</version_id>
-  <version_modified>20170911T165708Z</version_modified>
+  <version_id>cb59d3d3-1db1-4104-aad6-94493bdcb87e</version_id>
+  <version_modified>20200316T212133Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXSingleSpeedMultiplier</class_name>
   <display_name>Cooling Coils DX Single Speed Multiplier</display_name>
@@ -16,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*All DX Cooling Coils*</default_value>
+      <default_value>{676c7de0-4067-43be-9a4d-b63d7513b59e}</default_value>
       <choices>
         <choice>
-          <value>{24152f43-b981-4246-baa2-bccd9a56ebf4}</value>
+          <value>{676c7de0-4067-43be-9a4d-b63d7513b59e}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -47,8 +48,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Cooling</tag>
   </tags>
@@ -69,7 +70,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>5052CF5D</checksum>
+      <checksum>06D62E2E</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>09247749</checksum>
     </file>
   </files>
 </measure>

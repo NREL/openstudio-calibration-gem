@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_cooling_water_percent_change</name>
   <uid>51bc1f02-f01b-4c5e-818a-db76ed783665</uid>
-  <version_id>6bb068f3-39a2-48c3-bc5c-fd3448df9807</version_id>
-  <version_modified>20170911T165709Z</version_modified>
+  <version_id>839667dc-9511-4d6e-9999-8917823b1d41</version_id>
+  <version_modified>20200316T212136Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingWaterPercentChange</class_name>
   <display_name>Cooling Coils Water PercentChange</display_name>
@@ -16,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*All Water Cooling Coils*</default_value>
+      <default_value>{ee86717c-e85f-44d4-826c-07360ed92ae2}</default_value>
       <choices>
         <choice>
-          <value>{bf0d46f8-cdb7-4767-b3cd-0bb600bcca4b}</value>
+          <value>{ee86717c-e85f-44d4-826c-07360ed92ae2}</value>
           <display_name>*All Water Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -83,8 +84,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Cooling</tag>
   </tags>
@@ -105,7 +106,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D306AA93</checksum>
+      <checksum>8E08853D</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>3544B376</checksum>
     </file>
   </files>
 </measure>
