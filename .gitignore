@@ -20,3 +20,6 @@
 
 # Ignore IDE files
 /.idea
+
+# ignore mac files
+.DS_Store
