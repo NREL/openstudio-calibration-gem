@@ -43,7 +43,7 @@ require 'fileutils'
 
 require 'minitest/autorun'
 
-class CalibrationReportsEnhanced_Test < MiniTest::Unit::TestCase
+class CalibrationReportsEnhanced_Test < Minitest::Test
   def is_openstudio_2?
     begin
       workflow = OpenStudio::WorkflowJSON.new
