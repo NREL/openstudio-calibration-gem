@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>construction_layer_zero_material_properties</name>
   <uid>3c7a6751-bb54-4600-9410-8f042e1a413b</uid>
-  <version_id>0be9edae-2ace-4217-ba6d-22cfef444c17</version_id>
-  <version_modified>20200316T215427Z</version_modified>
+  <version_id>14b11c2b-63aa-4064-835f-fb57bb4a7af5</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>0BF71A3E</xml_checksum>
   <class_name>ConstructionLayerZeroMaterialProperties</class_name>
   <display_name>Change Parameters Of Material (Layer 0 of Construction)</display_name>
@@ -89,8 +88,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Envelope.Opaque</tag>
   </tags>
@@ -189,7 +188,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>F4651A90</checksum>
+      <checksum>B8221E83</checksum>
     </file>
   </files>
 </measure>

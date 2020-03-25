@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>r_value_of_insulation_for_construction_multiplier</name>
   <uid>3c7a6751-bb54-4600-9410-8f042e1a513b</uid>
-  <version_id>2a762b12-2d9d-4638-95c5-f05d791cfd7a</version_id>
-  <version_modified>20200316T215427Z</version_modified>
+  <version_id>3cb88e64-6164-4990-ad56-46c630b22722</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>0BF71A3E</xml_checksum>
   <class_name>RValueOfInsulationForConstructionMultiplier</class_name>
   <display_name>Change R-value of Insulation Layer for Construction By a Multiplier</display_name>
@@ -27,8 +26,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Envelope.Opaque</tag>
   </tags>
@@ -127,7 +126,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>BC24CDED</checksum>
+      <checksum>2D96FDE5</checksum>
     </file>
   </files>
 </measure>

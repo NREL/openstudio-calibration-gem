@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_monthly_utility_data</name>
   <uid>6da969e0-4256-49bf-9607-26504cc3d421</uid>
-  <version_id>4ed8a526-f753-48a6-ac50-24a9141993dd</version_id>
-  <version_modified>20200316T215428Z</version_modified>
+  <version_id>20a22623-b2ff-4b69-b182-2dea1bf995b3</version_id>
+  <version_modified>20200325T030944Z</version_modified>
   <xml_checksum>9064277D</xml_checksum>
   <class_name>AddMonthlyUtilityData</class_name>
   <display_name>AddMonthlyUtilityData</display_name>
@@ -47,8 +46,8 @@
       <model_dependent>false</model_dependent>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Economics.Life Cycle Cost Analysis</tag>
   </tags>
@@ -104,13 +103,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>8AAF223E</checksum>
+      <checksum>CC58EE3A</checksum>
     </file>
     <file>
       <filename>AddMonthlyUtilityData_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>9113861D</checksum>
+      <checksum>977DB51C</checksum>
     </file>
   </files>
 </measure>

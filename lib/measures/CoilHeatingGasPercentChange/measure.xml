@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_heating_gas_percent_change</name>
   <uid>8589af79-cfe7-45fb-9c79-e7b95e5fb02f</uid>
-  <version_id>cccbaf0f-2a39-4d66-8df7-220c48ee1c24</version_id>
-  <version_modified>20200316T215428Z</version_modified>
+  <version_id>3591edb1-4d18-493c-b290-8c6287dd10c1</version_id>
+  <version_modified>20200325T030944Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingGasPercentChange</class_name>
   <display_name>Heating Coils Gas Percent Change</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{395d65f3-fadb-4098-a70a-ebef4afc51c9}</default_value>
+      <default_value>*All Gas Heating Coils*</default_value>
       <choices>
         <choice>
-          <value>{395d65f3-fadb-4098-a70a-ebef4afc51c9}</value>
+          <value>{a20d912d-d927-4389-a1e6-ac7cde75c769}</value>
           <display_name>*All Gas Heating Coils*</display_name>
         </choice>
         <choice>
@@ -66,8 +65,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>HVAC.Heating</tag>
   </tags>
@@ -106,7 +105,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>997E7483</checksum>
+      <checksum>925516DE</checksum>
     </file>
   </files>
 </measure>

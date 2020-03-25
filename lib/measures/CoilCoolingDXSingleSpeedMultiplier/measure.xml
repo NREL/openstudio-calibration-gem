@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_cooling_dx_single_speed_multiplier</name>
   <uid>97d0dbdf-6245-4cfd-8dfc-a6a5eb853b16</uid>
-  <version_id>40976927-fc8b-4d12-bbeb-d9458ff6efb0</version_id>
-  <version_modified>20200316T215429Z</version_modified>
+  <version_id>aeea742c-e0da-4330-a1e2-1a0071cde7fb</version_id>
+  <version_modified>20200325T030945Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXSingleSpeedMultiplier</class_name>
   <display_name>Cooling Coils DX Single Speed Multiplier</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{f43f3c01-c35e-4527-a506-af09598483f2}</default_value>
+      <default_value>*All DX Cooling Coils*</default_value>
       <choices>
         <choice>
-          <value>{f43f3c01-c35e-4527-a506-af09598483f2}</value>
+          <value>{660e38c6-1ea1-4276-a6d7-514e9eb17fae}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -48,8 +47,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>HVAC.Cooling</tag>
   </tags>
@@ -88,7 +87,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A2B30E3A</checksum>
+      <checksum>9BEC1CC5</checksum>
     </file>
   </files>
 </measure>

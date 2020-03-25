@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_heating_gas_multiplier</name>
   <uid>a4843fc4-4cc7-4112-b5a9-aef81cbeac63</uid>
-  <version_id>80493943-3ed4-4f04-9bb2-b481bcb098a1</version_id>
-  <version_modified>20200316T215426Z</version_modified>
+  <version_id>459912ca-308e-4fac-9190-8fcf0276201a</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingGasMultiplier</class_name>
   <display_name>Heating Coils Gas Multiplier</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{5ff18d8b-c3da-4f80-84ff-9e7b1b1fda7a}</default_value>
+      <default_value>*All Gas Heating Coils*</default_value>
       <choices>
         <choice>
-          <value>{5ff18d8b-c3da-4f80-84ff-9e7b1b1fda7a}</value>
+          <value>{2e8ecc48-0b0a-4766-ab1e-4b40ae68df90}</value>
           <display_name>*All Gas Heating Coils*</display_name>
         </choice>
         <choice>
@@ -66,8 +65,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>HVAC.Heating</tag>
   </tags>
@@ -106,7 +105,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>837D7F62</checksum>
+      <checksum>D9967F96</checksum>
     </file>
   </files>
 </measure>

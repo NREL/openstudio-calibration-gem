@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>roof_thermal_properties_multiplier</name>
   <uid>6c4eb22b-770f-456c-bcd1-084cfad89eeb</uid>
-  <version_id>f33234d4-d48a-4bf1-aced-cfe860b8e679</version_id>
-  <version_modified>20200316T215432Z</version_modified>
+  <version_id>9a139a76-636f-4ac8-82e0-7d59fcb85d25</version_id>
+  <version_modified>20200325T030949Z</version_modified>
   <xml_checksum>31085437</xml_checksum>
   <class_name>RoofThermalPropertiesMultiplier</class_name>
   <display_name>Roof Thermal Properties Multiplier</display_name>
@@ -36,8 +35,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Envelope.Opaque</tag>
     <tag>Calibration</tag>
@@ -92,7 +91,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D7FB8FB9</checksum>
+      <checksum>EEBB9B30</checksum>
     </file>
   </files>
 </measure>

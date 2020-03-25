@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>electric_baseboard_efficiency_and_capacity</name>
   <uid>4253e38c-6b48-4e96-8da7-002cec68d376</uid>
-  <version_id>f5ebbb58-2de6-4c0a-873a-c3e52cdccea8</version_id>
-  <version_modified>20200316T215428Z</version_modified>
+  <version_id>81e6e7d4-a81e-4d21-90a6-50e5793c1a83</version_id>
+  <version_modified>20200325T030944Z</version_modified>
   <xml_checksum>0DA5C9E6</xml_checksum>
   <class_name>ElectricBaseboardEfficiencyAndCapacity</class_name>
   <display_name>Electric Baseboard Efficiency And Capacity</display_name>
@@ -28,8 +27,8 @@
       <default_value>1500</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>HVAC.Heating</tag>
   </tags>
@@ -73,7 +72,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>B460548F</checksum>
+      <checksum>0DDDA6C8</checksum>
     </file>
   </files>
 </measure>

@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>fans_percent_change</name>
   <uid>4c13a935-976b-4d54-bf7f-a4064fb6e11d</uid>
-  <version_id>00820f14-f166-49ac-bcd0-31ae3e3fc406</version_id>
-  <version_modified>20200316T215428Z</version_modified>
+  <version_id>434ac5d5-e956-4423-a83d-bb742e15f67a</version_id>
+  <version_modified>20200325T030944Z</version_modified>
   <xml_checksum>3C1DA54F</xml_checksum>
   <class_name>FansPercentChange</class_name>
   <display_name>Fans Percent Change</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{cd0f88ea-000a-4e32-95f6-f7303f0bc197}</default_value>
+      <default_value>*All Fans*</default_value>
       <choices>
         <choice>
-          <value>{cd0f88ea-000a-4e32-95f6-f7303f0bc197}</value>
+          <value>{41c1feeb-9382-4b35-a8b9-6f0ed3955191}</value>
           <display_name>*All Fans*</display_name>
         </choice>
         <choice>
@@ -66,8 +65,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>HVAC.Whole System</tag>
   </tags>
@@ -161,7 +160,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>AD95EE02</checksum>
+      <checksum>18992A73</checksum>
     </file>
   </files>
 </measure>

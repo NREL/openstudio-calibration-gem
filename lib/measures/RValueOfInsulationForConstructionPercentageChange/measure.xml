@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>r_value_of_insulation_for_construction_percentage_change</name>
   <uid>7ee248fd-052a-48d6-a8eb-b1fc6a0dc348</uid>
-  <version_id>c6f9783d-0b2f-4e41-8c14-e878c00c0ef6</version_id>
-  <version_modified>20200316T215429Z</version_modified>
+  <version_id>d3e7d8ca-283c-4a2d-ba56-d012b3615261</version_id>
+  <version_modified>20200325T030945Z</version_modified>
   <xml_checksum>0BF71A3E</xml_checksum>
   <class_name>RValueOfInsulationForConstructionPercentageChange</class_name>
   <display_name>Change R-value of Insulation Layer for Construction By a Specified Percentage</display_name>
@@ -27,8 +26,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Envelope.Opaque</tag>
   </tags>
@@ -127,7 +126,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>4E69BF17</checksum>
+      <checksum>6F9D31D5</checksum>
     </file>
   </files>
 </measure>

@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>general_calibration_measure_multiplier</name>
   <uid>d622534e-a3c9-4ba5-b616-53dce2a18ac8</uid>
-  <version_id>f08802e8-9a3d-4bb3-a9b0-a0eec6a434ee</version_id>
-  <version_modified>20200316T215427Z</version_modified>
+  <version_id>1425fa83-08e1-4154-a7ee-27960c7c89ad</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>DEC0D835</xml_checksum>
   <class_name>GeneralCalibrationMeasureMultiplier</class_name>
   <display_name>General Calibration Measure Multiplier</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{70cdcd1c-1824-4c01-b7b5-73c8c7911cee}</default_value>
+      <default_value>*All SpaceTypes*</default_value>
       <choices>
         <choice>
-          <value>{70cdcd1c-1824-4c01-b7b5-73c8c7911cee}</value>
+          <value>{91f0e603-1a49-4ba6-89e6-f693855eabef}</value>
           <display_name>*All SpaceTypes*</display_name>
         </choice>
         <choice>
@@ -35,10 +34,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{70cdcd1c-1824-4c01-b7b5-73c8c7911cee}</default_value>
+      <default_value>*All Spaces*</default_value>
       <choices>
         <choice>
-          <value>{70cdcd1c-1824-4c01-b7b5-73c8c7911cee}</value>
+          <value>{91f0e603-1a49-4ba6-89e6-f693855eabef}</value>
           <display_name>*All Spaces*</display_name>
         </choice>
         <choice>
@@ -129,8 +128,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -224,7 +223,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>8B9DB8AB</checksum>
+      <checksum>0B6B9749</checksum>
     </file>
   </files>
 </measure>

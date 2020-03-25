@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_heating_electric_percent_change</name>
   <uid>7c681481-16d2-4a8e-b0a3-71a86639f53a</uid>
-  <version_id>43d1d9f2-4431-4d5e-8575-c3e41f698891</version_id>
-  <version_modified>20200316T215426Z</version_modified>
+  <version_id>847eed86-61d4-40d2-9646-1e190fc07cee</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingElectricPercentChange</class_name>
   <display_name>Heating Coils Electric Percent Change</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{e68abe48-bf59-4a3a-89ff-ef779bf01531}</default_value>
+      <default_value>*All Electric Heating Coils*</default_value>
       <choices>
         <choice>
-          <value>{e68abe48-bf59-4a3a-89ff-ef779bf01531}</value>
+          <value>{9f08504e-8a57-4e62-9b69-2ce9aeb1f6fe}</value>
           <display_name>*All Electric Heating Coils*</display_name>
         </choice>
         <choice>
@@ -48,8 +47,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>HVAC.Heating</tag>
   </tags>
@@ -88,7 +87,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>E47F4170</checksum>
+      <checksum>5AC9AEFF</checksum>
     </file>
   </files>
 </measure>

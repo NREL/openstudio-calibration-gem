@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>water_heater_mixed_percent_change</name>
   <uid>c42bf4e7-2bbb-44c6-ab91-e6ddb53e050d</uid>
-  <version_id>b5f3263f-88a9-43aa-9072-3426dfff45b9</version_id>
-  <version_modified>20200316T215431Z</version_modified>
+  <version_id>414fa696-b1c4-41b2-a1e2-1904af51cf16</version_id>
+  <version_modified>20200325T030949Z</version_modified>
   <xml_checksum>D28BCE9C</xml_checksum>
   <class_name>WaterHeaterMixedPercentChange</class_name>
   <display_name>Water Heater Mixed Percent Change</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{a9fe74ae-c550-4437-b717-1ad81a8f5572}</default_value>
+      <default_value>*All WaterHeaterMixeds*</default_value>
       <choices>
         <choice>
-          <value>{a9fe74ae-c550-4437-b717-1ad81a8f5572}</value>
+          <value>{ae86c587-54d9-4c1a-b9f4-b9c4b80a0059}</value>
           <display_name>*All WaterHeaterMixeds*</display_name>
         </choice>
         <choice>
@@ -80,8 +79,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Service Water Heating.Water Heating</tag>
   </tags>
@@ -175,7 +174,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>5E06B3F1</checksum>
+      <checksum>019A4EE1</checksum>
     </file>
   </files>
 </measure>

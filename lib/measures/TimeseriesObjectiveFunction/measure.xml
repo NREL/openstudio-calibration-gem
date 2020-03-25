@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>timeseries_objective_function</name>
   <uid>6804217d-4737-45f3-82df-b81393c29ce3</uid>
-  <version_id>08112dff-315d-4b0d-9937-768ce2a9660d</version_id>
-  <version_modified>20200316T215427Z</version_modified>
+  <version_id>100fc498-2bc1-497b-8101-9c87f3a3e0f8</version_id>
+  <version_modified>20200325T030944Z</version_modified>
   <xml_checksum>FFE04372</xml_checksum>
   <class_name>TimeseriesObjectiveFunction</class_name>
   <display_name>TimeSeries Objective Function</display_name>
@@ -81,7 +80,7 @@
     <argument>
       <name>year</name>
       <display_name>Year in csv data timestamp</display_name>
-      <description>Is the Year in the csv data timestamp =&gt; mm:dd:yy or mm:dd (true/false)</description>
+      <description>Is the Year in the csv data timestamp => mm:dd:yy or mm:dd (true/false)</description>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -100,7 +99,7 @@
     <argument>
       <name>seconds</name>
       <display_name>Seconds in csv data timestamp</display_name>
-      <description>Is the Seconds in the csv data timestamp =&gt; hh:mm:ss or hh:mm (true/false)</description>
+      <description>Is the Seconds in the csv data timestamp => hh:mm:ss or hh:mm (true/false)</description>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -375,7 +374,7 @@
       <model_dependent>false</model_dependent>
     </output>
   </outputs>
-  <provenances />
+  <provenances/>
   <tags>
     <tag>Reporting.QAQC</tag>
   </tags>
@@ -430,7 +429,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>F3A8356C</checksum>
+      <checksum>5DF37720</checksum>
     </file>
   </files>
 </measure>

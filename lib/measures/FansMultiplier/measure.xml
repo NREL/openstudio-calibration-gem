@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>fans_multiplier</name>
   <uid>af156383-cfe2-4798-b581-08a4cccb8877</uid>
-  <version_id>14135efa-9230-4e96-b22a-c0e8e06fd347</version_id>
-  <version_modified>20200316T215426Z</version_modified>
+  <version_id>4fb32abb-5e11-479a-ba02-c2809774c9ce</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>3C1DA54F</xml_checksum>
   <class_name>FansMultiplier</class_name>
   <display_name>Fans Multiplier</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{78c69e4e-aeb1-44cf-b60d-df178c0fda9b}</default_value>
+      <default_value>*All Fans*</default_value>
       <choices>
         <choice>
-          <value>{78c69e4e-aeb1-44cf-b60d-df178c0fda9b}</value>
+          <value>{849f9542-7baa-4ad1-bf2b-a446311c32cc}</value>
           <display_name>*All Fans*</display_name>
         </choice>
         <choice>
@@ -66,8 +65,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>HVAC.Whole System</tag>
   </tags>
@@ -161,7 +160,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D976BEC2</checksum>
+      <checksum>81E35908</checksum>
     </file>
   </files>
 </measure>

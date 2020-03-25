@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>water_heater_mixed_multiplier</name>
   <uid>1e4d5053-d2c1-400d-9192-7a470e5a7b5c</uid>
-  <version_id>2ef70245-13fb-4f8d-b263-6e89d0993961</version_id>
-  <version_modified>20200316T215427Z</version_modified>
+  <version_id>181c681e-5bb0-4c12-9be1-5cac332a1f07</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>D28BCE9C</xml_checksum>
   <class_name>WaterHeaterMixedMultiplier</class_name>
   <display_name>Water Heater Mixed Multiplier</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{2fa95b51-7728-4a24-a718-5c5eca8049ba}</default_value>
+      <default_value>*All WaterHeaterMixeds*</default_value>
       <choices>
         <choice>
-          <value>{2fa95b51-7728-4a24-a718-5c5eca8049ba}</value>
+          <value>{356082a9-49c2-4b10-9a47-190e186e24ec}</value>
           <display_name>*All WaterHeaterMixeds*</display_name>
         </choice>
         <choice>
@@ -80,8 +79,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Service Water Heating.Water Heating</tag>
   </tags>
@@ -175,7 +174,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>605ECA5F</checksum>
+      <checksum>B41A8DBE</checksum>
     </file>
   </files>
 </measure>

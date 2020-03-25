@@ -1,18 +1,17 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>hard_size_hvac</name>
   <uid>d7da749f-6318-4077-b502-25994a713b27</uid>
-  <version_id>af29be1f-5256-4da1-9e8b-c9185ab8c228</version_id>
-  <version_modified>20200316T215429Z</version_modified>
+  <version_id>d67e99f7-ba8a-4ed6-95cc-f57c464ce575</version_id>
+  <version_modified>20200325T030945Z</version_modified>
   <xml_checksum>2B526343</xml_checksum>
   <class_name>HardSizeHVAC</class_name>
   <display_name>Hard Size HVAC</display_name>
   <description>Run a simulation to autosize HVAC equipment and then apply these autosized values back to the model.</description>
   <modeler_description>Run a simulation to autosize HVAC equipment and then apply these autosized values back to the model.</modeler_description>
-  <arguments />
-  <outputs />
-  <provenances />
+  <arguments/>
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>HVAC.Whole System</tag>
   </tags>
@@ -76,7 +75,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>1CD94840</checksum>
+      <checksum>32A75566</checksum>
     </file>
   </files>
 </measure>

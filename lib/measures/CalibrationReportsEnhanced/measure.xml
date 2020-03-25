@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>calibration_reports_enhanced</name>
   <uid>e6642d40-7366-4647-8724-53a37991d668</uid>
-  <version_id>5d9096e2-4b4b-46c2-90ed-dfe0aca3fedb</version_id>
-  <version_modified>20200316T215427Z</version_modified>
+  <version_id>b3ad0dfa-5173-4df2-8f42-41b0cce011f4</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>CalibrationReportsEnhanced</class_name>
   <display_name>Calibration Reports Enhanced</display_name>
@@ -293,7 +292,7 @@
       <model_dependent>false</model_dependent>
     </output>
   </outputs>
-  <provenances />
+  <provenances/>
   <tags>
     <tag>Reporting.QAQC</tag>
   </tags>
@@ -361,13 +360,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A4285B32</checksum>
+      <checksum>ACA4EC77</checksum>
     </file>
     <file>
       <filename>CalibrationReportsEnhanced_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>FE5AEE34</checksum>
+      <checksum>98659D83</checksum>
     </file>
   </files>
 </measure>

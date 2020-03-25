@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_monthly_json_utility_data</name>
   <uid>6da969e0-4256-49bf-9607-26504cc3d423</uid>
-  <version_id>198ea6b8-5223-4f2c-ab7e-2733c13b6ff3</version_id>
-  <version_modified>20200316T215426Z</version_modified>
+  <version_id>76086831-7c43-49f5-a576-0249e6fec5ac</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>AddMonthlyJSONUtilityData</class_name>
   <display_name>Add Monthly JSON Utility Data</display_name>
@@ -113,8 +112,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -158,7 +157,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>980608FC</checksum>
+      <checksum>79D46EF0</checksum>
     </file>
   </files>
 </measure>

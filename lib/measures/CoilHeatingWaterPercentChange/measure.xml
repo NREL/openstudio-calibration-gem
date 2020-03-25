@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_heating_water_percent_change</name>
   <uid>85674ff6-4fdc-463f-9695-36bf6c6a2608</uid>
-  <version_id>6c1f591c-9654-4eea-9796-06b8127c70ec</version_id>
-  <version_modified>20200316T215428Z</version_modified>
+  <version_id>491729a6-c59c-4c51-946f-a2fdd112b2f0</version_id>
+  <version_modified>20200325T030944Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingWaterPercentChange</class_name>
   <display_name>Heating Coils Water Percent Change</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{7f3d21fa-0fbb-4869-b87c-50f686c70959}</default_value>
+      <default_value>*All Water Heating Coils*</default_value>
       <choices>
         <choice>
-          <value>{7f3d21fa-0fbb-4869-b87c-50f686c70959}</value>
+          <value>{69e91c19-cb9a-4c2f-b31f-32e8036a1da9}</value>
           <display_name>*All Water Heating Coils*</display_name>
         </choice>
         <choice>
@@ -48,8 +47,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>HVAC.Heating</tag>
   </tags>
@@ -88,7 +87,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>5430ACEE</checksum>
+      <checksum>1604C5CB</checksum>
     </file>
   </files>
 </measure>

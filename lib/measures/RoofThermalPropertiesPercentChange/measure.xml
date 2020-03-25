@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>roof_thermal_properties_percent_change</name>
   <uid>07516685-60fd-4da8-9872-1154a995047d</uid>
-  <version_id>f0e64418-e904-4a5a-b88c-7674f1094e57</version_id>
-  <version_modified>20200316T215429Z</version_modified>
+  <version_id>67036cfb-21bd-435f-900c-26b300c87f76</version_id>
+  <version_modified>20200325T030945Z</version_modified>
   <xml_checksum>31085437</xml_checksum>
   <class_name>RoofThermalPropertiesPercentChange</class_name>
   <display_name>Roof Thermal Properties Percent Change</display_name>
@@ -36,8 +35,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Envelope.Opaque</tag>
     <tag>Calibration</tag>
@@ -92,7 +91,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A24D337F</checksum>
+      <checksum>31F3DB3D</checksum>
     </file>
   </files>
 </measure>

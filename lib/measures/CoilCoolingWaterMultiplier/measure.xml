@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_cooling_water_multiplier</name>
   <uid>0fb42580-a644-4291-9a08-05521a6e7940</uid>
-  <version_id>4aa5a3e8-cd74-4d40-becf-84f030acebdf</version_id>
-  <version_modified>20200316T215429Z</version_modified>
+  <version_id>bb7fe57b-24bf-4082-a988-9d03e580ff6a</version_id>
+  <version_modified>20200325T030945Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingWaterMultiplier</class_name>
   <display_name>Cooling Coils Water Multiplier</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{d14e8351-f2bd-4c1b-b55c-7167a2ddc21f}</default_value>
+      <default_value>*All Water Cooling Coils*</default_value>
       <choices>
         <choice>
-          <value>{d14e8351-f2bd-4c1b-b55c-7167a2ddc21f}</value>
+          <value>{1ba02f2c-55cb-4910-9c6c-87d8fa6d3d9c}</value>
           <display_name>*All Water Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -84,8 +83,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>HVAC.Cooling</tag>
   </tags>
@@ -124,7 +123,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>C431B526</checksum>
+      <checksum>8D2085AC</checksum>
     </file>
   </files>
 </measure>

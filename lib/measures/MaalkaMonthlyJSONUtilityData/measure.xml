@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>maalka_monthly_json_utility_data</name>
   <uid>afe82cf5-3e3a-43ea-b31e-8289ff268bed</uid>
-  <version_id>5ee73d0c-5929-4b84-b4f0-cb359bf34b2b</version_id>
-  <version_modified>20200316T215428Z</version_modified>
+  <version_id>16d24197-d1f1-4fbf-ad4d-3aa2ede1c90f</version_id>
+  <version_modified>20200325T030944Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>MaalkaMonthlyJSONUtilityData</class_name>
   <display_name>Maalka Formatted Monthly JSON Utility Data</display_name>
@@ -166,8 +165,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -211,7 +210,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7BD75E75</checksum>
+      <checksum>9D8320DF</checksum>
     </file>
   </files>
 </measure>

@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>general_calibration_measure_percent_change</name>
   <uid>0f583ac1-fa7e-48bc-9f80-12ed17180669</uid>
-  <version_id>0219c686-5472-47ac-b944-3103894cf524</version_id>
-  <version_modified>20200316T215428Z</version_modified>
+  <version_id>a3539df8-380b-459a-a947-6fef65b5c0cb</version_id>
+  <version_modified>20200325T030944Z</version_modified>
   <xml_checksum>DEC0D835</xml_checksum>
   <class_name>GeneralCalibrationMeasurePercentChange</class_name>
   <display_name>General Calibration Measure Percent Change</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{cc78bbf4-0b6f-498d-8f03-633b3c98e405}</default_value>
+      <default_value>*All SpaceTypes*</default_value>
       <choices>
         <choice>
-          <value>{cc78bbf4-0b6f-498d-8f03-633b3c98e405}</value>
+          <value>{463555c6-8c8b-4f31-97ad-bf96a74d9c75}</value>
           <display_name>*All SpaceTypes*</display_name>
         </choice>
         <choice>
@@ -35,10 +34,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{cc78bbf4-0b6f-498d-8f03-633b3c98e405}</default_value>
+      <default_value>*All Spaces*</default_value>
       <choices>
         <choice>
-          <value>{cc78bbf4-0b6f-498d-8f03-633b3c98e405}</value>
+          <value>{463555c6-8c8b-4f31-97ad-bf96a74d9c75}</value>
           <display_name>*All Spaces*</display_name>
         </choice>
         <choice>
@@ -129,8 +128,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -224,7 +223,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DC774659</checksum>
+      <checksum>14617A6B</checksum>
     </file>
   </files>
 </measure>

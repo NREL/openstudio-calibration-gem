@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_cooling_dx_single_speed_percent_change</name>
   <uid>97d0dbdf-6245-4cfd-8dfc-a6a5eb853b37</uid>
-  <version_id>3dbbce71-0c7d-415e-85d7-7f27d1fe1c5a</version_id>
-  <version_modified>20200316T215427Z</version_modified>
+  <version_id>bebb1a46-d778-46e8-a6b0-474f32ae005f</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXSingleSpeedPercentChange</class_name>
   <display_name>Cooling Coils DX Single Speed Percent Change</display_name>
@@ -17,10 +16,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{e3fd8135-e56e-422d-9bdb-63a79815856c}</default_value>
+      <default_value>*All DX Cooling Coils*</default_value>
       <choices>
         <choice>
-          <value>{e3fd8135-e56e-422d-9bdb-63a79815856c}</value>
+          <value>{4055b80d-a981-478b-8a07-c4bd14b8e415}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -48,8 +47,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>HVAC.Cooling</tag>
   </tags>
@@ -88,7 +87,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>0F8F2F07</checksum>
+      <checksum>1E360D35</checksum>
     </file>
   </files>
 </measure>
