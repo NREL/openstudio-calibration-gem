@@ -47,7 +47,7 @@ class AddMonthlyUtilityData_Test < Minitest::Test
     measure = AddMonthlyUtilityData.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # make an empty model
     model = OpenStudio::Model::Model.new
@@ -62,7 +62,7 @@ class AddMonthlyUtilityData_Test < Minitest::Test
     assert_equal('end_date', arguments[4].name)
 
     # set argument values to good values and run the measure on model with spaces
-    argument_map = OpenStudio::Ruleset::OSArgumentMap.new
+    argument_map = OpenStudio::Measure::OSArgumentMap.new
 
     electric_json = arguments[0].clone
     assert(electric_json.setValue(File.dirname(__FILE__) + '/electric_billed_usages.json'))

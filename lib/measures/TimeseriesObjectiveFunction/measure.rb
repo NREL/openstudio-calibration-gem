@@ -42,7 +42,7 @@ require 'json'
 require 'erb'
 
 # start the measure
-class TimeseriesObjectiveFunction < OpenStudio::Ruleset::ReportingUserScript
+class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
   # human readable name
   def name
     'TimeSeries Objective Function'
@@ -60,22 +60,22 @@ class TimeseriesObjectiveFunction < OpenStudio::Ruleset::ReportingUserScript
 
   # define the arguments that the user will input
   def arguments
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # the name of the sql file
-    csv_name = OpenStudio::Ruleset::OSArgument.makeStringArgument('csv_name', true)
+    csv_name = OpenStudio::Measure::OSArgument.makeStringArgument('csv_name', true)
     csv_name.setDisplayName('Path to CSV file for the metered data')
     csv_name.setDescription('Path to CSV file including file name.')
     csv_name.setDefaultValue('../../../lib/resources/mtr.csv')
     args << csv_name
 
-    csv_time_header = OpenStudio::Ruleset::OSArgument.makeStringArgument('csv_time_header', true)
+    csv_time_header = OpenStudio::Measure::OSArgument.makeStringArgument('csv_time_header', true)
     csv_time_header.setDisplayName('CSV Time Header')
     csv_time_header.setDescription('CSV Time Header Value. Used to determine the timestamp column in the CSV file')
     csv_time_header.setDefaultValue('Date/Time')
     args << csv_time_header
 
-    csv_var = OpenStudio::Ruleset::OSArgument.makeStringArgument('csv_var', true)
+    csv_var = OpenStudio::Measure::OSArgument.makeStringArgument('csv_var', true)
     csv_var.setDisplayName('CSV variable name')
     csv_var.setDescription('CSV variable name. Used to determine the variable column in the CSV file')
     csv_var.setDefaultValue('Whole Building:Facility Total Electric Demand Power [W](TimeStep)')
@@ -87,37 +87,37 @@ class TimeseriesObjectiveFunction < OpenStudio::Ruleset::ReportingUserScript
     convert_data_chs << 'CFM to m3/s'
     convert_data_chs << 'PSI to Pa'
     convert_data_chs << 'None'
-    convert_data = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('convert_data', convert_data_chs, true)
+    convert_data = OpenStudio::Measure::OSArgument.makeChoiceArgument('convert_data', convert_data_chs, true)
     convert_data.setDisplayName('Convert Units')
     convert_data.setDescription('Convert Units in Metered Data')
     convert_data.setDefaultValue('None')
     args << convert_data
 
-    csv_var_dn = OpenStudio::Ruleset::OSArgument.makeStringArgument('csv_var_dn', true)
+    csv_var_dn = OpenStudio::Measure::OSArgument.makeStringArgument('csv_var_dn', true)
     csv_var_dn.setDisplayName('CSV variable display name')
     csv_var_dn.setDescription('CSV variable display name. Not yet Implemented')
     csv_var_dn.setDefaultValue('')
     args << csv_var_dn
 
-    years = OpenStudio::Ruleset::OSArgument.makeBoolArgument('year', true)
+    years = OpenStudio::Measure::OSArgument.makeBoolArgument('year', true)
     years.setDisplayName('Year in csv data timestamp')
     years.setDescription('Is the Year in the csv data timestamp => mm:dd:yy or mm:dd (true/false)')
     years.setDefaultValue(true)
     args << years
 
-    seconds = OpenStudio::Ruleset::OSArgument.makeBoolArgument('seconds', true)
+    seconds = OpenStudio::Measure::OSArgument.makeBoolArgument('seconds', true)
     seconds.setDisplayName('Seconds in csv data timestamp')
     seconds.setDescription('Is the Seconds in the csv data timestamp => hh:mm:ss or hh:mm (true/false)')
     seconds.setDefaultValue(true)
     args << seconds
 
-    sql_key = OpenStudio::Ruleset::OSArgument.makeStringArgument('key_value', true)
+    sql_key = OpenStudio::Measure::OSArgument.makeStringArgument('key_value', true)
     sql_key.setDisplayName('SQL key value')
     sql_key.setDescription('SQL key value for the SQL query to find the variable in the SQL file')
     sql_key.setDefaultValue('')
     args << sql_key
 
-    sql_var = OpenStudio::Ruleset::OSArgument.makeStringArgument('timeseries_name', true)
+    sql_var = OpenStudio::Measure::OSArgument.makeStringArgument('timeseries_name', true)
     sql_var.setDisplayName('TimeSeries Name')
     sql_var.setDescription('TimeSeries Name for the SQL query to find the variable in the SQL file')
     sql_var.setDefaultValue('Facility Total Electric Demand Power')
@@ -130,73 +130,73 @@ class TimeseriesObjectiveFunction < OpenStudio::Ruleset::ReportingUserScript
     reportfreq_chs << 'Daily'
     reportfreq_chs << 'Monthly'
     reportfreq_chs << 'RunPeriod'
-    reporting_frequency = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('reporting_frequency', reportfreq_chs, true)
+    reporting_frequency = OpenStudio::Measure::OSArgument.makeChoiceArgument('reporting_frequency', reportfreq_chs, true)
     reporting_frequency.setDisplayName('Reporting Frequency')
     reporting_frequency.setDescription('Reporting Frequency for SQL Query')
     reporting_frequency.setDefaultValue('Zone Timestep')
     args << reporting_frequency
 
-    environment_period = OpenStudio::Ruleset::OSArgument.makeStringArgument('environment_period', true)
+    environment_period = OpenStudio::Measure::OSArgument.makeStringArgument('environment_period', true)
     environment_period.setDisplayName('Environment Period')
     environment_period.setDescription('Environment Period for SQL query')
     environment_period.setDefaultValue('RUN PERIOD 1')
     args << environment_period
 
-    norm = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('norm', true)
+    norm = OpenStudio::Measure::OSArgument.makeDoubleArgument('norm', true)
     norm.setDisplayName('Norm of the difference of csv and sql')
     norm.setDescription('Norm of the difference of csv and sql. 1 is absolute value. 2 is euclidean distance. 3 is raw difference.')
     norm.setDefaultValue(1)
     args << norm
 
-    scale = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('scale', true)
+    scale = OpenStudio::Measure::OSArgument.makeDoubleArgument('scale', true)
     scale.setDisplayName('Scale factor to apply to the difference')
     scale.setDescription('Scale factor to apply to the difference (1 is no scale)')
     scale.setDefaultValue(1)
     args << scale
 
-    find_avail = OpenStudio::Ruleset::OSArgument.makeBoolArgument('find_avail', true)
+    find_avail = OpenStudio::Measure::OSArgument.makeBoolArgument('find_avail', true)
     find_avail.setDisplayName('Find Available data in the SQL file')
     find_avail.setDescription("Will RegisterInfo all the 'EnvPeriod', 'ReportingFrequencies', 'VariableNames', 'KeyValues' in the SQL file.  Useful for debugging SQL issues.")
     find_avail.setDefaultValue(true)
     args << find_avail
 
-    algorithm_download = OpenStudio::Ruleset::OSArgument.makeBoolArgument('algorithm_download', true)
+    algorithm_download = OpenStudio::Measure::OSArgument.makeBoolArgument('algorithm_download', true)
     algorithm_download.setDisplayName('algorithm_download')
     algorithm_download.setDescription('Make JSON data available for algorithm_download (true/false)')
     algorithm_download.setDefaultValue(false)
     args << algorithm_download
 
-    plot_flag = OpenStudio::Ruleset::OSArgument.makeBoolArgument('plot_flag', true)
+    plot_flag = OpenStudio::Measure::OSArgument.makeBoolArgument('plot_flag', true)
     plot_flag.setDisplayName('plot_flag timeseries data')
     plot_flag.setDescription('Create plot of timeseries data (true/false)')
     plot_flag.setDefaultValue(true)
     args << plot_flag
 
-    plot_name = OpenStudio::Ruleset::OSArgument.makeStringArgument('plot_name', true)
+    plot_name = OpenStudio::Measure::OSArgument.makeStringArgument('plot_name', true)
     plot_name.setDisplayName('Plot name')
     plot_name.setDescription('Name to include in reporting file name.')
     plot_name.setDefaultValue('')
     args << plot_name
 
-    verbose_messages = OpenStudio::Ruleset::OSArgument.makeBoolArgument('verbose_messages', true)
+    verbose_messages = OpenStudio::Measure::OSArgument.makeBoolArgument('verbose_messages', true)
     verbose_messages.setDisplayName('verbose_messages')
     verbose_messages.setDescription('verbose messages.  Useful for debugging but MAJOR Performance Hit.')
     verbose_messages.setDefaultValue(false)
     args << verbose_messages
 
-    warning_messages = OpenStudio::Ruleset::OSArgument.makeBoolArgument('warning_messages', true)
+    warning_messages = OpenStudio::Measure::OSArgument.makeBoolArgument('warning_messages', true)
     warning_messages.setDisplayName('warning_messages')
     warning_messages.setDescription('Warn on missing data.')
     warning_messages.setDefaultValue(true)
     args << warning_messages
 
-    add_first_zero_for_plots = OpenStudio::Ruleset::OSArgument.makeBoolArgument('add_first_zero_for_plots', true)
+    add_first_zero_for_plots = OpenStudio::Measure::OSArgument.makeBoolArgument('add_first_zero_for_plots', true)
     add_first_zero_for_plots.setDisplayName('add_first_zero_for_plots')
     add_first_zero_for_plots.setDescription('Add a point of zero value to the plot at the beginning of the runperiod.')
     add_first_zero_for_plots.setDefaultValue(false)
     args << add_first_zero_for_plots
 
-    add_last_zero_for_plots = OpenStudio::Ruleset::OSArgument.makeBoolArgument('add_last_zero_for_plots', true)
+    add_last_zero_for_plots = OpenStudio::Measure::OSArgument.makeBoolArgument('add_last_zero_for_plots', true)
     add_last_zero_for_plots.setDisplayName('add_last_zero_for_plots')
     add_last_zero_for_plots.setDescription('Add a point of zero value to the plot at the end of the runperiod.')
     add_last_zero_for_plots.setDefaultValue(false)

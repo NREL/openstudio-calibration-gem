@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class CoilHeatingGasPercentChange < OpenStudio::Ruleset::ModelUserScript
+class CoilHeatingGasPercentChange < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     'Heating Coils Gas Percent Change'
@@ -69,7 +69,7 @@ class CoilHeatingGasPercentChange < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # populate choice argument for constructions that are applied to surfaces in the model
     loop_handles = OpenStudio::StringVector.new
@@ -108,34 +108,34 @@ class CoilHeatingGasPercentChange < OpenStudio::Ruleset::ModelUserScript
     loop_display_names << '*None*'
 
     # make a choice argument for space type
-    coil_arg = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
+    coil_arg = OpenStudio::Measure::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
     coil_arg.setDisplayName('Apply the Measure to a SINGLE Gas Heating Coil, ALL the Gas Heating Coils or NONE.')
     coil_arg.setDefaultValue('*All Gas Heating Coils*') # if no space type is chosen this will run on the entire building
     args << coil_arg
 
     # coil_efficiency_perc_change
-    coil_efficiency_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('coil_efficiency_perc_change', true)
+    coil_efficiency_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('coil_efficiency_perc_change', true)
     coil_efficiency_perc_change.setDisplayName('Percent Change for coil Efficiency.')
     coil_efficiency_perc_change.setDescription('Percent Change for coil Efficiency.')
     coil_efficiency_perc_change.setDefaultValue(0.0)
     args << coil_efficiency_perc_change
 
     # coil_capacity_perc_change
-    coil_capacity_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('coil_capacity_perc_change', true)
+    coil_capacity_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('coil_capacity_perc_change', true)
     coil_capacity_perc_change.setDisplayName('Percent Change for coil Capacity.')
     coil_capacity_perc_change.setDescription('Percent Change for coil Capacity.')
     coil_capacity_perc_change.setDefaultValue(0.0)
     args << coil_capacity_perc_change
 
     # coil_parasitic_electric_perc_change
-    coil_parasitic_electric_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('coil_parasitic_electric_perc_change', true)
+    coil_parasitic_electric_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('coil_parasitic_electric_perc_change', true)
     coil_parasitic_electric_perc_change.setDisplayName('Percent Change for coil parasitic electric load.')
     coil_parasitic_electric_perc_change.setDescription('Percent Change for coil parasitic electric load.')
     coil_parasitic_electric_perc_change.setDefaultValue(0.0)
     args << coil_parasitic_electric_perc_change
 
     # coil_parasitic_gas_perc_change
-    coil_parasitic_gas_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('coil_parasitic_gas_perc_change', true)
+    coil_parasitic_gas_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('coil_parasitic_gas_perc_change', true)
     coil_parasitic_gas_perc_change.setDisplayName('Percent Change for coil parasitic gas load.')
     coil_parasitic_gas_perc_change.setDescription('Percent Change for coil parasitic gas load.')
     coil_parasitic_gas_perc_change.setDefaultValue(0.0)

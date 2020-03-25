@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class RValueOfInsulationForConstructionMultiplier < OpenStudio::Ruleset::ModelUserScript
+class RValueOfInsulationForConstructionMultiplier < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see
   def name
     'Change R-value of Insulation Layer for Construction By a Multiplier'
@@ -59,7 +59,7 @@ class RValueOfInsulationForConstructionMultiplier < OpenStudio::Ruleset::ModelUs
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # populate choice argument for constructions that are applied to surfaces in the model
     construction_handles = OpenStudio::StringVector.new
@@ -82,12 +82,12 @@ class RValueOfInsulationForConstructionMultiplier < OpenStudio::Ruleset::ModelUs
     end
 
     # make an argument for construction
-    construction = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('construction', construction_handles, construction_display_names, true)
+    construction = OpenStudio::Measure::OSArgument.makeChoiceArgument('construction', construction_handles, construction_display_names, true)
     construction.setDisplayName('Choose a Construction to Alter.')
     args << construction
 
     # make an argument insulation R-value
-    r_value_multplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('r_value_multplier', true)
+    r_value_multplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('r_value_multplier', true)
     r_value_multplier.setDisplayName('Multiplier for R-value for Insulation Layer of Construction.')
     r_value_multplier.setDefaultValue(1.0)
     args << r_value_multplier

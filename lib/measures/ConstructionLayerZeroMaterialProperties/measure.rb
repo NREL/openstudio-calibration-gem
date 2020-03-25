@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class ConstructionLayerZeroMaterialProperties < OpenStudio::Ruleset::ModelUserScript
+class ConstructionLayerZeroMaterialProperties < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see
   def name
     'Change Parameters Of Material (Layer 0 of Construction)'
@@ -52,7 +52,7 @@ class ConstructionLayerZeroMaterialProperties < OpenStudio::Ruleset::ModelUserSc
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # populate choice argument for constructions that are applied to surfaces in the model
     construction_handles = OpenStudio::StringVector.new
@@ -75,12 +75,12 @@ class ConstructionLayerZeroMaterialProperties < OpenStudio::Ruleset::ModelUserSc
     end
 
     # make an argument for construction
-    construction = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('construction', construction_handles, construction_display_names, true)
+    construction = OpenStudio::Measure::OSArgument.makeChoiceArgument('construction', construction_handles, construction_display_names, true)
     construction.setDisplayName('Choose a Construction to Alter.')
     args << construction
 
     # make an argument thickness
-    thickness = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('thickness', true)
+    thickness = OpenStudio::Measure::OSArgument.makeDoubleArgument('thickness', true)
     thickness.setDisplayName('Thickness of Layer 0')
     thickness.setDescription('Set Thickness of Layer 0. 0 value means do not change from default.')
     thickness.setDefaultValue(0)
@@ -88,7 +88,7 @@ class ConstructionLayerZeroMaterialProperties < OpenStudio::Ruleset::ModelUserSc
     args << thickness
 
     # make an argument density
-    density = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('density', true)
+    density = OpenStudio::Measure::OSArgument.makeDoubleArgument('density', true)
     density.setDisplayName('Density of Layer 0')
     density.setDescription('Set Density of Layer 0. 0 value means do not change from default.')
     density.setUnits('kg/m^3')
@@ -96,7 +96,7 @@ class ConstructionLayerZeroMaterialProperties < OpenStudio::Ruleset::ModelUserSc
     args << density
 
     # make an argument thermal_absorptance
-    thermal_absorptance = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('thermal_absorptance', true)
+    thermal_absorptance = OpenStudio::Measure::OSArgument.makeDoubleArgument('thermal_absorptance', true)
     thermal_absorptance.setDisplayName('Thermal Absorptance of Layer 0')
     thermal_absorptance.setDescription('Set Thermal Absorptance of Layer 0. 0 value means do not change from default.')
     thermal_absorptance.setUnits('fraction')
@@ -104,7 +104,7 @@ class ConstructionLayerZeroMaterialProperties < OpenStudio::Ruleset::ModelUserSc
     args << thermal_absorptance
 
     # make an argument solar_absorptance
-    solar_absorptance = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('solar_absorptance', true)
+    solar_absorptance = OpenStudio::Measure::OSArgument.makeDoubleArgument('solar_absorptance', true)
     solar_absorptance.setDisplayName('Solar Absorptance of Layer 0')
     solar_absorptance.setDescription('Set Solar Absorptance of Layer 0. 0 value means do not change from default.')
     solar_absorptance.setUnits('fraction')
@@ -112,7 +112,7 @@ class ConstructionLayerZeroMaterialProperties < OpenStudio::Ruleset::ModelUserSc
     args << solar_absorptance
 
     # make an argument visible_absorptance
-    visible_absorptance = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('visible_absorptance', true)
+    visible_absorptance = OpenStudio::Measure::OSArgument.makeDoubleArgument('visible_absorptance', true)
     visible_absorptance.setDisplayName('Visible Absorptance of Layer 0')
     visible_absorptance.setDescription('Set Visible Absorptance of Layer 0. 0 value means do not change from default.')
     visible_absorptance.setUnits('fraction')
@@ -120,7 +120,7 @@ class ConstructionLayerZeroMaterialProperties < OpenStudio::Ruleset::ModelUserSc
     args << visible_absorptance
 
     # make an argument conductivity
-    thermal_conductivity = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('thermal_conductivity', true)
+    thermal_conductivity = OpenStudio::Measure::OSArgument.makeDoubleArgument('thermal_conductivity', true)
     thermal_conductivity.setDisplayName('Thermal Conductivity of Layer 0')
     thermal_conductivity.setDescription('Set Thermal Conductivity of Layer 0. 0 value means do not change from default.')
     thermal_conductivity.setDefaultValue(0)
@@ -128,7 +128,7 @@ class ConstructionLayerZeroMaterialProperties < OpenStudio::Ruleset::ModelUserSc
     args << thermal_conductivity
 
     # make an argument specific_heat
-    specific_heat = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('specific_heat', true)
+    specific_heat = OpenStudio::Measure::OSArgument.makeDoubleArgument('specific_heat', true)
     specific_heat.setDisplayName('Specific Heat of Layer 0')
     specific_heat.setDescription('Set Specific Heat of Layer 0. 0 value means do not change from default.')
     specific_heat.setUnits('J/(kg*K)')

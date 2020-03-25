@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class CoilCoolingDXSingleSpeedPercentChange < OpenStudio::Ruleset::ModelUserScript
+class CoilCoolingDXSingleSpeedPercentChange < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     'Cooling Coils DX Single Speed Percent Change'
@@ -63,7 +63,7 @@ class CoilCoolingDXSingleSpeedPercentChange < OpenStudio::Ruleset::ModelUserScri
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # populate choice argument for constructions that are applied to surfaces in the model
     loop_handles = OpenStudio::StringVector.new
@@ -102,20 +102,20 @@ class CoilCoolingDXSingleSpeedPercentChange < OpenStudio::Ruleset::ModelUserScri
     loop_display_names << '*None*'
 
     # make a choice argument for space type
-    coil_arg = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
+    coil_arg = OpenStudio::Measure::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
     coil_arg.setDisplayName('Apply the Measure to a SINGLE DX Cooling Coil, ALL the DX Cooling Coils or NONE.')
     coil_arg.setDefaultValue('*All DX Cooling Coils*') # if no space type is chosen this will run on the entire building
     args << coil_arg
 
     # rated_cop_perc_change
-    rated_cop_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('rated_cop_perc_change', true)
+    rated_cop_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('rated_cop_perc_change', true)
     rated_cop_perc_change.setDisplayName('Percent Change for COP.')
     rated_cop_perc_change.setDescription('Percent Change for COP.')
     rated_cop_perc_change.setDefaultValue(0.0)
     args << rated_cop_perc_change
 
     # rated_cooling_capacity_perc_change
-    rated_cooling_capacity_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('rated_cooling_capacity_perc_change', true)
+    rated_cooling_capacity_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('rated_cooling_capacity_perc_change', true)
     rated_cooling_capacity_perc_change.setDisplayName('Percent Change for coil cooling Capacity.')
     rated_cooling_capacity_perc_change.setDescription('Percent Change for coil cooling Capacity.')
     rated_cooling_capacity_perc_change.setDefaultValue(0.0)

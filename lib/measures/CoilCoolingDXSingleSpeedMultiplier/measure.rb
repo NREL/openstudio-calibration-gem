@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class CoilCoolingDXSingleSpeedMultiplier < OpenStudio::Ruleset::ModelUserScript
+class CoilCoolingDXSingleSpeedMultiplier < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     'Cooling Coils DX Single Speed Multiplier'
@@ -70,7 +70,7 @@ class CoilCoolingDXSingleSpeedMultiplier < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # populate choice argument for constructions that are applied to surfaces in the model
     loop_handles = OpenStudio::StringVector.new
@@ -109,20 +109,20 @@ class CoilCoolingDXSingleSpeedMultiplier < OpenStudio::Ruleset::ModelUserScript
     loop_display_names << '*None*'
 
     # make a choice argument for space type
-    coil_arg = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
+    coil_arg = OpenStudio::Measure::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
     coil_arg.setDisplayName('Apply the Measure to a SINGLE DX Cooling Coil, ALL the DX Cooling Coils or NONE.')
     coil_arg.setDefaultValue('*All DX Cooling Coils*') # if no space type is chosen this will run on the entire building
     args << coil_arg
 
     # rated_cop_multiplier
-    rated_cop_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('rated_cop_multiplier', true)
+    rated_cop_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('rated_cop_multiplier', true)
     rated_cop_multiplier.setDisplayName('Multiplier for COP.')
     rated_cop_multiplier.setDescription('Multiplier for COP.')
     rated_cop_multiplier.setDefaultValue(1.0)
     args << rated_cop_multiplier
 
     # rated_cooling_capacity_multiplier
-    rated_cooling_capacity_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('rated_cooling_capacity_multiplier', true)
+    rated_cooling_capacity_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('rated_cooling_capacity_multiplier', true)
     rated_cooling_capacity_multiplier.setDisplayName('Multiplier for rated cooling Capacity.')
     rated_cooling_capacity_multiplier.setDescription('Multiplier for rated cooling Capacity.')
     rated_cooling_capacity_multiplier.setDefaultValue(1.0)

@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class FansMultiplier < OpenStudio::Ruleset::ModelUserScript
+class FansMultiplier < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     'Fans Multiplier'
@@ -76,7 +76,7 @@ class FansMultiplier < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # populate choice argument for constructions that are applied to surfaces in the model
     loop_handles = OpenStudio::StringVector.new
@@ -125,13 +125,13 @@ class FansMultiplier < OpenStudio::Ruleset::ModelUserScript
     loop_display_names << '*None*'
 
     # make a choice argument for space type
-    fan_arg = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('fan', loop_handles, loop_display_names)
+    fan_arg = OpenStudio::Measure::OSArgument.makeChoiceArgument('fan', loop_handles, loop_display_names)
     fan_arg.setDisplayName('Apply the Measure to a SINGLE Fan, ALL the Fans or NONE.')
     fan_arg.setDefaultValue('*All Fans*') # if no space type is chosen this will run on the entire building
     args << fan_arg
 
     # Maximum FlowRate multiplier
-    max_flowrate_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('max_flowrate_multiplier', true)
+    max_flowrate_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('max_flowrate_multiplier', true)
     max_flowrate_multiplier.setDisplayName('Multiplier for Maximum FlowRate.')
     max_flowrate_multiplier.setDescription('Multiplier for Maximum FlowRate.')
     max_flowrate_multiplier.setDefaultValue(1.0)
@@ -139,21 +139,21 @@ class FansMultiplier < OpenStudio::Ruleset::ModelUserScript
     args << max_flowrate_multiplier
 
     # fan_efficiency_multiplier
-    fan_efficiency_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('fan_efficiency_multiplier', true)
+    fan_efficiency_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('fan_efficiency_multiplier', true)
     fan_efficiency_multiplier.setDisplayName('Multiplier for Fan Efficiency.')
     fan_efficiency_multiplier.setDescription('Multiplier for Fan Efficiency.')
     fan_efficiency_multiplier.setDefaultValue(1.0)
     args << fan_efficiency_multiplier
 
     # pressure_rise_multiplier
-    pressure_rise_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('pressure_rise_multiplier', true)
+    pressure_rise_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('pressure_rise_multiplier', true)
     pressure_rise_multiplier.setDisplayName('Multiplier for Pressure Rise.')
     pressure_rise_multiplier.setDescription('Multiplier for Pressure Rise.')
     pressure_rise_multiplier.setDefaultValue(1.0)
     args << pressure_rise_multiplier
 
     # motor_efficiency_multiplier
-    motor_efficiency_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('motor_efficiency_multiplier', true)
+    motor_efficiency_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('motor_efficiency_multiplier', true)
     motor_efficiency_multiplier.setDisplayName('Multiplier for Motor Efficiency.')
     motor_efficiency_multiplier.setDescription('Multiplier for Motor Efficiency.')
     motor_efficiency_multiplier.setDefaultValue(1.0)

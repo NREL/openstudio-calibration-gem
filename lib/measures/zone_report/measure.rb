@@ -37,7 +37,7 @@ require 'erb'
 # require 'pry'
 
 # start the measure
-class ZoneReport < OpenStudio::Ruleset::ReportingUserScript
+class ZoneReport < OpenStudio::Measure::ReportingMeasure
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
@@ -46,7 +46,7 @@ class ZoneReport < OpenStudio::Ruleset::ReportingUserScript
 
   # define the arguments that the user will input
   def arguments
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
     args
   end # end the arguments method
 

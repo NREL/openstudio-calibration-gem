@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class CoilHeatingWaterPercentChange < OpenStudio::Ruleset::ModelUserScript
+class CoilHeatingWaterPercentChange < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     'Heating Coils Water Percent Change'
@@ -61,7 +61,7 @@ class CoilHeatingWaterPercentChange < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # populate choice argument for constructions that are applied to surfaces in the model
     loop_handles = OpenStudio::StringVector.new
@@ -100,20 +100,20 @@ class CoilHeatingWaterPercentChange < OpenStudio::Ruleset::ModelUserScript
     loop_display_names << '*None*'
 
     # make a choice argument for space type
-    coil_arg = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
+    coil_arg = OpenStudio::Measure::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
     coil_arg.setDisplayName('Apply the Measure to a SINGLE Water Heating Coil, ALL the Water Heating Coils or NONE.')
     coil_arg.setDefaultValue('*All Water Heating Coils*') # if no space type is chosen this will run on the entire building
     args << coil_arg
 
     # ua_factor
-    ua_factor = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('ua_factor', true)
+    ua_factor = OpenStudio::Measure::OSArgument.makeDoubleArgument('ua_factor', true)
     ua_factor.setDisplayName('Percent Change for UA coefficient.')
     ua_factor.setDescription('Percent Change for UA coefficient.')
     ua_factor.setDefaultValue(0.0)
     args << ua_factor
 
     # coil_capacity_perc_change
-    coil_capacity_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('coil_capacity_perc_change', true)
+    coil_capacity_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('coil_capacity_perc_change', true)
     coil_capacity_perc_change.setDisplayName('Percent Change for coil Capacity.')
     coil_capacity_perc_change.setDescription('Percent Change for coil Capacity.')
     coil_capacity_perc_change.setDefaultValue(0.0)

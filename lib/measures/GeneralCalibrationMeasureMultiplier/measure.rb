@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class GeneralCalibrationMeasureMultiplier < OpenStudio::Ruleset::ModelUserScript
+class GeneralCalibrationMeasureMultiplier < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     'General Calibration Measure Multiplier'
@@ -65,7 +65,7 @@ class GeneralCalibrationMeasureMultiplier < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make a choice argument for model objects
     space_type_handles = OpenStudio::StringVector.new
@@ -95,7 +95,7 @@ class GeneralCalibrationMeasureMultiplier < OpenStudio::Ruleset::ModelUserScript
     space_type_display_names << '*None*'
 
     # make a choice argument for space type
-    space_type = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('space_type', space_type_handles, space_type_display_names)
+    space_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('space_type', space_type_handles, space_type_display_names)
     space_type.setDisplayName('Apply the Measure to a SINGLE SpaceType, ALL the SpaceTypes or NONE.')
     space_type.setDefaultValue('*All SpaceTypes*') # if no space type is chosen this will run on the entire building
     args << space_type
@@ -125,13 +125,13 @@ class GeneralCalibrationMeasureMultiplier < OpenStudio::Ruleset::ModelUserScript
     space_display_names << '*None*'
 
     # make a choice argument for space type
-    space = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('space', space_handles, space_display_names)
+    space = OpenStudio::Measure::OSArgument.makeChoiceArgument('space', space_handles, space_display_names)
     space.setDisplayName('Apply the Measure to a SINGLE Space, ALL the Spaces or NONE.')
     space.setDefaultValue('*All Spaces*') # if no space type is chosen this will run on the entire building
     args << space
 
     # Lights multiplier
-    lights_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('Lights_multiplier', true)
+    lights_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('Lights_multiplier', true)
     lights_multiplier.setDisplayName('Multiplier for Lights.')
     lights_multiplier.setDescription('Multiplier for Lights.')
     lights_multiplier.setDefaultValue(1.0)
@@ -139,56 +139,56 @@ class GeneralCalibrationMeasureMultiplier < OpenStudio::Ruleset::ModelUserScript
     args << lights_multiplier
 
     # Luminaire multiplier
-    luminaire_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('Luminaire_multiplier', true)
+    luminaire_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('Luminaire_multiplier', true)
     luminaire_multiplier.setDisplayName('Multiplier for Luminaire.')
     luminaire_multiplier.setDescription('Multiplier for Luminaire.')
     luminaire_multiplier.setDefaultValue(1.0)
     args << luminaire_multiplier
 
     # Electric Equipment multiplier
-    electric_equip_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('ElectricEquipment_multiplier', true)
+    electric_equip_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('ElectricEquipment_multiplier', true)
     electric_equip_multiplier.setDisplayName('Multiplier for Electric Equipment.')
     electric_equip_multiplier.setDescription('Multiplier for Electric Equipment.')
     electric_equip_multiplier.setDefaultValue(1.0)
     args << electric_equip_multiplier
 
     # Gas Equipment multiplier
-    gas_equip_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('GasEquipment_multiplier', true)
+    gas_equip_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('GasEquipment_multiplier', true)
     gas_equip_multiplier.setDisplayName('Multiplier for Gas Equipment.')
     gas_equip_multiplier.setDescription('Multiplier for Gas Equipment.')
     gas_equip_multiplier.setDefaultValue(1.0)
     args << gas_equip_multiplier
 
     # OtherEquipment multiplier
-    other_equip_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('OtherEquipment_multiplier', true)
+    other_equip_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('OtherEquipment_multiplier', true)
     other_equip_multiplier.setDisplayName('Multiplier for OtherEquipment.')
     other_equip_multiplier.setDescription('Multiplier for OtherEquipment.')
     other_equip_multiplier.setDefaultValue(1.0)
     args << other_equip_multiplier
 
     # occupancy multiplier
-    occ_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('People_multiplier', true)
+    occ_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('People_multiplier', true)
     occ_multiplier.setDisplayName('Multiplier for number of people.')
     occ_multiplier.setDescription('Multiplier for number of people.')
     occ_multiplier.setDefaultValue(1.0)
     args << occ_multiplier
 
     # internalMass multiplier
-    mass_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('InternalMass_multiplier', true)
+    mass_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('InternalMass_multiplier', true)
     mass_multiplier.setDisplayName('Multiplier for Internal Mass.')
     mass_multiplier.setDescription('Multiplier for Internal Mass.')
     mass_multiplier.setDefaultValue(1.0)
     args << mass_multiplier
 
     # infiltration multiplier
-    infil_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('Infiltration_multiplier', true)
+    infil_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('Infiltration_multiplier', true)
     infil_multiplier.setDisplayName('Multiplier for infiltration.')
     infil_multiplier.setDescription('Multiplier for infiltration.')
     infil_multiplier.setDefaultValue(1.0)
     args << infil_multiplier
 
     # ventilation multiplier
-    vent_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('Ventilation_multiplier', true)
+    vent_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('Ventilation_multiplier', true)
     vent_multiplier.setDisplayName('Multiplier for Ventilation.')
     vent_multiplier.setDescription('Multiplier for Ventilation.')
     vent_multiplier.setDefaultValue(1.0)

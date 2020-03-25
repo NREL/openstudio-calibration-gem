@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class CoilCoolingDXTwoSpeedPercentChange < OpenStudio::Ruleset::ModelUserScript
+class CoilCoolingDXTwoSpeedPercentChange < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     'Cooling Coils DX Two Speed Percent Change'
@@ -69,7 +69,7 @@ class CoilCoolingDXTwoSpeedPercentChange < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # populate choice argument for constructions that are applied to surfaces in the model
     loop_handles = OpenStudio::StringVector.new
@@ -108,34 +108,34 @@ class CoilCoolingDXTwoSpeedPercentChange < OpenStudio::Ruleset::ModelUserScript
     loop_display_names << '*None*'
 
     # make a choice argument for space type
-    coil_arg = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
+    coil_arg = OpenStudio::Measure::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
     coil_arg.setDisplayName('Apply the Measure to a Two DX Cooling Coil, ALL the DX Cooling Coils or NONE.')
     coil_arg.setDefaultValue('*All DX Cooling Coils*') # if no space type is chosen this will run on the entire building
     args << coil_arg
 
     # rated_highspeed_cop_perc_change
-    rated_highspeed_cop_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('rated_highspeed_cop_perc_change', true)
+    rated_highspeed_cop_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('rated_highspeed_cop_perc_change', true)
     rated_highspeed_cop_perc_change.setDisplayName('Percent Change for High Speed COP.')
     rated_highspeed_cop_perc_change.setDescription('Percent Change for High Speed COP.')
     rated_highspeed_cop_perc_change.setDefaultValue(0.0)
     args << rated_highspeed_cop_perc_change
 
     # rated_lowspeed_cop_perc_change
-    rated_lowspeed_cop_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('rated_lowspeed_cop_perc_change', true)
+    rated_lowspeed_cop_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('rated_lowspeed_cop_perc_change', true)
     rated_lowspeed_cop_perc_change.setDisplayName('Percent Change for Low Speed COP.')
     rated_lowspeed_cop_perc_change.setDescription('Percent Change for Low Speed COP.')
     rated_lowspeed_cop_perc_change.setDefaultValue(0.0)
     args << rated_lowspeed_cop_perc_change
 
     # rated_highspeed_cooling_capacity_perc_change
-    rated_highspeed_cooling_capacity_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('rated_highspeed_cooling_capacity_perc_change', true)
+    rated_highspeed_cooling_capacity_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('rated_highspeed_cooling_capacity_perc_change', true)
     rated_highspeed_cooling_capacity_perc_change.setDisplayName('Percent Change for High Speed coil cooling Capacity.')
     rated_highspeed_cooling_capacity_perc_change.setDescription('Percent Change for High Speed coil cooling Capacity.')
     rated_highspeed_cooling_capacity_perc_change.setDefaultValue(0.0)
     args << rated_highspeed_cooling_capacity_perc_change
 
     # rated_lowspeed_cooling_capacity_perc_change
-    rated_lowspeed_cooling_capacity_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('rated_lowspeed_cooling_capacity_perc_change', true)
+    rated_lowspeed_cooling_capacity_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('rated_lowspeed_cooling_capacity_perc_change', true)
     rated_lowspeed_cooling_capacity_perc_change.setDisplayName('Percent Change for Low Speed coil cooling Capacity.')
     rated_lowspeed_cooling_capacity_perc_change.setDescription('Percent Change for Low Speed coil cooling Capacity.')
     rated_lowspeed_cooling_capacity_perc_change.setDefaultValue(0.0)

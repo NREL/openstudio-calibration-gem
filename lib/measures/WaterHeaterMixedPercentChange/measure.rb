@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class WaterHeaterMixedPercentChange < OpenStudio::Ruleset::ModelUserScript
+class WaterHeaterMixedPercentChange < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     'Water Heater Mixed Percent Change'
@@ -67,7 +67,7 @@ class WaterHeaterMixedPercentChange < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make a choice argument for model objects
     water_heater_handles = OpenStudio::StringVector.new
@@ -88,13 +88,13 @@ class WaterHeaterMixedPercentChange < OpenStudio::Ruleset::ModelUserScript
     water_heater_display_names << '*None*'
 
     # make a choice argument for space type
-    water_heater = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('water_heater', water_heater_handles, water_heater_display_names)
+    water_heater = OpenStudio::Measure::OSArgument.makeChoiceArgument('water_heater', water_heater_handles, water_heater_display_names)
     water_heater.setDisplayName('Apply the Measure to a SINGLE WaterHeaterMixed, ALL the WaterHeaterMixeds or NONE.')
     water_heater.setDefaultValue('*All WaterHeaterMixeds*') # if no space type is chosen this will run on the entire building
     args << water_heater
 
     # maximum_capacity_multiplier
-    maximum_capacity_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('maximum_capacity_multiplier', true)
+    maximum_capacity_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('maximum_capacity_multiplier', true)
     maximum_capacity_multiplier.setDisplayName('Percent Change for Heater Maximum Capacity.')
     maximum_capacity_multiplier.setDescription('Percent Change for Heater Maximum Capacity.')
     maximum_capacity_multiplier.setDefaultValue(0.0)
@@ -102,14 +102,14 @@ class WaterHeaterMixedPercentChange < OpenStudio::Ruleset::ModelUserScript
     args << maximum_capacity_multiplier
 
     # minimum_capacity_multiplier
-    minimum_capacity_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('minimum_capacity_multiplier', true)
+    minimum_capacity_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('minimum_capacity_multiplier', true)
     minimum_capacity_multiplier.setDisplayName('Percent Change for Heater Minimum Capacity.')
     minimum_capacity_multiplier.setDescription('Percent Change for Heater Minimum Capacity.')
     minimum_capacity_multiplier.setDefaultValue(0.0)
     args << minimum_capacity_multiplier
 
     # thermal_efficiency_multiplier
-    thermal_efficiency_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('thermal_efficiency_multiplier', true)
+    thermal_efficiency_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('thermal_efficiency_multiplier', true)
     thermal_efficiency_multiplier.setDisplayName('Percent Change for Thermal Efficiency.')
     thermal_efficiency_multiplier.setDescription('Percent Change for Thermal Efficiency.')
     thermal_efficiency_multiplier.setDefaultValue(0.0)
@@ -122,7 +122,7 @@ class WaterHeaterMixedPercentChange < OpenStudio::Ruleset::ModelUserScript
     fuel_type << 'PropaneGas'
 
     # heater_fuel_type
-    heater_fuel_type = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('fuel_type', fuel_type, fuel_type)
+    heater_fuel_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('fuel_type', fuel_type, fuel_type)
     heater_fuel_type.setDisplayName('Heater Fuel Type.')
     heater_fuel_type.setDescription('Heater Fuel Type.')
     heater_fuel_type.setDefaultValue('NaturalGas')

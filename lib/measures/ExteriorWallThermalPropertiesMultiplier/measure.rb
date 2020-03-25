@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class ExteriorWallThermalPropertiesMultiplier < OpenStudio::Ruleset::ModelUserScript
+class ExteriorWallThermalPropertiesMultiplier < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see
   def name
     'Exterior Wall Thermal Properties Multiplier'
@@ -75,20 +75,20 @@ class ExteriorWallThermalPropertiesMultiplier < OpenStudio::Ruleset::ModelUserSc
 
   # define the arguments that the user will input
   def arguments(_model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make an argument insulation R-value
-    r_value_mult = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('r_value_mult', true)
+    r_value_mult = OpenStudio::Measure::OSArgument.makeDoubleArgument('r_value_mult', true)
     r_value_mult.setDisplayName('Exterior wall total R-value multiplier')
     r_value_mult.setDefaultValue(1)
     args << r_value_mult
 
-    solar_abs_mult = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('solar_abs_mult', true)
+    solar_abs_mult = OpenStudio::Measure::OSArgument.makeDoubleArgument('solar_abs_mult', true)
     solar_abs_mult.setDisplayName('Exterior wall solar absorptance multiplier')
     solar_abs_mult.setDefaultValue(1)
     args << solar_abs_mult
 
-    thermal_mass_mult = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('thermal_mass_mult', true)
+    thermal_mass_mult = OpenStudio::Measure::OSArgument.makeDoubleArgument('thermal_mass_mult', true)
     thermal_mass_mult.setDisplayName('Exterior wall thermal mass multiplier')
     thermal_mass_mult.setDefaultValue(1)
     args << thermal_mass_mult

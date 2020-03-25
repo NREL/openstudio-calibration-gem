@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class CoilCoolingWaterPercentChange < OpenStudio::Ruleset::ModelUserScript
+class CoilCoolingWaterPercentChange < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     'Cooling Coils Water PercentChange'
@@ -75,7 +75,7 @@ class CoilCoolingWaterPercentChange < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # populate choice argument for constructions that are applied to surfaces in the model
     loop_handles = OpenStudio::StringVector.new
@@ -114,48 +114,48 @@ class CoilCoolingWaterPercentChange < OpenStudio::Ruleset::ModelUserScript
     loop_display_names << '*None*'
 
     # make a choice argument for space type
-    coil_arg = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
+    coil_arg = OpenStudio::Measure::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
     coil_arg.setDisplayName('Apply the Measure to a SINGLE Water Cooling Coil, ALL the Water Cooling Coils or NONE.')
     coil_arg.setDefaultValue('*All Water Cooling Coils*') # if no space type is chosen this will run on the entire building
     args << coil_arg
 
     # design_water_flow_rate
-    design_water_flow_rate = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('design_water_flow_rate', true)
+    design_water_flow_rate = OpenStudio::Measure::OSArgument.makeDoubleArgument('design_water_flow_rate', true)
     design_water_flow_rate.setDisplayName('PercentChange for Design Water Flow Rate.')
     design_water_flow_rate.setDescription('PercentChange for Design Water Flow Rate.')
     design_water_flow_rate.setDefaultValue(0.0)
     args << design_water_flow_rate
 
     # design_air_flow_rate
-    design_air_flow_rate = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('design_air_flow_rate', true)
+    design_air_flow_rate = OpenStudio::Measure::OSArgument.makeDoubleArgument('design_air_flow_rate', true)
     design_air_flow_rate.setDisplayName('PercentChange for Design Air Flow Rate.')
     design_air_flow_rate.setDescription('PercentChange for Design Air Flow Rate.')
     design_air_flow_rate.setDefaultValue(0.0)
     args << design_air_flow_rate
 
     # design_inlet_water_temperature
-    design_inlet_water_temperature = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('design_inlet_water_temperature', true)
+    design_inlet_water_temperature = OpenStudio::Measure::OSArgument.makeDoubleArgument('design_inlet_water_temperature', true)
     design_inlet_water_temperature.setDisplayName('PercentChange for Inlet Water Temperature.')
     design_inlet_water_temperature.setDescription('PercentChange for Inlet Water Temperature.')
     design_inlet_water_temperature.setDefaultValue(0.0)
     args << design_inlet_water_temperature
 
     # design_inlet_air_temperature
-    design_inlet_air_temperature = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('design_inlet_air_temperature', true)
+    design_inlet_air_temperature = OpenStudio::Measure::OSArgument.makeDoubleArgument('design_inlet_air_temperature', true)
     design_inlet_air_temperature.setDisplayName('PercentChange for Inlet Air Temperature.')
     design_inlet_air_temperature.setDescription('PercentChange for Inlet Air Temperature.')
     design_inlet_air_temperature.setDefaultValue(0.0)
     args << design_inlet_air_temperature
 
     # design_outlet_air_temperature
-    design_outlet_air_temperature = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('design_outlet_air_temperature', true)
+    design_outlet_air_temperature = OpenStudio::Measure::OSArgument.makeDoubleArgument('design_outlet_air_temperature', true)
     design_outlet_air_temperature.setDisplayName('PercentChange for Outlet Air Temperature.')
     design_outlet_air_temperature.setDescription('PercentChange for Outlet Air Temperature.')
     design_outlet_air_temperature.setDefaultValue(0.0)
     args << design_outlet_air_temperature
 
     # design_inlet_air_humidity_ratio
-    design_inlet_air_humidity_ratio = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('design_inlet_air_humidity_ratio', true)
+    design_inlet_air_humidity_ratio = OpenStudio::Measure::OSArgument.makeDoubleArgument('design_inlet_air_humidity_ratio', true)
     design_inlet_air_humidity_ratio.setDisplayName('PercentChange for Inlet Air Humidity Ratio.')
     design_inlet_air_humidity_ratio.setDescription('PercentChange for Inlet Air Humidity Ratio.')
     design_inlet_air_humidity_ratio.setDefaultValue(0.0)

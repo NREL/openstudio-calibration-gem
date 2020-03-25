@@ -46,7 +46,7 @@ require 'json'
 require 'time'
 
 # start the measure
-class MaalkaMonthlyJSONUtilityData < OpenStudio::Ruleset::ModelUserScript
+class MaalkaMonthlyJSONUtilityData < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
@@ -85,17 +85,17 @@ class MaalkaMonthlyJSONUtilityData < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(_model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # set path to json
-    json = OpenStudio::Ruleset::OSArgument.makeStringArgument('json', true)
+    json = OpenStudio::Measure::OSArgument.makeStringArgument('json', true)
     json.setDisplayName('Path to JSON Data.')
     json.setDescription('Path to JSON Data. resources is default directory name of uploaded files in the server.')
     json.setDefaultValue('../../../lib/resources/sample_json.json')
     args << json
 
     # set variable name
-    variable_name = OpenStudio::Ruleset::OSArgument.makeStringArgument('variable_name', true)
+    variable_name = OpenStudio::Measure::OSArgument.makeStringArgument('variable_name', true)
     variable_name.setDisplayName('Variable name')
     variable_name.setDescription('Name of the Utility Bill Object.  For Calibration Report use Electric Bill or Gas Bill')
     variable_name.setDefaultValue('Electric Bill')
@@ -106,7 +106,7 @@ class MaalkaMonthlyJSONUtilityData < OpenStudio::Ruleset::ModelUserScript
     mft << 'electric'
     mft << 'naturalGas'
 
-    maalka_fuel_type = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('maalka_fuel_type', mft, mft)
+    maalka_fuel_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('maalka_fuel_type', mft, mft)
     maalka_fuel_type.setDisplayName('Maalka Fuel Type in JSON')
     maalka_fuel_type.setDescription('Maalka Fuel Type in JSON')
     maalka_fuel_type.setDefaultValue('electric')
@@ -118,7 +118,7 @@ class MaalkaMonthlyJSONUtilityData < OpenStudio::Ruleset::ModelUserScript
     ft << 'Electricity'
     ft << 'PropaneGas'
 
-    fuel_type = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('fuel_type', ft, ft)
+    fuel_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('fuel_type', ft, ft)
     fuel_type.setDisplayName('OpenStudio Fuel Type')
     fuel_type.setDescription('OpenStudio Fuel Type')
     fuel_type.setDefaultValue('Electricity')
@@ -128,7 +128,7 @@ class MaalkaMonthlyJSONUtilityData < OpenStudio::Ruleset::ModelUserScript
     unit = OpenStudio::StringVector.new
     unit << 'kWh'
     unit << 'therms'
-    consumption_unit = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('consumption_unit', unit, unit)
+    consumption_unit = OpenStudio::Measure::OSArgument.makeChoiceArgument('consumption_unit', unit, unit)
     consumption_unit.setDisplayName('OpenStudio Consumption Unit')
     consumption_unit.setDescription('OpenStudio Consumption Unit (usually kWh or therms)')
     consumption_unit.setDefaultValue('kWh')
@@ -138,35 +138,35 @@ class MaalkaMonthlyJSONUtilityData < OpenStudio::Ruleset::ModelUserScript
     munit = OpenStudio::StringVector.new
     munit << 'tot_kwh'
     munit << 'tot_therms'
-    data_key_name = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('data_key_name', munit, munit)
+    data_key_name = OpenStudio::Measure::OSArgument.makeChoiceArgument('data_key_name', munit, munit)
     data_key_name.setDisplayName('Maalka data key name in JSON')
     data_key_name.setDescription('Maalka data key name in JSON (tot_kwh or tot_therms)')
     data_key_name.setDefaultValue('tot_kwh')
     args << data_key_name
 
     # make a start date argument
-    start_date = OpenStudio::Ruleset::OSArgument.makeStringArgument('start_date', true)
+    start_date = OpenStudio::Measure::OSArgument.makeStringArgument('start_date', true)
     start_date.setDisplayName('Start date')
     start_date.setDescription('Start date format %Y%m%dT%H%M%S with Hour Min Sec optional')
     start_date.setDefaultValue('2013-01-1')
     args << start_date
 
     # make an end date argument
-    end_date = OpenStudio::Ruleset::OSArgument.makeStringArgument('end_date', true)
+    end_date = OpenStudio::Measure::OSArgument.makeStringArgument('end_date', true)
     end_date.setDisplayName('End date')
     end_date.setDescription('End date format %Y%m%dT%H%M%S with Hour Min Sec optional')
     end_date.setDefaultValue('2013-12-31')
     args << end_date
 
     # make an end date argument
-    remove_utility_bill_data = OpenStudio::Ruleset::OSArgument.makeBoolArgument('remove_existing_data', true)
+    remove_utility_bill_data = OpenStudio::Measure::OSArgument.makeBoolArgument('remove_existing_data', true)
     remove_utility_bill_data.setDisplayName('remove all existing Utility Bill data objects from model')
     remove_utility_bill_data.setDescription('remove all existing Utility Bill data objects from model')
     remove_utility_bill_data.setDefaultValue(false)
     args << remove_utility_bill_data
 
     # make an end date argument
-    set_runperiod = OpenStudio::Ruleset::OSArgument.makeBoolArgument('set_runperiod', true)
+    set_runperiod = OpenStudio::Measure::OSArgument.makeBoolArgument('set_runperiod', true)
     set_runperiod.setDisplayName('Set RunPeriod Object in model to use start and end dates')
     set_runperiod.setDescription('Set RunPeriod Object in model to use start and end dates.  Only needed once if multiple copies of measure being used.')
     set_runperiod.setDefaultValue(false)

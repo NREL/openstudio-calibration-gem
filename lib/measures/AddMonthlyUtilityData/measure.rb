@@ -46,7 +46,7 @@ require 'json'
 require 'time'
 
 # start the measure
-class AddMonthlyUtilityData < OpenStudio::Ruleset::ModelUserScript
+class AddMonthlyUtilityData < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
@@ -68,29 +68,29 @@ class AddMonthlyUtilityData < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(_model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make an electric json argument
-    electric_json = OpenStudio::Ruleset::OSArgument.makeStringArgument('electric_json', true)
+    electric_json = OpenStudio::Measure::OSArgument.makeStringArgument('electric_json', true)
     electric_json.setDisplayName('Path to electric JSON')
     args << electric_json
 
     # make a gas json argument
-    gas_json = OpenStudio::Ruleset::OSArgument.makeStringArgument('gas_json', true)
+    gas_json = OpenStudio::Measure::OSArgument.makeStringArgument('gas_json', true)
     gas_json.setDisplayName('Path to gas JSON')
     args << gas_json
 
-    water_json = OpenStudio::Ruleset::OSArgument.makeStringArgument('water_json', false)
+    water_json = OpenStudio::Measure::OSArgument.makeStringArgument('water_json', false)
     water_json.setDisplayName('Path to water JSON')
     args << water_json
 
     # make a start date argument
-    start_date = OpenStudio::Ruleset::OSArgument.makeStringArgument('start_date', true)
+    start_date = OpenStudio::Measure::OSArgument.makeStringArgument('start_date', true)
     start_date.setDisplayName('Start date')
     args << start_date
 
     # make an end date argument
-    end_date = OpenStudio::Ruleset::OSArgument.makeStringArgument('end_date', true)
+    end_date = OpenStudio::Measure::OSArgument.makeStringArgument('end_date', true)
     end_date.setDisplayName('End date')
     args << end_date
 

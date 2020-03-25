@@ -37,7 +37,7 @@
 # http://openstudio.nrel.gov/openstudio-measure-writing-guide
 
 # start the measure
-class HardSizeHVAC < OpenStudio::Ruleset::ModelUserScript
+class HardSizeHVAC < OpenStudio::Measure::ModelMeasure
   require 'openstudio-standards'
 
   # human readable name
@@ -57,7 +57,7 @@ class HardSizeHVAC < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(_model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     args
   end

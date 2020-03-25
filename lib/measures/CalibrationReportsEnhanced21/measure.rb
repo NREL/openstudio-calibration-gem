@@ -37,7 +37,7 @@ require 'erb'
 require 'json'
 
 # start the measure
-class CalibrationReportsEnhanced21 < OpenStudio::Ruleset::ReportingUserScript
+class CalibrationReportsEnhanced21 < OpenStudio::Measure::ReportingMeasure
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
@@ -56,28 +56,28 @@ class CalibrationReportsEnhanced21 < OpenStudio::Ruleset::ReportingUserScript
 
   # define the arguments that the user will input
   def arguments
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # Electric NMBE limit
-    electric_nmbe_limit = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('electric_nmbe_limit', true)
+    electric_nmbe_limit = OpenStudio::Measure::OSArgument.makeDoubleArgument('electric_nmbe_limit', true)
     electric_nmbe_limit.setDisplayName('Electric NMBE limit (%)')
     electric_nmbe_limit.setDefaultValue(5.0)
     args << electric_nmbe_limit
 
     # Electric CVRMSE limit
-    electric_cvrmse_limit = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('electric_cvrmse_limit', true)
+    electric_cvrmse_limit = OpenStudio::Measure::OSArgument.makeDoubleArgument('electric_cvrmse_limit', true)
     electric_cvrmse_limit.setDisplayName('Electric CVRMSE limit (%)')
     electric_cvrmse_limit.setDefaultValue(15.0)
     args << electric_cvrmse_limit
 
     # Gas NMBE limit
-    gas_nmbe_limit = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('gas_nmbe_limit', true)
+    gas_nmbe_limit = OpenStudio::Measure::OSArgument.makeDoubleArgument('gas_nmbe_limit', true)
     gas_nmbe_limit.setDisplayName('Gas NMBE limit (%)')
     gas_nmbe_limit.setDefaultValue(5.0)
     args << gas_nmbe_limit
 
     # Gas CVRMSE limit
-    gas_cvrmse_limit = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('gas_cvrmse_limit', true)
+    gas_cvrmse_limit = OpenStudio::Measure::OSArgument.makeDoubleArgument('gas_cvrmse_limit', true)
     gas_cvrmse_limit.setDisplayName('Gas CVRMSE limit (%)')
     gas_cvrmse_limit.setDefaultValue(15.0)
     args << gas_cvrmse_limit

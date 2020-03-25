@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class RoofThermalPropertiesPercentChange < OpenStudio::Ruleset::ModelUserScript
+class RoofThermalPropertiesPercentChange < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see
   def name
     'Roof Thermal Properties Percent Change'
@@ -68,20 +68,20 @@ class RoofThermalPropertiesPercentChange < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(_model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make an argument insulation R-value
-    r_value_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('r_value_perc_change', true)
+    r_value_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('r_value_perc_change', true)
     r_value_perc_change.setDisplayName('Roof total R-value Percent Change')
     r_value_perc_change.setDefaultValue(0)
     args << r_value_perc_change
 
-    solar_abs_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('solar_abs_perc_change', true)
+    solar_abs_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('solar_abs_perc_change', true)
     solar_abs_perc_change.setDisplayName('Roof solar absorptance Percent Change')
     solar_abs_perc_change.setDefaultValue(0)
     args << solar_abs_perc_change
 
-    thermal_mass_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('thermal_mass_perc_change', true)
+    thermal_mass_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('thermal_mass_perc_change', true)
     thermal_mass_perc_change.setDisplayName('Roof thermal mass Percent Change')
     thermal_mass_perc_change.setDefaultValue(0)
     args << thermal_mass_perc_change

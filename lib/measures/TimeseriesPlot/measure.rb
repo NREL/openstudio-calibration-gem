@@ -39,7 +39,7 @@
 require 'erb'
 
 # start the measure
-class TimeseriesPlot < OpenStudio::Ruleset::ReportingUserScript
+class TimeseriesPlot < OpenStudio::Measure::ReportingMeasure
   # human readable name
   def name
     'Timeseries Plot'
@@ -57,10 +57,10 @@ class TimeseriesPlot < OpenStudio::Ruleset::ReportingUserScript
 
   # define the arguments that the user will input
   def arguments
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make an argument for the variable name
-    variable_name = OpenStudio::Ruleset::OSArgument.makeStringArgument('variable_name', true)
+    variable_name = OpenStudio::Measure::OSArgument.makeStringArgument('variable_name', true)
     variable_name.setDisplayName('Enter Variable Name.')
     variable_name.setDescription('Valid values can be found in the eplusout.rdd file after a simulation is run.')
     args << variable_name
@@ -74,19 +74,19 @@ class TimeseriesPlot < OpenStudio::Ruleset::ReportingUserScript
     reporting_frequency_chs << 'Daily'
     reporting_frequency_chs << 'Monthly'
     reporting_frequency_chs << 'Runperiod'
-    reporting_frequency = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('reporting_frequency', reporting_frequency_chs, true)
+    reporting_frequency = OpenStudio::Measure::OSArgument.makeChoiceArgument('reporting_frequency', reporting_frequency_chs, true)
     reporting_frequency.setDisplayName('Reporting Frequency.')
     reporting_frequency.setDefaultValue('Hourly')
     args << reporting_frequency
 
     # make an argument for the key_value
-    key_value = OpenStudio::Ruleset::OSArgument.makeStringArgument('key_value', true)
+    key_value = OpenStudio::Measure::OSArgument.makeStringArgument('key_value', true)
     key_value.setDisplayName('Enter Key Name.')
     key_value.setDescription('Enter * for all objects or the full name of a specific object to.')
     key_value.setDefaultValue('*')
     args << key_value
 
-    env = OpenStudio::Ruleset::OSArgument.makeStringArgument('env', true)
+    env = OpenStudio::Measure::OSArgument.makeStringArgument('env', true)
     env.setDisplayName('availableEnvPeriods')
     env.setDescription('availableEnvPeriods')
     env.setDefaultValue('RUN PERIOD 1')

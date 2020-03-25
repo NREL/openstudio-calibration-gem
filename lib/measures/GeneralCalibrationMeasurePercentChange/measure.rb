@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class GeneralCalibrationMeasurePercentChange < OpenStudio::Ruleset::ModelUserScript
+class GeneralCalibrationMeasurePercentChange < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     'General Calibration Measure Percent Change'
@@ -58,7 +58,7 @@ class GeneralCalibrationMeasurePercentChange < OpenStudio::Ruleset::ModelUserScr
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make a choice argument for model objects
     space_type_handles = OpenStudio::StringVector.new
@@ -88,7 +88,7 @@ class GeneralCalibrationMeasurePercentChange < OpenStudio::Ruleset::ModelUserScr
     space_type_display_names << '*None*'
 
     # make a choice argument for space type
-    space_type = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('space_type', space_type_handles, space_type_display_names)
+    space_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('space_type', space_type_handles, space_type_display_names)
     space_type.setDisplayName('Apply the Measure to a SINGLE SpaceType, ALL the SpaceTypes or NONE.')
     space_type.setDefaultValue('*All SpaceTypes*') # if no space type is chosen this will run on the entire building
     args << space_type
@@ -118,69 +118,69 @@ class GeneralCalibrationMeasurePercentChange < OpenStudio::Ruleset::ModelUserScr
     space_display_names << '*None*'
 
     # make a choice argument for space type
-    space = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('space', space_handles, space_display_names)
+    space = OpenStudio::Measure::OSArgument.makeChoiceArgument('space', space_handles, space_display_names)
     space.setDisplayName('Apply the Measure to a SINGLE Space, ALL the Spaces or NONE.')
     space.setDefaultValue('*All Spaces*') # if no space type is chosen this will run on the entire building
     args << space
 
     # Lights multiplier
-    lights_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('lights_perc_change', true)
+    lights_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('lights_perc_change', true)
     lights_perc_change.setDisplayName('Percent Change in the default Lights Definition.')
     lights_perc_change.setDescription('Percent Change in the default Lights Definition.')
     lights_perc_change.setDefaultValue(0.0)
     args << lights_perc_change
 
     # Luminaire multiplier
-    luminaire_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('luminaire_perc_change', true)
+    luminaire_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('luminaire_perc_change', true)
     luminaire_perc_change.setDisplayName('Percent Change in the default Luminaire Definition.')
     luminaire_perc_change.setDescription('Percent Change in the default Luminaire Definition.')
     luminaire_perc_change.setDefaultValue(0.0)
     args << luminaire_perc_change
 
     # Electric Equipment multiplier
-    electric_equip_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('ElectricEquipment_perc_change', true)
+    electric_equip_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('ElectricEquipment_perc_change', true)
     electric_equip_perc_change.setDisplayName('Percent Change in the default Electric Equipment Definition.')
     electric_equip_perc_change.setDescription('Percent Change in the default Electric Equipment Definition.')
     electric_equip_perc_change.setDefaultValue(0.0)
     args << electric_equip_perc_change
 
     # Gas Equipment multiplier
-    gas_equip_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('GasEquipment_perc_change', true)
+    gas_equip_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('GasEquipment_perc_change', true)
     gas_equip_perc_change.setDisplayName('Percent Change in the default Gas Equipment Definition.')
     gas_equip_perc_change.setDescription('Percent Change in the default Gas Equipment Definition.')
     gas_equip_perc_change.setDefaultValue(0.0)
     args << gas_equip_perc_change
 
     # OtherEquipment multiplier
-    other_equip_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('OtherEquipment_perc_change', true)
+    other_equip_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('OtherEquipment_perc_change', true)
     other_equip_perc_change.setDisplayName('Percent Change in the default OtherEquipment Definition.')
     other_equip_perc_change.setDescription('Percent Change in the default OtherEquipment Definition.')
     other_equip_perc_change.setDefaultValue(0.0)
     args << other_equip_perc_change
 
     # occupancy % change
-    people_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('people_perc_change', true)
+    people_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('people_perc_change', true)
     people_perc_change.setDisplayName('Percent Change in the default People Definition.')
     people_perc_change.setDescription('Percent Change in the default People Definition.')
     people_perc_change.setDefaultValue(0.0)
     args << people_perc_change
 
     # internalMass % change
-    mass_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('mass_perc_change', true)
+    mass_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('mass_perc_change', true)
     mass_perc_change.setDisplayName('Percent Change in the default Internal Mass Definition.')
     mass_perc_change.setDescription('Percent Change in the default Internal Mass Definition.')
     mass_perc_change.setDefaultValue(0.0)
     args << mass_perc_change
 
     # infiltration % change
-    infil_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('infil_perc_change', true)
+    infil_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('infil_perc_change', true)
     infil_perc_change.setDisplayName('Percent Change in the default Design Infiltration Outdoor Air.')
     infil_perc_change.setDescription('Percent Change in the default Design Infiltration Outdoor Air.')
     infil_perc_change.setDefaultValue(0.0)
     args << infil_perc_change
 
     # ventilation % change
-    vent_perc_change = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('vent_perc_change', true)
+    vent_perc_change = OpenStudio::Measure::OSArgument.makeDoubleArgument('vent_perc_change', true)
     vent_perc_change.setDisplayName('Percent Change in the default Design Specification Outdoor Air.')
     vent_perc_change.setDescription('Percent Change in the default Design Specification Outdoor Air.')
     vent_perc_change.setDefaultValue(0.0)

@@ -37,7 +37,7 @@
 # http://nrel.github.io/OpenStudio-user-documentation/measures/measure_writing_guide/
 
 # start the measure
-class ElectricBaseboardEfficiencyAndCapacity < OpenStudio::Ruleset::ModelUserScript
+class ElectricBaseboardEfficiencyAndCapacity < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     'Electric Baseboard Efficiency And Capacity'
@@ -55,16 +55,16 @@ class ElectricBaseboardEfficiencyAndCapacity < OpenStudio::Ruleset::ModelUserScr
 
   # define the arguments that the user will input
   def arguments(_model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # efficiency
-    base_eff = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('base_eff', true)
+    base_eff = OpenStudio::Measure::OSArgument.makeDoubleArgument('base_eff', true)
     base_eff.setDisplayName('efficiency')
     base_eff.setDefaultValue(1.0)
     args << base_eff
 
     # capacity
-    nom_cap = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('nom_cap', true)
+    nom_cap = OpenStudio::Measure::OSArgument.makeDoubleArgument('nom_cap', true)
     nom_cap.setDisplayName('Nominal Capacity (W)')
     nom_cap.setDefaultValue(1500)
     args << nom_cap

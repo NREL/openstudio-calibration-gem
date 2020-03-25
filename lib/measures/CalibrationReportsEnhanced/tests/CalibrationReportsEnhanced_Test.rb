@@ -169,11 +169,11 @@ class CalibrationReportsEnhanced_Test < Minitest::Test
     measure = CalibrationReportsEnhanced.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # get arguments
     arguments = measure.arguments
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values
     args_hash = {}
@@ -297,11 +297,11 @@ class CalibrationReportsEnhanced_Test < Minitest::Test
     measure = CalibrationReportsEnhanced.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # get arguments
     arguments = measure.arguments
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values
     args_hash = {}
@@ -426,11 +426,11 @@ class CalibrationReportsEnhanced_Test < Minitest::Test
     measure = CalibrationReportsEnhanced.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # get arguments
     arguments = measure.arguments
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values
     args_hash = {}
@@ -538,11 +538,11 @@ class CalibrationReportsEnhanced_Test < Minitest::Test
     measure = CalibrationReportsEnhanced.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # get arguments
     arguments = measure.arguments
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values
     args_hash = {}
@@ -626,11 +626,11 @@ class CalibrationReportsEnhanced_Test < Minitest::Test
     measure = CalibrationReportsEnhanced.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # get arguments
     arguments = measure.arguments
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values
     args_hash = {}

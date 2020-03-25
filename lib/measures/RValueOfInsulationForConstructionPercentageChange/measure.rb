@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 # start the measure
-class RValueOfInsulationForConstructionPercentageChange < OpenStudio::Ruleset::ModelUserScript
+class RValueOfInsulationForConstructionPercentageChange < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see
   def name
     'Change R-value of Insulation Layer for Construction By a Specified Percentage'
@@ -52,7 +52,7 @@ class RValueOfInsulationForConstructionPercentageChange < OpenStudio::Ruleset::M
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # populate choice argument for constructions that are applied to surfaces in the model
     construction_handles = OpenStudio::StringVector.new
@@ -75,12 +75,12 @@ class RValueOfInsulationForConstructionPercentageChange < OpenStudio::Ruleset::M
     end
 
     # make an argument for construction
-    construction = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('construction', construction_handles, construction_display_names, true)
+    construction = OpenStudio::Measure::OSArgument.makeChoiceArgument('construction', construction_handles, construction_display_names, true)
     construction.setDisplayName('Choose a Construction to Alter.')
     args << construction
 
     # make an argument insulation R-value
-    r_value_prct_inc = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('r_value_prct_inc', true)
+    r_value_prct_inc = OpenStudio::Measure::OSArgument.makeDoubleArgument('r_value_prct_inc', true)
     r_value_prct_inc.setDisplayName('Percentage Change of R-value for Insulation Layer of Construction.')
     r_value_prct_inc.setDefaultValue(0.0)
     args << r_value_prct_inc
