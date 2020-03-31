@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['David Goldwasser', 'Nicholas Long']
   spec.email         = ['david.goldwasser@nrel.gov', 'nicholas.long@nrel.gov']
 
-  spec.summary       = 'Library and measures for OpenStudio AEDG'
-  spec.description   = 'Library and measures for OpenStudio AEDG'
+  spec.summary       = 'Library and measures for OpenStudio Calibration'
+  spec.description   = 'Library and measures for OpenStudio Calibration'
   spec.homepage      = 'https://openstudio.net'
 
   # Specify which files should be added to the gem when it is released.
