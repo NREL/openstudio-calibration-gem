@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'openstudio/calibration_measures/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'openstudio-aedg'
+  spec.name          = 'openstudio-calibration'
   spec.version       = OpenStudio::CalibrationMeasures::VERSION
   spec.authors       = ['David Goldwasser', 'Nicholas Long']
   spec.email         = ['david.goldwasser@nrel.gov', 'nicholas.long@nrel.gov']
