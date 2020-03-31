@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>timeseries_plot</name>
   <uid>6804217d-4737-45f3-82df-b81393c29ce7</uid>
-  <version_id>2027d1c5-376f-4a51-96a2-dca822d5bf1b</version_id>
-  <version_modified>20200325T030944Z</version_modified>
+  <version_id>eaeb6d82-5b2c-47df-b17a-5bc25079efde</version_id>
+  <version_modified>20200331T151749Z</version_modified>
   <xml_checksum>FFE04372</xml_checksum>
   <class_name>TimeseriesPlot</class_name>
   <display_name>Timeseries Plot</display_name>
@@ -99,12 +99,6 @@
   </attributes>
   <files>
     <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>B1E77BD5</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -132,6 +126,12 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>76613086</checksum>
+    </file>
+    <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>8A46D937</checksum>
     </file>
   </files>
 </measure>

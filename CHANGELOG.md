@@ -1,4 +1,4 @@
-# OpenStudio AEDG Gem
+# OpenStudio Calibration Gem
 
 ## Version 0.1.0
 
