@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_cooling_water_percent_change</name>
   <uid>51bc1f02-f01b-4c5e-818a-db76ed783665</uid>
-  <version_id>6bb068f3-39a2-48c3-bc5c-fd3448df9807</version_id>
-  <version_modified>20170911T165709Z</version_modified>
+  <version_id>5f04e81f-ebc8-47f1-8c67-9f73db244323</version_id>
+  <version_modified>20200325T030949Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingWaterPercentChange</class_name>
   <display_name>Cooling Coils Water PercentChange</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All Water Cooling Coils*</default_value>
       <choices>
         <choice>
-          <value>{bf0d46f8-cdb7-4767-b3cd-0bb600bcca4b}</value>
+          <value>{1fb16b4e-06ed-435a-ae91-5ccfe20e1e9d}</value>
           <display_name>*All Water Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -97,6 +97,24 @@
   </attributes>
   <files>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>3544B376</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -105,7 +123,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D306AA93</checksum>
+      <checksum>7DAD59B9</checksum>
     </file>
   </files>
 </measure>

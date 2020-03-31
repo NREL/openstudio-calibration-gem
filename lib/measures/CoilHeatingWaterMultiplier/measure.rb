@@ -1,101 +1,132 @@
-# start the measure
-class CoilHeatingWaterMultiplier < OpenStudio::Ruleset::ModelUserScript
+# *******************************************************************************
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# All rights reserved.
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# (1) Redistributions of source code must retain the above copyright notice,
+# this list of conditions and the following disclaimer.
+#
+# (2) Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation
+# and/or other materials provided with the distribution.
+#
+# (3) Neither the name of the copyright holder nor the names of any contributors
+# may be used to endorse or promote products derived from this software without
+# specific prior written permission from the respective party.
+#
+# (4) Other than as required in clauses (1) and (2), distributions in any form
+# of modifications or other derivative works may not use the "OpenStudio"
+# trademark, "OS", "os", or any other confusingly similar designation without
+# specific prior written permission from Alliance for Sustainable Energy, LLC.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER(S) AND ANY CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER(S), ANY CONTRIBUTORS, THE
+# UNITED STATES GOVERNMENT, OR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY OF
+# THEIR EMPLOYEES, BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+# OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+# STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# *******************************************************************************
 
+# start the measure
+class CoilHeatingWaterMultiplier < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
-    return "Heating Coils Water Multiplier"
+    'Heating Coils Water Multiplier'
   end
 
   # human readable description
   def description
-    return "This is a general purpose measure to calibrate Water Heating Coils with a Multiplier."
+    'This is a general purpose measure to calibrate Water Heating Coils with a Multiplier.'
   end
 
   # human readable description of modeling approach
   def modeler_description
-    return "It will be used for calibration of rated capacity and efficiency and parasitic loads. User can choose between a SINGLE coil or ALL the Coils."
+    'It will be used for calibration of rated capacity and efficiency and parasitic loads. User can choose between a SINGLE coil or ALL the Coils.'
   end
-  
-  def change_name(object,ua_factor,coil_capacity_multiplier)
-    nameString = "#{object.name.get}"
-    if ua_factor != 1.0
-      nameString = nameString + " #{ua_factor.round(2)}x UA"
-    end
+
+  def change_name(object, ua_factor, coil_capacity_multiplier)
+    nameString = object.name.get.to_s
+    nameString += " #{ua_factor.round(2)}x UA" if ua_factor != 1.0
     if coil_capacity_multiplier != 1.0
-      nameString = nameString + " #{coil_capacity_multiplier.round(2)}x coilCap"
+      nameString += " #{coil_capacity_multiplier.round(2)}x coilCap"
     end
     object.setName(nameString)
   end
-  
+
   def check_multiplier(runner, multiplier)
     if multiplier < 0
       runner.registerError("Multiplier #{multiplier} cannot be negative.")
-      return false
+      false
     end
   end
-  
+
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
-    #populate choice argument for constructions that are applied to surfaces in the model
+    # populate choice argument for constructions that are applied to surfaces in the model
     loop_handles = OpenStudio::StringVector.new
     loop_display_names = OpenStudio::StringVector.new
 
-    #putting air loops and names into hash
+    # putting air loops and names into hash
     loop_args = model.getAirLoopHVACs
     loop_args_hash = {}
     loop_args.each do |loop_arg|
       loop_args_hash[loop_arg.name.to_s] = loop_arg
     end
 
-    #looping through sorted hash of air loops
-    loop_args_hash.sort.map do |key,value|
+    # looping through sorted hash of air loops
+    loop_args_hash.sort.map do |_key, value|
       show_loop = false
       components = value.supplyComponents
       components.each do |component|
-        if not component.to_CoilHeatingWater.empty?
-          show_loop = true
-          loop_handles << component.handle.to_s
-          loop_display_names << component.name.to_s
-        end
+        next if component.to_CoilHeatingWater.empty?
+        show_loop = true
+        loop_handles << component.handle.to_s
+        loop_display_names << component.name.to_s
       end
 
-      #if loop as object of correct type then add to hash.
+      # if loop as object of correct type then add to hash.
       # if show_loop == true
-        # loop_handles << value.handle.to_s
-        # loop_display_names << key
+      # loop_handles << value.handle.to_s
+      # loop_display_names << key
       # end
     end
 
-    #add building to string vector with space type
+    # add building to string vector with space type
     building = model.getBuilding
     loop_handles << building.handle.to_s
-    loop_display_names << "*All Water Heating Coils*"
-    loop_handles << "0"
-    loop_display_names << "*None*"
+    loop_display_names << '*All Water Heating Coils*'
+    loop_handles << '0'
+    loop_display_names << '*None*'
 
-    #make a choice argument for space type
-    coil_arg = OpenStudio::Ruleset::OSArgument::makeChoiceArgument("coil", loop_handles, loop_display_names)
-    coil_arg.setDisplayName("Apply the Measure to a SINGLE Water Heating Coil, ALL the Water Heating Coils or NONE.")
-    coil_arg.setDefaultValue("*All Water Heating Coils*") #if no space type is chosen this will run on the entire building
+    # make a choice argument for space type
+    coil_arg = OpenStudio::Measure::OSArgument.makeChoiceArgument('coil', loop_handles, loop_display_names)
+    coil_arg.setDisplayName('Apply the Measure to a SINGLE Water Heating Coil, ALL the Water Heating Coils or NONE.')
+    coil_arg.setDefaultValue('*All Water Heating Coils*') # if no space type is chosen this will run on the entire building
     args << coil_arg
-    
+
     # ua_factor
-    ua_factor = OpenStudio::Ruleset::OSArgument.makeDoubleArgument("ua_factor", true)
-    ua_factor.setDisplayName("Multiplier for UA coefficient.")
-    ua_factor.setDescription("Multiplier for UA coefficient.")
+    ua_factor = OpenStudio::Measure::OSArgument.makeDoubleArgument('ua_factor', true)
+    ua_factor.setDisplayName('Multiplier for UA coefficient.')
+    ua_factor.setDescription('Multiplier for UA coefficient.')
     ua_factor.setDefaultValue(1.0)
     args << ua_factor
-    
+
     # coil_capacity_multiplier
-    coil_capacity_multiplier = OpenStudio::Ruleset::OSArgument.makeDoubleArgument("coil_capacity_multiplier", true)
-    coil_capacity_multiplier.setDisplayName("Multiplier for coil Capacity.")
-    coil_capacity_multiplier.setDescription("Multiplier for coil Capacity.")
+    coil_capacity_multiplier = OpenStudio::Measure::OSArgument.makeDoubleArgument('coil_capacity_multiplier', true)
+    coil_capacity_multiplier.setDisplayName('Multiplier for coil Capacity.')
+    coil_capacity_multiplier.setDescription('Multiplier for coil Capacity.')
     coil_capacity_multiplier.setDefaultValue(1.0)
-    args << coil_capacity_multiplier    
-    
-    return args
+    args << coil_capacity_multiplier
+
+    args
   end
 
   # define what happens when the measure is run
@@ -103,55 +134,55 @@ class CoilHeatingWaterMultiplier < OpenStudio::Ruleset::ModelUserScript
     super(model, runner, user_arguments)
 
     # use the built-in error checking
-    if !runner.validateUserArguments(arguments(model), user_arguments)
+    unless runner.validateUserArguments(arguments(model), user_arguments)
       return false
     end
-    
-    # assign the user inputs to variables
-    coil_object = runner.getOptionalWorkspaceObjectChoiceValue("coil",user_arguments,model)
-    coil_handle = runner.getStringArgumentValue("coil",user_arguments)
 
-    coil_capacity_multiplier = runner.getDoubleArgumentValue("coil_capacity_multiplier",user_arguments)
+    # assign the user inputs to variables
+    coil_object = runner.getOptionalWorkspaceObjectChoiceValue('coil', user_arguments, model)
+    coil_handle = runner.getStringArgumentValue('coil', user_arguments)
+
+    coil_capacity_multiplier = runner.getDoubleArgumentValue('coil_capacity_multiplier', user_arguments)
     check_multiplier(runner, coil_capacity_multiplier)
-    ua_factor = runner.getDoubleArgumentValue("ua_factor",user_arguments)
+    ua_factor = runner.getDoubleArgumentValue('ua_factor', user_arguments)
     check_multiplier(runner, ua_factor)
-    
-    #find objects to change
+
+    # find objects to change
     coils = []
     building = model.getBuilding
     building_handle = building.handle.to_s
     runner.registerInfo("coil_handle: #{coil_handle}")
-    #setup coils
+    # setup coils
     if coil_handle == building_handle
-      #Use ALL coils
-      runner.registerInfo("Applying change to ALL Coils")
+      # Use ALL coils
+      runner.registerInfo('Applying change to ALL Coils')
       loops = model.getAirLoopHVACs
-      #loop through air loops
+      # loop through air loops
       loops.each do |loop|
         supply_components = loop.supplyComponents
-        #find coils on loops
+        # find coils on loops
         supply_components.each do |supply_component|
-          if not supply_component.to_CoilHeatingWater.empty?
+          unless supply_component.to_CoilHeatingWater.empty?
             coils << supply_component.to_CoilHeatingWater.get
           end
-        end   
-      end      
+        end
+      end
     elsif coil_handle == 0.to_s
-      #coils set to NONE so do nothing
-      runner.registerInfo("Applying change to NONE Coils")
-    elsif not coil_handle.empty?
-      #Single coil handle found, check if object is good    
-      if not coil_object.get.to_CoilHeatingWater.empty?
-        runner.registerInfo("Applying change to #{coil_object.get.name.to_s} coil")
+      # coils set to NONE so do nothing
+      runner.registerInfo('Applying change to NONE Coils')
+    elsif !coil_handle.empty?
+      # Single coil handle found, check if object is good
+      if !coil_object.get.to_CoilHeatingWater.empty?
+        runner.registerInfo("Applying change to #{coil_object.get.name} coil")
         coils << coil_object.get.to_CoilHeatingWater.get
       else
         runner.registerError("coil with handle #{coil_handle} could not be found.")
       end
     else
-      runner.registerError("coil handle is empty.")
+      runner.registerError('coil handle is empty.')
       return false
     end
-       
+
     # report initial condition of model
     runner.registerInitialCondition("Coils to change: #{coils.size}")
     runner.registerInfo("Coils to change: #{coils.size}")
@@ -165,42 +196,39 @@ class CoilHeatingWaterMultiplier < OpenStudio::Ruleset::ModelUserScript
       if coil_capacity_multiplier != 1.0
         if coil.ratedCapacity.is_initialized
           runner.registerInfo("Applying ratedCapacity #{coil_capacity_multiplier}x multiplier to #{coil.name.get}.")
-          coil.setRatedCapacity(coil.ratedCapacity.get * coil_capacity_multiplier)          
+          coil.setRatedCapacity(coil.ratedCapacity.get * coil_capacity_multiplier)
           altered_capacity << coil.handle.to_s
           altered_coil = true
         end
       end
-      
+
       # modify ua_factor
       if ua_factor != 1.0
         if coil.uFactorTimesAreaValue.is_initialized
           runner.registerInfo("Applying uFactorTimesAreaValue #{ua_factor}x multiplier to #{coil.name.get}.")
-          coil.setUFactorTimesAreaValue(coil.uFactorTimesAreaValue.get * ua_factor)   
+          coil.setUFactorTimesAreaValue(coil.uFactorTimesAreaValue.get * ua_factor)
           altered_coilefficiency << coil.handle.to_s
           altered_coil = true
-         end 
+         end
       end
-      
-      if altered_coil
-        altered_coils << coil.handle.to_s
-        change_name(coil,ua_factor,coil_capacity_multiplier)
-        runner.registerInfo("coil name changed to: #{coil.name.get}")
-      end
-    end #end coil loop
-    
+
+      next unless altered_coil
+      altered_coils << coil.handle.to_s
+      change_name(coil, ua_factor, coil_capacity_multiplier)
+      runner.registerInfo("coil name changed to: #{coil.name.get}")
+    end # end coil loop
+
     # na if nothing in model to look at
-    if altered_coils.size == 0
-      runner.registerAsNotApplicable("No Coils were altered in the model")
+    if altered_coils.empty?
+      runner.registerAsNotApplicable('No Coils were altered in the model')
       return true
     end
 
     # report final condition of model
     runner.registerFinalCondition("#{altered_coils.size} Coils objects were altered.")
 
-    return true
-
+    true
   end
-
 end
 
 # register the measure to be used by the application

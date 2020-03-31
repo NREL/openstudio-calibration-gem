@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_heating_gas_percent_change</name>
   <uid>8589af79-cfe7-45fb-9c79-e7b95e5fb02f</uid>
-  <version_id>12d2c3b0-b72e-4ceb-a714-65c981e21142</version_id>
-  <version_modified>20170911T165709Z</version_modified>
+  <version_id>3591edb1-4d18-493c-b290-8c6287dd10c1</version_id>
+  <version_modified>20200325T030944Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingGasPercentChange</class_name>
   <display_name>Heating Coils Gas Percent Change</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All Gas Heating Coils*</default_value>
       <choices>
         <choice>
-          <value>{62d5e97b-c4eb-4b40-b261-eca80d631438}</value>
+          <value>{a20d912d-d927-4389-a1e6-ac7cde75c769}</value>
           <display_name>*All Gas Heating Coils*</display_name>
         </choice>
         <choice>
@@ -79,6 +79,24 @@
   </attributes>
   <files>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>92E7D6F3</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -87,7 +105,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>872578E3</checksum>
+      <checksum>925516DE</checksum>
     </file>
   </files>
 </measure>

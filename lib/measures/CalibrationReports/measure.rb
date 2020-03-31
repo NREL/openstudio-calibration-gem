@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2018, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -40,14 +40,14 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
-    return 'Calibration Reports'
+    'Calibration Reports'
   end
 
   # define the arguments that the user will input
   def arguments
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    return args
+    args
   end
 
   # define what happens when the measure is run
@@ -55,9 +55,7 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
     super(runner, user_arguments)
 
     # use the built-in error checking
-    if !runner.validateUserArguments(arguments, user_arguments)
-      return false
-    end
+    return false unless runner.validateUserArguments(arguments, user_arguments)
 
     os_version = OpenStudio::VersionString.new(OpenStudio.openStudioVersion)
     min_version_feature1 = OpenStudio::VersionString.new('1.2.2')
@@ -96,11 +94,11 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
 
     maxNMBE = OpenStudio::Model::UtilityBill.maxNMBE(calibrationGuidelines[0])
     energy << 'var ashraeMaxNMBE = '
-    if !maxNMBE.empty?
-      energy << maxNMBE.get.to_s
-    else
-      energy << 'N/A'
-    end
+    energy << if !maxNMBE.empty?
+                maxNMBE.get.to_s
+              else
+                'N/A'
+              end
     energy << ";\n"
     if os_version >= min_version_feature1
       runner.registerValue('ashrae_max_nmbe', maxNMBE.get, '%')
@@ -108,11 +106,11 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
 
     maxCVRMSE = OpenStudio::Model::UtilityBill.maxCVRMSE(calibrationGuidelines[0])
     energy << 'var ashraeMaxCVRMSE = '
-    if !maxCVRMSE.empty?
-      energy << maxCVRMSE.get.to_s
-    else
-      energy << 'N/A'
-    end
+    energy << if !maxCVRMSE.empty?
+                maxCVRMSE.get.to_s
+              else
+                'N/A'
+              end
     energy << ";\n"
     if os_version >= min_version_feature1
       runner.registerValue('ashrae_max_cvrmse', maxCVRMSE.get, '%')
@@ -120,11 +118,11 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
 
     maxNMBE = OpenStudio::Model::UtilityBill.maxNMBE(calibrationGuidelines[1])
     energy << 'var fempMaxNMBE = '
-    if !maxNMBE.empty?
-      energy << maxNMBE.get.to_s
-    else
-      energy << 'N/A'
-    end
+    energy << if !maxNMBE.empty?
+                maxNMBE.get.to_s
+              else
+                'N/A'
+              end
     energy << ";\n"
     if os_version >= min_version_feature1
       runner.registerValue('femp_max_nmbe', maxNMBE.get, '%')
@@ -132,11 +130,11 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
 
     maxCVRMSE = OpenStudio::Model::UtilityBill.maxCVRMSE(calibrationGuidelines[1])
     energy << 'var fempMaxCVRMSE = '
-    if !maxCVRMSE.empty?
-      energy << maxCVRMSE.get.to_s
-    else
-      energy << 'N/A'
-    end
+    energy << if !maxCVRMSE.empty?
+                maxCVRMSE.get.to_s
+              else
+                'N/A'
+              end
     energy << ";\n"
     if os_version >= min_version_feature1
       runner.registerValue('femp_max_cvrmse', maxCVRMSE.get, '%')
@@ -195,7 +193,7 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
       end
 
       cvrsme = 0.0
-      if !utilityBill.CVRMSE.empty?
+      unless utilityBill.CVRMSE.empty?
         cvrsme = utilityBill.CVRMSE.get
         if os_version >= min_version_feature1
           runner.registerValue("utility_bill_#{bill_index}_consumption_cvrmse", cvrsme, '%')
@@ -204,7 +202,7 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
       end
 
       nmbe = 0.0
-      if !utilityBill.NMBE.empty?
+      unless utilityBill.NMBE.empty?
         nmbe = utilityBill.NMBE.get
         if os_version >= min_version_feature1
           runner.registerValue("utility_bill_#{bill_index}_consumption_nmbe", nmbe, '%')
@@ -285,9 +283,7 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
           if !peakDemand.empty?
             hasDemand = true
             actualPeakDemand << peakDemand.get.to_s
-            if peakDemand.get > actual_demand
-              actual_demand = peakDemand.get
-            end
+            actual_demand = peakDemand.get if peakDemand.get > actual_demand
             if os_version >= min_version_feature1
               runner.registerValue("utility_bill_#{bill_index}_period_#{period_index}_peak_demand_actual",
                                    peakDemand.get,
@@ -304,9 +300,7 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
             temp = peakDemand.get / 1000
             temp_str = format '%.1f', temp
             modelPeakDemand << temp_str.to_s
-            if temp > modeled_demand
-              modeled_demand = temp
-            end
+            modeled_demand = temp if temp > modeled_demand
             if os_version >= min_version_feature1
               runner.registerValue("utility_bill_#{bill_index}_period_#{period_index}_peak_demand_modeled",
                                    temp,
@@ -460,17 +454,11 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
 
     energy << "var consumption = {\n"
 
-    if hasElec
-      energy << energyElec
-    end
+    energy << energyElec if hasElec
 
-    if hasDemand
-      energy << energyDemand
-    end
+    energy << energyDemand if hasDemand
 
-    if hasGas
-      energy << energyGas
-    end
+    energy << energyGas if hasGas
 
     energy << '};'
 
@@ -479,11 +467,11 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
 
     # read in template
     html_in_path = "#{File.dirname(__FILE__)}/resources/report.html.in"
-    if File.exist?(html_in_path)
-      html_in_path = html_in_path
-    else
-      html_in_path = "#{File.dirname(__FILE__)}/report.html.in"
-    end
+    html_in_path = if File.exist?(html_in_path)
+                     html_in_path
+                   else
+                     "#{File.dirname(__FILE__)}/report.html.in"
+                   end
     html_in = ''
     File.open(html_in_path, 'r') do |file|
       html_in = file.read
@@ -515,7 +503,7 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
       runner.registerFinalCondition('Calibration Report generated successfully.')
     end
 
-    return true
+    true
   end
 end
 

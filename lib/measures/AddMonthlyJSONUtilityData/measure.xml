@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>add_monthly_json_utility_data</name>
   <uid>6da969e0-4256-49bf-9607-26504cc3d423</uid>
-  <version_id>85d68e03-31c4-4b32-875f-01b8cc0b367e</version_id>
-  <version_modified>20170711T195330Z</version_modified>
+  <version_id>76086831-7c43-49f5-a576-0249e6fec5ac</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>AddMonthlyJSONUtilityData</class_name>
   <display_name>Add Monthly JSON Utility Data</display_name>
@@ -131,6 +131,24 @@
   </attributes>
   <files>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>9A5C0ABF</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -139,7 +157,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>52FA488E</checksum>
+      <checksum>79D46EF0</checksum>
     </file>
   </files>
 </measure>

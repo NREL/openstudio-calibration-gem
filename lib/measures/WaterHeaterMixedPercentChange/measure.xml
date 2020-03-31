@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>water_heater_mixed_percent_change</name>
   <uid>c42bf4e7-2bbb-44c6-ab91-e6ddb53e050d</uid>
-  <version_id>947f0c02-732c-4eda-a815-d2cb9c96dcd8</version_id>
-  <version_modified>20170810T201641Z</version_modified>
+  <version_id>414fa696-b1c4-41b2-a1e2-1904af51cf16</version_id>
+  <version_modified>20200325T030949Z</version_modified>
   <xml_checksum>D28BCE9C</xml_checksum>
   <class_name>WaterHeaterMixedPercentChange</class_name>
   <display_name>Water Heater Mixed Percent Change</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All WaterHeaterMixeds*</default_value>
       <choices>
         <choice>
-          <value>{454a2d6e-224b-4023-99f2-1b6a176902e1}</value>
+          <value>{ae86c587-54d9-4c1a-b9f4-b9c4b80a0059}</value>
           <display_name>*All WaterHeaterMixeds*</display_name>
         </choice>
         <choice>
@@ -148,6 +148,24 @@
   </attributes>
   <files>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>04987893</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -156,7 +174,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>C6D9039D</checksum>
+      <checksum>019A4EE1</checksum>
     </file>
   </files>
 </measure>

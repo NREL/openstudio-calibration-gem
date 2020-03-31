@@ -20,3 +20,10 @@
 
 # Ignore IDE files
 /.idea
+
+# ignore mac files
+.DS_Store
+
+# ignore files made when run openstudio measure -r locally for testing
+lib/measures/.rubocop.yml
+lib/test/*
