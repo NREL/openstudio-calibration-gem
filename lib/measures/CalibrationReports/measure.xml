@@ -1,17 +1,18 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>calibration_reports</name>
   <uid>2baede0a-65f3-47ec-b5f6-9c21d0f91aff</uid>
-  <version_id>fa1ad1ca-fb65-40cf-aac1-24c18a93f2a9</version_id>
-  <version_modified>20190409T140607Z</version_modified>
+  <version_id>4ddc39ac-978c-4808-a018-cc0bc716a56c</version_id>
+  <version_modified>20200316T215432Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>CalibrationReports</class_name>
   <display_name>Calibration Reports</display_name>
   <description>Reports modeled energy consumpiton and peak demand by fuel per utility billing period.</description>
   <modeler_description>This report is intended for use with models where utility data for one or more fuels as been included.</modeler_description>
-  <arguments/>
-  <outputs/>
-  <provenances/>
+  <arguments />
+  <outputs />
+  <provenances />
   <tags>
     <tag>Reporting.QAQC</tag>
   </tags>
@@ -47,12 +48,6 @@
       <checksum>4444C3A6</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -63,17 +58,6 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>32E77F5D</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>D1D75D2C</checksum>
     </file>
     <file>
       <filename>ExampleModelNoGasInput.osm</filename>
@@ -88,10 +72,27 @@
       <checksum>9A565F93</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>78D676CD</checksum>
+    </file>
+    <file>
       <filename>CalibrationReports_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>4BF02314</checksum>
+      <checksum>4C23E80C</checksum>
     </file>
   </files>
 </measure>

@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>construction_layer_zero_material_properties</name>
   <uid>3c7a6751-bb54-4600-9410-8f042e1a413b</uid>
-  <version_id>af55071e-8978-4b9b-a9db-22817955fb63</version_id>
-  <version_modified>20170710T164335Z</version_modified>
+  <version_id>14b11c2b-63aa-4064-835f-fb57bb4a7af5</version_id>
+  <version_modified>20200325T030943Z</version_modified>
   <xml_checksum>0BF71A3E</xml_checksum>
   <class_name>ConstructionLayerZeroMaterialProperties</class_name>
   <display_name>Change Parameters Of Material (Layer 0 of Construction)</display_name>
@@ -162,6 +162,24 @@
   </attributes>
   <files>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>7D40EF5C</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -170,7 +188,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>1316EAD6</checksum>
+      <checksum>B8221E83</checksum>
     </file>
   </files>
 </measure>

@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>general_calibration_measure_percent_change</name>
   <uid>0f583ac1-fa7e-48bc-9f80-12ed17180669</uid>
-  <version_id>2570606f-6ad1-4554-aae4-8273db0111f1</version_id>
-  <version_modified>20170706T165730Z</version_modified>
+  <version_id>a3539df8-380b-459a-a947-6fef65b5c0cb</version_id>
+  <version_modified>20200325T030944Z</version_modified>
   <xml_checksum>DEC0D835</xml_checksum>
   <class_name>GeneralCalibrationMeasurePercentChange</class_name>
   <display_name>General Calibration Measure Percent Change</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All SpaceTypes*</default_value>
       <choices>
         <choice>
-          <value>{40c25bf7-0bfc-4d63-ae4e-e9f2326a6a4d}</value>
+          <value>{463555c6-8c8b-4f31-97ad-bf96a74d9c75}</value>
           <display_name>*All SpaceTypes*</display_name>
         </choice>
         <choice>
@@ -37,7 +37,7 @@
       <default_value>*All Spaces*</default_value>
       <choices>
         <choice>
-          <value>{40c25bf7-0bfc-4d63-ae4e-e9f2326a6a4d}</value>
+          <value>{463555c6-8c8b-4f31-97ad-bf96a74d9c75}</value>
           <display_name>*All Spaces*</display_name>
         </choice>
         <choice>
@@ -197,6 +197,24 @@
   </attributes>
   <files>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>EF5B5EB5</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -205,7 +223,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DD498981</checksum>
+      <checksum>14617A6B</checksum>
     </file>
   </files>
 </measure>

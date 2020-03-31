@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>timeseries_plot</name>
   <uid>6804217d-4737-45f3-82df-b81393c29ce7</uid>
-  <version_id>f226ffea-147d-4eac-987e-e2cbbd4597c8</version_id>
-  <version_modified>20170622T160850Z</version_modified>
+  <version_id>eaeb6d82-5b2c-47df-b17a-5bc25079efde</version_id>
+  <version_modified>20200331T151749Z</version_modified>
   <xml_checksum>FFE04372</xml_checksum>
   <class_name>TimeseriesPlot</class_name>
   <display_name>Timeseries Plot</display_name>
@@ -99,10 +99,22 @@
   </attributes>
   <files>
     <file>
-      <filename>report.html.erb</filename>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
       <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>4078F953</checksum>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>A3A04D6D</checksum>
     </file>
     <file>
       <version>
@@ -113,7 +125,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>FD57E0EF</checksum>
+      <checksum>76613086</checksum>
+    </file>
+    <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>8A46D937</checksum>
     </file>
   </files>
 </measure>

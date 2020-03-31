@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_cooling_dx_two_speed_multiplier</name>
   <uid>fe4f36db-e296-4c9f-8199-19f2249384dd</uid>
-  <version_id>0e71cb13-f45d-4691-94c5-f1baa12c43b0</version_id>
-  <version_modified>20170911T165709Z</version_modified>
+  <version_id>cc4e3174-a319-4a13-bdb3-e71846d193ee</version_id>
+  <version_modified>20200325T030944Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXTwoSpeedMultiplier</class_name>
   <display_name>Cooling Coils DX Two Speed Multiplier</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All DX Cooling Coils*</default_value>
       <choices>
         <choice>
-          <value>{18f92092-ab60-47b9-8b75-4eb740f1da0f}</value>
+          <value>{33c24c6d-c636-408c-9ca1-83849dbfdfe2}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -79,6 +79,24 @@
   </attributes>
   <files>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>59139ABC</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -87,7 +105,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>BCED0ABA</checksum>
+      <checksum>01527D87</checksum>
     </file>
   </files>
 </measure>
