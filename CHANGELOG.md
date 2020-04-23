@@ -1,4 +1,4 @@
-# OpenStudio Calibration Gem
+# OpenStudio Calibration Measures Gem
 
 ## Version 0.2.0 (Unreleased)
 
@@ -6,6 +6,10 @@ Upgrade Bundler to 2.1.x
 Upgrade openstudio-extension to 0.2.1
 Upgrade openstudio-standards to 0.2.11
 Restrict to Ruby ~> 2.5.0
+
+## Version 0.1.3
+
+* Require as openstudio-calibration-measures (not openstudio-calibration)
 
 ## Version 0.1.2
 

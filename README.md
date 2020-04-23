@@ -7,7 +7,9 @@ Calibration measures used by OpenStudio. This contains general use calibration m
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'openstudio-calibration-measures'
+gem 'openstudio-calibration'
+
+require 'openstudio-calibration-measures'
 ```
 
 And then execute:
