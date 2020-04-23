@@ -1,5 +1,9 @@
 # OpenStudio Calibration Gem
 
+## Version 0.1.3
+
+* Require as openstudio-calibration-measures (not openstudio-calibration)
+
 ## Version 0.1.2
 
 * Fix name of gem in gemspec!
