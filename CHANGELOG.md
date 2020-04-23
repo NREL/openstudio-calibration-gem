@@ -1,5 +1,9 @@
 # OpenStudio Calibration Gem
 
+## Version 0.1.2
+
+* Fix name of gem in gemspec!
+
 ## Version 0.1.1
 
 * Fix name of gem
