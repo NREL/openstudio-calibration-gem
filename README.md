@@ -22,10 +22,6 @@ Or install it yourself as:
 
 To be filled out later.
 
-## TODO
-
-- [x] Remove measures from OpenStudio-Measures to standardize on this location
-
 # Releasing
 
 * Update CHANGELOG.md
@@ -33,5 +29,5 @@ To be filled out later.
 * Update version in `/lib/openstudio/calibration_measures/version.rb`
 * Create PR to master, after tests and reviews complete, then merge
 * Locally - from the master branch, run `rake release`
-* On GitHub, go to the releases page and update the latest release tag. Name it �Version x.y.z� and copy the CHANGELOG entry into the description box.
+* On GitHub, go to the releases page and update the latest release tag. Name it "Version x.y.z" and copy the CHANGELOG entry into the description box.
 

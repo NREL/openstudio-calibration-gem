@@ -5,8 +5,8 @@ require 'openstudio/calibration_measures/version'
 Gem::Specification.new do |spec|
   spec.name          = 'openstudio-calibration'
   spec.version       = OpenStudio::CalibrationMeasures::VERSION
-  spec.authors       = ['David Goldwasser', 'Nicholas Long']
-  spec.email         = ['david.goldwasser@nrel.gov', 'nicholas.long@nrel.gov']
+  spec.authors       = ['Brian Ball', 'Nicholas Long']
+  spec.email         = ['brian.ball@nrel.gov', 'nicholas.long@nrel.gov']
 
   spec.summary       = 'Library and measures for OpenStudio Calibration'
   spec.description   = 'Library and measures for OpenStudio Calibration'
