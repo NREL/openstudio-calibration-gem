@@ -35,13 +35,13 @@
 
 require_relative '../spec_helper'
 
-RSpec.describe OpenStudio::Calibration do
+RSpec.describe OpenStudio::CalibrationMeasures do
   it 'has a version number' do
-    expect(OpenStudio::Calibration::VERSION).not_to be nil
+    expect(OpenStudio::CalibrationMeasures::VERSION).not_to be nil
   end
 
   it 'has a measures directory' do
-    instance = OpenStudio::Calibration::Extension.new
+    instance = OpenStudio::CalibrationMeasures::Extension.new
     expect(File.exist?(File.join(instance.measures_dir, 'AddMonthlyJSONUtilityData/'))).to be true
   end
 end
