@@ -1,5 +1,9 @@
 # OpenStudio Calibration Gem
 
+## Version 0.X (unreleased)
+
+* Exclude measure tests from being released with the gem (reduces the size of the installed gem significantly) 
+
 ## Version 0.1.3
 
 * Require as openstudio-calibration-measures (not openstudio-calibration)
