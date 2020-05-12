@@ -597,7 +597,7 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
     graph['title'] = ''
     graph['xaxislabel'] = ''
     graph['yaxislabel'] = 'Contribution Btu/hr/ft2'
-    graph['labels'] = %w[index people lights equipment refrigeration other infiltration zone_ventilation interzone_mixing walls/doors roof/ceiling floor windows net/heating net/cooling]
+    graph['labels'] = ['index', 'people', 'lights', 'equipment', 'refrigeration', 'other', 'infiltration', 'zone_ventilation', 'interzone_mixing', 'walls/doors', 'roof/ceiling', 'floor', 'windows', 'net/heating', 'net/cooling']
     graph['colors'] = ['#888855', '#AAAA55', '#3333AA', '#8888FF', '#888888', '#9999FF', '#AAAAFF', '#AA6666', '#777733', '#888833', '#999933', '#9999FF', '#FF9999', '#9999FF']
     graph['data'] = stacked_vals
 

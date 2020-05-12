@@ -534,14 +534,10 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
             end
             mon = csv[row][0].split(' ')[0].split('/')[0].to_i
             day = csv[row][0].split(' ')[0].split('/')[1].to_i
-            year = unless csv[row][0].split(' ')[0].split('/')[2].nil?
-                     csv[row][0].split(' ')[0].split('/')[2].to_i
-                   end
+            year = csv[row][0].split(' ')[0].split('/')[2]&.to_i
             hou = csv[row][0].split(' ')[1].split(':')[0].to_i
             min = csv[row][0].split(' ')[1].split(':')[1].to_i
-            sec = unless csv[row][0].split(' ')[1].split(':')[2].nil?
-                    csv[row][0].split(' ')[1].split(':')[2].to_i
-                  end
+            sec = csv[row][0].split(' ')[1].split(':')[2]&.to_i
             if year.nil?
               dat = OpenStudio::Date.new(OpenStudio::MonthOfYear.new(cal[mon]), day)
             else
