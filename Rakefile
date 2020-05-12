@@ -38,13 +38,13 @@ require 'rspec/core/rake_task'
 
 RSpec::Core::RakeTask.new(:spec)
 
-require 'rubocop/rake_task'
-RuboCop::RakeTask.new
-
 # Load in the rake tasks from the base extension gem
 require 'openstudio/extension/rake_task'
 require 'openstudio/calibration_measures'
 rake_task = OpenStudio::Extension::RakeTask.new
-rake_task.set_extension_class(OpenStudio::CalibrationMeasures::Extension)
+rake_task.set_extension_class(OpenStudio::CalibrationMeasures::Extension, 'nrel/openstudio-calibration-gem')
+
+require 'openstudio_measure_tester/rake_task'
+OpenStudioMeasureTester::RakeTask.new
 
 task default: :spec
