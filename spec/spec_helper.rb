@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 require 'bundler/setup'
-require 'openstudio/calibration'
+require 'openstudio/calibration_measures'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
