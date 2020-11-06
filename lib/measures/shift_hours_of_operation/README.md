@@ -19,10 +19,74 @@ ModelMeasure
 ## Arguments
 
 
-### New space name
-This name will be used as the name of the new space.
-**Name:** space_name,
-**Type:** String,
+### Shift the weekday start of hours of operation.
+Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later
+**Name:** hoo_start_weekday,
+**Type:** Double,
+**Units:** Hours,
+**Required:** true,
+**Model Dependent:** false
+
+### Extend the weekday of hours of operation.
+Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.
+**Name:** hoo_dur_weekday,
+**Type:** Double,
+**Units:** Hours,
+**Required:** true,
+**Model Dependent:** false
+
+### Shift the saturday start of hours of operation.
+Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later
+**Name:** hoo_start_saturday,
+**Type:** Double,
+**Units:** Hours,
+**Required:** true,
+**Model Dependent:** false
+
+### Extend the saturday of hours of operation.
+Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.
+**Name:** hoo_dur_saturday,
+**Type:** Double,
+**Units:** Hours,
+**Required:** true,
+**Model Dependent:** false
+
+### Shift the sunday start of hours of operation.
+Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later
+**Name:** hoo_start_sunday,
+**Type:** Double,
+**Units:** Hours,
+**Required:** true,
+**Model Dependent:** false
+
+### Extend the sunday of hours of operation.
+Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.
+**Name:** hoo_dur_sunday,
+**Type:** Double,
+**Units:** Hours,
+**Required:** true,
+**Model Dependent:** false
+
+### Hours of operation values treated as deltas
+When this is true the hours of operation start and duration represent a delta from the original model values. When switched to false they represent absolute values.
+**Name:** delta_values,
+**Type:** Boolean,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
+### Use model hours of operation as target
+The default behavior is for this to be false. When changed to true all of the hours of operation start and duration values will be ignored as the bool to treat those values as relative or absolue. Instead the hours of operation schedules for the model will be used.
+**Name:** target_hoo_from_model,
+**Type:** Boolean,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
+### Use parametric schedule formaulas already stored in the model.
+When this is true the parametric schedule formulas will be generated from the existing model schedules. When false it expects the model already has parametric formulas stored.
+**Name:** infer_parametric_schedules,
+**Type:** Boolean,
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false

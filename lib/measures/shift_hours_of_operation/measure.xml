@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>shift_hours_of_operation</name>
   <uid>e8ae02a4-4be2-45c3-b85b-2a1d94662653</uid>
-  <version_id>becd5671-e2e9-4758-9cff-50e3795393c6</version_id>
-  <version_modified>20201105T233027Z</version_modified>
+  <version_id>a0923639-8f14-4891-9607-e077d7a7b3bc</version_id>
+  <version_modified>20201106T061635Z</version_modified>
   <xml_checksum>90E5DF66</xml_checksum>
   <class_name>ShiftHoursOfOperation</class_name>
   <display_name>Shift Hours of Operation</display_name>
@@ -12,12 +12,121 @@
   <modeler_description>This will only impact schedule rulesets. It will impact the default profile, rules, and summer and winter design days. It will use methods in openstudio-standards to infer hours of operation, develop a parametric formula for all of the ruleset schedules, alter the hours of operation inputs to that formula and then re-apply the schedules. Input is expose to set ramp frequency of the resulting schedules. If inputs are such that no changes are requested, bypass the measure with NA so that it will not be parameterized. An advanced option for this measure would be bool to use hours of operation from OSM schedule ruleset hours of operation instead of inferring from standards. This should allow different parts of the building to have different hours of operation in the seed model.</modeler_description>
   <arguments>
     <argument>
-      <name>space_name</name>
-      <display_name>New space name</display_name>
-      <description>This name will be used as the name of the new space.</description>
-      <type>String</type>
+      <name>hoo_start_weekday</name>
+      <display_name>Shift the weekday start of hours of operation.</display_name>
+      <description>Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later</description>
+      <type>Double</type>
+      <units>Hours</units>
       <required>true</required>
       <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>hoo_dur_weekday</name>
+      <display_name>Extend the weekday of hours of operation.</display_name>
+      <description>Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>hoo_start_saturday</name>
+      <display_name>Shift the saturday start of hours of operation.</display_name>
+      <description>Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>hoo_dur_saturday</name>
+      <display_name>Extend the saturday of hours of operation.</display_name>
+      <description>Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>hoo_start_sunday</name>
+      <display_name>Shift the sunday start of hours of operation.</display_name>
+      <description>Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>hoo_dur_sunday</name>
+      <display_name>Extend the sunday of hours of operation.</display_name>
+      <description>Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>delta_values</name>
+      <display_name>Hours of operation values treated as deltas</display_name>
+      <description>When this is true the hours of operation start and duration represent a delta from the original model values. When switched to false they represent absolute values.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>target_hoo_from_model</name>
+      <display_name>Use model hours of operation as target</display_name>
+      <description>The default behavior is for this to be false. When changed to true all of the hours of operation start and duration values will be ignored as the bool to treat those values as relative or absolue. Instead the hours of operation schedules for the model will be used.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>infer_parametric_schedules</name>
+      <display_name>Use parametric schedule formaulas already stored in the model.</display_name>
+      <description>When this is true the parametric schedule formulas will be generated from the existing model schedules. When false it expects the model already has parametric formulas stored.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
     </argument>
   </arguments>
   <outputs />
@@ -74,17 +183,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>3.1.0</identifier>
-        <min_compatible>3.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>0D25B0A0</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -103,22 +201,33 @@
       <checksum>00000000</checksum>
     </file>
     <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>3.1.0</identifier>
+        <min_compatible>3.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>4812F93F</checksum>
+    </file>
+    <file>
       <filename>shift_hours_of_operation_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>075CE659</checksum>
-    </file>
-    <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>53D14E69</checksum>
+      <checksum>1C03C3F6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>0C86633F</checksum>
+      <checksum>A3466E2F</checksum>
+    </file>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1D932CBA</checksum>
     </file>
   </files>
 </measure>

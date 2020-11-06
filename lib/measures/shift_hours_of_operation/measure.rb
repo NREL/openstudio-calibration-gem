@@ -3,8 +3,18 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
+require 'openstudio-standards'
+
+# load OpenStudio measure libraries from openstudio-extension gem
+require 'openstudio-extension'
+require 'openstudio/extension/core/os_lib_helper_methods'
+
 # start the measure
 class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
+
+  # resource file modules
+  include OsLib_HelperMethods
+
   # human readable name
   def name
     # Measure name should be the title case of the class name.
@@ -18,7 +28,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
 
   # human readable description of modeling approach
   def modeler_description
-    return 'This will only impact schedule rulesets. It will impact the default profile, rules, and summer and winter design days. It will use methods in openstudio-standards to infer hours of operation, develop a parametric formula for all of the ruleset schedules, alter the hours of operation inputs to that formula and then re-apply the schedules. Input is expose to set ramp frequency of the resulting schedules. If inputs are such that no changes are requested, bypass the measure with NA so that it will not be parameterized. An advanced option for this measure would be bool to use hours of operation from OSM schedule ruleset hours of operation instead of inferring from standards. This should allow different parts of the building to have different hours of operation in the seed model.'
+    return 'This will only impact schedule rulesets. It will use methods in openstudio-standards to infer hours of operation, develop a parametric formula for all of the ruleset schedules, alter the hours of operation inputs to that formula and then re-apply the schedules. Input is expose to set ramp frequency of the resulting schedules. If inputs are such that no changes are requested, bypass the measure with NA so that it will not be parameterized. An advanced option for this measure would be bool to use hours of operation from OSM schedule ruleset hours of operation instead of inferring from standards. This should allow different parts of the building to have different hours of operation in the seed model.'
   end
 
   # define the arguments that the user will input
@@ -29,6 +39,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_start_weekday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_start_weekday', true)
     hoo_start_weekday.setDisplayName('Shift the weekday start of hours of operation.')
     hoo_start_weekday.setDescription('Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later')
+    hoo_start_weekday.setDefaultValue(0.0)
     hoo_start_weekday.setUnits('Hours')
     args << hoo_start_weekday
 
@@ -36,6 +47,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_dur_weekday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_dur_weekday', true)
     hoo_dur_weekday.setDisplayName('Extend the weekday of hours of operation.')
     hoo_dur_weekday.setDescription('Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.')
+    hoo_dur_weekday .setDefaultValue(0.0)
     hoo_dur_weekday.setUnits('Hours')
     args << hoo_dur_weekday
 
@@ -45,6 +57,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_start_saturday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_start_saturday', true)
     hoo_start_saturday.setDisplayName('Shift the saturday start of hours of operation.')
     hoo_start_saturday.setDescription('Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later')
+    hoo_start_saturday.setDefaultValue(0.0)
     hoo_start_saturday.setUnits('Hours')
     args << hoo_start_saturday
 
@@ -52,6 +65,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_dur_saturday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_dur_saturday', true)
     hoo_dur_saturday.setDisplayName('Extend the saturday of hours of operation.')
     hoo_dur_saturday.setDescription('Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.')
+    hoo_dur_saturday.setDefaultValue(0.0)
     hoo_dur_saturday.setUnits('Hours')
     args << hoo_dur_saturday
 
@@ -59,6 +73,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_start_sunday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_start_sunday', true)
     hoo_start_sunday.setDisplayName('Shift the sunday start of hours of operation.')
     hoo_start_sunday.setDescription('Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later')
+    hoo_start_sunday.setDefaultValue(0.0)
     hoo_start_sunday.setUnits('Hours')
     args << hoo_start_sunday
 
@@ -66,8 +81,9 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_dur_sunday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_dur_sunday', true)
     hoo_dur_sunday.setDisplayName('Extend the sunday of hours of operation.')
     hoo_dur_sunday.setDescription('Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.')
+    hoo_dur_sunday.setDefaultValue(0.0)
     hoo_dur_sunday.setUnits('Hours')
-    args << hoo_dur_sunday    
+    args << hoo_dur_sunday
 
     # todo - could include start and end days to have delta or absolute values applied to.
 
@@ -100,7 +116,11 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     infer_parametric_schedules.setDisplayName('Use parametric schedule formaulas already stored in the model.')
     infer_parametric_schedules.setDescription('When this is true the parametric schedule formulas will be generated from the existing model schedules. When false it expects the model already has parametric formulas stored.')
     infer_parametric_schedules.setDefaultValue(true)
-    args << infer_parametric_schedules    
+    args << infer_parametric_schedules
+
+    # todo - add argument for fraction_of_daily_occ_range
+
+    # todo - add argument for step frequency, which is hours per step (should be fractional 1 or less generally)
 
     return args
   end
@@ -109,29 +129,50 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
-    # use the built-in error checking
-    if !runner.validateUserArguments(arguments(model), user_arguments)
-      return false
-    end
-
     # assign the user inputs to variables
-    space_name = runner.getStringArgumentValue('space_name', user_arguments)
-
-    # check the space_name for reasonableness
-    if space_name.empty?
-      runner.registerError('Empty space name was entered.')
-      return false
-    end
+    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments(model))
+    if !args then return false end
 
     # report initial condition of model
     runner.registerInitialCondition("The building started with #{model.getSpaces.size} spaces.")
 
-    # add a new space to the model
-    new_space = OpenStudio::Model::Space.new(model)
-    new_space.setName(space_name)
+    # load standards
+    standard = Standard.build('90.1-2004') # selected template doesn't matter
 
-    # echo the new space's name back to the user
-    runner.registerInfo("Space #{new_space.name} was added.")
+    # infer hours of operation for the building
+    # @param fraction_of_daily_occ_range [Double] fraction above/below daily min range required to start and end hours of operation
+    hours_of_operation = standard.model_infer_hours_of_operation_building(model,fraction_of_daily_occ_range: 0.25,gen_occ_profile: true, gen_occ_profile: true)
+    puts hours_of_operation
+
+    # report back hours of operation
+    hours_of_operation_hash = standard.space_hours_of_operation(model.getSpaces.first)
+    puts "hours of operation: #{hours_of_operation_hash.keys.first}: #{hours_of_operation_hash.values.inspect}"
+
+    # model_setup_parametric_schedules
+    parametric_inputs = standard.model_setup_parametric_schedules(model,gather_data_only: false)
+    puts "parametric inputs: #{parametric_inputs.keys.first.name}: #{parametric_inputs.values.first.inspect}"
+
+    # todo - alter hours of operate per measure arguments
+    # (instead of trying to dynamically change hoo ask values, create new hoo values, reset schedule, add in new values)
+
+    # model_build_parametric_schedules
+    # todo - add argument for step frequency
+    parametric_schedules = standard.model_apply_parametric_schedules(model)
+    puts "created #{parametric_schedules.size} parametric schedules"
+
+    # temp code to inspect formulas
+    # todo - make schedule with this in args where it is editable (like a GUI) filter for schedules that are used to not so ong, maybe crazy with some many schedules and rules
+    model.getScheduleRulesets.each do |sch|
+      puts "*** Formulas for #{sch.name}"
+      sch_days = [sch.defaultDaySchedule]
+      sch.scheduleRules.each do |rule|
+        sch_days << rule.daySchedule
+      end
+      sch_days.each do |sch_day|
+        prop = sch_day.additionalProperties.getFeatureAsString('param_day_profile')
+        puts prop
+      end
+    end
 
     # report final condition of model
     runner.registerFinalCondition("The building finished with #{model.getSpaces.size} spaces.")
