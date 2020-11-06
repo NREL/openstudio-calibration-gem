@@ -25,11 +25,82 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    # the name of the space to add to the model
-    space_name = OpenStudio::Measure::OSArgument.makeStringArgument('space_name', true)
-    space_name.setDisplayName('New space name')
-    space_name.setDescription('This name will be used as the name of the new space.')
-    args << space_name
+    # delta hoo_start for weekdays
+    hoo_start_weekday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_start_weekday', true)
+    hoo_start_weekday.setDisplayName('Shift the weekday start of hours of operation.')
+    hoo_start_weekday.setDescription('Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later')
+    hoo_start_weekday.setUnits('Hours')
+    args << hoo_start_weekday
+
+    # delta hoo_dur for weekday
+    hoo_dur_weekday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_dur_weekday', true)
+    hoo_dur_weekday.setDisplayName('Extend the weekday of hours of operation.')
+    hoo_dur_weekday.setDescription('Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.')
+    hoo_dur_weekday.setUnits('Hours')
+    args << hoo_dur_weekday
+
+    # todo - could include every day of the week
+
+    # delta hoo_start for saturdays
+    hoo_start_saturday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_start_saturday', true)
+    hoo_start_saturday.setDisplayName('Shift the saturday start of hours of operation.')
+    hoo_start_saturday.setDescription('Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later')
+    hoo_start_saturday.setUnits('Hours')
+    args << hoo_start_saturday
+
+    # delta hoo_dur for saturday
+    hoo_dur_saturday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_dur_saturday', true)
+    hoo_dur_saturday.setDisplayName('Extend the saturday of hours of operation.')
+    hoo_dur_saturday.setDescription('Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.')
+    hoo_dur_saturday.setUnits('Hours')
+    args << hoo_dur_saturday
+
+    # delta hoo_start for sundays
+    hoo_start_sunday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_start_sunday', true)
+    hoo_start_sunday.setDisplayName('Shift the sunday start of hours of operation.')
+    hoo_start_sunday.setDescription('Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later')
+    hoo_start_sunday.setUnits('Hours')
+    args << hoo_start_sunday
+
+    # delta hoo_dur for sunday
+    hoo_dur_sunday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_dur_sunday', true)
+    hoo_dur_sunday.setDisplayName('Extend the sunday of hours of operation.')
+    hoo_dur_sunday.setDescription('Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.')
+    hoo_dur_sunday.setUnits('Hours')
+    args << hoo_dur_sunday    
+
+    # todo - could include start and end days to have delta or absolute values applied to.
+
+    # make an argument for delta_values
+    delta_values = OpenStudio::Measure::OSArgument.makeBoolArgument('delta_values', true)
+    delta_values.setDisplayName('Hours of operation values treated as deltas')
+    delta_values.setDescription('When this is true the hours of operation start and duration represent a delta from the original model values. When switched to false they represent absolute values.')
+    delta_values.setDefaultValue(true)
+    args << delta_values
+
+    # make an argument for target_hoo_from_model
+    target_hoo_from_model = OpenStudio::Measure::OSArgument.makeBoolArgument('target_hoo_from_model', true) 
+    target_hoo_from_model.setDisplayName('Use model hours of operation as target')
+    target_hoo_from_model.setDescription('The default behavior is for this to be false. When changed to true all of the hours of operation start and duration values will be ignored as the bool to treat those values as relative or absolue. Instead the hours of operation schedules for the model will be used.')
+    target_hoo_from_model.setDefaultValue(false)
+    args << target_hoo_from_model
+
+=begin
+    # make an argument for infer_hoo
+    # todo - need to confirm I can create formulas when whole building doesn't have the same hours of operation
+    infer_hoo = OpenStudio::Measure::OSArgument.makeBoolArgument('infer_hoo', true) 
+    infer_hoo.setDisplayName('Infer hours of operation')
+    infer_hoo.setDescription('When true this will evaluate the occupancy for the building to infer a whole building horus of operation for different days of the week and different times of the year. When set to false this will use the hours of operation default schedule set for each part of the building as the starting hours of operation to alter. The measure will fail if set to value and valid hours of operation schedules are not setup.')
+    infer_hoo.setDefaultValue(true)
+    args << infer_hoo
+=end
+
+    # make an argument for infer_parametric_schedules
+    infer_parametric_schedules = OpenStudio::Measure::OSArgument.makeBoolArgument('infer_parametric_schedules', true)
+    infer_parametric_schedules.setDisplayName('Use parametric schedule formaulas already stored in the model.')
+    infer_parametric_schedules.setDescription('When this is true the parametric schedule formulas will be generated from the existing model schedules. When false it expects the model already has parametric formulas stored.')
+    infer_parametric_schedules.setDefaultValue(true)
+    args << infer_parametric_schedules    
 
     return args
   end
