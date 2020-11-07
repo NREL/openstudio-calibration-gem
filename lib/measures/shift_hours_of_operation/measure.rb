@@ -161,9 +161,10 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     puts "created #{parametric_schedules.size} parametric schedules"
 
     # temp code to inspect formulas
-    # todo - make schedule with this in args where it is editable (like a GUI) filter for schedules that are used to not so ong, maybe crazy with some many schedules and rules
+    # todo - make schedule with this in args where it is editable (like a GUI) filter for schedules that are used so not so many arguments, maybe crazy with some many schedules and rules
     model.getScheduleRulesets.each do |sch|
       puts "*** Formulas for #{sch.name}"
+      # todo - checking if schedule is used is good, but also need to add thermostats to the model
       sch_days = [sch.defaultDaySchedule]
       sch.scheduleRules.each do |rule|
         sch_days << rule.daySchedule
