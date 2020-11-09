@@ -123,6 +123,34 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     return args
   end
 
+  # get model hoo info
+  def hoo_summary(model,runner,standard)
+
+    hoo_summary_hash = {}
+    hoo_summary_hash[:zero_hoo] = []
+    hoo_summary_hash[:final_hoo_start_range] = []
+    hoo_summary_hash[:final_hoo_dur_range] = []
+    model.getSpaces.sort.each do |space|
+      default_sch_type = OpenStudio::Model::DefaultScheduleType.new('HoursofOperationSchedule')
+      hours_of_operation = space.getDefaultSchedule(default_sch_type)
+      if !hours_of_operation.is_initialized
+        runner.registerWarning("Hours of Operation Schedule is not set for #{space.name}.")
+        next
+      end
+      hours_of_operation_hash = standard.space_hours_of_operation(space)
+      hours_of_operation_hash.each do |hoo_key,val|
+        if val[:hoo_hours] == 0.0
+          hoo_summary_hash[:zero_hoo] << val[:hoo_hours]
+        else
+          hoo_summary_hash[:final_hoo_dur_range] << val[:hoo_hours]
+          hoo_summary_hash[:final_hoo_start_range] << val[:hoo_start]
+        end
+      end
+    end
+
+    return hoo_summary_hash
+  end
+
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
@@ -131,7 +159,16 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments(model))
     if !args then return false end
 
-    # todo - add in error checking for arguments
+    # check expected values of double arguments
+    fraction = OsLib_HelperMethods.checkDoubleAndIntegerArguments(runner, user_arguments, 'min' => 0.0, 'max' => 1.0, 'min_eq_bool' => true, 'max_eq_bool' => true, 'arg_array' => ['fraction_of_daily_occ_range'])
+
+    neg_24__24 = ['hoo_start_weekday',
+               'hoo_dur_weekday',
+               'hoo_start_saturday',
+               'hoo_dur_saturday',
+               'hoo_start_sunday',
+               'hoo_dur_sunday']
+    time_hours = OsLib_HelperMethods.checkDoubleAndIntegerArguments(runner, user_arguments, 'min' => -24.0, 'max' => 24.0, 'min_eq_bool' => true, 'max_eq_bool' => true, 'arg_array' => neg_24__24)
 
     # load standards
     standard = Standard.build('90.1-2004') # selected template doesn't matter
@@ -140,7 +177,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       # infer hours of operation for the building
       # @param fraction_of_daily_occ_range [Double] fraction above/below daily min range required to start and end hours of operation
       occ_fraction = args['fraction_of_daily_occ_range']
-      hours_of_operation = standard.model_infer_hours_of_operation_building(model,fraction_of_daily_occ_range: occ_fraction,gen_occ_profile: true)
+      standard.model_infer_hours_of_operation_building(model,fraction_of_daily_occ_range: occ_fraction,gen_occ_profile: true)
       runner.registerInfo("Inferring initial hours of operation for the building and generating parametric profile formulas.")
 
       # report back hours of operation
@@ -152,14 +189,17 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       end
 
       # model_setup_parametric_schedules
-      parametric_inputs = standard.model_setup_parametric_schedules(model,gather_data_only: false)
+      # todo - there should be arg here that can have formula based on fraction of day and no hours is argument to gather_inputs_parametric_schedules method. need to update high level methods in standards to support input for this
+      standard.model_setup_parametric_schedules(model,gather_data_only: false)
+    end
 
-      # report initial condition of model
-      runner.registerInitialCondition("Initial inferred hours of operation for the building range from #{initial_hoo_range.min} to #{initial_hoo_range.max} hours a day. Setup formulas for #{parametric_inputs.size} parametric schedules")
 
+    # report final condition of model
+    hoo_summary_hash = hoo_summary(model,runner,standard)
+    if hoo_summary_hash[:zero_hoo].size > 0
+      runner.registerInitialCondition("Across the building the non-zero hours of operation range from #{hoo_summary_hash[:final_hoo_dur_range].min} hours to #{hoo_summary_hash[:final_hoo_dur_range].max} hours. Start of hours of operation range from #{hoo_summary_hash[:final_hoo_start_range].min} to #{hoo_summary_hash[:final_hoo_start_range].max}. One or more hours of operation schedules used contain a profile with 0 hours of operation.")
     else
-      # report initial condition of model
-      runner.registerInitialCondition("Parametric schedules and hours of operation scheules were not gnerated by this measure.")
+      runner.registerInitialCondition("Across the building the hours of operation range from #{hoo_summary_hash[:final_hoo_dur_range].min} hours to #{hoo_summary_hash[:final_hoo_dur_range].max} hours. Start of hours of operation range from #{hoo_summary_hash[:final_hoo_start_range].min} to #{hoo_summary_hash[:final_hoo_start_range].max}.")
     end
 
     # gather hours of operation schedules used by this model
@@ -189,7 +229,6 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       year_start_date = OpenStudio::Date.new(OpenStudio::MonthOfYear.new('January'), 1, year)
       year_end_date = OpenStudio::Date.new(OpenStudio::MonthOfYear.new('December'), 31, year)
 
-      # todo -  determine if default profile is all weekday, all sat, all sun, or a mix. If it is a mix need to make new rules above it (may need to make method to get days of week)
       default_prof = hoo_sch.defaultDaySchedule
       new_weekday_prof = default_prof.clone(model).to_ScheduleDay.get
       new_weekday_rule = OpenStudio::Model::ScheduleRule.new(hoo_sch, new_weekday_prof)
@@ -209,21 +248,34 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
         new_weekday_rule = hoo_sch.defaultDaySchedule
       end
 
-      # todo - add in code ot check for requested duration bigger than 24 hours and lock it at 24.
-
       # gather info and edit selected profile
       if args['delta_values']
         orig_hoo_start = hours_of_operation_hash[-1][:hoo_start]
         orig_hoo_dur = hours_of_operation_hash[-1][:hoo_hours]
+
+        # check for duration grater than 224 or lower than 0
+        max_dur_delta = 24 - orig_hoo_dur
+        min_dur_delta = orig_hoo_dur * -1.0
+        if args['hoo_dur_weekday'] > max_dur_delta
+          target_dur = 24.0
+          runner.registerWarning("For profile in #{hoo_sch.name} duration is being capped at 24 hours.")
+        elsif args['hoo_dur_weekday'] < min_dur_delta
+          target_dur = 0.0
+          runner.registerWarning("For profile in #{hoo_sch.name} duration is being limited to a low of 0 hours.")
+        else
+          target_dur = args['hoo_dur_weekday'] + orig_hoo_dur
+        end
+
+        # setup new hoo values with delta
         if orig_hoo_start + args['hoo_start_weekday'] <= 24.0
           new_hoo_start = orig_hoo_start + args['hoo_start_weekday']
         else
           new_hoo_start = orig_hoo_start + args['hoo_start_weekday'] - 24.0
         end
         if new_hoo_start + args['hoo_dur_weekday'] + orig_hoo_dur <= 24.0
-          new_hoo_end = new_hoo_start + args['hoo_dur_weekday'] + orig_hoo_dur
+          new_hoo_end = new_hoo_start + target_dur
         else
-          new_hoo_end = new_hoo_start + args['hoo_dur_weekday'] + orig_hoo_dur - 24.0
+          new_hoo_end = new_hoo_start + target_dur - 24.0
         end
       else
         new_hoo_start = args ['hoo_start_weekday']
@@ -237,7 +289,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       # todo - create method so this code can be used for sat and sun not just weekday,
       # todo - when date range arg is used and not full year will never want to change default profile
       # todo - any other rules that are mixed should be spilt, keep stacking order with new ones right above instead of at the top of all rules.
-      #
+
       # setup hoo start time
       target_start_hr = new_hoo_start.truncate
       target_start_min = ((new_hoo_start - target_start_hr) * 60.0).truncate
@@ -260,65 +312,25 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       end
     end
 
+    # todo - need to address this error when manipulating schedules
+    # [openstudio.standards.ScheduleRuleset] <1> Pre-interpolated processed hash for Large Office Bldg Equip Default Schedule has one or more out of order conflicts: [[3.5, 0.8], [4.5, 0.6], [5.0, 0.6], [7.0, 0.5], [9.0, 0.4], [6.0, 0.4], [10.0, 0.9], [16.5, 0.9], [17.5, 0.8], [18.5, 0.9], [21.5, 0.9]]. Method will stop because Error on Out of Order was set to true.
+    # model_build_parametric_schedules
+    parametric_schedules = standard.model_apply_parametric_schedules(model, ramp_frequency: nil, infer_hoo_for_non_assigned_objects: true, error_on_out_of_order: true)
+    runner.registerInfo("Created #{parametric_schedules.size} parametric schedules.")
+    puts parametric_schedules
+
+    # report final condition of model
+    hoo_summary_hash = hoo_summary(model,runner,standard)
+    if hoo_summary_hash[:zero_hoo].size > 0
+      runner.registerFinalCondition("Across the building the non-zero hours of operation range from #{hoo_summary_hash[:final_hoo_dur_range].min} hours to #{hoo_summary_hash[:final_hoo_dur_range].max} hours. Start of hours of operation range from #{hoo_summary_hash[:final_hoo_start_range].min} to #{hoo_summary_hash[:final_hoo_start_range].max}. One or more hours of operation schedules used contain a profile with 0 hours of operation.")
+    else
+      runner.registerFinalCondition("Across the building the hours of operation range from #{hoo_summary_hash[:final_hoo_dur_range].min} hours to #{hoo_summary_hash[:final_hoo_dur_range].max} hours. Start of hours of operation range from #{hoo_summary_hash[:final_hoo_start_range].min} to #{hoo_summary_hash[:final_hoo_start_range].max}.")
+    end
+
     # todo - adding hours of operation to a schedule that doesn't have them to start with, like a sunday, can be problematic
     # todo - start of day may not be reliable and there may not be formula inputs to show what occupied behavior is
     # todo - in a situation like that it could be good to get formula from day that was non-zero to start with like weekday or saturday.
     # todo - maybe standards can do something like this when making the formulas in the first place.
-    # model_build_parametric_schedules
-    parametric_schedules = standard.model_apply_parametric_schedules(model)
-    runner.registerInfo("Created #{parametric_schedules.size} parametric schedules.")
-
-=begin
-    # todo - remove temp code that inspects formulas
-    model.getScheduleRulesets.each do |sch|
-
-      # get ceiling and floor
-      floor = sch.additionalProperties.getFeatureAsDouble('param_sch_floor')
-      ceiling = sch.additionalProperties.getFeatureAsDouble('param_sch_ceiling')
-      puts "*** Formulas for #{sch.name}, floor: #{floor}, ceiling: #{ceiling}"
-
-      # todo - checking if schedule is used is good, but also need to add thermostats to the model
-      sch_days = [sch.defaultDaySchedule]
-      sch.scheduleRules.each do |rule|
-        sch_days << rule.daySchedule
-      end
-      sch_days.each do |sch_day|
-        prop = sch_day.additionalProperties.getFeatureAsString('param_day_profile')
-        puts prop
-      end
-    end
-=end
-
-    # todo - make a method for this
-    # list zero separate from min-max range
-    zero_hoo = []
-    final_hoo_start_range = []
-    final_hoo_end_range = []
-    final_hoo_dur_range = []
-    model.getSpaces.sort.each do |space|
-      default_sch_type = OpenStudio::Model::DefaultScheduleType.new('HoursofOperationSchedule')
-      hours_of_operation = space.getDefaultSchedule(default_sch_type)
-      if !hours_of_operation.is_initialized
-        runner.registerWarning("Hours of Operation Schedule is not set for #{space.name}.")
-        next
-      end
-      hours_of_operation_hash = standard.space_hours_of_operation(space)
-      hours_of_operation_hash.each do |hoo_key,val|
-        if val[:hoo_hours] == 0.0
-          zero_hoo << val[:hoo_hours]
-        else
-          final_hoo_dur_range << val[:hoo_hours]
-          final_hoo_start_range << val[:hoo_start]
-        end
-      end
-    end
-
-    # report final condition of model
-    if zero_hoo.size > 0
-      runner.registerFinalCondition("Across the building the non-zero hours of operation range from #{final_hoo_dur_range.min} hours to #{final_hoo_dur_range.max} hours. Start of hours of operation range from #{final_hoo_start_range.min} to #{final_hoo_start_range.max}. One or more hours of operation schedules used contain a profile with 0 hours of operation.")
-    else
-      runner.registerFinalCondition("Across the building the hours of operation range from #{final_hoo_dur_range.min} hours to #{final_hoo_dur_range.max} hours. Start of hours of operation range from #{final_hoo_start_range.min} to #{final_hoo_start_range.max}.")
-    end
 
     return true
   end
