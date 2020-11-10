@@ -151,6 +151,223 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     return hoo_summary_hash
   end
 
+  # process hoo schedules for various days of the week
+  # todo - when date range arg is used and not full year will never want to change default profile
+  def process_hoo(used_hoo_sch_sets,model,runner,args,days_of_week,hoo_start_dows,hoo_dur_dows)
+
+    # profiles added to this will be processed
+    altered_schedule_days = {} # key is profile value is original index position defined in used_hoo_sch_sets
+
+    # loop through horus of operation schedules
+    used_hoo_sch_sets.uniq.each do |hoo_sch,hours_of_operation_hash|
+      if ! hoo_sch.to_ScheduleRuleset.is_initialized
+        runner.registerWarning("#{hoo_sch.name} is not schedule schedule ruleset, will not be altered by this method.")
+        next
+      end
+      hoo_sch = hoo_sch.to_ScheduleRuleset.get
+
+      year_description = hoo_sch.model.yearDescription.get
+      year = year_description.assumedYear
+      year_start_date = OpenStudio::Date.new(OpenStudio::MonthOfYear.new('January'), 1, year)
+      year_end_date = OpenStudio::Date.new(OpenStudio::MonthOfYear.new('December'), 31, year)
+
+      orig_profile_indexes_used = hoo_sch.getActiveRuleIndices(year_start_date, year_end_date)
+      orig_num_days_default_used = orig_profile_indexes_used.count(-1)
+      if orig_num_days_default_used > 0
+        default_prof = hoo_sch.defaultDaySchedule
+
+        # clone default profile as rule that sits above it so it can be evauluated and used if needed
+        new_prof = default_prof.clone(model).to_ScheduleDay.get
+        new_rule = OpenStudio::Model::ScheduleRule.new(hoo_sch, new_prof)
+        hoo_sch.setScheduleRuleIndex(new_rule, hoo_sch.scheduleRules.size - 1)
+
+        # set days of week for clone to match days of week passed into the method
+        if days_of_week.include?('mon')
+          new_rule.setApplyMonday(true)
+        end
+        if days_of_week.include?('tue')
+          new_rule.setApplyTuesday(true)
+        end
+        if days_of_week.include?('wed')
+          new_rule.setApplyWednesday(true)
+        end
+        if days_of_week.include?('thur')
+          new_rule.setApplyThursday(true)
+        end
+        if days_of_week.include?('fri')
+          new_rule.setApplyFriday(true)
+        end
+        if days_of_week.include?('sat')
+          new_rule.setApplySaturday(true)
+        end
+        if days_of_week.include?('sun')
+          new_rule.setApplySunday(true)
+        end
+
+        # check if default days are used at all
+        profile_indexes_used = hoo_sch.getActiveRuleIndices(year_start_date, year_end_date)
+        num_days_new_profile_used = profile_indexes_used.count(hoo_sch.scheduleRules.size - 1)
+        if ! profile_indexes_used.uniq.include?(-1) && num_days_new_profile_used > 0
+          # don't need new profile, can use default
+          new_rule.remove
+          altered_schedule_days[hoo_sch.defaultDaySchedule] = -1
+        elsif num_days_new_profile_used == 0.0
+          # can remove cloned rule and skip the default profile (don't pass into array)
+          new_rule.remove
+        else
+          altered_schedule_days[new_rule.daySchedule] = -1 # use hoo that was applicable to the default before it was cloned
+        end
+      end
+
+      # use this to link to hoo from hours_of_operation_hash
+      counter_of_orig_index = hoo_sch.scheduleRules.size - 1
+
+      hoo_sch.scheduleRules.reverse.each do |rule|
+
+        # inspect days of the week
+        actual_days_of_week_for_profile = []
+        if rule.applyMonday then actual_days_of_week_for_profile << 'mon' end
+        if rule.applyTuesday then actual_days_of_week_for_profile << 'tue' end
+        if rule.applyWednesday then actual_days_of_week_for_profile << 'wed' end
+        if rule.applyThursday then actual_days_of_week_for_profile << 'thur' end
+        if rule.applyFriday then actual_days_of_week_for_profile << 'fri' end
+        if rule.applySaturday then actual_days_of_week_for_profile << 'sat' end
+        if rule.applySunday then actual_days_of_week_for_profile << 'sun' end
+
+        # if an exact match for the rules passed in are met, this rule can be edited in place (update later for date range)
+        day_of_week_intersect = days_of_week & actual_days_of_week_for_profile
+        current_rule_index = rule.ruleIndex
+        if days_of_week == actual_days_of_week_for_profile
+          altered_schedule_days[rule.daySchedule] = counter_of_orig_index
+
+        # if this rule contains the requested days of the week and another then a clone should be made above this with only the requested days of the week that are also already on for this rule
+        elsif day_of_week_intersect.size > 0
+
+          # clone default profile as rule that sits above it so it can be evaluated and used if needed
+          new_rule = rule.clone(model).to_ScheduleRule.get
+          hoo_sch.setScheduleRuleIndex(new_rule, current_rule_index) # the cloned rule should be just above what was cloned
+
+          # update days of week for rule
+          if day_of_week_intersect.include?('mon')
+            new_rule.setApplyMonday(true)
+          else
+            new_rule.setApplyMonday(false)
+          end
+          if day_of_week_intersect.include?('tue')
+            new_rule.setApplyTuesday(true)
+          else
+            new_rule.setApplyTuesday(false)
+          end
+          if day_of_week_intersect.include?('wed')
+            new_rule.setApplyWednesday(true)
+          else
+            new_rule.setApplyWednesday(false)
+          end
+          if day_of_week_intersect.include?('thur')
+            new_rule.setApplyThursday(true)
+          else
+            new_rule.setApplyThursday(false)
+          end
+          if day_of_week_intersect.include?('fri')
+            new_rule.setApplyFriday(true)
+          else
+            new_rule.setApplyFriday(false)
+          end
+          if day_of_week_intersect.include?('sat')
+            new_rule.setApplySaturday(true)
+          else
+            new_rule.setApplySaturday(false)
+          end
+          if day_of_week_intersect.include?('sun')
+            new_rule.setApplySunday(true)
+          else
+            new_rule.setApplySunday(false)
+          end
+
+          # add to array
+          altered_schedule_days[new_rule.daySchedule] = counter_of_orig_index
+        end
+
+        # adjust the count used to find hoo from hours_of_operation_hash
+        counter_of_orig_index -= 1
+
+      end
+      runner.registerInfo("For #{hoo_sch.name} #{days_of_week.inspect} #{altered_schedule_days.size} profiles will be processed.")
+
+      # convert altered_schedule_days to hash where key is profile and value is key of index in hours_of_operation_hash
+
+      # loop through profiles to changes
+      altered_schedule_days.each do |new_profile,hoo_hash_index|
+
+        # gather info and edit selected profile
+        if args['delta_values']
+          orig_hoo_start = hours_of_operation_hash[hoo_hash_index][:hoo_start]
+          orig_hoo_dur = hours_of_operation_hash[hoo_hash_index][:hoo_hours]
+
+          # check for duration grater than 224 or lower than 0
+          max_dur_delta = 24 - orig_hoo_dur
+          min_dur_delta = orig_hoo_dur * -1.0
+          if hoo_dur_dows > max_dur_delta
+            target_dur = 24.0
+            runner.registerWarning("For profile in #{hoo_sch.name} duration is being capped at 24 hours.")
+          elsif hoo_dur_dows < min_dur_delta
+            target_dur = 0.0
+            runner.registerWarning("For profile in #{hoo_sch.name} duration is being limited to a low of 0 hours.")
+          else
+            target_dur = hoo_dur_dows + orig_hoo_dur
+          end
+
+          # setup new hoo values with delta
+          if orig_hoo_start + hoo_start_dows <= 24.0
+            new_hoo_start = orig_hoo_start + hoo_start_dows
+          else
+            new_hoo_start = orig_hoo_start + hoo_start_dows - 24.0
+          end
+          if new_hoo_start + hoo_dur_dows + orig_hoo_dur <= 24.0
+            new_hoo_end = new_hoo_start + target_dur
+          else
+            new_hoo_end = new_hoo_start + target_dur - 24.0
+          end
+        else
+          new_hoo_start = hoo_start_dows
+          if hoo_start_dows + hoo_dur_dows <= 24.0
+            new_hoo_end = hoo_start_dows + hoo_dur_dows
+          else
+            new_hoo_end = hoo_start_dows + hoo_dur_dows - 24.0
+          end
+        end
+
+        # setup hoo start time
+        target_start_hr = new_hoo_start.truncate
+        target_start_min = ((new_hoo_start - target_start_hr) * 60.0).truncate
+        target_start_time = OpenStudio::Time.new(0, target_start_hr, target_start_min, 0)
+
+        # setup hoo end time
+        target_end_hr = new_hoo_end.truncate
+        target_end_min = ((new_hoo_end - target_end_hr) * 60.0).truncate
+        target_end_time = OpenStudio::Time.new(0, target_end_hr, target_end_min, 0)
+
+        runner.registerInfo("inspecting profile values #{new_profile.values}")
+
+        # adding new values
+        # todo - update this to work when hoo is 0 or 24, which right now isn't perfect
+        new_profile.clearValues
+        new_profile.addValue(target_start_time,0)
+        new_profile.addValue(target_end_time,1)
+        os_time_24 = OpenStudio::Time.new(0, 24, 0, 0)
+        if target_end_time > target_start_time
+          new_profile.addValue(os_time_24,0)
+        else
+          new_profile.addValue(os_time_24,1)
+        end
+      end
+
+    end
+
+    return altered_schedule_days
+
+  end
+
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
@@ -193,7 +410,6 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       standard.model_setup_parametric_schedules(model,gather_data_only: false)
     end
 
-
     # report final condition of model
     hoo_summary_hash = hoo_summary(model,runner,standard)
     if hoo_summary_hash[:zero_hoo].size > 0
@@ -217,107 +433,24 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
 
     # loop through and alter hours of operation schedules
     runner.registerInfo("There are #{used_hoo_sch_sets.uniq.size} hours of operation schedules in the model to alter.")
-    used_hoo_sch_sets.uniq.each do |hoo_sch,hours_of_operation_hash|
-      if ! hoo_sch.to_ScheduleRuleset.is_initialized
-        runner.registerWarning("#{hoo_sch.name} is not schedule schedule ruleset, will not be altered by this method.")
-        next
-      end
-      hoo_sch = hoo_sch.to_ScheduleRuleset.get
 
-      year_description = hoo_sch.model.yearDescription.get
-      year = year_description.assumedYear
-      year_start_date = OpenStudio::Date.new(OpenStudio::MonthOfYear.new('January'), 1, year)
-      year_end_date = OpenStudio::Date.new(OpenStudio::MonthOfYear.new('December'), 31, year)
+    # process weekday profiles
+    runner.registerInfo("Altering hours of operation schedules for weekday profiles")
+    weekday = process_hoo(used_hoo_sch_sets,model,runner,args,['mon','tue','wed','thur','fri'],args['hoo_start_weekday'],args['hoo_dur_weekday'])
 
-      default_prof = hoo_sch.defaultDaySchedule
-      new_weekday_prof = default_prof.clone(model).to_ScheduleDay.get
-      new_weekday_rule = OpenStudio::Model::ScheduleRule.new(hoo_sch, new_weekday_prof)
+    # process saturday profiles
+    runner.registerInfo("Altering hours of operation schedules for saturday profiles")
+    saturday = process_hoo(used_hoo_sch_sets,model,runner,args,['sat'],args['hoo_start_saturday'],args['hoo_dur_saturday'])
 
-      hoo_sch.setScheduleRuleIndex(new_weekday_rule, hoo_sch.scheduleRules.size - 1)
-      new_weekday_rule.setApplyMonday(true)
-      new_weekday_rule.setApplyTuesday(true)
-      new_weekday_rule.setApplyWednesday(true)
-      new_weekday_rule.setApplyThursday(true)
-      new_weekday_rule.setApplyFriday(true)
-
-      # check if default days are used at all
-      profile_indexes_used = hoo_sch.getActiveRuleIndices(year_start_date, year_end_date).uniq
-      if ! profile_indexes_used.include?(-1)
-        # don't need new profile, can use default
-        new_weekday_rule.remove
-        new_weekday_rule = hoo_sch.defaultDaySchedule
-      end
-
-      # gather info and edit selected profile
-      if args['delta_values']
-        orig_hoo_start = hours_of_operation_hash[-1][:hoo_start]
-        orig_hoo_dur = hours_of_operation_hash[-1][:hoo_hours]
-
-        # check for duration grater than 224 or lower than 0
-        max_dur_delta = 24 - orig_hoo_dur
-        min_dur_delta = orig_hoo_dur * -1.0
-        if args['hoo_dur_weekday'] > max_dur_delta
-          target_dur = 24.0
-          runner.registerWarning("For profile in #{hoo_sch.name} duration is being capped at 24 hours.")
-        elsif args['hoo_dur_weekday'] < min_dur_delta
-          target_dur = 0.0
-          runner.registerWarning("For profile in #{hoo_sch.name} duration is being limited to a low of 0 hours.")
-        else
-          target_dur = args['hoo_dur_weekday'] + orig_hoo_dur
-        end
-
-        # setup new hoo values with delta
-        if orig_hoo_start + args['hoo_start_weekday'] <= 24.0
-          new_hoo_start = orig_hoo_start + args['hoo_start_weekday']
-        else
-          new_hoo_start = orig_hoo_start + args['hoo_start_weekday'] - 24.0
-        end
-        if new_hoo_start + args['hoo_dur_weekday'] + orig_hoo_dur <= 24.0
-          new_hoo_end = new_hoo_start + target_dur
-        else
-          new_hoo_end = new_hoo_start + target_dur - 24.0
-        end
-      else
-        new_hoo_start = args ['hoo_start_weekday']
-        if args['hoo_start_weekday'] + args['hoo_dur_weekday'] <= 24.0
-          new_hoo_end = args['hoo_start_weekday'] + args['hoo_dur_weekday']
-        else
-          new_hoo_end = args['hoo_start_weekday'] + args['hoo_dur_weekday'] - 24.0
-        end
-      end
-
-      # todo - create method so this code can be used for sat and sun not just weekday,
-      # todo - when date range arg is used and not full year will never want to change default profile
-      # todo - any other rules that are mixed should be spilt, keep stacking order with new ones right above instead of at the top of all rules.
-
-      # setup hoo start time
-      target_start_hr = new_hoo_start.truncate
-      target_start_min = ((new_hoo_start - target_start_hr) * 60.0).truncate
-      target_start_time = OpenStudio::Time.new(0, target_start_hr, target_start_min, 0)
-
-      # setup hoo end time
-      target_end_hr = new_hoo_end.truncate
-      target_end_min = ((new_hoo_end - target_end_hr) * 60.0).truncate
-      target_end_time = OpenStudio::Time.new(0, target_end_hr, target_end_min, 0)
-
-      # adding new values
-      new_weekday_rule.clearValues
-      new_weekday_rule.addValue(target_start_time,0)
-      new_weekday_rule.addValue(target_end_time,1)
-      os_time_24 = OpenStudio::Time.new(0, 24, 0, 0)
-      if target_end_time > target_start_time
-        new_weekday_rule.addValue(os_time_24,0)
-      else
-        new_weekday_rule.addValue(os_time_24,1)
-      end
-    end
+    # process sunday profiles
+    runner.registerInfo("Altering hours of operation schedules for sunday profiles")
+    sunday = process_hoo(used_hoo_sch_sets,model,runner,args,['sun'],args['hoo_start_sunday'],args['hoo_dur_sunday'])
 
     # todo - need to address this error when manipulating schedules
     # [openstudio.standards.ScheduleRuleset] <1> Pre-interpolated processed hash for Large Office Bldg Equip Default Schedule has one or more out of order conflicts: [[3.5, 0.8], [4.5, 0.6], [5.0, 0.6], [7.0, 0.5], [9.0, 0.4], [6.0, 0.4], [10.0, 0.9], [16.5, 0.9], [17.5, 0.8], [18.5, 0.9], [21.5, 0.9]]. Method will stop because Error on Out of Order was set to true.
     # model_build_parametric_schedules
     parametric_schedules = standard.model_apply_parametric_schedules(model, ramp_frequency: nil, infer_hoo_for_non_assigned_objects: true, error_on_out_of_order: true)
     runner.registerInfo("Created #{parametric_schedules.size} parametric schedules.")
-    puts parametric_schedules
 
     # report final condition of model
     hoo_summary_hash = hoo_summary(model,runner,standard)

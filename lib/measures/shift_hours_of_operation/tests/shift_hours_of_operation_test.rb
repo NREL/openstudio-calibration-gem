@@ -31,8 +31,10 @@ class ShiftHoursOfOperationTest < Minitest::Test
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    args_hash['hoo_start_weekday'] = -2.0
-    args_hash['hoo_dur_weekday'] = 14.0
+    args_hash['hoo_start_weekday'] = 0.0
+    args_hash['hoo_dur_weekday'] = 0.0
+    args_hash['hoo_start_saturday'] = -0.0
+    args_hash['hoo_dur_saturday'] = 0.0
     #args_hash['fraction_of_daily_occ_range'] = 0.5
     # using defaults values from measure.rb for other arguments
 
