@@ -23,7 +23,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
 
   # human readable description
   def description
-    return 'This measure will infer the hours of operation for the building and then will shift the start of the hours of operation and change the duration of the hours of operation. In an alternate workflow you can directly pass in target start and duration rather than a shift and delta. Inputs can vary for weekday, Saturday, and Sunday. '
+    return 'This measure will infer the hours of operation for the building and then will shift the start of the hours of operation and change the duration of the hours of operation. In an alternate workflow you can directly pass in target start and duration rather than a shift and delta. Inputs can vary for weekday, Saturday, and Sunday. if a day does not have any hours of operation to start with increasing hours of operation may not have any impact as the auto generated data may not know what to do during operating hours. Future version may be able to borrow a profile formula but would probably require additional user arguments.'
   end
 
   # human readable description of modeling approach
@@ -356,15 +356,11 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
           new_profile.addValue(target_end_time,1)
         end
         os_time_24 = OpenStudio::Time.new(0, 24, 0, 0)
-        puts "hello target dur is #{target_dur}, start is #{target_start_time} and finish is #{target_end_time}"
         if target_end_time > target_start_time || target_start_time == os_time_24
           new_profile.addValue(os_time_24,0)
-          puts "adding 0 at 24"
         elsif target_end_time < target_start_time
           new_profile.addValue(os_time_24,1)
-          puts "adding 1 at 24"
         else # they are equal
-          puts "found start and end time to be the same checking dur to make choice"
           if target_dur == 24.0
             new_profile.addValue(os_time_24,1)
           else
@@ -397,6 +393,9 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
                'hoo_start_sunday',
                'hoo_dur_sunday']
     time_hours = OsLib_HelperMethods.checkDoubleAndIntegerArguments(runner, user_arguments, 'min' => -24.0, 'max' => 24.0, 'min_eq_bool' => true, 'max_eq_bool' => true, 'arg_array' => neg_24__24)
+
+    # setup log messages that will come from standards
+    OsLib_HelperMethods.setup_log_msgs(runner,true) # bool is debug
 
     # load standards
     standard = Standard.build('90.1-2004') # selected template doesn't matter
@@ -470,6 +469,9 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     else
       runner.registerFinalCondition("Across the building the hours of operation range from #{hoo_summary_hash[:final_hoo_dur_range].min} hours to #{hoo_summary_hash[:final_hoo_dur_range].max} hours. Start of hours of operation range from #{hoo_summary_hash[:final_hoo_start_range].min} to #{hoo_summary_hash[:final_hoo_start_range].max}.")
     end
+
+    # get log messages (if debut in setup is true this will fail for error)
+    OsLib_HelperMethods.log_msgs
 
     # todo - adding hours of operation to a schedule that doesn't have them to start with, like a sunday, can be problematic
     # todo - start of day may not be reliable and there may not be formula inputs to show what occupied behavior is
