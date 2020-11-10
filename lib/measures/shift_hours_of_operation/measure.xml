@@ -3,9 +3,9 @@
   <schema_version>3.0</schema_version>
   <name>shift_hours_of_operation</name>
   <uid>e8ae02a4-4be2-45c3-b85b-2a1d94662653</uid>
-  <version_id>64809e6f-9f5b-40bc-b0b5-a290c4abd468</version_id>
-  <version_modified>20201110T220800Z</version_modified>
-  <xml_checksum>90E5DF66</xml_checksum>
+  <version_id>b28de68b-0fd5-4154-997c-bfeda4ae6c15</version_id>
+  <version_modified>20201110T230805Z</version_modified>
+  <xml_checksum>4098406A</xml_checksum>
   <class_name>ShiftHoursOfOperation</class_name>
   <display_name>Shift Hours of Operation</display_name>
   <description>This measure will infer the hours of operation for the building and then will shift the start of the hours of operation and change the duration of the hours of operation. In an alternate workflow you can directly pass in target start and duration rather than a shift and delta. Inputs can vary for weekday, Saturday, and Sunday. </description>
@@ -153,7 +153,7 @@
   <outputs />
   <provenances />
   <tags>
-    <tag>Envelope.Form</tag>
+    <tag>Whole Building.Whole Building Schedules</tag>
   </tags>
   <attributes>
     <attribute>
@@ -222,17 +222,6 @@
       <checksum>00000000</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>3.1.0</identifier>
-        <min_compatible>3.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>35C699DB</checksum>
-    </file>
-    <file>
       <filename>shift_hours_of_operation_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -249,6 +238,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>0B68E96D</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>3.1.0</identifier>
+        <min_compatible>3.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>E164A3C8</checksum>
     </file>
   </files>
 </measure>
