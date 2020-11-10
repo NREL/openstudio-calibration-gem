@@ -347,18 +347,29 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
         target_end_min = ((new_hoo_end - target_end_hr) * 60.0).truncate
         target_end_time = OpenStudio::Time.new(0, target_end_hr, target_end_min, 0)
 
-        runner.registerInfo("inspecting profile values #{new_profile.values}")
-
         # adding new values
-        # todo - update this to work when hoo is 0 or 24, which right now isn't perfect
         new_profile.clearValues
-        new_profile.addValue(target_start_time,0)
-        new_profile.addValue(target_end_time,1)
+        if target_dur < 24
+          new_profile.addValue(target_start_time,0)
+        end
+        if target_dur > 0
+          new_profile.addValue(target_end_time,1)
+        end
         os_time_24 = OpenStudio::Time.new(0, 24, 0, 0)
-        if target_end_time > target_start_time
+        puts "hello target dur is #{target_dur}, start is #{target_start_time} and finish is #{target_end_time}"
+        if target_end_time > target_start_time || target_start_time == os_time_24
           new_profile.addValue(os_time_24,0)
-        else
+          puts "adding 0 at 24"
+        elsif target_end_time < target_start_time
           new_profile.addValue(os_time_24,1)
+          puts "adding 1 at 24"
+        else # they are equal
+          puts "found start and end time to be the same checking dur to make choice"
+          if target_dur == 24.0
+            new_profile.addValue(os_time_24,1)
+          else
+            new_profile.addValue(os_time_24,0)
+          end
         end
       end
 
