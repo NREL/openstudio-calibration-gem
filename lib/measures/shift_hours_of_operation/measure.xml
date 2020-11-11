@@ -3,13 +3,13 @@
   <schema_version>3.0</schema_version>
   <name>shift_hours_of_operation</name>
   <uid>e8ae02a4-4be2-45c3-b85b-2a1d94662653</uid>
-  <version_id>b28de68b-0fd5-4154-997c-bfeda4ae6c15</version_id>
-  <version_modified>20201110T230805Z</version_modified>
+  <version_id>41bd9be6-ee42-40c9-8865-4b81da25f602</version_id>
+  <version_modified>20201111T021748Z</version_modified>
   <xml_checksum>4098406A</xml_checksum>
   <class_name>ShiftHoursOfOperation</class_name>
   <display_name>Shift Hours of Operation</display_name>
-  <description>This measure will infer the hours of operation for the building and then will shift the start of the hours of operation and change the duration of the hours of operation. In an alternate workflow you can directly pass in target start and duration rather than a shift and delta. Inputs can vary for weekday, Saturday, and Sunday. </description>
-  <modeler_description>This will only impact schedule rulesets. It will impact the default profile, rules, and summer and winter design days. It will use methods in openstudio-standards to infer hours of operation, develop a parametric formula for all of the ruleset schedules, alter the hours of operation inputs to that formula and then re-apply the schedules. Input is expose to set ramp frequency of the resulting schedules. If inputs are such that no changes are requested, bypass the measure with NA so that it will not be parameterized. An advanced option for this measure would be bool to use hours of operation from OSM schedule ruleset hours of operation instead of inferring from standards. This should allow different parts of the building to have different hours of operation in the seed model.</modeler_description>
+  <description>This measure will infer the hours of operation for the building and then will shift the start of the hours of operation and change the duration of the hours of operation. In an alternate workflow you can directly pass in target start and duration rather than a shift and delta. Inputs can vary for weekday, Saturday, and Sunday. if a day does not have any hours of operation to start with increasing hours of operation may not have any impact as the auto generated data may not know what to do during operating hours. Future version may be able to borrow a profile formula but would probably require additional user arguments.</description>
+  <modeler_description>This will only impact schedule rulesets. It will use methods in openstudio-standards to infer hours of operation, develop a parametric formula for all of the ruleset schedules, alter the hours of operation inputs to that formula and then re-apply the schedules. Input is expose to set ramp frequency of the resulting schedules. If inputs are such that no changes are requested, bypass the measure with NA so that it will not be parameterized. An advanced option for this measure would be bool to use hours of operation from OSM schedule ruleset hours of operation instead of inferring from standards. This should allow different parts of the building to have different hours of operation in the seed model.</modeler_description>
   <arguments>
     <argument>
       <name>hoo_start_weekday</name>
@@ -20,8 +20,6 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
     <argument>
       <name>hoo_dur_weekday</name>
@@ -32,8 +30,6 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
     <argument>
       <name>hoo_start_saturday</name>
@@ -44,8 +40,6 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
     <argument>
       <name>hoo_dur_saturday</name>
@@ -56,8 +50,6 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
     <argument>
       <name>hoo_start_sunday</name>
@@ -68,8 +60,6 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
     <argument>
       <name>hoo_dur_sunday</name>
@@ -80,15 +70,12 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
     <argument>
       <name>delta_values</name>
       <display_name>Hours of operation values treated as deltas</display_name>
       <description>When this is true the hours of operation start and duration represent a delta from the original model values. When switched to false they represent absolute values.</description>
       <type>Boolean</type>
-      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>true</default_value>
@@ -102,15 +89,41 @@
           <display_name>false</display_name>
         </choice>
       </choices>
-      <min_value></min_value>
-      <max_value></max_value>
+    </argument>
+    <argument>
+      <name>infer_parametric_schedules</name>
+      <display_name>Dynamically generate parametric schedules from current ruleset schedules.</display_name>
+      <description>When this is true the parametric schedule formulas and hours of operation will be generated from the existing model schedules. When false it expects the model already has parametric formulas stored.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>fraction_of_daily_occ_range</name>
+      <display_name>Fraction of Daily Occupancy Range.</display_name>
+      <description>This determine what fraction of occupancy be considered operating conditions. This fraction is normalized to expanded to range seen over the full year and does not necessary equal fraction of design occupancy. This value should be between 0 and 1.0 and is only used if dynamically generated parametric schedules are used.</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0.25</default_value>
     </argument>
     <argument>
       <name>target_hoo_from_model</name>
       <display_name>Use model hours of operation as target</display_name>
-      <description>The default behavior is for this to be false. When changed to true all of the hours of operation start and duration values will be ignored as the bool to treat those values as relative or absolue. Instead the hours of operation schedules for the model will be used.</description>
+      <description>The default behavior is for this to be false. This can not be used unless Dynamically generate parametric schedules from current ruleset schedules is set to false and if the schedules in the model already have parametric profiles. When changed to true all of the hours of operation start and duration values will be ignored as the bool to treat those values as relative or absolute. Instead the hours of operation schedules for the model will be used.</description>
       <type>Boolean</type>
-      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>false</default_value>
@@ -124,30 +137,6 @@
           <display_name>false</display_name>
         </choice>
       </choices>
-      <min_value></min_value>
-      <max_value></max_value>
-    </argument>
-    <argument>
-      <name>infer_parametric_schedules</name>
-      <display_name>Use parametric schedule formaulas already stored in the model.</display_name>
-      <description>When this is true the parametric schedule formulas will be generated from the existing model schedules. When false it expects the model already has parametric formulas stored.</description>
-      <type>Boolean</type>
-      <units></units>
-      <required>true</required>
-      <model_dependent>false</model_dependent>
-      <default_value>true</default_value>
-      <choices>
-        <choice>
-          <value>true</value>
-          <display_name>true</display_name>
-        </choice>
-        <choice>
-          <value>false</value>
-          <display_name>false</display_name>
-        </choice>
-      </choices>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
   </arguments>
   <outputs />
@@ -210,12 +199,6 @@
       <checksum>CD7F5672</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
-    </file>
-    <file>
       <filename>.gitkeep</filename>
       <filetype>gitkeep</filetype>
       <usage_type>doc</usage_type>
@@ -234,12 +217,6 @@
       <checksum>BE467EF8</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>0B68E96D</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>3.1.0</identifier>
@@ -250,6 +227,17 @@
       <usage_type>script</usage_type>
       <checksum>E164A3C8</checksum>
     </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>232D0477</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>88FAD40B</checksum>
+    </file>
   </files>
 </measure>
-<error>Unable to extract OpenStudio::Measure::OSMeasure object from /Users/dgoldwas/Documents/GitHub/NREL/openstudio-calibration-gem/lib/measures/shift_hours_of_operation/measure.rb. The script should contain a class that derives from OpenStudio::Measure::OSMeasure and should close with a line stating the class name followed by .new.registerWithApplication.</error>
