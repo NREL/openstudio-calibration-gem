@@ -30,7 +30,8 @@ class InspectAndEditParametricSchedulesTest < Minitest::Test
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    #args_hash['space_name'] = 'New Space'
+    args_hash['office_bldg_equip_office_bldg_equip_rule_1_day_schedule'] = 'hoo_start - 2.0 ~ 0.3 | hoo_start - 1.0 ~ 0.4 | hoo_start + 1.0 ~ 0.5 | mid + 1.5 ~ 0.5 | hoo_end + 0.5 ~ 0.35 | hoo_end + 4.5 ~ 0.3'
+    args_hash['office_infil_quarter_on_floor_value'] = 0.5
     # using defaults values from measure.rb for other arguments
 
     # populate argument with specified hash value if specified

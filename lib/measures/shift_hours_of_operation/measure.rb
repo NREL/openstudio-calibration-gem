@@ -445,22 +445,16 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     runner.registerInfo("There are #{used_hoo_sch_sets.uniq.size} hours of operation schedules in the model to alter.")
 
     # process weekday profiles
-    if ! args['delta_values'] || (args['hoo_start_weekday'] != 0.0 || args['hoo_dur_weekday'] != 0.0)
-      runner.registerInfo("Altering hours of operation schedules for weekday profiles")
-      weekday = process_hoo(used_hoo_sch_sets,model,runner,args,['mon','tue','wed','thur','fri'],args['hoo_start_weekday'],args['hoo_dur_weekday'])
-    end
+    runner.registerInfo("Altering hours of operation schedules for weekday profiles")
+    weekday = process_hoo(used_hoo_sch_sets,model,runner,args,['mon','tue','wed','thur','fri'],args['hoo_start_weekday'],args['hoo_dur_weekday'])
 
     # process saturday profiles
-    if ! args['delta_values'] || (args['hoo_start_saturday'] != 0.0 || args['hoo_dur_saturday'] != 0.0)
-      runner.registerInfo("Altering hours of operation schedules for saturday profiles")
-      saturday = process_hoo(used_hoo_sch_sets,model,runner,args,['sat'],args['hoo_start_saturday'],args['hoo_dur_saturday'])
-    end
+    runner.registerInfo("Altering hours of operation schedules for saturday profiles")
+    saturday = process_hoo(used_hoo_sch_sets,model,runner,args,['sat'],args['hoo_start_saturday'],args['hoo_dur_saturday'])
 
     # process sunday profiles
-    if ! args['delta_values'] || (args['hoo_start_sunday'] != 0.0 || args['hoo_dur_sunday'] != 0.0)
-      runner.registerInfo("Altering hours of operation schedules for sunday profiles")
-      sunday = process_hoo(used_hoo_sch_sets,model,runner,args,['sun'],args['hoo_start_sunday'],args['hoo_dur_sunday'])
-    end
+    runner.registerInfo("Altering hours of operation schedules for sunday profiles")
+    sunday = process_hoo(used_hoo_sch_sets,model,runner,args,['sun'],args['hoo_start_sunday'],args['hoo_dur_sunday'])
 
     # todo - need to address this error when manipulating schedules
     # [openstudio.standards.ScheduleRuleset] <1> Pre-interpolated processed hash for Large Office Bldg Equip Default Schedule has one or more out of order conflicts: [[3.5, 0.8], [4.5, 0.6], [5.0, 0.6], [7.0, 0.5], [9.0, 0.4], [6.0, 0.4], [10.0, 0.9], [16.5, 0.9], [17.5, 0.8], [18.5, 0.9], [21.5, 0.9]]. Method will stop because Error on Out of Order was set to true.

@@ -1,6 +1,12 @@
 
 
-###### (Automatically generated documentation)
+
+![Apply Measures Now Dialog](./docs/apply_measures_now.png?raw=true)
+*Each parametric schedule will have a series of arguments including one or more profile, and optionally a ceiling and floor value which can be used in the profile formulas.*
+
+Additional documentation will follow at a later date.
+
+###### (Automatically generated documentation below)
 
 # Inspect and Edit Parametric Schedules
 

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>shift_hours_of_operation</name>
   <uid>e8ae02a4-4be2-45c3-b85b-2a1d94662653</uid>
-  <version_id>41bd9be6-ee42-40c9-8865-4b81da25f602</version_id>
-  <version_modified>20201111T021748Z</version_modified>
+  <version_id>2ffe1ed8-91d3-4534-8508-62777a1b85b4</version_id>
+  <version_modified>20201111T065636Z</version_modified>
   <xml_checksum>4098406A</xml_checksum>
   <class_name>ShiftHoursOfOperation</class_name>
   <display_name>Shift Hours of Operation</display_name>
@@ -217,17 +217,6 @@
       <checksum>BE467EF8</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>3.1.0</identifier>
-        <min_compatible>3.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>E164A3C8</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -238,6 +227,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>88FAD40B</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>3.1.0</identifier>
+        <min_compatible>3.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>35C699DB</checksum>
     </file>
   </files>
 </measure>

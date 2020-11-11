@@ -125,20 +125,62 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
     # load standards
     standard = Standard.build('90.1-2004') # selected template doesn't matter
 
-    # report initial condition of model
-    runner.registerInitialCondition("The building started with #{model.getSpaces.size} spaces.")
+    # change formulas, ceiling, adn floor values from arguments
+    counter_parametric_schedules = []
+    model.getScheduleRulesets.sort.each do |sch|
 
-    # todo - change formulas, ceiling, adn floor values from arguments
+      # get ceiling and floor
+      floor = sch.additionalProperties.getFeatureAsDouble('param_sch_floor')
+      ceiling = sch.additionalProperties.getFeatureAsDouble('param_sch_ceiling')
+      if floor.is_initialized || ceiling.is_initialized
+
+        # argument for floor
+        arg_name = "#{sch.name} Floor Value"
+        sch.additionalProperties.setFeature('param_sch_floor',args[arg_name.downcase.gsub(" ","_")])
+
+        # argument for ceiling
+        arg_name = "#{sch.name} Ceiling Value"
+        sch.additionalProperties.setFeature('param_sch_ceiling',args[arg_name.downcase.gsub(" ","_")])
+      end
+
+      # loop through rules
+      sch_days = {}
+      sch.scheduleRules.each do |rule|
+        sch_days[rule.daySchedule] = nil
+      end
+
+      # add default profile
+      sch_days[sch.defaultDaySchedule] = "default profile"
+
+      # should appear in similar oder to GUI now with default on the bottom
+      sch_days.each do |sch_day,not_used|
+        prop = sch_day.additionalProperties.getFeatureAsString('param_day_profile')
+        if prop.is_initialized
+
+          # argument for formulas
+          arg_name = "#{sch.name}_#{sch_day.name}"
+          sch_day.additionalProperties.setFeature('param_day_profile',args[arg_name.downcase.gsub(" ","_")])
+
+          # add to counter for initial condition
+          counter_parametric_schedules << sch
+
+        end
+      end
+    end
+
+    # report initial condition of model
+    runner.registerInitialCondition("The building started with #{counter_parametric_schedules.uniq.size.size} parametric schedules.")
 
     #   if requested re-generate schedules
     if args['apply_parametric_sch']
       parametric_schedules = standard.model_apply_parametric_schedules(model, ramp_frequency: nil, infer_hoo_for_non_assigned_objects: true, error_on_out_of_order: true)
-      runner.registerInfo("Created #{parametric_schedules.size} parametric schedules.")
+      runner.registerInfo("Applying #{parametric_schedules.size} parametric schedules.")
     end
 
     # report final condition of model
-    runner.registerFinalCondition("The building finished with #{model.getSpaces.size} spaces.")
+    runner.registerFinalCondition("The building finished with #{parametric_schedules.size} parametric schedules.")
 
+    # report log messages from standards
     OsLib_HelperMethods.log_msgs
 
     return true
