@@ -25,12 +25,62 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    # the name of the space to add to the model
-    space_name = OpenStudio::Measure::OSArgument.makeStringArgument('space_name', true)
-    space_name.setDisplayName('New space name')
-    space_name.setDescription('This name will be used as the name of the new space.')
-    space_name.setDefaultValue("just a test")
-    args << space_name
+    # code to inspect formulas and code floor/ceiling values
+    model.getScheduleRulesets.each do |sch|
+
+      # get ceiling and floor
+      floor = sch.additionalProperties.getFeatureAsDouble('param_sch_floor')
+      ceiling = sch.additionalProperties.getFeatureAsDouble('param_sch_ceiling')
+      if floor.is_initialized || ceiling.is_initialized
+        puts "*** Formulas for #{sch.name}, floor: #{floor}, ceiling: #{ceiling}"
+      end
+
+      # loop through rules
+      sch_days = {}
+      sch.scheduleRules.reverse.each do |rule|
+        if rule.startDate.is_initialized
+          start_date = "#{rule.startDate.get.monthOfYear}/#{rule.startDate.get.dayOfMonth}"
+        else
+          start_date = "1/1"
+        end
+        if rule.startDate.is_initialized
+          end_date = "#{rule.endDate.get.monthOfYear}/#{rule.endDate.get.dayOfMonth}"
+        else
+          end_date = "12/31"
+        end
+        dow = []
+        if rule.applyMonday then dow << "mon" end
+        if rule.applyTuesday then dow << "tue" end
+        if rule.applyWednesday then dow << "wed" end
+        if rule.applyThursday then dow << "thur" end
+        if rule.applyFriday then dow << "fri" end
+        if rule.applySaturday then dow << "sat" end
+        if rule.applySunday then dow << "sun" end
+
+        sch_days[rule.daySchedule] = "#{dow.inspect} from #{start_date} through #{end_date}"
+      end
+
+      # add default profile
+      sch_days[sch.defaultDaySchedule] = "default profile"
+
+      # should appear in similar oder to GUI now with default on the bottom
+      sch_days.each do |sch_day,description|
+        prop = sch_day.additionalProperties.getFeatureAsString('param_day_profile')
+        if prop.is_initialized
+
+          # the name of the space to add to the model
+          arg_name = "#{sch.name}_#{sch_day.name}"
+          formula = OpenStudio::Measure::OSArgument.makeStringArgument(arg_name.downcase.gsub(" ","_"), true)
+          formula.setDisplayName(arg_name)
+          # todo - add days of the week and date range, identify default as what it is
+          formula.setDescription(description)
+          formula.setDefaultValue(prop.to_s)
+          args << formula
+
+          puts prop
+        end
+      end
+    end
 
     return args
   end
@@ -45,13 +95,7 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
     end
 
     # assign the user inputs to variables
-    space_name = runner.getStringArgumentValue('space_name', user_arguments)
-
-    # check the space_name for reasonableness
-    if space_name.empty?
-      runner.registerError('Empty space name was entered.')
-      return false
-    end
+    #space_name = runner.getStringArgumentValue('space_name', user_arguments)
 
     # code to inspect formulas and code floor/ceiling values
     model.getScheduleRulesets.each do |sch|
@@ -62,7 +106,6 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
       if floor.is_initialized || ceiling.is_initialized
         puts "*** Formulas for #{sch.name}, floor: #{floor}, ceiling: #{ceiling}"
       end
-
       sch_days = [sch.defaultDaySchedule]
       sch.scheduleRules.each do |rule|
         sch_days << rule.daySchedule
