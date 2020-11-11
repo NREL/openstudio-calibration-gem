@@ -3,6 +3,12 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
+require 'openstudio-standards'
+
+# load OpenStudio measure libraries from openstudio-extension gem
+require 'openstudio-extension'
+require 'openstudio/extension/core/os_lib_helper_methods'
+
 # start the measure
 class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
   # human readable name
@@ -26,27 +32,43 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # code to inspect formulas and code floor/ceiling values
-    model.getScheduleRulesets.each do |sch|
+    model.getScheduleRulesets.sort.each do |sch|
 
       # get ceiling and floor
       floor = sch.additionalProperties.getFeatureAsDouble('param_sch_floor')
       ceiling = sch.additionalProperties.getFeatureAsDouble('param_sch_ceiling')
       if floor.is_initialized || ceiling.is_initialized
-        puts "*** Formulas for #{sch.name}, floor: #{floor}, ceiling: #{ceiling}"
+
+        # argument for floor
+        arg_name = "#{sch.name} Floor Value"
+        floor_val = OpenStudio::Measure::OSArgument.makeDoubleArgument(arg_name.downcase.gsub(" ","_"), true)
+        floor_val.setDisplayName(arg_name)
+        floor_val.setDescription("floor can be used by formulas")
+        floor_val.setDefaultValue(floor.get)
+        args << floor_val
+
+        # argument for floor
+        arg_name = "#{sch.name} Ceiling Value"
+        ceiling_val = OpenStudio::Measure::OSArgument.makeDoubleArgument(arg_name.downcase.gsub(" ","_"), true)
+        ceiling_val.setDisplayName(arg_name)
+        ceiling_val.setDescription("ceiling can be used by formulas")
+        ceiling_val.setDefaultValue(ceiling.get)
+        args << ceiling_val
+
       end
 
       # loop through rules
       sch_days = {}
-      sch.scheduleRules.reverse.each do |rule|
+      sch.scheduleRules.each do |rule|
         if rule.startDate.is_initialized
-          start_date = "#{rule.startDate.get.monthOfYear}/#{rule.startDate.get.dayOfMonth}"
+          start_date = "#{rule.startDate.get.monthOfYear.value}/#{rule.startDate.get.dayOfMonth}"
         else
-          start_date = "1/1"
+          start_date = "na"
         end
         if rule.startDate.is_initialized
-          end_date = "#{rule.endDate.get.monthOfYear}/#{rule.endDate.get.dayOfMonth}"
+          end_date = "#{rule.endDate.get.monthOfYear.value}/#{rule.endDate.get.dayOfMonth}"
         else
-          end_date = "12/31"
+          end_date = "na"
         end
         dow = []
         if rule.applyMonday then dow << "mon" end
@@ -68,19 +90,23 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
         prop = sch_day.additionalProperties.getFeatureAsString('param_day_profile')
         if prop.is_initialized
 
-          # the name of the space to add to the model
+          # argument for formulas
           arg_name = "#{sch.name}_#{sch_day.name}"
           formula = OpenStudio::Measure::OSArgument.makeStringArgument(arg_name.downcase.gsub(" ","_"), true)
           formula.setDisplayName(arg_name)
-          # todo - add days of the week and date range, identify default as what it is
           formula.setDescription(description)
           formula.setDefaultValue(prop.to_s)
           args << formula
-
-          puts prop
         end
       end
     end
+
+    # merge internal loads
+    apply_parametric_sch = OpenStudio::Measure::OSArgument.makeBoolArgument('apply_parametric_sch', true)
+    apply_parametric_sch.setDisplayName('Apply Parametric Schedules to the Model')
+    apply_parametric_sch.setDescription('When this is true the parametric schedules will be regenerated based on modified formulas, ceiling and floor values, and current horus of operation for building.')
+    apply_parametric_sch.setDefaultValue(true)
+    args << apply_parametric_sch
 
     return args
   end
@@ -89,40 +115,31 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
-    # use the built-in error checking
-    if !runner.validateUserArguments(arguments(model), user_arguments)
-      return false
-    end
-
     # assign the user inputs to variables
-    #space_name = runner.getStringArgumentValue('space_name', user_arguments)
+    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments(model))
+    if !args then return false end
 
-    # code to inspect formulas and code floor/ceiling values
-    model.getScheduleRulesets.each do |sch|
+    # setup log messages that will come from standards
+    OsLib_HelperMethods.setup_log_msgs(runner,true) # bool is debug
 
-      # get ceiling and floor
-      floor = sch.additionalProperties.getFeatureAsDouble('param_sch_floor')
-      ceiling = sch.additionalProperties.getFeatureAsDouble('param_sch_ceiling')
-      if floor.is_initialized || ceiling.is_initialized
-        puts "*** Formulas for #{sch.name}, floor: #{floor}, ceiling: #{ceiling}"
-      end
-      sch_days = [sch.defaultDaySchedule]
-      sch.scheduleRules.each do |rule|
-        sch_days << rule.daySchedule
-      end
-      sch_days.each do |sch_day|
-        prop = sch_day.additionalProperties.getFeatureAsString('param_day_profile')
-        if prop.is_initialized
-          puts prop
-        end
-      end
-    end
+    # load standards
+    standard = Standard.build('90.1-2004') # selected template doesn't matter
 
     # report initial condition of model
     runner.registerInitialCondition("The building started with #{model.getSpaces.size} spaces.")
 
+    # todo - change formulas, ceiling, adn floor values from arguments
+
+    #   if requested re-generate schedules
+    if args['apply_parametric_sch']
+      parametric_schedules = standard.model_apply_parametric_schedules(model, ramp_frequency: nil, infer_hoo_for_non_assigned_objects: true, error_on_out_of_order: true)
+      runner.registerInfo("Created #{parametric_schedules.size} parametric schedules.")
+    end
+
     # report final condition of model
     runner.registerFinalCondition("The building finished with #{model.getSpaces.size} spaces.")
+
+    OsLib_HelperMethods.log_msgs
 
     return true
   end
