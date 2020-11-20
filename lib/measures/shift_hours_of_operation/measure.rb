@@ -220,7 +220,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       end
 
       # use this to link to hoo from hours_of_operation_hash
-      counter_of_orig_index = hoo_sch.scheduleRules.size - 1
+      counter_of_orig_index = hours_of_operation_hash.size - 2 # this is not impacted by cloning that may have happened above
 
       hoo_sch.scheduleRules.reverse.each do |rule|
 
@@ -304,7 +304,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
           orig_hoo_start = hours_of_operation_hash[hoo_hash_index][:hoo_start]
           orig_hoo_dur = hours_of_operation_hash[hoo_hash_index][:hoo_hours]
 
-          # check for duration grater than 224 or lower than 0
+          # check for duration grater than 24 or lower than 0
           max_dur_delta = 24 - orig_hoo_dur
           min_dur_delta = orig_hoo_dur * -1.0
           if hoo_dur_dows > max_dur_delta
