@@ -6,13 +6,6 @@
     * Update OpenStudio Standards to 0.2.12
     * Update OpenStudio Extension gem to 0.3.1
 
-## Version 0.2.1
-
-* Note that this version was never released to RubyGems
-* Support for OpenStudio 3.1
-    * Update OpenStudio Standards to 0.2.12
-    * Update OpenStudio Extension gem to 0.3.1
-    
 ## Version 0.2.0
 
 * Note that this version was never released to RubyGems
