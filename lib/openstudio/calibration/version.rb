@@ -33,17 +33,8 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-require 'openstudio/extension'
-
 module OpenStudio
-  module CalibrationMeasures
-    class Extension < OpenStudio::Extension::Extension
-      # Override parent class
-      def initialize
-        super
-
-        @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..', '..'))
-      end
-    end
+  module Calibration
+    VERSION = '0.3.0'.freeze
   end
 end

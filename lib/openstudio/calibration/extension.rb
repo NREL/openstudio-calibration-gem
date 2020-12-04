@@ -33,15 +33,17 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-require_relative '../spec_helper'
+require 'openstudio/extension'
 
-RSpec.describe OpenStudio::CalibrationMeasures do
-  it 'has a version number' do
-    expect(OpenStudio::CalibrationMeasures::VERSION).not_to be nil
-  end
+module OpenStudio
+  module Calibration
+    class Extension < OpenStudio::Extension::Extension
+      # Override parent class
+      def initialize
+        super
 
-  it 'has a measures directory' do
-    instance = OpenStudio::CalibrationMeasures::Extension.new
-    expect(File.exist?(File.join(instance.measures_dir, 'AddMonthlyJSONUtilityData/'))).to be true
+        @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..', '..'))
+      end
+    end
   end
 end

@@ -33,5 +33,5 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-require 'openstudio/calibration_measures/version'
-require 'openstudio/calibration_measures/extension'
+require 'openstudio/calibration/version'
+require 'openstudio/calibration/extension'

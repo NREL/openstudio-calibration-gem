@@ -2,6 +2,7 @@
 
 ## Version 0.3.0
 
+* There project was misnamed. Moved to be called `openstudio-calibration`.
 * Support for OpenStudio 3.1
     * Update OpenStudio Standards to 0.2.12
     * Update OpenStudio Extension gem to 0.3.1
