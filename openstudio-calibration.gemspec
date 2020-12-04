@@ -1,10 +1,10 @@
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'openstudio/calibration_measures/version'
+require 'openstudio/calibration/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'openstudio-calibration-measures'
-  spec.version       = OpenStudio::CalibrationMeasures::VERSION
+  spec.name          = 'openstudio-calibration'
+  spec.version       = OpenStudio::Calibration::VERSION
   spec.authors       = ['Brian Ball', 'Nicholas Long']
   spec.email         = ['brian.ball@nrel.gov', 'nicholas.long@nrel.gov']
 
