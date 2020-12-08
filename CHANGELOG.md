@@ -1,5 +1,9 @@
 # OpenStudio Calibration Measures Gem
 
+## Version 0.3.1
+
+* Bump openstudio-extension-gem version to 0.3.2 to support updated workflow-gem
+
 ## Version 0.3.0
 
 * There project was misnamed. Moved to be called `openstudio-calibration`.
