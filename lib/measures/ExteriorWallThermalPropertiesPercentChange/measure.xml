@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>exterior_wall_thermal_properties_percent_change</name>
   <uid>6ab39cf2-1f9e-4570-a797-360a814aaa64</uid>
-  <version_id>db187239-4ef6-4732-8ec4-8de547d1b205</version_id>
-  <version_modified>20200325T030944Z</version_modified>
+  <version_id>ac90d353-a9cc-42f1-b5dd-426a4c1d5d7b</version_id>
+  <version_modified>20210202T183506Z</version_modified>
   <xml_checksum>31085437</xml_checksum>
   <class_name>ExteriorWallThermalPropertiesPercentChange</class_name>
   <display_name>Exterior Wall Thermal Percent Change</display_name>
@@ -35,8 +36,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Opaque</tag>
     <tag>Calibration</tag>
@@ -91,7 +92,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>860DE2A9</checksum>
+      <checksum>470721A6</checksum>
+    </file>
+    <file>
+      <filename>ExteriorWallThermalPropertiesMultiplier_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>0EB7830E</checksum>
+    </file>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>53D14E69</checksum>
     </file>
   </files>
 </measure>
