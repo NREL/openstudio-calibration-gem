@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>exterior_wall_thermal_properties_multiplier</name>
   <uid>6ab39cf2-1f9e-4570-a797-360a814aaa74</uid>
-  <version_id>e16bc898-19ba-47b8-899f-264c6294a048</version_id>
-  <version_modified>20210202T183445Z</version_modified>
+  <version_id>f6eb026d-b992-42cc-a11e-f6d8f2794127</version_id>
+  <version_modified>20210304T152734Z</version_modified>
   <xml_checksum>31085437</xml_checksum>
   <class_name>ExteriorWallThermalPropertiesMultiplier</class_name>
   <display_name>Exterior Wall Thermal Properties Multiplier</display_name>
@@ -66,12 +66,6 @@
   </attributes>
   <files>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -84,6 +78,18 @@
       <checksum>922E9893</checksum>
     </file>
     <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>53D14E69</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>0.11.5</identifier>
@@ -92,19 +98,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>400A20E6</checksum>
+      <checksum>3ABDF738</checksum>
     </file>
     <file>
       <filename>ExteriorWallThermalPropertiesMultiplier_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>42E2C677</checksum>
-    </file>
-    <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>53D14E69</checksum>
+      <checksum>CC26196C</checksum>
     </file>
   </files>
 </measure>

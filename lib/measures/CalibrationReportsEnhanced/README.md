@@ -2,16 +2,16 @@
 
 ###### (Automatically generated documentation)
 
-# Calibration Reports Enhanced
+# 
 
 ## Description
-This measure is intended for calibibration of modeled results against user entered utility bill.
+
 
 ## Modeler Description
-Measure looks at consumption for electricity and natural gas, and demand for electricity. It is inteneded to be used with no more than one gas an electric bills. Each bill can have multiple billing periods. Make sure ot use an AMY matching the utility data time frame.
+
 
 ## Measure Type
-ReportingMeasure
+ModelMeasure
 
 ## Taxonomy
 
@@ -19,55 +19,9 @@ ReportingMeasure
 ## Arguments
 
 
-### Electric NMBE limit (%)
-
-**Name:** electric_nmbe_limit,
-**Type:** Double,
-**Units:** ,
-**Required:** true,
-**Model Dependent:** false
-
-### Electric CVRMSE limit (%)
-
-**Name:** electric_cvrmse_limit,
-**Type:** Double,
-**Units:** ,
-**Required:** true,
-**Model Dependent:** false
-
-### Gas NMBE limit (%)
-
-**Name:** gas_nmbe_limit,
-**Type:** Double,
-**Units:** ,
-**Required:** true,
-**Model Dependent:** false
-
-### Gas CVRMSE limit (%)
-
-**Name:** gas_cvrmse_limit,
-**Type:** Double,
-**Units:** ,
-**Required:** true,
-**Model Dependent:** false
-
-### Fuel Oil#2 NMBE limit (%)
-
-**Name:** fuel_oil_nmbe_limit,
-**Type:** Double,
-**Units:** ,
-**Required:** true,
-**Model Dependent:** false
-
-### Fuel Oil#2 CVRMSE limit (%)
-
-**Name:** fuel_oil_cvrmse_limit,
-**Type:** Double,
-**Units:** ,
-**Required:** true,
-**Model Dependent:** false
 
 
+This measure does not have any user arguments
 
 
 

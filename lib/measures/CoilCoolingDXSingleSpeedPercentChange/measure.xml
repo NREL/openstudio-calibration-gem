@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_cooling_dx_single_speed_percent_change</name>
   <uid>97d0dbdf-6245-4cfd-8dfc-a6a5eb853b37</uid>
-  <version_id>bebb1a46-d778-46e8-a6b0-474f32ae005f</version_id>
-  <version_modified>20200325T030943Z</version_modified>
+  <version_id>7eadcc97-513a-4c0a-8098-777d8d4d6490</version_id>
+  <version_modified>20210304T152733Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXSingleSpeedPercentChange</class_name>
   <display_name>Cooling Coils DX Single Speed Percent Change</display_name>
@@ -16,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*All DX Cooling Coils*</default_value>
+      <default_value>{e15fb411-59de-4223-a18c-b0b505434f89}</default_value>
       <choices>
         <choice>
-          <value>{4055b80d-a981-478b-8a07-c4bd14b8e415}</value>
+          <value>{e15fb411-59de-4223-a18c-b0b505434f89}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -47,8 +48,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Cooling</tag>
   </tags>
@@ -60,12 +61,6 @@
     </attribute>
   </attributes>
   <files>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
-    </file>
     <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
@@ -79,6 +74,12 @@
       <checksum>1DD68BE3</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -87,7 +88,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>1E360D35</checksum>
+      <checksum>2D747787</checksum>
     </file>
   </files>
 </measure>
