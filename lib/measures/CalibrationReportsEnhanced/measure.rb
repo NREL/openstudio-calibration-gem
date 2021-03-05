@@ -55,7 +55,7 @@ class CalibrationReportsEnhanced < OpenStudio::Measure::ReportingMeasure
   end
 
   # define the arguments that the user will input
-  def arguments
+  def arguments(model = nil)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Electric NMBE limit
