@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_heating_gas_percent_change</name>
   <uid>8589af79-cfe7-45fb-9c79-e7b95e5fb02f</uid>
-  <version_id>3591edb1-4d18-493c-b290-8c6287dd10c1</version_id>
-  <version_modified>20200325T030944Z</version_modified>
+  <version_id>840c4596-2293-4354-bf5b-a88964f4756d</version_id>
+  <version_modified>20210304T152733Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingGasPercentChange</class_name>
   <display_name>Heating Coils Gas Percent Change</display_name>
@@ -16,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*All Gas Heating Coils*</default_value>
+      <default_value>{96213ba4-9ed0-474e-9cf4-f5b8e20ae5c9}</default_value>
       <choices>
         <choice>
-          <value>{a20d912d-d927-4389-a1e6-ac7cde75c769}</value>
+          <value>{96213ba4-9ed0-474e-9cf4-f5b8e20ae5c9}</value>
           <display_name>*All Gas Heating Coils*</display_name>
         </choice>
         <choice>
@@ -65,8 +66,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Heating</tag>
   </tags>
@@ -78,12 +79,6 @@
     </attribute>
   </attributes>
   <files>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
-    </file>
     <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
@@ -97,6 +92,12 @@
       <checksum>92E7D6F3</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -105,7 +106,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>925516DE</checksum>
+      <checksum>86E19914</checksum>
     </file>
   </files>
 </measure>
