@@ -375,6 +375,45 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
 
   end
 
+  # todo - remove temp log messages with 3.2 it has updated ext gem
+  # open channel to log info/warning/error messages
+  def self.setup_log_msgs(runner, debug = false)
+    # Open a channel to log info/warning/error messages
+    @msg_log = OpenStudio::StringStreamLogSink.new
+    if debug
+      @msg_log.setLogLevel(OpenStudio::Debug)
+    else
+      @msg_log.setLogLevel(OpenStudio::Info)
+    end
+    @start_time = Time.new
+    @runner = runner
+  end
+  def self.log_msgs
+    @msg_log.logMessages.each do |msg|
+      # DLM: you can filter on log channel here for now
+      if /openstudio.*/.match(msg.logChannel) # /openstudio\.model\..*/
+        # Skip certain messages that are irrelevant/misleading
+        next if msg.logMessage.include?('Skipping layer') || # Annoying/bogus "Skipping layer" warnings
+            msg.logChannel.include?('runmanager') || # RunManager messages
+            msg.logChannel.include?('setFileExtension') || # .ddy extension unexpected
+            msg.logChannel.include?('Translator') || # Forward translator and geometry translator
+            msg.logMessage.include?('UseWeatherFile') || # 'UseWeatherFile' is not yet a supported option for YearDescription
+            msg.logMessage.include?('has multiple parents') # 'has multiple parents' is thrown for various types of curves if used in multiple objects
+        # Report the message in the correct way
+        if msg.logLevel == OpenStudio::Info
+          @runner.registerInfo(msg.logMessage)
+        elsif msg.logLevel == OpenStudio::Warn
+          @runner.registerWarning("[#{msg.logChannel}] #{msg.logMessage}")
+        elsif msg.logLevel == OpenStudio::Error
+          @runner.registerError("[#{msg.logChannel}] #{msg.logMessage}")
+        elsif msg.logLevel == OpenStudio::Debug && @debug
+          @runner.registerInfo("DEBUG - #{msg.logMessage}")
+        end
+      end
+    end
+    @runner.registerInfo("Total Time = #{(Time.new - @start_time).round}sec.")
+  end
+
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
@@ -395,7 +434,11 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     time_hours = OsLib_HelperMethods.checkDoubleAndIntegerArguments(runner, user_arguments, 'min' => -24.0, 'max' => 24.0, 'min_eq_bool' => true, 'max_eq_bool' => true, 'arg_array' => neg_24__24)
 
     # setup log messages that will come from standards
-    OsLib_HelperMethods.setup_log_msgs(runner,true) # bool is debug
+    # todo - enable this again in 3.2 it will not stop for curve with multiple parents.
+    #OsLib_HelperMethods.setup_log_msgs(runner,true) # bool is debug
+
+    # todo - remove temp log messages with 3.2 it has updated ext gem
+    ShiftHoursOfOperation.setup_log_msgs(runner,true) # bool is debug
 
     # load standards
     standard = Standard.build('90.1-2004') # selected template doesn't matter
@@ -471,7 +514,11 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     end
 
     # get log messages (if debut in setup is true this will fail for error)
-    OsLib_HelperMethods.log_msgs
+    # todo - enable this again in 3.2 it will not stop for curve with multiple parents.
+    #OsLib_HelperMethods.log_msgs
+
+    # todo - remove temp log messages with 3.2 it has updated ext gem
+    ShiftHoursOfOperation.log_msgs
 
     # todo - adding hours of operation to a schedule that doesn't have them to start with, like a sunday, can be problematic
     # todo - start of day may not be reliable and there may not be formula inputs to show what occupied behavior is

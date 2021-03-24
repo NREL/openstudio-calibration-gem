@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>shift_hours_of_operation</name>
   <uid>e8ae02a4-4be2-45c3-b85b-2a1d94662653</uid>
-  <version_id>2ffe1ed8-91d3-4534-8508-62777a1b85b4</version_id>
-  <version_modified>20201111T065636Z</version_modified>
+  <version_id>4be6e838-087c-4797-918f-d0cccd9c949b</version_id>
+  <version_modified>20210324T070820Z</version_modified>
   <xml_checksum>4098406A</xml_checksum>
   <class_name>ShiftHoursOfOperation</class_name>
   <display_name>Shift Hours of Operation</display_name>
@@ -20,6 +20,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>hoo_dur_weekday</name>
@@ -30,6 +32,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>hoo_start_saturday</name>
@@ -40,6 +44,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>hoo_dur_saturday</name>
@@ -50,6 +56,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>hoo_start_sunday</name>
@@ -60,6 +68,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>hoo_dur_sunday</name>
@@ -70,12 +80,15 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>delta_values</name>
       <display_name>Hours of operation values treated as deltas</display_name>
       <description>When this is true the hours of operation start and duration represent a delta from the original model values. When switched to false they represent absolute values.</description>
       <type>Boolean</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>true</default_value>
@@ -89,12 +102,15 @@
           <display_name>false</display_name>
         </choice>
       </choices>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>infer_parametric_schedules</name>
       <display_name>Dynamically generate parametric schedules from current ruleset schedules.</display_name>
       <description>When this is true the parametric schedule formulas and hours of operation will be generated from the existing model schedules. When false it expects the model already has parametric formulas stored.</description>
       <type>Boolean</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>true</default_value>
@@ -108,6 +124,8 @@
           <display_name>false</display_name>
         </choice>
       </choices>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>fraction_of_daily_occ_range</name>
@@ -118,12 +136,15 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0.25</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>target_hoo_from_model</name>
       <display_name>Use model hours of operation as target</display_name>
       <description>The default behavior is for this to be false. This can not be used unless Dynamically generate parametric schedules from current ruleset schedules is set to false and if the schedules in the model already have parametric profiles. When changed to true all of the hours of operation start and duration values will be ignored as the bool to treat those values as relative or absolute. Instead the hours of operation schedules for the model will be used.</description>
       <type>Boolean</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>false</default_value>
@@ -137,6 +158,8 @@
           <display_name>false</display_name>
         </choice>
       </choices>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
   </arguments>
   <outputs />
@@ -205,12 +228,6 @@
       <checksum>00000000</checksum>
     </file>
     <file>
-      <filename>shift_hours_of_operation_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B4A46A65</checksum>
-    </file>
-    <file>
       <filename>example_model.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -223,10 +240,10 @@
       <checksum>232D0477</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>88FAD40B</checksum>
+      <filename>shift_hours_of_operation_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C320618C</checksum>
     </file>
     <file>
       <version>
@@ -237,7 +254,32 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>35C699DB</checksum>
+      <checksum>70676F1C</checksum>
+    </file>
+    <file>
+      <filename>delta_values_false.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>21CE90F0</checksum>
+    </file>
+    <file>
+      <filename>target_hoo_from_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3F74E693</checksum>
+    </file>
+    <file>
+      <filename>SimpleModel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F2778476</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>0B68E96D</checksum>
     </file>
   </files>
 </measure>
+<error>Unable to extract OpenStudio::Measure::OSMeasure object from /Users/dgoldwas/Documents/GitHub/NREL/openstudio-calibration-gem/lib/measures/shift_hours_of_operation/measure.rb. The script should contain a class that derives from OpenStudio::Measure::OSMeasure and should close with a line stating the class name followed by .new.registerWithApplication.</error>
