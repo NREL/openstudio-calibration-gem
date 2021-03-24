@@ -40,9 +40,9 @@ RSpec::Core::RakeTask.new(:spec)
 
 # Load in the rake tasks from the base extension gem
 require 'openstudio/extension/rake_task'
-require 'openstudio/calibration_measures'
+require 'openstudio/calibration'
 rake_task = OpenStudio::Extension::RakeTask.new
-rake_task.set_extension_class(OpenStudio::CalibrationMeasures::Extension, 'nrel/openstudio-calibration-gem')
+rake_task.set_extension_class(OpenStudio::Calibration::Extension, 'nrel/openstudio-calibration-gem')
 
 require 'openstudio_measure_tester/rake_task'
 OpenStudioMeasureTester::RakeTask.new

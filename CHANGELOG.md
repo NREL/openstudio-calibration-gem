@@ -1,13 +1,19 @@
 # OpenStudio Calibration Measures Gem
 
-## Version 0.2.1 (Unreleased)
+## Version 0.3.1
 
+* Bump openstudio-extension-gem version to 0.3.2 to support updated workflow-gem
+
+## Version 0.3.0
+
+* There project was misnamed. Moved to be called `openstudio-calibration`.
 * Support for OpenStudio 3.1
     * Update OpenStudio Standards to 0.2.12
     * Update OpenStudio Extension gem to 0.3.1
-    
+
 ## Version 0.2.0
 
+* Note that this version was never released to RubyGems
 * Support for OpenStudio 3.0
     * Upgrade Bundler to 2.1.x
     * Restrict to Ruby ~> 2.5.0   

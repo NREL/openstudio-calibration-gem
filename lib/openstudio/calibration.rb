@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -33,17 +33,5 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-require 'openstudio/extension'
-
-module OpenStudio
-  module CalibrationMeasures
-    class Extension < OpenStudio::Extension::Extension
-      # Override parent class
-      def initialize
-        super
-
-        @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..', '..'))
-      end
-    end
-  end
-end
+require 'openstudio/calibration/version'
+require 'openstudio/calibration/extension'

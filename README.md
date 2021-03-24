@@ -9,7 +9,7 @@ Add this line to your application's Gemfile:
 ```ruby
 gem 'openstudio-calibration'
 
-require 'openstudio-calibration-measures'
+require 'openstudio-calibration'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install 'openstudio-calibration-measures'
+    $ gem install 'openstudio-calibration'
 
 ## Usage
 

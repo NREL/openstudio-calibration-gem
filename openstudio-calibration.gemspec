@@ -1,10 +1,10 @@
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'openstudio/calibration_measures/version'
+require 'openstudio/calibration/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'openstudio-calibration-measures'
-  spec.version       = OpenStudio::CalibrationMeasures::VERSION
+  spec.name          = 'openstudio-calibration'
+  spec.version       = OpenStudio::Calibration::VERSION
   spec.authors       = ['Brian Ball', 'Nicholas Long']
   spec.email         = ['brian.ball@nrel.gov', 'nicholas.long@nrel.gov']
 
@@ -27,10 +27,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '~> 2.5.0'
+  spec.required_ruby_version = '~> 2.7.0'
 
-  spec.add_dependency 'bundler', '~> 2.1'
-  spec.add_dependency 'openstudio-extension', '~> 0.3.1'
+  spec.add_dependency 'bundler', '>= 2.1'
+  spec.add_dependency 'openstudio-extension', '~> 0.4.0'
   spec.add_dependency 'openstudio-standards', '~> 0.2.12'
 
   spec.add_development_dependency 'rake', '~> 13.0'

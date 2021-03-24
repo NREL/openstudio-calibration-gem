@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -33,15 +33,4 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-require_relative '../spec_helper'
-
-RSpec.describe OpenStudio::CalibrationMeasures do
-  it 'has a version number' do
-    expect(OpenStudio::CalibrationMeasures::VERSION).not_to be nil
-  end
-
-  it 'has a measures directory' do
-    instance = OpenStudio::CalibrationMeasures::Extension.new
-    expect(File.exist?(File.join(instance.measures_dir, 'AddMonthlyJSONUtilityData/'))).to be true
-  end
-end
+require_relative 'openstudio/calibration'
