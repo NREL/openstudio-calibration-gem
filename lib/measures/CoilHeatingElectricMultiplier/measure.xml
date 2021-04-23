@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_heating_electric_multiplier</name>
   <uid>122e854c-d939-4bea-822a-89f2a5584a01</uid>
-  <version_id>b0e2b31c-68b6-446b-95bf-1750195c3906</version_id>
-  <version_modified>20200325T030944Z</version_modified>
+  <version_id>6df1fe1b-8774-49d6-b9be-1e1fc4ce7d5d</version_id>
+  <version_modified>20210304T152733Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingElectricMultiplier</class_name>
   <display_name>Heating Coils Electric Multiplier</display_name>
@@ -16,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*All Electric Heating Coils*</default_value>
+      <default_value>{6f21353a-3fce-4a2b-b335-271654e9abce}</default_value>
       <choices>
         <choice>
-          <value>{6223ddc7-bd63-4fa7-a295-f52fa0d2ac7b}</value>
+          <value>{6f21353a-3fce-4a2b-b335-271654e9abce}</value>
           <display_name>*All Electric Heating Coils*</display_name>
         </choice>
         <choice>
@@ -47,8 +48,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Heating</tag>
   </tags>
@@ -60,12 +61,6 @@
     </attribute>
   </attributes>
   <files>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
-    </file>
     <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
@@ -79,6 +74,12 @@
       <checksum>7C069839</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -87,7 +88,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>B0C07CD4</checksum>
+      <checksum>89AE9896</checksum>
     </file>
   </files>
 </measure>
