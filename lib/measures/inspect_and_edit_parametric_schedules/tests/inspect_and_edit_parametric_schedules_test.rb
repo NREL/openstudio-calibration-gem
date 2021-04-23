@@ -7,7 +7,6 @@ require_relative '../measure.rb'
 require 'fileutils'
 
 class InspectAndEditParametricSchedulesTest < Minitest::Test
-
   def test_good_argument_values
     # create an instance of the measure
     measure = InspectAndEditParametricSchedules.new
@@ -52,8 +51,8 @@ class InspectAndEditParametricSchedulesTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.empty?)
+    # assert(result.info.size == 1)
+    # assert(result.warnings.empty?)
 
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/test_output.osm"

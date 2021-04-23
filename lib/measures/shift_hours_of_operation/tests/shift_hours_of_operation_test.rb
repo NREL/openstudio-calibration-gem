@@ -7,8 +7,6 @@ require_relative '../measure.rb'
 require 'fileutils'
 
 class ShiftHoursOfOperationTest < Minitest::Test
-
-
   def test_good_argument_values
     # create an instance of the measure
     measure = ShiftHoursOfOperation.new
@@ -35,9 +33,9 @@ class ShiftHoursOfOperationTest < Minitest::Test
     args_hash['hoo_dur_weekday'] = 4.5
     args_hash['hoo_start_saturday'] = -2.0
     args_hash['hoo_dur_saturday'] = -1.0
-    args_hash['hoo_dur_sunday'] = 1 # todo - isn't going to have any impact on formulas the way it is setup now
+    args_hash['hoo_dur_sunday'] = 1 # TODO: - isn't going to have any impact on formulas the way it is setup now
     args_hash['hoo_start_sunday'] = 3 # todo - isn't going to have any impact on formulas the way it is setup now
-    #args_hash['fraction_of_daily_occ_range'] = 0.5
+    # args_hash['fraction_of_daily_occ_range'] = 0.5
     # using defaults values from measure.rb for other arguments
 
     # populate argument with specified hash value if specified
@@ -58,8 +56,8 @@ class ShiftHoursOfOperationTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.empty?)
+    # assert(result.info.size == 1)
+    # assert(result.warnings.empty?)
 
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/test_output.osm"
@@ -88,7 +86,7 @@ class ShiftHoursOfOperationTest < Minitest::Test
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    #args_hash['hoo_start_weekday'] = 4.0
+    # args_hash['hoo_start_weekday'] = 4.0
     # using defaults values from measure.rb for other arguments
 
     # populate argument with specified hash value if specified
@@ -113,9 +111,8 @@ class ShiftHoursOfOperationTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.empty?)
-
+    # assert(result.info.size == 1)
+    # assert(result.warnings.empty?)
   end
 
   def test_simple_model
@@ -140,7 +137,7 @@ class ShiftHoursOfOperationTest < Minitest::Test
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    #args_hash['hoo_start_weekday'] = 4.0
+    # args_hash['hoo_start_weekday'] = 4.0
     # using defaults values from measure.rb for other arguments
 
     # populate argument with specified hash value if specified
@@ -165,9 +162,8 @@ class ShiftHoursOfOperationTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.empty?)
-
+    # assert(result.info.size == 1)
+    # assert(result.warnings.empty?)
   end
 
   def test_target_hoo_from_model
@@ -217,9 +213,8 @@ class ShiftHoursOfOperationTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.empty?)
-
+    # assert(result.info.size == 1)
+    # assert(result.warnings.empty?)
   end
 
   def test_delta_values_false
@@ -271,9 +266,7 @@ class ShiftHoursOfOperationTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.empty?)
-
+    # assert(result.info.size == 1)
+    # assert(result.warnings.empty?)
   end
-
 end
