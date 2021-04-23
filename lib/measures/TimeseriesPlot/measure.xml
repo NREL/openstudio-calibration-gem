@@ -4,8 +4,8 @@
   <error>wrong number of arguments (given 1, expected 0)</error>
   <name>timeseries_plot</name>
   <uid>6804217d-4737-45f3-82df-b81393c29ce7</uid>
-  <version_id>e4a4d168-d78f-4979-a1d9-46b25b01edb5</version_id>
-  <version_modified>20210304T152739Z</version_modified>
+  <version_id>c5ed3fd0-c97b-418b-9af6-3b960508699e</version_id>
+  <version_modified>20210423T201838Z</version_modified>
   <xml_checksum>FFE04372</xml_checksum>
   <class_name>TimeseriesPlot</class_name>
   <display_name>Timeseries Plot</display_name>
@@ -147,7 +147,7 @@
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>C35D4DF5</checksum>
+      <checksum>B15A43C9</checksum>
     </file>
   </files>
 </measure>
