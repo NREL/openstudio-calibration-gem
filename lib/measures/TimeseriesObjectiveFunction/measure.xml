@@ -4,8 +4,8 @@
   <error>wrong number of arguments (given 1, expected 0)</error>
   <name>timeseries_objective_function</name>
   <uid>6804217d-4737-45f3-82df-b81393c29ce3</uid>
-  <version_id>4281b3d5-735d-4810-a48f-d34e1f6ea66a</version_id>
-  <version_modified>20210304T152739Z</version_modified>
+  <version_id>bdebe708-959f-448c-bcfe-085253520b90</version_id>
+  <version_modified>20210423T201838Z</version_modified>
   <xml_checksum>FFE04372</xml_checksum>
   <class_name>TimeseriesObjectiveFunction</class_name>
   <display_name>TimeSeries Objective Function</display_name>
@@ -505,7 +505,7 @@
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>0C0F0B60</checksum>
+      <checksum>6113CF65</checksum>
     </file>
   </files>
 </measure>

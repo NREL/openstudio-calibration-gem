@@ -1,3 +1,38 @@
+# *******************************************************************************
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
+# All rights reserved.
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# (1) Redistributions of source code must retain the above copyright notice,
+# this list of conditions and the following disclaimer.
+#
+# (2) Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation
+# and/or other materials provided with the distribution.
+#
+# (3) Neither the name of the copyright holder nor the names of any contributors
+# may be used to endorse or promote products derived from this software without
+# specific prior written permission from the respective party.
+#
+# (4) Other than as required in clauses (1) and (2), distributions in any form
+# of modifications or other derivative works may not use the "OpenStudio"
+# trademark, "OS", "os", or any other confusingly similar designation without
+# specific prior written permission from Alliance for Sustainable Energy, LLC.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER(S) AND ANY CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER(S), ANY CONTRIBUTORS, THE
+# UNITED STATES GOVERNMENT, OR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY OF
+# THEIR EMPLOYEES, BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+# OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+# STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# *******************************************************************************
+
 # insert your copyright here
 
 # see the URL below for information on how to write OpenStudio measures
@@ -33,7 +68,6 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
 
     # code to inspect formulas and code floor/ceiling values
     model.getScheduleRulesets.sort.each do |sch|
-
       # get ceiling and floor
       floor = sch.additionalProperties.getFeatureAsDouble('param_sch_floor')
       ceiling = sch.additionalProperties.getFeatureAsDouble('param_sch_ceiling')
@@ -41,17 +75,17 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
 
         # argument for floor
         arg_name = "#{sch.name} Floor Value"
-        floor_val = OpenStudio::Measure::OSArgument.makeDoubleArgument(arg_name.downcase.gsub(" ","_"), true)
+        floor_val = OpenStudio::Measure::OSArgument.makeDoubleArgument(arg_name.downcase.gsub(' ', '_'), true)
         floor_val.setDisplayName(arg_name)
-        floor_val.setDescription("floor can be used by formulas")
+        floor_val.setDescription('floor can be used by formulas')
         floor_val.setDefaultValue(floor.get)
         args << floor_val
 
         # argument for floor
         arg_name = "#{sch.name} Ceiling Value"
-        ceiling_val = OpenStudio::Measure::OSArgument.makeDoubleArgument(arg_name.downcase.gsub(" ","_"), true)
+        ceiling_val = OpenStudio::Measure::OSArgument.makeDoubleArgument(arg_name.downcase.gsub(' ', '_'), true)
         ceiling_val.setDisplayName(arg_name)
-        ceiling_val.setDescription("ceiling can be used by formulas")
+        ceiling_val.setDescription('ceiling can be used by formulas')
         ceiling_val.setDefaultValue(ceiling.get)
         args << ceiling_val
 
@@ -63,36 +97,36 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
         if rule.startDate.is_initialized
           start_date = "#{rule.startDate.get.monthOfYear.value}/#{rule.startDate.get.dayOfMonth}"
         else
-          start_date = "na"
+          start_date = 'na'
         end
         if rule.startDate.is_initialized
           end_date = "#{rule.endDate.get.monthOfYear.value}/#{rule.endDate.get.dayOfMonth}"
         else
-          end_date = "na"
+          end_date = 'na'
         end
         dow = []
-        if rule.applyMonday then dow << "mon" end
-        if rule.applyTuesday then dow << "tue" end
-        if rule.applyWednesday then dow << "wed" end
-        if rule.applyThursday then dow << "thur" end
-        if rule.applyFriday then dow << "fri" end
-        if rule.applySaturday then dow << "sat" end
-        if rule.applySunday then dow << "sun" end
+        if rule.applyMonday then dow << 'mon' end
+        if rule.applyTuesday then dow << 'tue' end
+        if rule.applyWednesday then dow << 'wed' end
+        if rule.applyThursday then dow << 'thur' end
+        if rule.applyFriday then dow << 'fri' end
+        if rule.applySaturday then dow << 'sat' end
+        if rule.applySunday then dow << 'sun' end
 
         sch_days[rule.daySchedule] = "#{dow.inspect} from #{start_date} through #{end_date}"
       end
 
       # add default profile
-      sch_days[sch.defaultDaySchedule] = "default profile"
+      sch_days[sch.defaultDaySchedule] = 'default profile'
 
       # should appear in similar oder to GUI now with default on the bottom
-      sch_days.each do |sch_day,description|
+      sch_days.each do |sch_day, description|
         prop = sch_day.additionalProperties.getFeatureAsString('param_day_profile')
         if prop.is_initialized
 
           # argument for formulas
           arg_name = "#{sch.name}_#{sch_day.name}"
-          formula = OpenStudio::Measure::OSArgument.makeStringArgument(arg_name.downcase.gsub(" ","_"), true)
+          formula = OpenStudio::Measure::OSArgument.makeStringArgument(arg_name.downcase.gsub(' ', '_'), true)
           formula.setDisplayName(arg_name)
           formula.setDescription(description)
           formula.setDefaultValue(prop.to_s)
@@ -120,7 +154,7 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
     if !args then return false end
 
     # setup log messages that will come from standards
-    OsLib_HelperMethods.setup_log_msgs(runner,true) # bool is debug
+    OsLib_HelperMethods.setup_log_msgs(runner, true) # bool is debug
 
     # load standards
     standard = Standard.build('90.1-2004') # selected template doesn't matter
@@ -128,7 +162,6 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
     # change formulas, ceiling, adn floor values from arguments
     counter_parametric_schedules = []
     model.getScheduleRulesets.sort.each do |sch|
-
       # get ceiling and floor
       floor = sch.additionalProperties.getFeatureAsDouble('param_sch_floor')
       ceiling = sch.additionalProperties.getFeatureAsDouble('param_sch_ceiling')
@@ -136,11 +169,11 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
 
         # argument for floor
         arg_name = "#{sch.name} Floor Value"
-        sch.additionalProperties.setFeature('param_sch_floor',args[arg_name.downcase.gsub(" ","_")])
+        sch.additionalProperties.setFeature('param_sch_floor', args[arg_name.downcase.gsub(' ', '_')])
 
         # argument for ceiling
         arg_name = "#{sch.name} Ceiling Value"
-        sch.additionalProperties.setFeature('param_sch_ceiling',args[arg_name.downcase.gsub(" ","_")])
+        sch.additionalProperties.setFeature('param_sch_ceiling', args[arg_name.downcase.gsub(' ', '_')])
       end
 
       # loop through rules
@@ -150,16 +183,16 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
       end
 
       # add default profile
-      sch_days[sch.defaultDaySchedule] = "default profile"
+      sch_days[sch.defaultDaySchedule] = 'default profile'
 
       # should appear in similar oder to GUI now with default on the bottom
-      sch_days.each do |sch_day,not_used|
+      sch_days.each do |sch_day, not_used|
         prop = sch_day.additionalProperties.getFeatureAsString('param_day_profile')
         if prop.is_initialized
 
           # argument for formulas
           arg_name = "#{sch.name}_#{sch_day.name}"
-          sch_day.additionalProperties.setFeature('param_day_profile',args[arg_name.downcase.gsub(" ","_")])
+          sch_day.additionalProperties.setFeature('param_day_profile', args[arg_name.downcase.gsub(' ', '_')])
 
           # add to counter for initial condition
           counter_parametric_schedules << sch
