@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
-  <error>wrong number of arguments (given 1, expected 0)</error>
   <name>calibration_reports</name>
   <uid>2baede0a-65f3-47ec-b5f6-9c21d0f91aff</uid>
   <version_id>63aaeb4e-fd54-483b-92f4-7a5d893986bd</version_id>
