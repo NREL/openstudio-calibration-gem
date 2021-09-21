@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>coil_cooling_water_percent_change</name>
   <uid>51bc1f02-f01b-4c5e-818a-db76ed783665</uid>
-  <version_id>5f04e81f-ebc8-47f1-8c67-9f73db244323</version_id>
-  <version_modified>20200325T030949Z</version_modified>
+  <version_id>03f5b949-fba3-41e0-b9c5-23482b129500</version_id>
+  <version_modified>20210304T152733Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingWaterPercentChange</class_name>
   <display_name>Cooling Coils Water PercentChange</display_name>
@@ -16,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*All Water Cooling Coils*</default_value>
+      <default_value>{0c4e3a64-56d9-4d6c-a49c-e4f5cb572439}</default_value>
       <choices>
         <choice>
-          <value>{1fb16b4e-06ed-435a-ae91-5ccfe20e1e9d}</value>
+          <value>{0c4e3a64-56d9-4d6c-a49c-e4f5cb572439}</value>
           <display_name>*All Water Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -83,8 +84,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Cooling</tag>
   </tags>
@@ -96,12 +97,6 @@
     </attribute>
   </attributes>
   <files>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
-    </file>
     <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
@@ -115,6 +110,12 @@
       <checksum>3544B376</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -123,7 +124,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7DAD59B9</checksum>
+      <checksum>9B7D5EA8</checksum>
     </file>
   </files>
 </measure>

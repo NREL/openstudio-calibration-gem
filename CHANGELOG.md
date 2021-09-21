@@ -1,5 +1,17 @@
 # OpenStudio Calibration Measures Gem
 
+## Version 0.4.0
+
+* Support Ruby ~> 2.7
+* Support for OpenStudio 3.2 (upgrade to extension gem 0.4.2 and standards gem 0.2.13)
+* Fixed [#11]( https://github.com/NREL/openstudio-calibration-gem/issues/11 ), Error in Exterior Wall Thermal Percent Change , getSolarAbsorptance
+* add shift_hours_of_operation measure using parametric schedules from standards gem
+* added inspect_and_edit_parametric_schedules measure to inspect and edit parametric schedule including profile formulas
+
+## Version 0.3.1
+
+* Bump openstudio-extension-gem version to 0.3.2 to support updated workflow-gem
+
 ## Version 0.3.0
 
 * There project was misnamed. Moved to be called `openstudio-calibration`.
