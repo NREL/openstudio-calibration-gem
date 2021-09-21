@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
-  <error>wrong number of arguments (given 1, expected 0)</error>
   <name>timeseries_plot</name>
   <uid>6804217d-4737-45f3-82df-b81393c29ce7</uid>
   <version_id>c5ed3fd0-c97b-418b-9af6-3b960508699e</version_id>
