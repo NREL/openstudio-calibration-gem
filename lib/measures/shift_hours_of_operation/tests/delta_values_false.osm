@@ -3,6 +3,12 @@ OS:Version,
   {8976c6e3-6121-4e19-b6ff-fe4f004ffd82}, !- Handle
   3.0.1;                                  !- Version Identifier
 
+OS:YearDescription,
+  {7ab83636-0799-47f1-8867-de3a9e6bb221}, !- Handle
+  ,                                       !- Calendar Year
+  Sunday,                                 !- Day of Week for Start Day
+  ;                                       !- Is Leap Year
+
 OS:ThermalZone,
   {9da56b81-3670-49be-ae63-5a0b5f019707}, !- Handle
   Thermal Zone 1,                         !- Name
