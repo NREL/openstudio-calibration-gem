@@ -173,9 +173,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_summary_hash[:zero_hoo] = []
     hoo_summary_hash[:final_hoo_start_range] = []
     hoo_summary_hash[:final_hoo_dur_range] = []
-    runner.registerInfo("hello 1 model has #{model.getSpaces.size} spaces")
     model.getSpaces.sort.each do |space|
-      runner.registerInfo("hello 2 #{space.name}")
       default_sch_type = OpenStudio::Model::DefaultScheduleType.new('HoursofOperationSchedule')
       hours_of_operation = space.getDefaultSchedule(default_sch_type)
       if !hours_of_operation.is_initialized
@@ -183,8 +181,6 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
         next
       end
       hours_of_operation_hash = standard.space_hours_of_operation(space)
-      puts "hello 3 what is in hoo hash for #{space.name}"
-      puts hours_of_operation_hash
       hours_of_operation_hash.each do |hoo_key, val|
         if val[:hoo_hours] == 0.0
           hoo_summary_hash[:zero_hoo] << val[:hoo_hours]
@@ -195,7 +191,6 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       end
     end
 
-    puts "hello 4 summary hash #{hoo_summary_hash}"
     return hoo_summary_hash
   end
 
@@ -374,15 +369,13 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
           end
         else
           new_hoo_start = hoo_start_dows
-          if hoo_start_dows + hoo_dur_dows <= 24.0
-            new_hoo_end = hoo_start_dows + hoo_dur_dows
-          else
-            new_hoo_end = hoo_start_dows + hoo_dur_dows - 24.0
-          end
-          if new_hoo_start <= new_hoo_end
-            target_dur = new_hoo_end - new_hoo_start
-          else
-            target_dur = 24.0 - new_hoo_end + new_hoo_start
+          target_dur = hoo_dur_dows
+          if new_hoo_start + target_dur < 24.0
+            new_hoo_end = new_hoo_start + target_dur
+          elsif new_hoo_start + target_dur == 24.0
+            new_hoo_end = 0.0
+          else # greater than 24
+            new_hoo_end = new_hoo_start + target_dur - 24.0
           end
         end
 

@@ -275,7 +275,7 @@ class ShiftHoursOfOperationTest < Minitest::Test
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
     args_hash['hoo_start_weekday'] = 8.0
-    args_hash['hoo_dur_weekday'] = 16.0 # todo figure out why 16 hour druation a probelm
+    args_hash['hoo_dur_weekday'] = 16.0
     args_hash['delta_values'] = false
     # using defaults values from measure.rb for other arguments
 
@@ -331,7 +331,7 @@ class ShiftHoursOfOperationTest < Minitest::Test
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
     args_hash['hoo_start_weekday'] = 8.0
-    args_hash['hoo_dur_weekday'] = 10.0
+    args_hash['hoo_dur_weekday'] = 17.0
     args_hash['hoo_start_saturday'] = 8.0
     args_hash['hoo_dur_saturday'] = 10.0
     args_hash['hoo_start_sunday'] = 8.0
