@@ -118,6 +118,19 @@ This determine what fraction of occupancy be considered operating conditions. Th
 
 
 
+### Hours of Operation Variable Method for Scheudle Profile Formula.
+If dynamically generate parametric schedules from current ruleset scheudles is selected ,this argument is used to determine if the schedule profile formulas define time of points in a profile as a a specific delta from the star, middle, or end of the horus of operation, or if the delta is fractaionl percentate of the horus fo operation ro non-operation/vacant time.
+**Name:** hoo_var_method,
+**Type:** Choice,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
+
+**Choice Display Names** ["fractional", "hours"]
+
+
+
 ### Use model hours of operation as target
 The default behavior is for this to be false. This can not be used unless Dynamically generate parametric schedules from current ruleset schedules is set to false and if the schedules in the model already have parametric profiles. When changed to true all of the hours of operation start and duration values will be ignored as the bool to treat those values as relative or absolute. Instead the hours of operation schedules for the model will be used.
 **Name:** target_hoo_from_model,

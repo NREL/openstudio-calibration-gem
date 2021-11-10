@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
-  <error>wrong number of arguments (given 1, expected 0)</error>
   <name>timeseries_objective_function</name>
   <uid>6804217d-4737-45f3-82df-b81393c29ce3</uid>
   <version_id>bdebe708-959f-448c-bcfe-085253520b90</version_id>

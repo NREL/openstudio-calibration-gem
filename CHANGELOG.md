@@ -1,5 +1,10 @@
 # OpenStudio Calibration Measures Gem
 
+## Version 0.5.0
+* Support for OpenStudio 3.3 (upgrade to extension gem 0.5.1 and standards gem 0.2.15)
+- Fixed [#35]( https://github.com/NREL/openstudio-calibration-gem/pull/35 ), adding compatibility matrix and contribution policy
+- Fixed [#38]( https://github.com/NREL/openstudio-calibration-gem/pull/38 ), Add hoo var method argment to change hours of operation measure
+
 ## Version 0.4.0
 
 * Support Ruby ~> 2.7

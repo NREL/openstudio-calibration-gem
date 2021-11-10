@@ -143,6 +143,16 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     fraction_of_daily_occ_range.setUnits('Hours')
     args << fraction_of_daily_occ_range
 
+    # argument to choose hour of operation variable method
+    choices = OpenStudio::StringVector.new
+    choices << 'fractional'
+    choices << 'hours'
+    hoo_var_method = OpenStudio::Measure::OSArgument.makeChoiceArgument('hoo_var_method', choices, true)
+    hoo_var_method.setDisplayName('Hours of Operation Variable Method for Scheudle Profile Formula.')
+    hoo_var_method.setDescription('If dynamically generate parametric schedules from current ruleset scheudles is selected ,this argument is used to determine if the schedule profile formulas define time of points in a profile as a a specific delta from the star, middle, or end of the horus of operation, or if the delta is fractaionl percentate of the horus fo operation ro non-operation/vacant time.')
+    hoo_var_method.setDefaultValue('fractional')
+    args << hoo_var_method
+
     # make an argument for target_hoo_from_model
     # Should only be true when infer_parametric_schedules is false
     target_hoo_from_model = OpenStudio::Measure::OSArgument.makeBoolArgument('target_hoo_from_model', true)
@@ -359,10 +369,13 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
           end
         else
           new_hoo_start = hoo_start_dows
-          if hoo_start_dows + hoo_dur_dows <= 24.0
-            new_hoo_end = hoo_start_dows + hoo_dur_dows
-          else
-            new_hoo_end = hoo_start_dows + hoo_dur_dows - 24.0
+          target_dur = hoo_dur_dows
+          if new_hoo_start + target_dur < 24.0
+            new_hoo_end = new_hoo_start + target_dur
+          elsif new_hoo_start + target_dur == 24.0
+            new_hoo_end = 0.0
+          else # greater than 24
+            new_hoo_end = new_hoo_start + target_dur - 24.0
           end
         end
 
@@ -443,11 +456,10 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       end
 
       # model_setup_parametric_schedules
-      # todo - there should be arg here that can have formula based on fraction of day and no hours is argument to gather_inputs_parametric_schedules method. need to update high level methods in standards to support input for this
-      standard.model_setup_parametric_schedules(model, gather_data_only: false)
+      standard.model_setup_parametric_schedules(model, gather_data_only: false, hoo_var_method: args['hoo_var_method'])
     end
 
-    # report final condition of model
+    # report initial condition of model
     hoo_summary_hash = hoo_summary(model, runner, standard)
     if !hoo_summary_hash[:zero_hoo].empty?
       runner.registerInitialCondition("Across the building the non-zero hours of operation range from #{hoo_summary_hash[:final_hoo_dur_range].min} hours to #{hoo_summary_hash[:final_hoo_dur_range].max} hours. Start of hours of operation range from #{hoo_summary_hash[:final_hoo_start_range].min} to #{hoo_summary_hash[:final_hoo_start_range].max}. One or more hours of operation schedules used contain a profile with 0 hours of operation.")
@@ -497,7 +509,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       runner.registerFinalCondition("Across the building the hours of operation range from #{hoo_summary_hash[:final_hoo_dur_range].min} hours to #{hoo_summary_hash[:final_hoo_dur_range].max} hours. Start of hours of operation range from #{hoo_summary_hash[:final_hoo_start_range].min} to #{hoo_summary_hash[:final_hoo_start_range].max}.")
     end
 
-    # get log messages (if debut in setup is true this will fail for error)
+    # get log messages (if debug in setup is true this will fail for error)
     OsLib_HelperMethods.log_msgs
 
     # TODO: - adding hours of operation to a schedule that doesn't have them to start with, like a sunday, can be problematic
