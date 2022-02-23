@@ -67,7 +67,7 @@ class HardSizeHVAC < OpenStudio::Measure::ModelMeasure
     super(model, runner, user_arguments)
 
     # Make the standard applier
-    standard = Standard.build('90.1-2004') # templae choice doesn't matter
+    standard = Standard.build('90.1-2004') # template choice doesn't matter
 
     # Perform a sizing run (2.5.1 and later)
     sizing_run_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/SR1').to_s
