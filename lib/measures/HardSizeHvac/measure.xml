@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>hard_size_hvac</name>
   <uid>d7da749f-6318-4077-b502-25994a713b27</uid>
-  <version_id>962f9f66-5795-4157-a3ee-7a335d81b576</version_id>
-  <version_modified>20210304T152734Z</version_modified>
+  <version_id>0647d2b3-e8b0-4529-962f-dbb85d4945fa</version_id>
+  <version_modified>20220223T145950Z</version_modified>
   <xml_checksum>2B526343</xml_checksum>
   <class_name>HardSizeHVAC</class_name>
   <display_name>Hard Size HVAC</display_name>
@@ -71,12 +71,24 @@
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>1.5.0</identifier>
-        <min_compatible>1.5.0</min_compatible>
+        <min_compatible>2.5.1</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>63C57B08</checksum>
+      <checksum>0920138B</checksum>
+    </file>
+    <file>
+      <filename>small_office.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>0FB2ACC8</checksum>
+    </file>
+    <file>
+      <filename>hard_size_hvac_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FA5BB28D</checksum>
     </file>
   </files>
 </measure>

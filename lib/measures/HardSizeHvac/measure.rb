@@ -66,13 +66,15 @@ class HardSizeHVAC < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
-    # Require the HVAC sizing library
-    # require_relative 'resources/HVACSizing.Model'
+    # Make the standard applier
+    standard = Standard.build('90.1-2004') # template choice doesn't matter
 
-    # Run a sizing run and attach the resulting
-    # sql file to the model.  Hard sizing methods
-    # won't work unless the model has a sql file.
-    model.runSizingRun(Dir.pwd.to_s)
+    # Perform a sizing run (2.5.1 and later)
+    sizing_run_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/SR1').to_s
+    runner.registerInfo("Performing sizing run at #{sizing_run_path}.")
+    if standard.model_run_sizing_run(model, sizing_run_path) == false
+      return false
+    end
 
     # Hard sizing every object in the model.
     model.applySizingValues
