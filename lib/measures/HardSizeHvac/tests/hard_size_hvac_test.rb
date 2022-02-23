@@ -33,58 +33,60 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-# see the URL below for information on how to write OpenStudio measures
-# http://openstudio.nrel.gov/openstudio-measure-writing-guide
+# insert your copyright here
 
-# start the measure
-class HardSizeHVAC < OpenStudio::Measure::ModelMeasure
-  require 'openstudio-standards'
+require 'openstudio'
+require 'openstudio/measure/ShowRunnerOutput'
+require 'minitest/autorun'
+require_relative '../measure.rb'
+require 'fileutils'
 
-  # human readable name
-  def name
-    'Hard Size HVAC'
-  end
+class HardSizeHVACTest < Minitest::Test
+  def test_good_argument_values
+    # create an instance of the measure
+    measure = HardSizeHVAC.new
 
-  # human readable description
-  def description
-    'Run a simulation to autosize HVAC equipment and then apply these autosized values back to the model.'
-  end
+    # create runner with empty OSW
+    osw = OpenStudio::WorkflowJSON.new
+    runner = OpenStudio::Measure::OSRunner.new(osw)
 
-  # human readable description of modeling approach
-  def modeler_description
-    'Run a simulation to autosize HVAC equipment and then apply these autosized values back to the model.'
-  end
+    # load the test model
+    translator = OpenStudio::OSVersion::VersionTranslator.new
+    path = "#{File.dirname(__FILE__)}/small_office.osm"
+    model = translator.loadModel(path)
+    assert(!model.empty?)
+    model = model.get
 
-  # define the arguments that the user will input
-  def arguments(_model)
-    args = OpenStudio::Measure::OSArgumentVector.new
+    # get arguments
+    arguments = measure.arguments(model)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-    args
-  end
+    # create hash of argument values.
+    # If the argument has a default that you want to use, you don't need it in the hash
+    args_hash = {}
+    # using defaults values from measure.rb for other arguments
 
-  # define what happens when the measure is run
-  def run(model, runner, user_arguments)
-    super(model, runner, user_arguments)
-
-    # Make the standard applier
-    standard = Standard.build('90.1-2004') # templae choice doesn't matter
-
-    # Perform a sizing run (2.5.1 and later)
-    sizing_run_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/SR1').to_s
-    runner.registerInfo("Performing sizing run at #{sizing_run_path}.")
-    if standard.model_run_sizing_run(model, sizing_run_path) == false
-      return false
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash.key?(arg.name)
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
     end
 
-    # Hard sizing every object in the model.
-    model.applySizingValues
+    # run the measure
+    measure.run(model, runner, argument_map)
+    result = runner.result
 
-    # Log the openstudio-standards messages to the runner
-    log_messages_to_runner(runner, false)
+    # show the output
+    show_output(result)
 
-    true
+    # assert that it ran correctly
+    assert_equal('Success', result.value.valueName)
+
+    # save the model to test output directory
+    output_file_path = "#{File.dirname(__FILE__)}//output/test_output.osm"
+    model.save(output_file_path, true)
   end
 end
-
-# register the measure to be used by the application
-HardSizeHVAC.new.registerWithApplication

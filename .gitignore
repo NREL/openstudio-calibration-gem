@@ -28,3 +28,4 @@
 lib/measures/.rubocop.yml
 lib/test/*
 test_results/
+/lib/measures/*/output/
