@@ -1,5 +1,8 @@
 # OpenStudio Calibration Measures Gem
 
+## Version 0.6.0
+* Support for OpenStudio 3.4 (upgrade to standards gem 0.2.16, no extension gem upgrade)
+
 ## Version 0.5.1
 * Fixed [#24]( https://github.com/NREL/openstudio-calibration-gem/pull/24 ), HardSizeHvac: undefined method `runSizingRun'
 * Fixed [#42]( https://github.com/NREL/openstudio-calibration-gem/pull/42 ), Update reporting measures in repo to pass in model = nil
