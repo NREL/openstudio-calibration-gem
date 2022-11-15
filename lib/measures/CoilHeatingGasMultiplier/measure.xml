@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_heating_gas_multiplier</name>
   <uid>a4843fc4-4cc7-4112-b5a9-aef81cbeac63</uid>
-  <version_id>3f8beb10-cac3-473b-ae4e-3fedd2b60fae</version_id>
-  <version_modified>20210304T152733Z</version_modified>
+  <version_id>247d7a97-61f2-4045-aad2-eea7045caf25</version_id>
+  <version_modified>20221115T231440Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingGasMultiplier</class_name>
   <display_name>Heating Coils Gas Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{c62168e0-0dd9-4580-9742-8b00adc9124a}</default_value>
+      <default_value>{f342d2fe-24d7-4655-ab11-4b1c9b68aa4d}</default_value>
       <choices>
         <choice>
-          <value>{c62168e0-0dd9-4580-9742-8b00adc9124a}</value>
+          <value>{f342d2fe-24d7-4655-ab11-4b1c9b68aa4d}</value>
           <display_name>*All Gas Heating Coils*</display_name>
         </choice>
         <choice>
@@ -95,7 +95,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <version>
@@ -106,7 +106,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D4470291</checksum>
+      <checksum>C2348598</checksum>
     </file>
   </files>
 </measure>

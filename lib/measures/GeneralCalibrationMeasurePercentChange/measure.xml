@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>general_calibration_measure_percent_change</name>
   <uid>0f583ac1-fa7e-48bc-9f80-12ed17180669</uid>
-  <version_id>97d91e8d-d252-4b42-8896-5348b36bae8a</version_id>
-  <version_modified>20210304T152734Z</version_modified>
+  <version_id>b90bd230-116d-4a1a-be73-eec73504b1da</version_id>
+  <version_modified>20221115T231441Z</version_modified>
   <xml_checksum>DEC0D835</xml_checksum>
   <class_name>GeneralCalibrationMeasurePercentChange</class_name>
   <display_name>General Calibration Measure Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{3249b38a-9545-40b8-af83-ca8a15ced685}</default_value>
+      <default_value>{111cb5c7-730b-4e08-8229-2bba712e75b6}</default_value>
       <choices>
         <choice>
-          <value>{3249b38a-9545-40b8-af83-ca8a15ced685}</value>
+          <value>{111cb5c7-730b-4e08-8229-2bba712e75b6}</value>
           <display_name>*All SpaceTypes*</display_name>
         </choice>
         <choice>
@@ -35,10 +35,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{3249b38a-9545-40b8-af83-ca8a15ced685}</default_value>
+      <default_value>{111cb5c7-730b-4e08-8229-2bba712e75b6}</default_value>
       <choices>
         <choice>
-          <value>{3249b38a-9545-40b8-af83-ca8a15ced685}</value>
+          <value>{111cb5c7-730b-4e08-8229-2bba712e75b6}</value>
           <display_name>*All Spaces*</display_name>
         </choice>
         <choice>
@@ -213,7 +213,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <version>
@@ -224,7 +224,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>4D57734F</checksum>
+      <checksum>A60D6823</checksum>
     </file>
   </files>
 </measure>

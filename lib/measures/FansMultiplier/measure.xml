@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>fans_multiplier</name>
   <uid>af156383-cfe2-4798-b581-08a4cccb8877</uid>
-  <version_id>5fa46bca-1373-43bb-a6a2-f8639d9d1b03</version_id>
-  <version_modified>20210304T152734Z</version_modified>
+  <version_id>9e04263f-3c97-4e11-8d60-acddb65cf301</version_id>
+  <version_modified>20221115T231440Z</version_modified>
   <xml_checksum>3C1DA54F</xml_checksum>
   <class_name>FansMultiplier</class_name>
   <display_name>Fans Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{b48061ed-58fa-4a2d-9d42-3758edb78dd4}</default_value>
+      <default_value>{e4bafaee-b258-4dc1-8cde-b1ac0a68e18a}</default_value>
       <choices>
         <choice>
-          <value>{b48061ed-58fa-4a2d-9d42-3758edb78dd4}</value>
+          <value>{e4bafaee-b258-4dc1-8cde-b1ac0a68e18a}</value>
           <display_name>*All Fans*</display_name>
         </choice>
         <choice>
@@ -37,6 +37,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>1</default_value>
+      <min_value>0.000000</min_value>
     </argument>
     <argument>
       <name>fan_efficiency_multiplier</name>
@@ -150,7 +151,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <version>
@@ -161,7 +162,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>E2203C33</checksum>
+      <checksum>4665937E</checksum>
     </file>
   </files>
 </measure>
