@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_monthly_json_utility_data</name>
   <uid>6da969e0-4256-49bf-9607-26504cc3d423</uid>
-  <version_id>48f42dbe-b5ca-4e20-a3ea-73348f118371</version_id>
-  <version_modified>20210304T152732Z</version_modified>
+  <version_id>706776f7-efa4-4aa4-9733-96f4e64033fe</version_id>
+  <version_modified>20221115T231440Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>AddMonthlyJSONUtilityData</class_name>
   <display_name>Add Monthly JSON Utility Data</display_name>
@@ -147,7 +147,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <version>
@@ -158,7 +158,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7B1E00EA</checksum>
+      <checksum>7C40B2C4</checksum>
     </file>
   </files>
 </measure>

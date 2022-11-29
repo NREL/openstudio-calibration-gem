@@ -24,6 +24,7 @@ Or install it yourself as:
 
 |OpenStudio Calibration Gem|OpenStudio|Ruby|
 |:--------------:|:----------:|:--------:|
+| 0.7.0  | 3.5      | 2.7    |
 | 0.6.0  | 3.4      | 2.7    |
 | 0.5.0  | 3.3      | 2.7    |
 | 0.4.0 - 0.4.2  | 3.2      | 2.7    |
