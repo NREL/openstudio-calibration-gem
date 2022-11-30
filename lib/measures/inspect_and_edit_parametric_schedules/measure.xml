@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>inspect_and_edit_parametric_schedules</name>
   <uid>4b5f610d-caac-47c2-bd5b-610e2fc0768e</uid>
-  <version_id>63f5e931-e682-4ed2-8f66-23c0e6f0b82f</version_id>
-  <version_modified>20210423T201850Z</version_modified>
+  <version_id>01ca7cda-5d3f-4084-a4a1-500952a23d43</version_id>
+  <version_modified>20221115T231446Z</version_modified>
   <xml_checksum>57318DBA</xml_checksum>
   <class_name>InspectAndEditParametricSchedules</class_name>
   <display_name>Inspect and Edit Parametric Schedules</display_name>
@@ -102,13 +102,13 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <filename>inspect_and_edit_parametric_schedules_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>70619B79</checksum>
+      <checksum>0C342EA4</checksum>
     </file>
     <file>
       <version>
@@ -119,7 +119,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>6C4E596B</checksum>
+      <checksum>B175605F</checksum>
     </file>
   </files>
 </measure>

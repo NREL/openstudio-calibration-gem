@@ -1,5 +1,8 @@
 # OpenStudio Calibration Measures Gem
 
+## Version 0.7.0
+* Support for OpenStudio 3.5 (upgrade to standards gem 0.3.0, extension gem 0.6.0)
+
 ## Version 0.6.0
 * Support for OpenStudio 3.4 (upgrade to standards gem 0.2.16, no extension gem upgrade)
 
