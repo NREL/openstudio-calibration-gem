@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_monthly_utility_data</name>
   <uid>6da969e0-4256-49bf-9607-26504cc3d421</uid>
-  <version_id>43b0307c-9c85-447a-81b6-16266eed28ac</version_id>
-  <version_modified>20221115T231442Z</version_modified>
+  <version_id>25081f8f-e8f6-4c0c-8b15-9604f1f7c017</version_id>
+  <version_modified>20221214T194943Z</version_modified>
   <xml_checksum>9064277D</xml_checksum>
   <class_name>AddMonthlyUtilityData</class_name>
   <display_name>AddMonthlyUtilityData</display_name>
@@ -35,6 +35,7 @@
     <argument>
       <name>start_date</name>
       <display_name>Start date</display_name>
+      <description>YYYY-MM-DD format</description>
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -42,6 +43,7 @@
     <argument>
       <name>end_date</name>
       <display_name>End date</display_name>
+      <description>YYYY-MM-DD format</description>
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -84,16 +86,16 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>A8846AF4</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>64FFEBDE</checksum>
+    </file>
+    <file>
+      <filename>AddMonthlyUtilityData_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>A837B4BF</checksum>
     </file>
     <file>
       <version>
@@ -104,13 +106,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A42CC52D</checksum>
+      <checksum>0AE56536</checksum>
     </file>
     <file>
-      <filename>AddMonthlyUtilityData_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>A837B4BF</checksum>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>9049427C</checksum>
     </file>
   </files>
 </measure>
