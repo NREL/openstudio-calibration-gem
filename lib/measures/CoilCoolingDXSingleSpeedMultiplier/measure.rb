@@ -206,12 +206,10 @@ class CoilCoolingDXSingleSpeedMultiplier < OpenStudio::Measure::ModelMeasure
 
       # modify rated_cop_multiplier
       if rated_cop_multiplier != 1.0
-        if coil.ratedCOP.is_initialized
           runner.registerInfo("Applying ratedCOP #{rated_cop_multiplier}x multiplier to #{coil.name.get}.")
-          coil.setRatedCOP(coil.ratedCOP.get * rated_cop_multiplier)
+          coil.setRatedCOP(coil.ratedCOP * rated_cop_multiplier)
           altered_coilefficiency << coil.handle.to_s
           altered_coil = true
-        end
       end
 
       next unless altered_coil
