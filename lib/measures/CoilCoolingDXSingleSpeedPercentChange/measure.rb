@@ -197,12 +197,10 @@ class CoilCoolingDXSingleSpeedPercentChange < OpenStudio::Measure::ModelMeasure
 
       # modify rated_cop_perc_change
       if rated_cop_perc_change != 0.0
-        if coil.ratedCOP.is_initialized
           runner.registerInfo("Applying ratedCOP #{rated_cop_perc_change} Percent Change to #{coil.name.get}.")
-          coil.setRatedCOP(coil.ratedCOP.get + coil.ratedCOP.get * rated_cop_perc_change * 0.01)
+          coil.setRatedCOP(coil.ratedCOP + coil.ratedCOP * rated_cop_perc_change * 0.01)
           altered_coilefficiency << coil.handle.to_s
           altered_coil = true
-        end
       end
 
       next unless altered_coil

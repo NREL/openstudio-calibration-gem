@@ -239,22 +239,18 @@ class CoilCoolingDXTwoSpeedMultiplier < OpenStudio::Measure::ModelMeasure
 
       # modify rated_highspeed_cop_multiplier
       if rated_highspeed_cop_multiplier != 1.0
-        if coil.ratedHighSpeedCOP.is_initialized
           runner.registerInfo("Applying ratedHighSpeedCOP #{rated_highspeed_cop_multiplier}x multiplier to #{coil.name.get}.")
-          coil.setRatedHighSpeedCOP(coil.ratedHighSpeedCOP.get * rated_highspeed_cop_multiplier)
+          coil.setRatedHighSpeedCOP(coil.ratedHighSpeedCOP * rated_highspeed_cop_multiplier)
           altered_coilefficiency << coil.handle.to_s
           altered_coil = true
-        end
       end
 
       # modify rated_lowspeed_cop_multiplier
       if rated_lowspeed_cop_multiplier != 1.0
-        if coil.ratedLowSpeedCOP.is_initialized
           runner.registerInfo("Applying ratedLowSpeedCOP #{rated_lowspeed_cop_multiplier}x multiplier to #{coil.name.get}.")
-          coil.setRatedLowSpeedCOP(coil.ratedLowSpeedCOP.get * rated_lowspeed_cop_multiplier)
+          coil.setRatedLowSpeedCOP(coil.ratedLowSpeedCOP * rated_lowspeed_cop_multiplier)
           altered_coilefficiency << coil.handle.to_s
           altered_coil = true
-        end
       end
 
       next unless altered_coil

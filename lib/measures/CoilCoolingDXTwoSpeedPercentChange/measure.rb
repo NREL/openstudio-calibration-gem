@@ -229,22 +229,18 @@ class CoilCoolingDXTwoSpeedPercentChange < OpenStudio::Measure::ModelMeasure
 
       # modify rated_highspeed_cop_perc_change
       if rated_highspeed_cop_perc_change != 0.0
-        if coil.ratedHighSpeedCOP.is_initialized
           runner.registerInfo("Applying ratedHighSpeedCOP #{rated_highspeed_cop_perc_change} Percent Change to #{coil.name.get}.")
-          coil.setRatedHighSpeedCOP(coil.ratedHighSpeedCOP.get + coil.ratedHighSpeedCOP.get * rated_highspeed_cop_perc_change * 0.01)
+          coil.setRatedHighSpeedCOP(coil.ratedHighSpeedCOP + coil.ratedHighSpeedCOP * rated_highspeed_cop_perc_change * 0.01)
           altered_coilefficiency << coil.handle.to_s
           altered_coil = true
-        end
       end
 
       # modify rated_lowspeed_cop_perc_change
       if rated_lowspeed_cop_perc_change != 0.0
-        if coil.ratedLowSpeedCOP.is_initialized
           runner.registerInfo("Applying ratedLowSpeedCOP #{rated_lowspeed_cop_perc_change} Percent Change to #{coil.name.get}.")
-          coil.setRatedLowSpeedCOP(coil.ratedLowSpeedCOP.get + coil.ratedLowSpeedCOP.get * rated_lowspeed_cop_perc_change * 0.01)
+          coil.setRatedLowSpeedCOP(coil.ratedLowSpeedCOP + coil.ratedLowSpeedCOP * rated_lowspeed_cop_perc_change * 0.01)
           altered_coilefficiency << coil.handle.to_s
           altered_coil = true
-        end
       end
 
       next unless altered_coil
