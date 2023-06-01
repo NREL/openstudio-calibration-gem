@@ -87,11 +87,13 @@ class AddMonthlyUtilityData < OpenStudio::Measure::ModelMeasure
     # make a start date argument
     start_date = OpenStudio::Measure::OSArgument.makeStringArgument('start_date', true)
     start_date.setDisplayName('Start date')
+    start_date.setDescription('YYYY-MM-DD format')
     args << start_date
 
     # make an end date argument
     end_date = OpenStudio::Measure::OSArgument.makeStringArgument('end_date', true)
     end_date.setDisplayName('End date')
+    end_date.setDescription('YYYY-MM-DD format')
     args << end_date
 
     args

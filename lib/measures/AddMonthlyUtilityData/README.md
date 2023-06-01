@@ -44,7 +44,7 @@ ModelMeasure
 **Model Dependent:** false
 
 ### Start date
-
+YYYY-MM-DD format
 **Name:** start_date,
 **Type:** String,
 **Units:** ,
@@ -52,7 +52,7 @@ ModelMeasure
 **Model Dependent:** false
 
 ### End date
-
+YYYY-MM-DD format
 **Name:** end_date,
 **Type:** String,
 **Units:** ,
