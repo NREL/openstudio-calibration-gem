@@ -1,6 +1,8 @@
 # OpenStudio Calibration Measures Gem
 
 ## Version 0.8.0
+* Fixed [#52]( https://github.com/NREL/openstudio-calibration-gem/pull/52 ), Specify date format in AddMonthlyUtilityData
+* Fixed [#55]( https://github.com/NREL/openstudio-calibration-gem/pull/55 ), Api change
 * Updating dependencies and licenses for OpenStudio 3.6 (upgrade to standards gem 0.4.0, extension gem 0.6.1)
 
 ## Version 0.7.0
