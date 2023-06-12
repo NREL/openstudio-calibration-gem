@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_cooling_water_multiplier</name>
   <uid>0fb42580-a644-4291-9a08-05521a6e7940</uid>
-  <version_id>0ba4eef3-781d-4076-81d1-23cd0fb5864d</version_id>
-  <version_modified>20221115T231448Z</version_modified>
+  <version_id>7a6d3886-f315-4011-a5a8-c0f02de4017e</version_id>
+  <version_modified>20230602T154657Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingWaterMultiplier</class_name>
   <display_name>Cooling Coils Water Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{6f80b77b-f918-45ce-ac3d-80fb1ce120dd}</default_value>
+      <default_value>{5d501a92-7ec0-41b0-867a-d9b403e60f07}</default_value>
       <choices>
         <choice>
-          <value>{6f80b77b-f918-45ce-ac3d-80fb1ce120dd}</value>
+          <value>{5d501a92-7ec0-41b0-867a-d9b403e60f07}</value>
           <display_name>*All Water Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -113,7 +113,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <version>
@@ -124,7 +124,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>72267749</checksum>
+      <checksum>EF484CE3</checksum>
     </file>
   </files>
 </measure>

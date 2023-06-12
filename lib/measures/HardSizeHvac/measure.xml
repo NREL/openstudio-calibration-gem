@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>hard_size_hvac</name>
   <uid>d7da749f-6318-4077-b502-25994a713b27</uid>
-  <version_id>e7624fa3-1831-4eb2-8db8-cc929aed3c29</version_id>
-  <version_modified>20221115T231448Z</version_modified>
+  <version_id>896c932e-915e-4c05-bc05-ca990ce88a0c</version_id>
+  <version_modified>20230602T154657Z</version_modified>
   <xml_checksum>2B526343</xml_checksum>
   <class_name>HardSizeHVAC</class_name>
   <display_name>Hard Size HVAC</display_name>
@@ -71,7 +71,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <version>
@@ -82,13 +82,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>471190C9</checksum>
+      <checksum>F0528E19</checksum>
     </file>
     <file>
       <filename>hard_size_hvac_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>12C7DECA</checksum>
+      <checksum>5C7F03AC</checksum>
     </file>
   </files>
 </measure>
