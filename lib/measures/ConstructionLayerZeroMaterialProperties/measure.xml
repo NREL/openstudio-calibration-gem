@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>construction_layer_zero_material_properties</name>
   <uid>3c7a6751-bb54-4600-9410-8f042e1a413b</uid>
-  <version_id>5c6d1f40-d46e-4cdc-aa88-b670aa6aecbb</version_id>
-  <version_modified>20221115T231441Z</version_modified>
+  <version_id>e7381878-8180-4462-8b6d-312383d57220</version_id>
+  <version_modified>20230602T154652Z</version_modified>
   <xml_checksum>0BF71A3E</xml_checksum>
   <class_name>ConstructionLayerZeroMaterialProperties</class_name>
   <display_name>Change Parameters Of Material (Layer 0 of Construction)</display_name>
@@ -178,7 +178,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <version>
@@ -189,7 +189,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D1813943</checksum>
+      <checksum>58B551D5</checksum>
     </file>
   </files>
 </measure>

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_heating_gas_percent_change</name>
   <uid>8589af79-cfe7-45fb-9c79-e7b95e5fb02f</uid>
-  <version_id>af5f258e-3cbd-4cc4-a55e-efc2aa99d212</version_id>
-  <version_modified>20221115T231441Z</version_modified>
+  <version_id>ea6e0ebc-c5b8-40cf-9139-75b9e3c0ac92</version_id>
+  <version_modified>20230602T154653Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingGasPercentChange</class_name>
   <display_name>Heating Coils Gas Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{f63fb2eb-22de-403d-ab86-84b453698ed6}</default_value>
+      <default_value>{b8bc9ec0-4bbf-4437-aa27-64d7f682926f}</default_value>
       <choices>
         <choice>
-          <value>{f63fb2eb-22de-403d-ab86-84b453698ed6}</value>
+          <value>{b8bc9ec0-4bbf-4437-aa27-64d7f682926f}</value>
           <display_name>*All Gas Heating Coils*</display_name>
         </choice>
         <choice>
@@ -95,7 +95,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <version>
@@ -106,7 +106,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>BB3C094A</checksum>
+      <checksum>B18BB064</checksum>
     </file>
   </files>
 </measure>

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>fans_percent_change</name>
   <uid>4c13a935-976b-4d54-bf7f-a4064fb6e11d</uid>
-  <version_id>9951c488-f9d1-44bb-83ef-3d54c2387791</version_id>
-  <version_modified>20221115T231441Z</version_modified>
+  <version_id>3247a047-54b8-44cd-9350-b141443ff173</version_id>
+  <version_modified>20230602T154653Z</version_modified>
   <xml_checksum>3C1DA54F</xml_checksum>
   <class_name>FansPercentChange</class_name>
   <display_name>Fans Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{4515e273-905f-453b-a97f-2dba17ac73a9}</default_value>
+      <default_value>{9f2ad20c-215b-46e3-a486-358f9bb4b7ae}</default_value>
       <choices>
         <choice>
-          <value>{4515e273-905f-453b-a97f-2dba17ac73a9}</value>
+          <value>{9f2ad20c-215b-46e3-a486-358f9bb4b7ae}</value>
           <display_name>*All Fans*</display_name>
         </choice>
         <choice>
@@ -151,7 +151,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <version>
@@ -162,7 +162,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>ABF4A8FA</checksum>
+      <checksum>FB38189C</checksum>
     </file>
   </files>
 </measure>

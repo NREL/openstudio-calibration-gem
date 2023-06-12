@@ -4,8 +4,8 @@
   <error>wrong number of arguments (given 1, expected 0)</error>
   <name>calibration_reports</name>
   <uid>2baede0a-65f3-47ec-b5f6-9c21d0f91aff</uid>
-  <version_id>786caf56-316e-40a9-9cce-9775573abcbb</version_id>
-  <version_modified>20221115T231448Z</version_modified>
+  <version_id>566f5610-4142-4d85-a119-9e481396170e</version_id>
+  <version_modified>20230602T154657Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>CalibrationReports</class_name>
   <display_name>Calibration Reports</display_name>
@@ -76,7 +76,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <version>
@@ -87,13 +87,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>87DF6D82</checksum>
+      <checksum>20C72976</checksum>
     </file>
     <file>
       <filename>CalibrationReports_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>86F1937B</checksum>
+      <checksum>C8C35A61</checksum>
     </file>
   </files>
 </measure>
