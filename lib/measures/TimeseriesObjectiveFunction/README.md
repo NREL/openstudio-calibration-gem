@@ -8,6 +8,8 @@ Creates Objective Function from Timeseries Data.  The measure applies a Norm at 
 
 ## Arguments
 
+**verbose_messages** will display all the runner.registerInfo statements for the metered value, simulated value and their difference at EVERY timestep. while this is useful for debugging the usage of the Measure, it has a MAJOR impact on performance and will slow the running of the measure.  Turn to False for production runs.  
+
 **csv_name** is the file path, relative to the Measure at runtime, to the CSV data. If this run is taking place on an OS-Server or (OSAF) instance, where the project data is zipped up into an OSA.zip file and posted to the OS-Server Web node (in a directory called **calibration_data**), then relative path to the data would be: '../../../lib/calibration_data/electric_json.json'.  Notice the **lib** in the path name for the OSAF use case.
 
 **csv_time_header** is the Header Value in the CSV file with metered data for the TIMESTAMP, ex: "timestamp"
