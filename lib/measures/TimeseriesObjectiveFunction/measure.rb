@@ -15,17 +15,17 @@ require 'erb'
 class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
   # human readable name
   def name
-    'TimeSeries Objective Function'
+    return 'TimeSeries Objective Function'
   end
 
   # human readable description
   def description
-    'Creates Objective Function from Timeseries Data'
+    return 'Creates Objective Function from Timeseries Data'
   end
 
   # human readable description of modeling approach
   def modeler_description
-    "Creates Objective Function from Timeseries Data.  The measure applies a Norm at each timestep between the difference of CSV metered data and SQL model data. A timeseries plot can also be created.  Possible outputs are 'cvrmse', 'nmbe', 'simdata' = sum of the simulated data, 'csvdata' = sum of metered data, 'diff' = P Norm between the metered and simulated data if Norm is 1 or 2, else its just the Difference."
+    return "Creates Objective Function from Timeseries Data.  The measure applies a Norm at each timestep between the difference of CSV metered data and SQL model data. A timeseries plot can also be created.  Possible outputs are 'cvrmse', 'nmbe', 'simdata' = sum of the simulated data, 'csvdata' = sum of metered data, 'diff' = P Norm between the metered and simulated data if Norm is 1 or 2, else its just the Difference."
   end
 
   # define the arguments that the user will input
@@ -71,7 +71,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
 
     years = OpenStudio::Measure::OSArgument.makeBoolArgument('year', true)
     years.setDisplayName('Year in csv data timestamp')
-    years.setDescription('Is the Year in the csv data timestamp => mm:dd:yy or mm:dd (true/false)')
+    years.setDescription('Is the Year in the csv data timestamp => mm:dd:yyyy or mm:dd (true/false)')
     years.setDefaultValue(true)
     args << years
 
@@ -145,7 +145,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
     plot_name = OpenStudio::Measure::OSArgument.makeStringArgument('plot_name', true)
     plot_name.setDisplayName('Plot name')
     plot_name.setDescription('Name to include in reporting file name.')
-    plot_name.setDefaultValue('')
+    plot_name.setDefaultValue('plot_name')
     args << plot_name
 
     verbose_messages = OpenStudio::Measure::OSArgument.makeBoolArgument('verbose_messages', true)
@@ -262,6 +262,11 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
     convert_data = runner.getStringArgumentValue('convert_data', user_arguments)
     last_zero = runner.getBoolArgumentValue('add_last_zero_for_plots', user_arguments)
     first_zero = runner.getBoolArgumentValue('add_first_zero_for_plots', user_arguments)
+
+    # remove leading and trailing double quotes
+    # windows users can shift + right click a file to copy as path, which has double quotes
+    csv_name.gsub!('"', '')
+
     @name = plot_name
     # Method to translate from OpenStudio's time formatting
     # to Javascript time formatting
@@ -511,9 +516,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
             if year.nil?
               dat = OpenStudio::Date.new(OpenStudio::MonthOfYear.new(cal[mon]), day)
             else
-              # dat = OpenStudio::Date.new(OpenStudio::MonthOfYear.new(cal[mon]),day,year)
-              # hack since year is not in the sql file correctly
-              dat = OpenStudio::Date.new(OpenStudio::MonthOfYear.new(cal[mon]), day)
+              dat = OpenStudio::Date.new(OpenStudio::MonthOfYear.new(cal[mon]),day,year)
             end
             tim = if sec.nil?
                     OpenStudio::Time.new(0, hou, min, 0)
@@ -629,7 +632,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
 
         if algorithm_download
           require 'csv'
-          CSV.open("timeseries#{plot_name}.csv", 'wb') do |csv|
+          CSV.open("timeseries_#{plot_name}.csv", 'wb') do |csv|
             csv << ['Simulation Time', 'Simulated Value', 'Metered time', 'Metered Value']
             data.size.times do |i|
               csv << [data[i]['time'], data[i]['y'], data2[i]['time'], data2[i]['y']]
@@ -658,7 +661,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
         Dir.mkdir(directory_name) unless File.exist?(directory_name)
         FileUtils.cp("timeseries_#{csv_var}.json", directory_name)
         FileUtils.cp("allseries_#{csv_var}.json", directory_name)
-        FileUtils.cp("timeseries#{plot_name}.csv", directory_name)
+        FileUtils.cp("timeseries_#{plot_name}.csv", directory_name)
       end
     end
     diff = Math.sqrt(diff) if norm == 2
