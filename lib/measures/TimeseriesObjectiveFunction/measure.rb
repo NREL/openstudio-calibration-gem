@@ -343,11 +343,11 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
         runner.registerInfo("available EnvPeriod: #{env_s}, available ReportingFrequencies: #{freqs}")
         freqs.each do |freq|
           vn = sql.availableVariableNames(env_s, freq.to_s)
-          runner.registerInfo("available variable names: #{vn}")
+          runner.registerInfo("  available ReportingFrequency: #{freq}, available variable names: #{vn}")
           vn.each do |v|
             kv = sql.availableKeyValues(env_s, freq.to_s, v)
-            runner.registerInfo("variable names: #{v}")
-            runner.registerInfo("available key value: #{kv}")
+            runner.registerInfo("    variable names: #{v}")
+            runner.registerInfo("    available key value: #{kv}")
           end
         end
       end
