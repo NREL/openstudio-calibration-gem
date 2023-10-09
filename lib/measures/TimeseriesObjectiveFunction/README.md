@@ -1,14 +1,60 @@
 
 
-###### (Automatically generated documentation)
-
 # TimeSeries Objective Function
 
 ## Description
-Creates Objective Function from Timeseries Data
 
-## Modeler Description
 Creates Objective Function from Timeseries Data.  The measure applies a Norm at each timestep between the difference of CSV metered data and SQL model data. A timeseries plot can also be created.  Possible outputs are 'cvrmse', 'nmbe', 'simdata' = sum of the simulated data, 'csvdata' = sum of metered data, 'diff' = P Norm between the metered and simulated data if Norm is 1 or 2, else its just the Difference.
+
+## Arguments
+
+**csv_name** is the file path, relative to the Measure at runtime, to the CSV data. If this run is taking place on an OS-Server or (OSAF) instance, where the project data is zipped up into an OSA.zip file and posted to the OS-Server Web node (in a directory called **calibration_data**), then relative path to the data would be: '../../../lib/calibration_data/electric_json.json'.  Notice the **lib** in the path name for the OSAF use case.
+
+**csv_time_header** is the Header Value in the CSV file with metered data for the TIMESTAMP, ex: "timestamp"
+
+**csv_var**, is the column name of the metered data, ex: "Electricity:Facility[J]"
+
+**convert_data** is used to convert the units in the CSV from 'F to C', 'WH to J', 'CFM to m3/s', 'PSI to Pa' or **None**
+
+The timestamp of the CSV data should follow a mm/dd/yyyy hh:mm:ss format with NO AM/PM
+
+**year** (true) Is the Year in the csv data timestamp => mm/dd/yyyy or mm/dd
+
+**seconds** (true) Is the Seconds in the csv data timestamp => hh:mm:ss or hh:mm
+
+The model output variables/meters are listed in the eplusout.rdd and .mdd files.
+
+The Measure argument **find_avail** (true)  will print out ALL the available RunPeriods (EnvPeriod), ReportingFrequencies, Variables and key values in the run.log file:
+
+`[15:11:26.640379 INFO] environment_periods: ["Run Period 1"]`\
+`[15:11:26.640418 INFO] available timeseries: ["Electricity:Facility", "NaturalGas:Facility", "Surface Inside Face Temperature", "Zone Outdoor Air Drybulb Temperature"]`\
+`[15:11:26.640424 INFO] `\
+`[15:11:26.640443 INFO] available EnvPeriod: Run Period 1, available ReportingFrequencies: ["Daily", "Hourly", "Zone Timestep"]`\
+`[15:11:26.640454 INFO]   available ReportingFrequency: Daily, available variable names: ["Electricity:Facility", "NaturalGas:Facility"]`\
+`[15:11:26.640463 INFO]     variable names: Electricity:Facility`\
+`[15:11:26.640469 INFO]     available key value: [""]`\
+`[15:11:26.640476 INFO]     variable names: NaturalGas:Facility`\
+`[15:11:26.640481 INFO]     available key value: [""]`\
+`[15:11:26.640493 INFO]   available ReportingFrequency: Hourly, available variable names: ["Electricity:Facility", "NaturalGas:Facility", "Surface Inside Face Temperature", "Zone Outdoor Air Drybulb Temperature"]`\
+`[15:11:26.640499 INFO]     variable names: Electricity:Facility`\
+`[15:11:26.640505 INFO]     available key value: [""]`\
+`[15:11:26.640511 INFO]     variable names: NaturalGas:Facility`\
+`[15:11:26.640516 INFO]     available key value: [""]`\
+`[15:11:26.640526 INFO]     variable names: Surface Inside Face Temperature`\
+`[15:11:26.640539 INFO]     available key value: ["SUB SURFACE 1", "SUB SURFACE 2", "SURFACE 1"]`\
+`[15:11:26.640546 INFO]     variable names: Zone Outdoor Air Drybulb Temperature`\
+`[15:11:26.640552 INFO]     available key value: ["THERMAL ZONE 1"]`\
+`[15:11:26.640561 INFO]   available ReportingFrequency: Zone Timestep, available variable names: ["Electricity:Facility", "NaturalGas:Facility"]`\
+`[15:11:26.640567 INFO]     variable names: Electricity:Facility`\
+`[15:11:26.640573 INFO]     available key value: [""]`\
+`[15:11:26.640579 INFO]     variable names: NaturalGas:Facility`\
+`[15:11:26.640585 INFO]     available key value: [""]`\
+
+* The name of the variable/timeseries to be compared is used in the **timeseries_name** measure argument.
+* Some variables require a further **key_value** to narrow down the results to a specific object like a Surface or Zone.
+* RunPeriods/EnvPeriod are set in the **environment_period** measure argument.
+* ReportingFrequencies ["Daily", "Hourly", "Zone Timestep"] are set in the **reporting_frequency** measure argument.
+
 
 ## Measure Type
 ReportingMeasure
