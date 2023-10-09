@@ -71,7 +71,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
 
     years = OpenStudio::Measure::OSArgument.makeBoolArgument('year', true)
     years.setDisplayName('Year in csv data timestamp')
-    years.setDescription('Is the Year in the csv data timestamp => mm:dd:yyyy or mm:dd (true/false)')
+    years.setDescription('Is the Year in the csv data timestamp => mm/dd/yyyy or mm/dd (true/false)')
     years.setDefaultValue(true)
     args << years
 
@@ -355,63 +355,63 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
     runner.registerInfo("year: #{years}")
     runner.registerInfo("seconds: #{seconds}")
     if !years && seconds
-      # mm:dd hh:mm:ss
+      # mm/dd hh:mm:ss
       # check day time splits into two valid parts
       if !csv[1][0].split(' ')[0].nil? && !csv[1][0].split(' ')[1].nil?
         # check remaining splits are valid
         if !csv[1][0].split(' ')[0].split('/')[0].nil? && !csv[1][0].split(' ')[0].split('/')[1].nil? && !csv[1][0].split(' ')[1].split(':')[0].nil? && !csv[1][0].split(' ')[1].split(':')[1].nil? && !csv[1][0].split(' ')[1].split(':')[2].nil?
-          runner.registerInfo("CSV Time format is correct: #{csv[1][0]} mm:dd hh:mm:ss")
+          runner.registerInfo("CSV Time format is correct: #{csv[1][0]} mm/dd hh:mm:ss")
         else
-          runner.registerError("CSV Time format not correct: #{csv[1][0]}. Selected format is mm:dd hh:mm:ss")
+          runner.registerError("CSV Time format not correct: #{csv[1][0]}. Selected format is mm/dd hh:mm:ss")
           return false
         end
       else
-        runner.registerError("CSV Time format not correct: #{csv[1][0]}. Does not split into 'day time'. Selected format is mm:dd hh:mm:ss")
+        runner.registerError("CSV Time format not correct: #{csv[1][0]}. Does not split into 'day time'. Selected format is mm/dd hh:mm:ss")
         return false
       end
     elsif !years && !seconds
-      # mm:dd hh:mm
+      # mm/dd hh:mm
       # check day time splits into two valid parts
       if !csv[1][0].split(' ')[0].nil? && !csv[1][0].split(' ')[1].nil?
         # check remaining splits are valid
         if !csv[1][0].split(' ')[0].split('/')[0].nil? && !csv[1][0].split(' ')[0].split('/')[1].nil? && !csv[1][0].split(' ')[1].split(':')[0].nil? && !csv[1][0].split(' ')[1].split(':')[1].nil?
-          runner.registerInfo("CSV Time format is correct: #{csv[1][0]} mm:dd hh:mm")
+          runner.registerInfo("CSV Time format is correct: #{csv[1][0]} mm/dd hh:mm")
         else
-          runner.registerError("CSV Time format not correct: #{csv[1][0]}. Selected format is mm:dd hh:mm")
+          runner.registerError("CSV Time format not correct: #{csv[1][0]}. Selected format is mm/dd hh:mm")
           return false
         end
       else
-        runner.registerError("CSV Time format not correct: #{csv[1][0]}. Does not split into 'day time'. Selected format is mm:dd hh:mm")
+        runner.registerError("CSV Time format not correct: #{csv[1][0]}. Does not split into 'day time'. Selected format is mm/dd hh:mm")
         return false
       end
     elsif years && !seconds
-      # mm:dd:yy hh:mm
+      # mm/dd/yyyy hh:mm
       # check day time splits into two valid parts
       if !csv[1][0].split(' ')[0].nil? && !csv[1][0].split(' ')[1].nil?
         # check remaining splits are valid
         if !csv[1][0].split(' ')[0].split('/')[0].nil? && !csv[1][0].split(' ')[0].split('/')[1].nil? && !csv[1][0].split(' ')[0].split('/')[2].nil? && !csv[1][0].split(' ')[1].split(':')[0].nil? && !csv[1][0].split(' ')[1].split(':')[1].nil?
-          runner.registerInfo("CSV Time format is correct: #{csv[1][0]} mm:dd:yy hh:mm")
+          runner.registerInfo("CSV Time format is correct: #{csv[1][0]} mm/dd/yyyy hh:mm")
         else
-          runner.registerError("CSV Time format not correct: #{csv[1][0]}. Selected format is mm:dd:yy hh:mm")
+          runner.registerError("CSV Time format not correct: #{csv[1][0]}. Selected format is mm/dd/yyyy hh:mm")
           return false
         end
       else
-        runner.registerError("CSV Time format not correct: #{csv[1][0]}. Does not split into 'day time'. Selected format is mm:dd:yy hh:mm")
+        runner.registerError("CSV Time format not correct: #{csv[1][0]}. Does not split into 'day time'. Selected format is mm/dd/yyyy hh:mm")
         return false
       end
     elsif years && seconds
-      # mm:dd:yy hh:mm:ss
+      # mm/dd/yyyy hh:mm:ss
       # check day time splits into two valid parts
       if !csv[1][0].split(' ')[0].nil? && !csv[1][0].split(' ')[1].nil?
         # check remaining splits are valid
         if !csv[1][0].split(' ')[0].split('/')[0].nil? && !csv[1][0].split(' ')[0].split('/')[1].nil? && !csv[1][0].split(' ')[0].split('/')[2].nil? && !csv[1][0].split(' ')[1].split(':')[0].nil? && !csv[1][0].split(' ')[1].split(':')[1].nil? && !csv[1][0].split(' ')[1].split(':')[2].nil?
-          runner.registerInfo("CSV Time format is correct: #{csv[1][0]} mm:dd:yy hh:mm:ss")
+          runner.registerInfo("CSV Time format is correct: #{csv[1][0]} mm/dd/yyyy hh:mm:ss")
         else
-          runner.registerError("CSV Time format not correct: #{csv[1][0]}. Selected format is mm:dd:yy hh:mm:ss")
+          runner.registerError("CSV Time format not correct: #{csv[1][0]}. Selected format is mm/dd/yyyy hh:mm:ss")
           return false
         end
       else
-        runner.registerError("CSV Time format not correct: #{csv[1][0]}. Does not split into 'day time'. Selected format is mm:dd:yy hh:mm:ss")
+        runner.registerError("CSV Time format not correct: #{csv[1][0]}. Does not split into 'day time'. Selected format is mm/dd/yyyy hh:mm:ss")
         return false
       end
     end

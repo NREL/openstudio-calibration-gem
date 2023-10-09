@@ -81,7 +81,7 @@
     <argument>
       <name>year</name>
       <display_name>Year in csv data timestamp</display_name>
-      <description>Is the Year in the csv data timestamp =&gt; mm:dd:yyyy or mm:dd (true/false)</description>
+      <description>Is the Year in the csv data timestamp =&gt; mm/dd/yyyy or mm/dd (true/false)</description>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
