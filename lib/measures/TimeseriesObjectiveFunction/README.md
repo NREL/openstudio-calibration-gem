@@ -1,10 +1,20 @@
 
 
+###### (Automatically generated documentation)
+
 # TimeSeries Objective Function
 
 ## Description
+Creates Objective Function from Timeseries Data
 
+## Modeler Description
 Creates Objective Function from Timeseries Data.  The measure applies a Norm at each timestep between the difference of CSV metered data and SQL model data. A timeseries plot can also be created.  Possible outputs are 'cvrmse', 'nmbe', 'simdata' = sum of the simulated data, 'csvdata' = sum of metered data, 'diff' = P Norm between the metered and simulated data if Norm is 1 or 2, else its just the Difference.
+
+## Measure Type
+ReportingMeasure
+
+## Taxonomy
+
 
 ## Arguments
 
@@ -58,14 +68,6 @@ The Measure argument **find_avail** (true)  will print out ALL the available Run
 * ReportingFrequencies ["Daily", "Hourly", "Zone Timestep"] are set in the **reporting_frequency** measure argument.
 
 
-## Measure Type
-ReportingMeasure
-
-## Taxonomy
-
-
-## Arguments
-
 
 ### Path to CSV file for the metered data
 Path to CSV file including file name.
@@ -108,7 +110,7 @@ CSV variable display name. Not yet Implemented
 **Model Dependent:** false
 
 ### Year in csv data timestamp
-Is the Year in the csv data timestamp => mm:dd:yy or mm:dd (true/false)
+Is the Year in the csv data timestamp => mm/dd/yyyy or mm/dd (true/false)
 **Name:** year,
 **Type:** Boolean,
 **Units:** ,
