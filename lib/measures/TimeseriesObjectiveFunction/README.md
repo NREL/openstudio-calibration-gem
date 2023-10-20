@@ -63,7 +63,7 @@ The Measure argument **find_avail** (true)  will print out ALL the available Run
 `[15:11:26.640585 INFO]     available key value: [""]`\
 
 * The name of the variable/timeseries to be compared is used in the **timeseries_name** measure argument.
-* Some variables require a further **key_value** to narrow down the results to a specific object like a Surface or Zone.
+* Some variables require a further **key_value** to narrow down the results to a specific object like a Surface or Zone.  Some Meter based outputs have no key, i.e, Electricity:Facility.  For those, use the value **no_key**
 * RunPeriods/EnvPeriod are set in the **environment_period** measure argument.
 * ReportingFrequencies ["Daily", "Hourly", "Zone Timestep"] are set in the **reporting_frequency** measure argument.
 
