@@ -95,7 +95,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
 
     reportfreq_chs = OpenStudio::StringVector.new
     reportfreq_chs << 'Detailed'
-    reportfreq_chs << 'Timestep'
+    reportfreq_chs << 'Zone Timestep'
     reportfreq_chs << 'Hourly'
     reportfreq_chs << 'Daily'
     reportfreq_chs << 'Monthly'
