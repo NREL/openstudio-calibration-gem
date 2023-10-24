@@ -82,9 +82,9 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
     args << seconds
 
     sql_key = OpenStudio::Measure::OSArgument.makeStringArgument('key_value', true)
-    sql_key.setDisplayName('SQL key value')
+    sql_key.setDisplayName('SQL key value. use no_key if there is no key, i.e. Electricity:Facility')
     sql_key.setDescription('SQL key value for the SQL query to find the variable in the SQL file')
-    sql_key.setDefaultValue('')
+    sql_key.setDefaultValue('no_key')
     args << sql_key
 
     sql_var = OpenStudio::Measure::OSArgument.makeStringArgument('timeseries_name', true)
@@ -95,7 +95,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
 
     reportfreq_chs = OpenStudio::StringVector.new
     reportfreq_chs << 'Detailed'
-    reportfreq_chs << 'Timestep'
+    reportfreq_chs << 'Zone Timestep'
     reportfreq_chs << 'Hourly'
     reportfreq_chs << 'Daily'
     reportfreq_chs << 'Monthly'
