@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_cooling_water_multiplier</name>
   <uid>0fb42580-a644-4291-9a08-05521a6e7940</uid>
-  <version_id>7a6d3886-f315-4011-a5a8-c0f02de4017e</version_id>
-  <version_modified>20230602T154657Z</version_modified>
+  <version_id>c5a49988-bac0-438f-ad85-1cc3a4e2bf62</version_id>
+  <version_modified>20240428T231349Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingWaterMultiplier</class_name>
   <display_name>Cooling Coils Water Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{5d501a92-7ec0-41b0-867a-d9b403e60f07}</default_value>
+      <default_value>{77f90bca-84b4-4e1d-ad1b-6fab71450590}</default_value>
       <choices>
         <choice>
-          <value>{5d501a92-7ec0-41b0-867a-d9b403e60f07}</value>
+          <value>{77f90bca-84b4-4e1d-ad1b-6fab71450590}</value>
           <display_name>*All Water Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -124,7 +124,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>EF484CE3</checksum>
+      <checksum>D4395EC8</checksum>
     </file>
   </files>
 </measure>

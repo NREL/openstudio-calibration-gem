@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>timeseries_objective_function</name>
   <uid>6804217d-4737-45f3-82df-b81393c29ce4</uid>
-  <version_id>e8e47e87-273b-49ca-ac87-875381ad5130</version_id>
-  <version_modified>20240428T230734Z</version_modified>
+  <version_id>535ddcca-3c28-484c-a2f3-e07eabff47d1</version_id>
+  <version_modified>20240428T231344Z</version_modified>
   <xml_checksum>FFE04372</xml_checksum>
   <class_name>TimeseriesObjectiveFunction</class_name>
   <display_name>TimeSeries Objective Function</display_name>
@@ -425,13 +425,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>5A335FA6</checksum>
+      <checksum>27254D71</checksum>
     </file>
     <file>
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>8A17DC0B</checksum>
+      <checksum>BBF56F62</checksum>
     </file>
   </files>
 </measure>

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>exterior_wall_thermal_properties_percent_change</name>
   <uid>6ab39cf2-1f9e-4570-a797-360a814aaa64</uid>
-  <version_id>91864a79-286b-4cd1-92e4-c42deaf4fc48</version_id>
-  <version_modified>20230602T154653Z</version_modified>
+  <version_id>53318158-d762-4c16-bbc4-3e84fb7179f9</version_id>
+  <version_modified>20240428T231344Z</version_modified>
   <xml_checksum>EB1A0C08</xml_checksum>
   <class_name>ExteriorWallThermalPropertiesPercentChange</class_name>
   <display_name>Exterior Wall Thermal Percent Change</display_name>
@@ -89,6 +89,12 @@
       <checksum>BFFB1AA6</checksum>
     </file>
     <file>
+      <filename>ExteriorWallThermalPropertiesMultiplier_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>5AA3C07C</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>0.11.5</identifier>
@@ -97,13 +103,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>76BA6F40</checksum>
-    </file>
-    <file>
-      <filename>ExteriorWallThermalPropertiesMultiplier_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>5AA3C07C</checksum>
+      <checksum>DC101DDE</checksum>
     </file>
   </files>
 </measure>
