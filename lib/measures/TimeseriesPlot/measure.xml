@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>timeseries_plot</name>
   <uid>6804217d-4737-45f3-82df-b81393c29ce7</uid>
-  <version_id>f0dc56b0-b629-4d47-8199-e96f2fb76b06</version_id>
-  <version_modified>20230602T154653Z</version_modified>
+  <version_id>266fb96f-82b1-4bb4-8fcc-48e25d56903b</version_id>
+  <version_modified>20240428T230734Z</version_modified>
   <xml_checksum>FFE04372</xml_checksum>
   <class_name>TimeseriesPlot</class_name>
   <display_name>Timeseries Plot</display_name>
@@ -132,7 +132,7 @@
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>F5B9FC62</checksum>
+      <checksum>DF07A19F</checksum>
     </file>
   </files>
 </measure>
