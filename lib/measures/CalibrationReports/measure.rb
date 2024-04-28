@@ -15,9 +15,7 @@ class CalibrationReports < OpenStudio::Measure::ReportingMeasure
 
   # define the arguments that the user will input
   def arguments
-    args = OpenStudio::Measure::OSArgumentVector.new
-
-    args
+    OpenStudio::Measure::OSArgumentVector.new
   end
 
   # define what happens when the measure is run

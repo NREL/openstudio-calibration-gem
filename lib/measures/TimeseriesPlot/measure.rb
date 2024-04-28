@@ -156,9 +156,7 @@ class TimeseriesPlot < OpenStudio::Measure::ReportingMeasure
       js_time = js_time.gsub('Sep', '09')
       js_time = js_time.gsub('Oct', '10')
       js_time = js_time.gsub('Nov', '11')
-      js_time = js_time.gsub('Dec', '12')
-
-      js_time
+      js_time.gsub('Dec', '12')
     end
 
     # Create an array of arrays of variables

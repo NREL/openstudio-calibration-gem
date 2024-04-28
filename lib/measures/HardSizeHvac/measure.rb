@@ -27,9 +27,7 @@ class HardSizeHVAC < OpenStudio::Measure::ModelMeasure
 
   # define the arguments that the user will input
   def arguments(_model)
-    args = OpenStudio::Measure::OSArgumentVector.new
-
-    args
+    OpenStudio::Measure::OSArgumentVector.new
   end
 
   # define what happens when the measure is run
@@ -40,7 +38,7 @@ class HardSizeHVAC < OpenStudio::Measure::ModelMeasure
     standard = Standard.build('90.1-2004') # template choice doesn't matter
 
     # Perform a sizing run (2.5.1 and later)
-    sizing_run_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/SR1').to_s
+    sizing_run_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/SR1").to_s
     runner.registerInfo("Performing sizing run at #{sizing_run_path}.")
     if standard.model_run_sizing_run(model, sizing_run_path) == false
       return false
