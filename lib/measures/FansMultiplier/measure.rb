@@ -75,6 +75,7 @@ class FansMultiplier < OpenStudio::Measure::ModelMeasure
           loop_display_names << component.name.to_s
         end
         next if component.to_FanOnOff.empty?
+
         show_loop = true
         loop_handles << component.handle.to_s
         loop_display_names << component.name.to_s
@@ -211,13 +212,11 @@ class FansMultiplier < OpenStudio::Measure::ModelMeasure
     fans.each do |fan|
       altered_fan = false
       # modify max flowrate
-      if max_flowrate_multiplier != 1.0
-        if fan.maximumFlowRate.is_initialized
-          runner.registerInfo("Applying #{max_flowrate_multiplier}x multiplier to #{fan.name.get}.")
-          fan.setMaximumFlowRate(fan.maximumFlowRate * max_flowrate_multiplier)
-          altered_maxflow << fan.handle.to_s
-          altered_fan = true
-        end
+      if max_flowrate_multiplier != 1.0 && fan.maximumFlowRate.is_initialized
+        runner.registerInfo("Applying #{max_flowrate_multiplier}x multiplier to #{fan.name.get}.")
+        fan.setMaximumFlowRate(fan.maximumFlowRate * max_flowrate_multiplier)
+        altered_maxflow << fan.handle.to_s
+        altered_fan = true
       end
 
       # modify fan_efficiency_multiplier
@@ -245,10 +244,11 @@ class FansMultiplier < OpenStudio::Measure::ModelMeasure
       end
 
       next unless altered_fan
+
       altered_fans << fan.handle.to_s
       change_name(fan, max_flowrate_multiplier, fan_efficiency_multiplier, pressure_rise_multiplier, motor_efficiency_multiplier)
       runner.registerInfo("Fan name changed to: #{fan.name.get}")
-    end # end fan loop
+    end
 
     # na if nothing in model to look at
     if altered_fans.empty?

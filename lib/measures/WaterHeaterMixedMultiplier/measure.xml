@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>water_heater_mixed_multiplier</name>
   <uid>1e4d5053-d2c1-400d-9192-7a470e5a7b5c</uid>
-  <version_id>b37dc7d6-7369-471c-999b-3b7e37bc62d7</version_id>
-  <version_modified>20230602T154652Z</version_modified>
+  <version_id>deea4bc3-594c-4458-adda-1d8d70df14e0</version_id>
+  <version_modified>20240428T231344Z</version_modified>
   <xml_checksum>D28BCE9C</xml_checksum>
   <class_name>WaterHeaterMixedMultiplier</class_name>
   <display_name>Water Heater Mixed Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{324fe7dc-cc2a-433e-90bb-45cc50d3759b}</default_value>
+      <default_value>{b674cf66-1b06-421e-aaf5-0e4b4dbfaa8d}</default_value>
       <choices>
         <choice>
-          <value>{324fe7dc-cc2a-433e-90bb-45cc50d3759b}</value>
+          <value>{b674cf66-1b06-421e-aaf5-0e4b4dbfaa8d}</value>
           <display_name>*All WaterHeaterMixeds*</display_name>
         </choice>
         <choice>
@@ -176,7 +176,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>ADA82976</checksum>
+      <checksum>70B22ACC</checksum>
     </file>
   </files>
 </measure>

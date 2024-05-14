@@ -50,6 +50,7 @@ class CoilHeatingWaterPercentChange < OpenStudio::Measure::ModelMeasure
       components = value.supplyComponents
       components.each do |component|
         next if component.to_CoilHeatingWater.empty?
+
         show_loop = true
         loop_handles << component.handle.to_s
         loop_display_names << component.name.to_s
@@ -154,30 +155,27 @@ class CoilHeatingWaterPercentChange < OpenStudio::Measure::ModelMeasure
     coils.each do |coil|
       altered_coil = false
       # coil_capacity_perc_change
-      if coil_capacity_perc_change != 0.0
-        if coil.ratedCapacity.is_initialized
-          runner.registerInfo("Applying ratedCapacity #{coil_capacity_perc_change} Percent Change to #{coil.name.get}.")
-          coil.setRatedCapacity(coil.ratedCapacity.get + coil.ratedCapacity.get * coil_capacity_perc_change * 0.01)
-          altered_capacity << coil.handle.to_s
-          altered_coil = true
-        end
+      if coil_capacity_perc_change != 0.0 && coil.ratedCapacity.is_initialized
+        runner.registerInfo("Applying ratedCapacity #{coil_capacity_perc_change} Percent Change to #{coil.name.get}.")
+        coil.setRatedCapacity(coil.ratedCapacity.get + coil.ratedCapacity.get * coil_capacity_perc_change * 0.01)
+        altered_capacity << coil.handle.to_s
+        altered_coil = true
       end
 
       # modify ua_factor
-      if ua_factor != 0.0
-        if coil.uFactorTimesAreaValue.is_initialized
-          runner.registerInfo("Applying uFactorTimesAreaValue #{ua_factor} Percent Change to #{coil.name.get}.")
-          coil.setUFactorTimesAreaValue(coil.uFactorTimesAreaValue.get + coil.uFactorTimesAreaValue.get * ua_factor * 0.01)
-          altered_coilefficiency << coil.handle.to_s
-          altered_coil = true
-        end
+      if ua_factor != 0.0 && coil.uFactorTimesAreaValue.is_initialized
+        runner.registerInfo("Applying uFactorTimesAreaValue #{ua_factor} Percent Change to #{coil.name.get}.")
+        coil.setUFactorTimesAreaValue(coil.uFactorTimesAreaValue.get + coil.uFactorTimesAreaValue.get * ua_factor * 0.01)
+        altered_coilefficiency << coil.handle.to_s
+        altered_coil = true
       end
 
       next unless altered_coil
+
       altered_coils << coil.handle.to_s
       change_name(coil, ua_factor, coil_capacity_perc_change)
       runner.registerInfo("coil name changed to: #{coil.name.get}")
-    end # end coil loop
+    end
 
     # na if nothing in model to look at
     if altered_coils.empty?

@@ -7,7 +7,7 @@ require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'fileutils'
 
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'minitest/autorun'
 
 class CalibrationReports_Test < Minitest::Test
@@ -121,8 +121,8 @@ class CalibrationReports_Test < Minitest::Test
     model.addObjects(request_model.objects)
     model.save(model_out_path(test_name), true)
 
-    if ENV['OPENSTUDIO_TEST_NO_CACHE_SQLFILE']
-      FileUtils.rm_f(sql_path(test_name)) if File.exist?(sql_path(test_name))
+    if ENV['OPENSTUDIO_TEST_NO_CACHE_SQLFILE'] && File.exist?(sql_path(test_name))
+      FileUtils.rm_f(sql_path(test_name))
     end
 
     if is_openstudio_2?
@@ -217,12 +217,14 @@ class CalibrationReports_Test < Minitest::Test
     # check for varying demand
     model.getUtilityBills.each do |utilityBill|
       next if utilityBill.peakDemandUnitConversionFactor.empty?
+
       hasVaryingDemand = false
       modelPeakDemand = 0.0
       count = 0
       utilityBill.billingPeriods.each do |billingPeriod|
         peakDemand = billingPeriod.modelPeakDemand
         next if peakDemand.empty?
+
         temp = peakDemand.get
         if count == 0
           modelPeakDemand = temp
@@ -350,12 +352,14 @@ class CalibrationReports_Test < Minitest::Test
     # check for varying demand
     model.getUtilityBills.each do |utilityBill|
       next if utilityBill.peakDemandUnitConversionFactor.empty?
+
       hasVaryingDemand = false
       modelPeakDemand = 0.0
       count = 0
       utilityBill.billingPeriods.each do |billingPeriod|
         peakDemand = billingPeriod.modelPeakDemand
         next if peakDemand.empty?
+
         temp = peakDemand.get
         if count == 0
           modelPeakDemand = temp

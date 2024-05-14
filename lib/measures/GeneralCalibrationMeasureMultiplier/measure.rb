@@ -414,7 +414,7 @@ class GeneralCalibrationMeasureMultiplier < OpenStudio::Measure::ModelMeasure
           runner.registerInfo("Skipping change to #{internalmass.name.get}")
         end
       end
-    end # end space_type loop
+    end
 
     runner.registerInfo("altered_lights_objects: #{altered_lights_objects}")
     runner.registerInfo("altered_luminaires_objects: #{altered_luminaires_objects}")
@@ -580,7 +580,7 @@ class GeneralCalibrationMeasureMultiplier < OpenStudio::Measure::ModelMeasure
           runner.registerInfo("Skipping change to #{internalmass.name.get}")
         end
       end
-    end # end spaces loop
+    end
 
     runner.registerInfo("altered_lights_objects: #{altered_lights_objects}")
     runner.registerInfo("altered_luminaires_objects: #{altered_luminaires_objects}")

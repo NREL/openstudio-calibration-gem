@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>roof_thermal_properties_percent_change</name>
   <uid>07516685-60fd-4da8-9872-1154a995047d</uid>
-  <version_id>db469840-e1ca-40ba-a628-58855984662f</version_id>
-  <version_modified>20230602T154656Z</version_modified>
+  <version_id>6c9d8dec-0134-4f58-924b-b12ba6ecb8cb</version_id>
+  <version_modified>20240428T231348Z</version_modified>
   <xml_checksum>EB1A0C08</xml_checksum>
   <class_name>RoofThermalPropertiesPercentChange</class_name>
   <display_name>Roof Thermal Properties Percent Change</display_name>
@@ -89,6 +89,12 @@
       <checksum>BFFB1AA6</checksum>
     </file>
     <file>
+      <filename>RoofThermalPropertiesMultiplier_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3F4E0142</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>0.11.5</identifier>
@@ -97,13 +103,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>3A4BB94C</checksum>
-    </file>
-    <file>
-      <filename>RoofThermalPropertiesMultiplier_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>3F4E0142</checksum>
+      <checksum>D0AD2402</checksum>
     </file>
   </files>
 </measure>

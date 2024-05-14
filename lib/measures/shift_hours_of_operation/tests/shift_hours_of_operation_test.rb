@@ -8,7 +8,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class ShiftHoursOfOperationTest < Minitest::Test
@@ -39,7 +39,7 @@ class ShiftHoursOfOperationTest < Minitest::Test
     args_hash['hoo_start_saturday'] = -2.0
     args_hash['hoo_dur_saturday'] = -1.0
     args_hash['hoo_dur_sunday'] = 1 # TODO: - isn't going to have any impact on formulas the way it is setup now
-    args_hash['hoo_start_sunday'] = 3 # todo - isn't going to have any impact on formulas the way it is setup now
+    args_hash['hoo_start_sunday'] = 3 # TODO: - isn't going to have any impact on formulas the way it is setup now
     # args_hash['fraction_of_daily_occ_range'] = 0.5
     # using defaults values from measure.rb for other arguments
 
@@ -232,7 +232,7 @@ class ShiftHoursOfOperationTest < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = "#{File.dirname(__FILE__)}/SimpleModel.osm" # todo change test back to delta_values_false.osm or add new test
+    path = "#{File.dirname(__FILE__)}/SimpleModel.osm" # TODO: change test back to delta_values_false.osm or add new test
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -332,7 +332,7 @@ class ShiftHoursOfOperationTest < Minitest::Test
     # assert(result.warnings.empty?)
   end
 
-  # todo - figure out why for both delta_values false no parametric schules are being made, adn even initial condition of model isn't being reported cleanly, but tehre is no ruby failure.
+  # TODO: - figure out why for both delta_values false no parametric schules are being made, adn even initial condition of model isn't being reported cleanly, but tehre is no ruby failure.
   # todo - these tests have a unique test model, maybe that is issue, not sure why needed a different model. delta_values_false.osm
   # todo - when I chacned test model to SimpleModel it did fix the initial condition but not final condition, but did make file schedules instead of 0, but why can't they be inspected
   def test_hoo_var_method_hourly
@@ -392,5 +392,4 @@ class ShiftHoursOfOperationTest < Minitest::Test
     # assert(result.info.size == 1)
     # assert(result.warnings.empty?)
   end
-
 end
