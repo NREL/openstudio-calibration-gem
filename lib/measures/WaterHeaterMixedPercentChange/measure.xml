@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>water_heater_mixed_percent_change</name>
   <uid>c42bf4e7-2bbb-44c6-ab91-e6ddb53e050d</uid>
-  <version_id>63f5274b-2240-4fe7-aee5-2b96309f435e</version_id>
-  <version_modified>20230602T154657Z</version_modified>
+  <version_id>5a4c46fa-7fb4-4a4b-a51f-5055fd061518</version_id>
+  <version_modified>20240428T231349Z</version_modified>
   <xml_checksum>D28BCE9C</xml_checksum>
   <class_name>WaterHeaterMixedPercentChange</class_name>
   <display_name>Water Heater Mixed Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{978271ac-8723-4076-ab28-6cc9c2da6144}</default_value>
+      <default_value>{9fa48e19-3ce7-4149-85aa-b4d271b951ee}</default_value>
       <choices>
         <choice>
-          <value>{978271ac-8723-4076-ab28-6cc9c2da6144}</value>
+          <value>{9fa48e19-3ce7-4149-85aa-b4d271b951ee}</value>
           <display_name>*All WaterHeaterMixeds*</display_name>
         </choice>
         <choice>
@@ -176,7 +176,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>2831FFEF</checksum>
+      <checksum>CE10E4B6</checksum>
     </file>
   </files>
 </measure>

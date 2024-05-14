@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>calibration_reports_enhanced</name>
   <uid>e6642d40-7366-4647-8724-53a37991d668</uid>
-  <version_id>8b85be87-ddd0-441f-a4f7-503fbcd28450</version_id>
-  <version_modified>20230602T154652Z</version_modified>
+  <version_id>7cda1e46-566f-46e5-b89c-5bbc797fdda8</version_id>
+  <version_modified>20240428T231344Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>CalibrationReportsEnhanced</class_name>
   <display_name>Calibration Reports Enhanced</display_name>
@@ -356,7 +356,7 @@
       <filename>CalibrationReportsEnhanced_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>1D6A11A6</checksum>
+      <checksum>97772676</checksum>
     </file>
     <file>
       <version>
@@ -367,7 +367,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>C88256BE</checksum>
+      <checksum>AD9FA578</checksum>
     </file>
   </files>
 </measure>

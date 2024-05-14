@@ -166,33 +166,27 @@ class WaterHeaterMixedMultiplier < OpenStudio::Measure::ModelMeasure
     water_heaters.each do |water_heater|
       altered_heater = false
       # modify maximum_capacity_multiplier
-      if maximum_capacity_multiplier != 1.0
-        if water_heater.heaterMaximumCapacity.is_initialized
-          runner.registerInfo("Applying #{maximum_capacity_multiplier}x maximum capacity multiplier to #{water_heater.name.get}.")
-          water_heater.setHeaterMaximumCapacity(water_heater.heaterMaximumCapacity.get * maximum_capacity_multiplier)
-          altered_max_cap << water_heater.handle.to_s
-          altered_heater = true
-        end
+      if maximum_capacity_multiplier != 1.0 && water_heater.heaterMaximumCapacity.is_initialized
+        runner.registerInfo("Applying #{maximum_capacity_multiplier}x maximum capacity multiplier to #{water_heater.name.get}.")
+        water_heater.setHeaterMaximumCapacity(water_heater.heaterMaximumCapacity.get * maximum_capacity_multiplier)
+        altered_max_cap << water_heater.handle.to_s
+        altered_heater = true
       end
 
       # modify minimum_capacity_multiplier
-      if minimum_capacity_multiplier != 1.0
-        if water_heater.heaterMinimumCapacity.is_initialized
-          runner.registerInfo("Applying #{minimum_capacity_multiplier}x minimum capacity multiplier to #{water_heater.name.get}.")
-          water_heater.setHeaterMaximumCapacity(water_heater.heaterMinimumCapacity.get * minimum_capacity_multiplier)
-          altered_min_cap << water_heater.handle.to_s
-          altered_heater = true
-        end
+      if minimum_capacity_multiplier != 1.0 && water_heater.heaterMinimumCapacity.is_initialized
+        runner.registerInfo("Applying #{minimum_capacity_multiplier}x minimum capacity multiplier to #{water_heater.name.get}.")
+        water_heater.setHeaterMaximumCapacity(water_heater.heaterMinimumCapacity.get * minimum_capacity_multiplier)
+        altered_min_cap << water_heater.handle.to_s
+        altered_heater = true
       end
 
       # modify thermal_efficiency_multiplier
-      if thermal_efficiency_multiplier != 1.0
-        if water_heater.heaterThermalEfficiency.is_initialized
-          runner.registerInfo("Applying #{thermal_efficiency_multiplier}x thermal efficiency multiplier to #{water_heater.name.get}.")
-          water_heater.setHeaterThermalEfficiency(water_heater.heaterThermalEfficiency.get * thermal_efficiency_multiplier)
-          altered_thermalefficiency << water_heater.handle.to_s
-          altered_heater = true
-        end
+      if thermal_efficiency_multiplier != 1.0 && water_heater.heaterThermalEfficiency.is_initialized
+        runner.registerInfo("Applying #{thermal_efficiency_multiplier}x thermal efficiency multiplier to #{water_heater.name.get}.")
+        water_heater.setHeaterThermalEfficiency(water_heater.heaterThermalEfficiency.get * thermal_efficiency_multiplier)
+        altered_thermalefficiency << water_heater.handle.to_s
+        altered_heater = true
       end
 
       orig_fuel_type = water_heater.heaterFuelType
@@ -203,10 +197,11 @@ class WaterHeaterMixedMultiplier < OpenStudio::Measure::ModelMeasure
       end
 
       next unless altered_heater
+
       altered_heaters << water_heater.handle.to_s
       change_name(water_heater, maximum_capacity_multiplier, minimum_capacity_multiplier, thermal_efficiency_multiplier, fuel_type, orig_fuel_type)
       runner.registerInfo("WaterHeater name changed to: #{water_heater.name.get}")
-    end # end water_heater loop
+    end
 
     # na if nothing in model to look at
     if altered_heaters.empty?

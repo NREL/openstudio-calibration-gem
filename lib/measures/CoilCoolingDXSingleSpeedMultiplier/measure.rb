@@ -59,6 +59,7 @@ class CoilCoolingDXSingleSpeedMultiplier < OpenStudio::Measure::ModelMeasure
       components = value.supplyComponents
       components.each do |component|
         next if component.to_CoilCoolingDXSingleSpeed.empty?
+
         show_loop = true
         loop_handles << component.handle.to_s
         loop_display_names << component.name.to_s
@@ -165,28 +166,27 @@ class CoilCoolingDXSingleSpeedMultiplier < OpenStudio::Measure::ModelMeasure
     coils.each do |coil|
       altered_coil = false
       # rated_cooling_capacity_multiplier
-      if rated_cooling_capacity_multiplier != 1.0
-        if coil.ratedTotalCoolingCapacity.is_initialized
-          runner.registerInfo("Applying ratedTotalCoolingCapacity #{rated_cooling_capacity_multiplier}x multiplier to #{coil.name.get}.")
-          coil.setRatedTotalCoolingCapacity(coil.ratedTotalCoolingCapacity.get * rated_cooling_capacity_multiplier)
-          altered_capacity << coil.handle.to_s
-          altered_coil = true
-        end
+      if rated_cooling_capacity_multiplier != 1.0 && coil.ratedTotalCoolingCapacity.is_initialized
+        runner.registerInfo("Applying ratedTotalCoolingCapacity #{rated_cooling_capacity_multiplier}x multiplier to #{coil.name.get}.")
+        coil.setRatedTotalCoolingCapacity(coil.ratedTotalCoolingCapacity.get * rated_cooling_capacity_multiplier)
+        altered_capacity << coil.handle.to_s
+        altered_coil = true
       end
 
       # modify rated_cop_multiplier
       if rated_cop_multiplier != 1.0
-          runner.registerInfo("Applying ratedCOP #{rated_cop_multiplier}x multiplier to #{coil.name.get}.")
-          coil.setRatedCOP(coil.ratedCOP * rated_cop_multiplier)
-          altered_coilefficiency << coil.handle.to_s
-          altered_coil = true
+        runner.registerInfo("Applying ratedCOP #{rated_cop_multiplier}x multiplier to #{coil.name.get}.")
+        coil.setRatedCOP(coil.ratedCOP * rated_cop_multiplier)
+        altered_coilefficiency << coil.handle.to_s
+        altered_coil = true
       end
 
       next unless altered_coil
+
       altered_coils << coil.handle.to_s
       change_name(coil, rated_cop_multiplier, rated_cooling_capacity_multiplier)
       runner.registerInfo("coil name changed to: #{coil.name.get}")
-    end # end coil loop
+    end
 
     # na if nothing in model to look at
     if altered_coils.empty?

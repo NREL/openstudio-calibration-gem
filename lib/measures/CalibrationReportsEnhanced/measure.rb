@@ -65,7 +65,7 @@ class CalibrationReportsEnhanced < OpenStudio::Measure::ReportingMeasure
     args << fuel_oil_cvrmse_limit
 
     args
-  end # end the arguments method
+  end
 
   def outputs
     result = OpenStudio::Measure::OSOutputVector.new
@@ -559,6 +559,7 @@ class CalibrationReportsEnhanced < OpenStudio::Measure::ReportingMeasure
       end
 
       next unless os_version >= min_version_feature1
+
       if actual_consumption > 0.0
         runner.registerValue("#{utility_bill_fuel_type}_consumption_actual",
                              actual_consumption,
@@ -579,6 +580,7 @@ class CalibrationReportsEnhanced < OpenStudio::Measure::ReportingMeasure
                              '%')
       end
       next unless !actual_consumption_values.empty? && (actual_consumption_values.size == modeled_consumption_values.size)
+
       sum_squares = 0.0
       actual_consumption_values.each_index do |i|
         sum_squares += (actual_consumption_values[i] - modeled_consumption_values[i])**2
@@ -591,26 +593,23 @@ class CalibrationReportsEnhanced < OpenStudio::Measure::ReportingMeasure
                            actual_consumption_values.size)
       runner.registerValue("#{utility_bill_fuel_type}_rmse",
                            rmse,
-                           utilityBill.consumptionUnit + '^0.5')
+                           "#{utilityBill.consumptionUnit}^0.5")
     end
 
-    if os_version >= min_version_feature1
-      if !all_actual_consumption_values.empty? && (all_actual_consumption_values.size == all_modeled_consumption_values.size)
-        sum_squares = 0.0
-        all_actual_consumption_values.each_index do |i|
-          sum_squares += (all_actual_consumption_values[i] - all_modeled_consumption_values[i])**2
-        end
-        rmse = Math.sqrt(sum_squares / all_actual_consumption_values.size)
-        runner.registerValue('total_sum_of_squares',
-                             sum_squares,
-                             'kBtu')
-        runner.registerValue('total_dof',
-                             all_actual_consumption_values.size)
-        runner.registerValue('total_rmse',
-                             rmse,
-                             'kBtu^0.5')
+    if os_version >= min_version_feature1 && (!all_actual_consumption_values.empty? && (all_actual_consumption_values.size == all_modeled_consumption_values.size))
+      sum_squares = 0.0
+      all_actual_consumption_values.each_index do |i|
+        sum_squares += (all_actual_consumption_values[i] - all_modeled_consumption_values[i])**2
       end
-
+      rmse = Math.sqrt(sum_squares / all_actual_consumption_values.size)
+      runner.registerValue('total_sum_of_squares',
+                           sum_squares,
+                           'kBtu')
+      runner.registerValue('total_dof',
+                           all_actual_consumption_values.size)
+      runner.registerValue('total_rmse',
+                           rmse,
+                           'kBtu^0.5')
     end
 
     elecStartDate = elecStartDate[0..-2]
@@ -728,7 +727,7 @@ class CalibrationReportsEnhanced < OpenStudio::Measure::ReportingMeasure
                        else
                          (cvrmse <= gas_cvrmse_limit)
                        end
-        result_hash[match_data[1] + '_cvrmse_within_limit'] = within_limit
+        result_hash["#{match_data[1]}_cvrmse_within_limit"] = within_limit
         within_limit_i = if within_limit
                            1
                          else
@@ -747,7 +746,7 @@ class CalibrationReportsEnhanced < OpenStudio::Measure::ReportingMeasure
                        else
                          (nmbe.abs <= gas_nmbe_limit)
                        end
-        result_hash[match_data[1] + '_nmbe_within_limit'] = within_limit
+        result_hash["#{match_data[1]}_nmbe_within_limit"] = within_limit
         within_limit_i = if within_limit
                            1
                          else
@@ -761,8 +760,8 @@ class CalibrationReportsEnhanced < OpenStudio::Measure::ReportingMeasure
     end
 
     true
-  end # end the run method
-end # end the measure
+  end
+end
 
 # this allows the measure to be use by the application
 CalibrationReportsEnhanced.new.registerWithApplication

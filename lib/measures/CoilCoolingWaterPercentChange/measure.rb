@@ -64,6 +64,7 @@ class CoilCoolingWaterPercentChange < OpenStudio::Measure::ModelMeasure
       components = value.supplyComponents
       components.each do |component|
         next if component.to_CoilCoolingWater.empty?
+
         show_loop = true
         loop_handles << component.handle.to_s
         loop_display_names << component.name.to_s
@@ -200,69 +201,58 @@ class CoilCoolingWaterPercentChange < OpenStudio::Measure::ModelMeasure
     coils.each do |coil|
       altered_coil = false
       # design_air_flow_rate
-      if design_air_flow_rate != 1.0
-        if coil.designAirFlowRate.is_initialized
-          runner.registerInfo("Applying designAirFlowRate #{design_air_flow_rate} PercentChange to #{coil.name.get}.")
-          coil.setDesignAirFlowRate(coil.designAirFlowRate.get + coil.designAirFlowRate.get * design_air_flow_rate * 0.01)
-          altered_capacity << coil.handle.to_s
-          altered_coil = true
-        end
+      if design_air_flow_rate != 1.0 && coil.designAirFlowRate.is_initialized
+        runner.registerInfo("Applying designAirFlowRate #{design_air_flow_rate} PercentChange to #{coil.name.get}.")
+        coil.setDesignAirFlowRate(coil.designAirFlowRate.get + coil.designAirFlowRate.get * design_air_flow_rate * 0.01)
+        altered_capacity << coil.handle.to_s
+        altered_coil = true
       end
 
       # modify design_water_flow_rate
-      if design_water_flow_rate != 1.0
-        if coil.designWaterFlowRate.is_initialized
-          runner.registerInfo("Applying designWaterFlowRate #{design_water_flow_rate} PercentChange to #{coil.name.get}.")
-          coil.setDesignWaterFlowRate(coil.designWaterFlowRate.get + coil.designWaterFlowRate.get * design_water_flow_rate * 0.01)
-          altered_coilefficiency << coil.handle.to_s
-          altered_coil = true
-        end
+      if design_water_flow_rate != 1.0 && coil.designWaterFlowRate.is_initialized
+        runner.registerInfo("Applying designWaterFlowRate #{design_water_flow_rate} PercentChange to #{coil.name.get}.")
+        coil.setDesignWaterFlowRate(coil.designWaterFlowRate.get + coil.designWaterFlowRate.get * design_water_flow_rate * 0.01)
+        altered_coilefficiency << coil.handle.to_s
+        altered_coil = true
       end
 
       # design_inlet_air_temperature
-      if design_inlet_air_temperature != 1.0
-        if coil.designInletAirTemperature.is_initialized
-          runner.registerInfo("Applying designInletAirTemperature #{design_inlet_air_temperature} PercentChange to #{coil.name.get}.")
-          coil.setDesignInletAirTemperature(coil.designInletAirTemperature.get + coil.designInletAirTemperature.get * design_inlet_air_temperature * 0.01)
-          altered_capacity << coil.handle.to_s
-          altered_coil = true
-        end
+      if design_inlet_air_temperature != 1.0 && coil.designInletAirTemperature.is_initialized
+        runner.registerInfo("Applying designInletAirTemperature #{design_inlet_air_temperature} PercentChange to #{coil.name.get}.")
+        coil.setDesignInletAirTemperature(coil.designInletAirTemperature.get + coil.designInletAirTemperature.get * design_inlet_air_temperature * 0.01)
+        altered_capacity << coil.handle.to_s
+        altered_coil = true
       end
 
       # modify design_inlet_water_temperature
-      if design_inlet_water_temperature != 1.0
-        if coil.designInletWaterTemperature.is_initialized
-          runner.registerInfo("Applying designInletWaterTemperature #{design_inlet_water_temperature} PercentChange to #{coil.name.get}.")
-          coil.setDesignInletWaterTemperature(coil.designInletWaterTemperature.get + coil.designInletWaterTemperature.get * design_inlet_water_temperature * 0.01)
-          altered_coilefficiency << coil.handle.to_s
-          altered_coil = true
-        end
+      if design_inlet_water_temperature != 1.0 && coil.designInletWaterTemperature.is_initialized
+        runner.registerInfo("Applying designInletWaterTemperature #{design_inlet_water_temperature} PercentChange to #{coil.name.get}.")
+        coil.setDesignInletWaterTemperature(coil.designInletWaterTemperature.get + coil.designInletWaterTemperature.get * design_inlet_water_temperature * 0.01)
+        altered_coilefficiency << coil.handle.to_s
+        altered_coil = true
       end
 
       # design_inlet_air_humidity_ratio
-      if design_inlet_air_humidity_ratio != 1.0
-        if coil.designInletAirHumidityRatio.is_initialized
-          runner.registerInfo("Applying designInletAirHumidityRatio #{design_inlet_air_humidity_ratio} PercentChange to #{coil.name.get}.")
-          coil.setDesignInletAirHumidityRatio(coil.designInletAirHumidityRatio.get + coil.designInletAirHumidityRatio.get * design_inlet_air_humidity_ratio * 0.01)
-          altered_capacity << coil.handle.to_s
-          altered_coil = true
-        end
+      if design_inlet_air_humidity_ratio != 1.0 && coil.designInletAirHumidityRatio.is_initialized
+        runner.registerInfo("Applying designInletAirHumidityRatio #{design_inlet_air_humidity_ratio} PercentChange to #{coil.name.get}.")
+        coil.setDesignInletAirHumidityRatio(coil.designInletAirHumidityRatio.get + coil.designInletAirHumidityRatio.get * design_inlet_air_humidity_ratio * 0.01)
+        altered_capacity << coil.handle.to_s
+        altered_coil = true
       end
 
       # modify design_outlet_air_temperature
-      if design_outlet_air_temperature != 1.0
-        if coil.designOutletAirTemperature.is_initialized
-          runner.registerInfo("Applying designOutletAirTemperature #{design_outlet_air_temperature} PercentChange to #{coil.name.get}.")
-          coil.setDesignOutletAirTemperature(coil.designOutletAirTemperature.get + coil.designOutletAirTemperature.get * design_outlet_air_temperature * 0.01)
-          altered_coilefficiency << coil.handle.to_s
-          altered_coil = true
-        end
+      if design_outlet_air_temperature != 1.0 && coil.designOutletAirTemperature.is_initialized
+        runner.registerInfo("Applying designOutletAirTemperature #{design_outlet_air_temperature} PercentChange to #{coil.name.get}.")
+        coil.setDesignOutletAirTemperature(coil.designOutletAirTemperature.get + coil.designOutletAirTemperature.get * design_outlet_air_temperature * 0.01)
+        altered_coilefficiency << coil.handle.to_s
+        altered_coil = true
       end
       next unless altered_coil
+
       altered_coils << coil.handle.to_s
       change_name(coil, design_water_flow_rate, design_air_flow_rate, design_inlet_water_temperature, design_inlet_air_temperature, design_outlet_air_temperature, design_inlet_air_humidity_ratio)
       runner.registerInfo("coil name changed to: #{coil.name.get}")
-    end # end coil loop
+    end
 
     # na if nothing in model to look at
     if altered_coils.empty?

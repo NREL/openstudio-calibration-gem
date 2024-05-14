@@ -21,7 +21,8 @@ class RoofThermalPropertiesPercentChange < OpenStudio::Measure::ModelMeasure
   end
 
   # short def to make numbers pretty (converts 4125001.25641 to 4,125,001.26 or 4,125,001). The definition be called through this measure
-  def neat_numbers(number, roundto = 2) # round to 0 or 2)
+  # round to 0 or 2)
+  def neat_numbers(number, roundto = 2)
     number = if roundto == 2
                format '%.2f', number
              else
@@ -29,7 +30,7 @@ class RoofThermalPropertiesPercentChange < OpenStudio::Measure::ModelMeasure
              end
     # regex to add commas
     number.to_s.reverse.gsub(/([0-9]{3}(?=([0-9])))/, '\\1,').reverse
-  end # end def neat_numbers
+  end
 
   # helper to make it easier to do unit conversions on the fly
   def unit_helper(number, from_unit_string, to_unit_string)
@@ -57,7 +58,7 @@ class RoofThermalPropertiesPercentChange < OpenStudio::Measure::ModelMeasure
     args << thermal_mass_perc_change
 
     args
-  end # end the arguments method
+  end
 
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
@@ -79,6 +80,7 @@ class RoofThermalPropertiesPercentChange < OpenStudio::Measure::ModelMeasure
     roof_surface_constructions = []
     surfaces.each do |surface|
       next unless surface.outsideBoundaryCondition == 'Outdoors' && surface.surfaceType == 'RoofCeiling'
+
       roof_surfaces << surface
       roof_surface_const = surface.construction.get
       # only add construction if it hasn't been added yet
@@ -145,6 +147,7 @@ class RoofThermalPropertiesPercentChange < OpenStudio::Measure::ModelMeasure
     end
     initial_sol_abs.each_index do |index1|
       next unless initial_sol_abs[index1]
+
       desired_sol_abs[index1] = initial_sol_abs[index1] + initial_sol_abs[index1] * solar_abs_perc_change * 0.01
       if desired_sol_abs[index1] > 1
         desired_sol_abs[index1] = 1
@@ -216,8 +219,8 @@ class RoofThermalPropertiesPercentChange < OpenStudio::Measure::ModelMeasure
     runner.registerFinalCondition("Applied R #{r_value_perc_change.round(1)} Solar #{solar_abs_perc_change.round(1)} Therm #{thermal_mass_perc_change.round(1)} Percent change")
 
     true
-  end # end the run method
-end # end the measure
+  end
+end
 
 # this allows the measure to be used by the application
 RoofThermalPropertiesPercentChange.new.registerWithApplication

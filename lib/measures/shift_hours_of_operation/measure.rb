@@ -51,7 +51,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_dur_weekday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_dur_weekday', true)
     hoo_dur_weekday.setDisplayName('Extend the weekday of hours of operation.')
     hoo_dur_weekday.setDescription('Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.')
-    hoo_dur_weekday .setDefaultValue(0.0)
+    hoo_dur_weekday.setDefaultValue(0.0)
     hoo_dur_weekday.setUnits('Hours')
     args << hoo_dur_weekday
 
@@ -234,7 +234,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       # use this to link to hoo from hours_of_operation_hash
       counter_of_orig_index = hours_of_operation_hash.size - 2 # this is not impacted by cloning that may have happened above
 
-      hoo_sch.scheduleRules.reverse.each do |rule|
+      hoo_sch.scheduleRules.reverse_each do |rule|
         # inspect days of the week
         actual_days_of_week_for_profile = []
         if rule.applyMonday then actual_days_of_week_for_profile << 'mon' end

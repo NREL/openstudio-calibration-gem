@@ -35,11 +35,11 @@ class AddMonthlyUtilityData_Test < Minitest::Test
     argument_map = OpenStudio::Measure::OSArgumentMap.new
 
     electric_json = arguments[0].clone
-    assert(electric_json.setValue(File.dirname(__FILE__) + '/electric_billed_usages.json'))
+    assert(electric_json.setValue("#{File.dirname(__FILE__)}/electric_billed_usages.json"))
     argument_map['electric_json'] = electric_json
 
     gas_json = arguments[1].clone
-    assert(gas_json.setValue(File.dirname(__FILE__) + '/gas_billed_usages.json'))
+    assert(gas_json.setValue("#{File.dirname(__FILE__)}/gas_billed_usages.json"))
     argument_map['gas_json'] = gas_json
 
     start_date = arguments[2].clone

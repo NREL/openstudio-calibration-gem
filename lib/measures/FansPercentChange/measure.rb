@@ -68,6 +68,7 @@ class FansPercentChange < OpenStudio::Measure::ModelMeasure
           loop_display_names << component.name.to_s
         end
         next if component.to_FanOnOff.empty?
+
         show_loop = true
         loop_handles << component.handle.to_s
         loop_display_names << component.name.to_s
@@ -200,13 +201,11 @@ class FansPercentChange < OpenStudio::Measure::ModelMeasure
     fans.each do |fan|
       altered_fan = false
       # modify max flowrate
-      if max_flowrate_perc_change != 0.0
-        if fan.maximumFlowRate.is_initialized
-          runner.registerInfo("Applying #{max_flowrate_perc_change} Percent Change to #{fan.name.get}.")
-          fan.setMaximumFlowRate(fan.maximumFlowRate + fan.maximumFlowRate * max_flowrate_perc_change * 0.01)
-          altered_maxflow << fan.handle.to_s
-          altered_fan = true
-        end
+      if max_flowrate_perc_change != 0.0 && fan.maximumFlowRate.is_initialized
+        runner.registerInfo("Applying #{max_flowrate_perc_change} Percent Change to #{fan.name.get}.")
+        fan.setMaximumFlowRate(fan.maximumFlowRate + fan.maximumFlowRate * max_flowrate_perc_change * 0.01)
+        altered_maxflow << fan.handle.to_s
+        altered_fan = true
       end
 
       # modify fan_efficiency_perc_change
@@ -234,10 +233,11 @@ class FansPercentChange < OpenStudio::Measure::ModelMeasure
       end
 
       next unless altered_fan
+
       altered_fans << fan.handle.to_s
       change_name(fan, max_flowrate_perc_change, fan_efficiency_perc_change, pressure_rise_perc_change, motor_efficiency_perc_change)
       runner.registerInfo("Fan name changed to: #{fan.name.get}")
-    end # end fan loop
+    end
 
     # na if nothing in model to look at
     if altered_fans.empty?

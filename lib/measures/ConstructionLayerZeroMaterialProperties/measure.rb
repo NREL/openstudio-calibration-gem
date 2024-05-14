@@ -106,7 +106,7 @@ class ConstructionLayerZeroMaterialProperties < OpenStudio::Measure::ModelMeasur
     args << specific_heat
 
     args
-  end # end the arguments method
+  end
 
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
@@ -143,7 +143,7 @@ class ConstructionLayerZeroMaterialProperties < OpenStudio::Measure::ModelMeasur
         runner.registerError('Script Error - argument not showing up as construction.')
         return false
       end
-    end # end of if construction.empty?
+    end
 
     initial_r_value_ip = OpenStudio.convert(1.0 / construction.thermalConductance.to_f, 'm^2*K/W', 'ft^2*h*R/Btu')
     runner.registerInitialCondition("The Initial R-value of #{construction.name} is #{initial_r_value_ip} (ft^2*h*R/Btu).")
@@ -184,8 +184,8 @@ class ConstructionLayerZeroMaterialProperties < OpenStudio::Measure::ModelMeasur
     runner.registerValue('final_r_value_ip', final_r_value_ip.to_f, 'ft^2*h*R/Btu')
 
     true
-  end # end the run method
-end # end the measure
+  end
+end
 
 # this allows the measure to be used by the application
 ConstructionLayerZeroMaterialProperties.new.registerWithApplication

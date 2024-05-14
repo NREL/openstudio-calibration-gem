@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_cooling_dx_single_speed_multiplier</name>
   <uid>97d0dbdf-6245-4cfd-8dfc-a6a5eb853b16</uid>
-  <version_id>f805c6dd-0fb2-4e72-9704-3f3334769ddc</version_id>
-  <version_modified>20230602T154656Z</version_modified>
+  <version_id>d0a60754-bd42-48ae-9cc7-1f6ccacc5433</version_id>
+  <version_modified>20240428T231348Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXSingleSpeedMultiplier</class_name>
   <display_name>Cooling Coils DX Single Speed Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{355b65f9-00e5-41dc-843e-930c8c98e8f0}</default_value>
+      <default_value>{a663ea08-96ab-465f-afba-721f4341eca3}</default_value>
       <choices>
         <choice>
-          <value>{355b65f9-00e5-41dc-843e-930c8c98e8f0}</value>
+          <value>{a663ea08-96ab-465f-afba-721f4341eca3}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -88,7 +88,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A4CDE5A7</checksum>
+      <checksum>0C375660</checksum>
     </file>
   </files>
 </measure>

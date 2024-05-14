@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>roof_thermal_properties_multiplier</name>
   <uid>6c4eb22b-770f-456c-bcd1-084cfad89eeb</uid>
-  <version_id>2bb4add5-d936-4469-8a46-d458142e98dd</version_id>
-  <version_modified>20230602T154657Z</version_modified>
+  <version_id>1087cde3-4f8c-48fb-b877-556c37bfca77</version_id>
+  <version_modified>20240428T231349Z</version_modified>
   <xml_checksum>EB1A0C08</xml_checksum>
   <class_name>RoofThermalPropertiesMultiplier</class_name>
   <display_name>Roof Thermal Properties Multiplier</display_name>
@@ -89,6 +89,12 @@
       <checksum>BFFB1AA6</checksum>
     </file>
     <file>
+      <filename>RoofThermalPropertiesMultiplier_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7197D29B</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>0.11.5</identifier>
@@ -97,13 +103,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7C6B77F6</checksum>
-    </file>
-    <file>
-      <filename>RoofThermalPropertiesMultiplier_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>7197D29B</checksum>
+      <checksum>1E5855C1</checksum>
     </file>
   </files>
 </measure>
