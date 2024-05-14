@@ -290,22 +290,22 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
       js_time = js_time.gsub('Sep', '09')
       js_time = js_time.gsub('Oct', '10')
       js_time = js_time.gsub('Nov', '11')
-      js_time = js_time.gsub('Dec', '12')
-
-      js_time
+      js_time.gsub('Dec', '12')
     end
 
     # setup convert
-    if convert_data == 'F to C'
+    case convert_data
+    when 'F to C'
       convert = 0.5556
-    elsif convert_data == 'WH to J'
+    when 'WH to J'
       convert = 3600
-    elsif convert_data == 'CFM to m3/s'
+    when 'CFM to m3/s'
       convert = 0.00047
-    elsif convert_data == 'PSI to Pa'
+    when 'PSI to Pa'
       convert = 6894.76
-    else convert_data == 'None'
-         convert = 1
+    else
+      convert_data == 'None'
+      convert = 1
     end
 
     diff = 0.0
@@ -428,13 +428,13 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
              "+0#{tzs.to_i}:00"
            else # two digit
              "+#{tzs.to_i}:00"
-                end
+           end
          else # negative number
            if tzs.to_i * -1 < 10 # one digit
              "-0#{tzs.to_i * -1}:00"
            else # two digit
              "-#{tzs.to_i * -1}:00"
-                end
+           end
          end
     runner.registerInfo("timezone = #{tz}")
     # export for plotting
@@ -501,6 +501,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
 
           csv.each_index do |row|
             next unless row > 0
+
             if csv[row][0].nil?
               if warning_messages
                 runner.registerWarning("empty csv row number #{row}")
@@ -516,7 +517,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
             if year.nil?
               dat = OpenStudio::Date.new(OpenStudio::MonthOfYear.new(cal[mon]), day)
             else
-              dat = OpenStudio::Date.new(OpenStudio::MonthOfYear.new(cal[mon]),day,year)
+              dat = OpenStudio::Date.new(OpenStudio::MonthOfYear.new(cal[mon]), day, year)
             end
             tim = if sec.nil?
                     OpenStudio::Time.new(0, hou, min, 0)
@@ -550,6 +551,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
             runner.registerInfo("dtm: #{dtm}") if verbose_messages
             csv[row].each_index do |col|
               next unless col > 0
+
               mtr = csv[row][col].to_s
               # try converting
               if convert == 0.5556 # this is a temperature
@@ -568,6 +570,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
                 end
               end
               next unless csv[0][col] == hdr
+
               sim = ser.value(dtm)
               # store timeseries for plotting
               point = {}
@@ -579,9 +582,10 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
               point2['time'] = to_JSTime(dtm)
               data2 << point2
 
-              dif = if norm == 1
+              dif = case norm
+                    when 1
                       scale.to_f * (mtr.to_f - sim.to_f).abs
-                    elsif norm == 2
+                    when 2
                       (scale.to_f * (mtr.to_f - sim.to_f))**2
                     else
                       scale.to_f * (mtr.to_f - sim.to_f)
@@ -606,6 +610,7 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
           end
           # add 0 for plotting
           next unless last_zero
+
           runner.registerInfo("add last_zero: #{last_date + delta}")
           point = {}
           point['y'] = 0.0
@@ -654,15 +659,13 @@ class TimeseriesObjectiveFunction < OpenStudio::Measure::ReportingMeasure
     FileUtils.mkdir_p(File.dirname("allseries_#{csv_var}.json")) unless Dir.exist?(File.dirname("allseries_#{csv_var}.json"))
     File.open("allseries_#{csv_var}.json", 'wb') { |f| f << JSON.pretty_generate(all_series) }
     # check if analysis directory exists on server
-    if algorithm_download
-      if File.basename(File.expand_path(File.join(Dir.pwd, '../../../'))).split('_')[0] == 'analysis'
-        runner.registerInfo("Copying timeseries_#{csv_var}.json to downloads directory")
-        directory_name = File.expand_path(File.join(Dir.pwd, '../../../downloads'))
-        Dir.mkdir(directory_name) unless File.exist?(directory_name)
-        FileUtils.cp("timeseries_#{csv_var}.json", directory_name)
-        FileUtils.cp("allseries_#{csv_var}.json", directory_name)
-        FileUtils.cp("timeseries_#{plot_name}.csv", directory_name)
-      end
+    if algorithm_download && (File.basename(File.expand_path(File.join(Dir.pwd, '../../../'))).split('_')[0] == 'analysis')
+      runner.registerInfo("Copying timeseries_#{csv_var}.json to downloads directory")
+      directory_name = File.expand_path(File.join(Dir.pwd, '../../../downloads'))
+      Dir.mkdir(directory_name) unless File.exist?(directory_name)
+      FileUtils.cp("timeseries_#{csv_var}.json", directory_name)
+      FileUtils.cp("allseries_#{csv_var}.json", directory_name)
+      FileUtils.cp("timeseries_#{plot_name}.csv", directory_name)
     end
     diff = Math.sqrt(diff) if norm == 2
 

@@ -121,7 +121,7 @@ class AddMonthlyJSONUtilityData < OpenStudio::Measure::ModelMeasure
     args << set_runperiod
 
     args
-  end # end the arguments method
+  end
 
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
@@ -243,8 +243,8 @@ class AddMonthlyJSONUtilityData < OpenStudio::Measure::ModelMeasure
     runner.registerFinalCondition('Utility bill data has been added to the model.')
 
     true
-  end # end the run method
-end # end the measure
+  end
+end
 
 # this allows the measure to be use by the application
 AddMonthlyJSONUtilityData.new.registerWithApplication

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_cooling_dx_two_speed_percent_change</name>
   <uid>2145d3a3-60fd-4b95-8faf-33e2402934fc</uid>
-  <version_id>16195c55-1961-439c-a419-6f584938015a</version_id>
-  <version_modified>20230602T154656Z</version_modified>
+  <version_id>56fae4f6-c6a0-422b-a36b-68cd8a50439b</version_id>
+  <version_modified>20240428T231348Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXTwoSpeedPercentChange</class_name>
   <display_name>Cooling Coils DX Two Speed Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{f4a57137-de4d-4ef9-9ae0-059e3742f753}</default_value>
+      <default_value>{e8e67149-8f96-49c2-a4d1-1b7c5dd02406}</default_value>
       <choices>
         <choice>
-          <value>{f4a57137-de4d-4ef9-9ae0-059e3742f753}</value>
+          <value>{e8e67149-8f96-49c2-a4d1-1b7c5dd02406}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -106,7 +106,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>17CED925</checksum>
+      <checksum>0130C985</checksum>
     </file>
   </files>
 </measure>

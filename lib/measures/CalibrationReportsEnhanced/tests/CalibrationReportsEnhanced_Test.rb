@@ -215,12 +215,14 @@ class CalibrationReportsEnhanced_Test < Minitest::Test
     # check for varying demand
     model.getUtilityBills.each do |utilityBill|
       next if utilityBill.peakDemandUnitConversionFactor.empty?
+
       hasVaryingDemand = false
       modelPeakDemand = 0.0
       count = 0
       utilityBill.billingPeriods.each do |billingPeriod|
         peakDemand = billingPeriod.modelPeakDemand
         next if peakDemand.empty?
+
         temp = peakDemand.get
         if count == 0
           modelPeakDemand = temp
@@ -343,12 +345,14 @@ class CalibrationReportsEnhanced_Test < Minitest::Test
     # check for varying demand
     model.getUtilityBills.each do |utilityBill|
       next if utilityBill.peakDemandUnitConversionFactor.empty?
+
       hasVaryingDemand = false
       modelPeakDemand = 0.0
       count = 0
       utilityBill.billingPeriods.each do |billingPeriod|
         peakDemand = billingPeriod.modelPeakDemand
         next if peakDemand.empty?
+
         temp = peakDemand.get
         if count == 0
           modelPeakDemand = temp
@@ -381,6 +385,7 @@ class CalibrationReportsEnhanced_Test < Minitest::Test
     assert_equal(2, utilityBills.size)
     utilityBills.each do |utilityBill|
       next unless utilityBill.fuelType == 'Electricity'.to_FuelType
+
       utilityBill.billingPeriods.each(&:resetPeakDemand)
     end
     utilityBills = model.getUtilityBills
@@ -678,12 +683,14 @@ class CalibrationReportsEnhanced_Test < Minitest::Test
       end
 
       next if utilityBill.peakDemandUnitConversionFactor.empty?
+
       hasVaryingDemand = false
       modelPeakDemand = 0.0
       count = 0
       utilityBill.billingPeriods.each do |billingPeriod|
         peakDemand = billingPeriod.modelPeakDemand
         next if peakDemand.empty?
+
         temp = peakDemand.get
         if count == 0
           modelPeakDemand = temp

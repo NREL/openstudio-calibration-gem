@@ -65,6 +65,7 @@ class CoilHeatingGasMultiplier < OpenStudio::Measure::ModelMeasure
       components = value.supplyComponents
       components.each do |component|
         next if component.to_CoilHeatingGas.empty?
+
         show_loop = true
         loop_handles << component.handle.to_s
         loop_display_names << component.name.to_s
@@ -191,13 +192,11 @@ class CoilHeatingGasMultiplier < OpenStudio::Measure::ModelMeasure
     coils.each do |coil|
       altered_coil = false
       # coil_capacity_multiplier
-      if coil_capacity_multiplier != 1.0
-        if coil.nominalCapacity.is_initialized
-          runner.registerInfo("Applying nominalCapacity #{coil_capacity_multiplier}x multiplier to #{coil.name.get}.")
-          coil.setNominalCapacity(coil.nominalCapacity.get * coil_capacity_multiplier)
-          altered_capacity << coil.handle.to_s
-          altered_coil = true
-        end
+      if coil_capacity_multiplier != 1.0 && coil.nominalCapacity.is_initialized
+        runner.registerInfo("Applying nominalCapacity #{coil_capacity_multiplier}x multiplier to #{coil.name.get}.")
+        coil.setNominalCapacity(coil.nominalCapacity.get * coil_capacity_multiplier)
+        altered_capacity << coil.handle.to_s
+        altered_coil = true
       end
 
       # modify coil_efficiency_multiplier
@@ -230,10 +229,11 @@ class CoilHeatingGasMultiplier < OpenStudio::Measure::ModelMeasure
       end
 
       next unless altered_coil
+
       altered_coils << coil.handle.to_s
       change_name(coil, coil_parasitic_gas_multiplier, coil_efficiency_multiplier, coil_parasitic_electric_multiplier, coil_capacity_multiplier)
       runner.registerInfo("coil name changed to: #{coil.name.get}")
-    end # end coil loop
+    end
 
     # na if nothing in model to look at
     if altered_coils.empty?

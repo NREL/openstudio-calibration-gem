@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>inspect_and_edit_parametric_schedules</name>
   <uid>4b5f610d-caac-47c2-bd5b-610e2fc0768e</uid>
-  <version_id>1d17e26a-5b3d-4d74-b5bb-7623dc3d5e3a</version_id>
-  <version_modified>20230602T154656Z</version_modified>
+  <version_id>45aad22a-5db2-4eac-88aa-8aa7de0e7049</version_id>
+  <version_modified>20240428T231348Z</version_modified>
   <xml_checksum>57318DBA</xml_checksum>
   <class_name>InspectAndEditParametricSchedules</class_name>
   <display_name>Inspect and Edit Parametric Schedules</display_name>
@@ -105,12 +105,6 @@
       <checksum>BFFB1AA6</checksum>
     </file>
     <file>
-      <filename>inspect_and_edit_parametric_schedules_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>83CA7DAD</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>3.1.0</identifier>
@@ -120,6 +114,12 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>EFE84854</checksum>
+    </file>
+    <file>
+      <filename>inspect_and_edit_parametric_schedules_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>5DFEDEDD</checksum>
     </file>
   </files>
 </measure>

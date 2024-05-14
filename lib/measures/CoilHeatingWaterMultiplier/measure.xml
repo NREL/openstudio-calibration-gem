@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>coil_heating_water_multiplier</name>
   <uid>48c50a83-4092-4f2b-9968-8c820759f321</uid>
-  <version_id>879615bf-75fa-4c33-91b0-75bbac7dc69a</version_id>
-  <version_modified>20230602T154653Z</version_modified>
+  <version_id>602ecd8c-6385-41ce-b67c-823a6be2a13c</version_id>
+  <version_modified>20240428T231345Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingWaterMultiplier</class_name>
   <display_name>Heating Coils Water Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{60548f35-634d-40b3-b2f2-ad5241ee9f73}</default_value>
+      <default_value>{bc82c988-32c1-407e-912d-90c1dfca838a}</default_value>
       <choices>
         <choice>
-          <value>{60548f35-634d-40b3-b2f2-ad5241ee9f73}</value>
+          <value>{bc82c988-32c1-407e-912d-90c1dfca838a}</value>
           <display_name>*All Water Heating Coils*</display_name>
         </choice>
         <choice>
@@ -88,7 +88,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>9FB8C5A3</checksum>
+      <checksum>3343F97A</checksum>
     </file>
   </files>
 </measure>

@@ -58,6 +58,7 @@ class CoilCoolingDXTwoSpeedPercentChange < OpenStudio::Measure::ModelMeasure
       components = value.supplyComponents
       components.each do |component|
         next if component.to_CoilCoolingDXTwoSpeed.empty?
+
         show_loop = true
         loop_handles << component.handle.to_s
         loop_display_names << component.name.to_s
@@ -178,46 +179,43 @@ class CoilCoolingDXTwoSpeedPercentChange < OpenStudio::Measure::ModelMeasure
     coils.each do |coil|
       altered_coil = false
       # rated_highspeed_cooling_capacity_perc_change
-      if rated_highspeed_cooling_capacity_perc_change != 0.0
-        if coil.ratedHighSpeedTotalCoolingCapacity.is_initialized
-          runner.registerInfo("Applying ratedHighSpeedTotalCoolingCapacity #{rated_highspeed_cooling_capacity_perc_change} Percent Change to #{coil.name.get}.")
-          coil.setRatedHighSpeedTotalCoolingCapacity(coil.ratedHighSpeedTotalCoolingCapacity.get + coil.ratedHighSpeedTotalCoolingCapacity.get * rated_highspeed_cooling_capacity_perc_change * 0.01)
-          altered_capacity << coil.handle.to_s
-          altered_coil = true
-        end
+      if rated_highspeed_cooling_capacity_perc_change != 0.0 && coil.ratedHighSpeedTotalCoolingCapacity.is_initialized
+        runner.registerInfo("Applying ratedHighSpeedTotalCoolingCapacity #{rated_highspeed_cooling_capacity_perc_change} Percent Change to #{coil.name.get}.")
+        coil.setRatedHighSpeedTotalCoolingCapacity(coil.ratedHighSpeedTotalCoolingCapacity.get + coil.ratedHighSpeedTotalCoolingCapacity.get * rated_highspeed_cooling_capacity_perc_change * 0.01)
+        altered_capacity << coil.handle.to_s
+        altered_coil = true
       end
 
       # rated_lowspeed_cooling_capacity_perc_change
-      if rated_lowspeed_cooling_capacity_perc_change != 0.0
-        if coil.ratedLowSpeedTotalCoolingCapacity.is_initialized
-          runner.registerInfo("Applying ratedLowSpeedTotalCoolingCapacity #{rated_lowspeed_cooling_capacity_perc_change} Percent Change to #{coil.name.get}.")
-          coil.setRatedLowSpeedTotalCoolingCapacity(coil.ratedLowSpeedTotalCoolingCapacity.get + coil.ratedLowSpeedTotalCoolingCapacity.get * rated_lowspeed_cooling_capacity_perc_change * 0.01)
-          altered_capacity << coil.handle.to_s
-          altered_coil = true
-        end
+      if rated_lowspeed_cooling_capacity_perc_change != 0.0 && coil.ratedLowSpeedTotalCoolingCapacity.is_initialized
+        runner.registerInfo("Applying ratedLowSpeedTotalCoolingCapacity #{rated_lowspeed_cooling_capacity_perc_change} Percent Change to #{coil.name.get}.")
+        coil.setRatedLowSpeedTotalCoolingCapacity(coil.ratedLowSpeedTotalCoolingCapacity.get + coil.ratedLowSpeedTotalCoolingCapacity.get * rated_lowspeed_cooling_capacity_perc_change * 0.01)
+        altered_capacity << coil.handle.to_s
+        altered_coil = true
       end
 
       # modify rated_highspeed_cop_perc_change
       if rated_highspeed_cop_perc_change != 0.0
-          runner.registerInfo("Applying ratedHighSpeedCOP #{rated_highspeed_cop_perc_change} Percent Change to #{coil.name.get}.")
-          coil.setRatedHighSpeedCOP(coil.ratedHighSpeedCOP + coil.ratedHighSpeedCOP * rated_highspeed_cop_perc_change * 0.01)
-          altered_coilefficiency << coil.handle.to_s
-          altered_coil = true
+        runner.registerInfo("Applying ratedHighSpeedCOP #{rated_highspeed_cop_perc_change} Percent Change to #{coil.name.get}.")
+        coil.setRatedHighSpeedCOP(coil.ratedHighSpeedCOP + coil.ratedHighSpeedCOP * rated_highspeed_cop_perc_change * 0.01)
+        altered_coilefficiency << coil.handle.to_s
+        altered_coil = true
       end
 
       # modify rated_lowspeed_cop_perc_change
       if rated_lowspeed_cop_perc_change != 0.0
-          runner.registerInfo("Applying ratedLowSpeedCOP #{rated_lowspeed_cop_perc_change} Percent Change to #{coil.name.get}.")
-          coil.setRatedLowSpeedCOP(coil.ratedLowSpeedCOP + coil.ratedLowSpeedCOP * rated_lowspeed_cop_perc_change * 0.01)
-          altered_coilefficiency << coil.handle.to_s
-          altered_coil = true
+        runner.registerInfo("Applying ratedLowSpeedCOP #{rated_lowspeed_cop_perc_change} Percent Change to #{coil.name.get}.")
+        coil.setRatedLowSpeedCOP(coil.ratedLowSpeedCOP + coil.ratedLowSpeedCOP * rated_lowspeed_cop_perc_change * 0.01)
+        altered_coilefficiency << coil.handle.to_s
+        altered_coil = true
       end
 
       next unless altered_coil
+
       altered_coils << coil.handle.to_s
       change_name(coil, rated_highspeed_cop_perc_change, rated_highspeed_cooling_capacity_perc_change, rated_lowspeed_cop_perc_change, rated_lowspeed_cooling_capacity_perc_change)
       runner.registerInfo("coil name changed to: #{coil.name.get}")
-    end # end coil loop
+    end
 
     # na if nothing in model to look at
     if altered_coils.empty?

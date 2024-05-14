@@ -56,7 +56,7 @@ class RValueOfInsulationForConstructionPercentageChange < OpenStudio::Measure::M
     args << r_value_prct_inc
 
     args
-  end # end the arguments method
+  end
 
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
@@ -87,7 +87,7 @@ class RValueOfInsulationForConstructionPercentageChange < OpenStudio::Measure::M
         runner.registerError('Script Error - argument not showing up as construction.')
         return false
       end
-    end # end of if construction.empty?
+    end
 
     # set limit for minimum insulation. This is used to limit input and for inferring insulation layer in construction.
     min_expected_r_value_prct_inc_ip = 1 # ip units
@@ -107,11 +107,9 @@ class RValueOfInsulationForConstructionPercentageChange < OpenStudio::Measure::M
     # loop through construction layers and infer insulation layer/material
     construction_layers.each do |construction_layer|
       construction_layer_r_value = construction_layer.to_OpaqueMaterial.get.thermalResistance
-      unless thermal_resistance_values.empty?
-        if construction_layer_r_value > thermal_resistance_values.max
-          max_thermal_resistance_material = construction_layer
-          max_thermal_resistance_material_index = counter
-        end
+      if !thermal_resistance_values.empty? && (construction_layer_r_value > thermal_resistance_values.max)
+        max_thermal_resistance_material = construction_layer
+        max_thermal_resistance_material_index = counter
       end
       thermal_resistance_values << construction_layer_r_value
       counter += 1
@@ -152,8 +150,8 @@ class RValueOfInsulationForConstructionPercentageChange < OpenStudio::Measure::M
     runner.registerFinalCondition("The Final R-value of #{construction.name} is #{final_r_value_ip} (ft^2*h*R/Btu).")
     runner.registerValue('final_r_value_ip', final_r_value_ip.to_f, 'ft^2*h*R/Btu')
     true
-  end # end the run method
-end # end the measure
+  end
+end
 
 # this allows the measure to be used by the application
 RValueOfInsulationForConstructionPercentageChange.new.registerWithApplication
