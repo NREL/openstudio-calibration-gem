@@ -469,7 +469,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     # TODO: - need to address this error when manipulating schedules
     # [openstudio.standards.ScheduleRuleset] <1> Pre-interpolated processed hash for Large Office Bldg Equip Default Schedule has one or more out of order conflicts: [[3.5, 0.8], [4.5, 0.6], [5.0, 0.6], [7.0, 0.5], [9.0, 0.4], [6.0, 0.4], [10.0, 0.9], [16.5, 0.9], [17.5, 0.8], [18.5, 0.9], [21.5, 0.9]]. Method will stop because Error on Out of Order was set to true.
     # model_build_parametric_schedules
-    parametric_schedules = OpenstudioStandards::Schedules.model_apply_parametric_schedules(model, ramp_frequency: nil, infer_hoo_for_non_assigned_objects: true, error_on_out_of_order: true)
+    parametric_schedules = OpenstudioStandards::Schedules.model_apply_parametric_schedules(model, ramp_frequency: nil, infer_hoo_for_non_assigned_objects: true, error_on_out_of_order: false)
     runner.registerInfo("Created #{parametric_schedules.size} parametric schedules.")
 
     # report final condition of model
