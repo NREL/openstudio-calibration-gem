@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+# Specify your gem's dependencies in openstudio-model-articulation.gemspec
 gemspec
 
 # Local gems are useful when developing and integrating the various dependencies.
