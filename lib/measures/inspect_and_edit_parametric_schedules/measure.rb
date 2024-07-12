@@ -10,10 +10,6 @@
 
 require 'openstudio-standards'
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-
 # start the measure
 class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
   # human readable name
@@ -120,11 +116,15 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
     super(model, runner, user_arguments)
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments(model))
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
+      
+    # open channel to log messages
+    reset_log
 
-    # setup log messages that will come from standards
-    OsLib_HelperMethods.setup_log_msgs(runner, true) # bool is debug
+    # Turn debugging output on/off
+    debug = false
 
     # load standards
     standard = Standard.build('90.1-2004') # selected template doesn't matter
@@ -174,17 +174,19 @@ class InspectAndEditParametricSchedules < OpenStudio::Measure::ModelMeasure
     # report initial condition of model
     runner.registerInitialCondition("The building started with #{counter_parametric_schedules.uniq.size.size} parametric schedules.")
 
-    #   if requested re-generate schedules
+    # if requested re-generate schedules
     if args['apply_parametric_sch']
-      parametric_schedules = standard.model_apply_parametric_schedules(model, ramp_frequency: nil, infer_hoo_for_non_assigned_objects: true, error_on_out_of_order: true)
+      parametric_schedules = OpenstudioStandards::Schedules.model_apply_parametric_schedules(model, ramp_frequency: nil, infer_hoo_for_non_assigned_objects: true, error_on_out_of_order: true)
       runner.registerInfo("Applying #{parametric_schedules.size} parametric schedules.")
     end
 
     # report final condition of model
     runner.registerFinalCondition("The building finished with #{parametric_schedules.size} parametric schedules.")
 
-    # report log messages from standards
-    OsLib_HelperMethods.log_msgs
+    # gather log
+    log_messages_to_runner(runner, debug)
+    reset_log
+    
 
     return true
   end

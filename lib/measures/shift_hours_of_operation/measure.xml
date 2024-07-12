@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>shift_hours_of_operation</name>
   <uid>e8ae02a4-4be2-45c3-b85b-2a1d94662653</uid>
-  <version_id>1300914a-ae91-41df-9b9a-da9b2adde3ad</version_id>
-  <version_modified>20230602T154656Z</version_modified>
+  <version_id>b960e0ec-2792-4cb7-aadc-e29fa84034bb</version_id>
+  <version_modified>2024-07-11T19:58:17Z</version_modified>
   <xml_checksum>4098406A</xml_checksum>
   <class_name>ShiftHoursOfOperation</class_name>
   <display_name>Shift Hours of Operation</display_name>
@@ -20,6 +20,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>-24.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>hoo_dur_weekday</name>
@@ -30,6 +32,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>-24.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>hoo_start_saturday</name>
@@ -40,6 +44,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>-24.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>hoo_dur_saturday</name>
@@ -50,6 +56,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>-24.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>hoo_start_sunday</name>
@@ -60,6 +68,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>-24.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>hoo_dur_sunday</name>
@@ -70,6 +80,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>-24.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>delta_values</name>
@@ -118,6 +130,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0.25</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>1.000000</max_value>
     </argument>
     <argument>
       <name>hoo_var_method</name>
@@ -212,10 +226,16 @@
   </attributes>
   <files>
     <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>BE467EF8</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>46CEB194</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -224,10 +244,21 @@
       <checksum>232D0477</checksum>
     </file>
     <file>
-      <filename>target_hoo_from_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>3F74E693</checksum>
+      <filename>.gitkeep</filename>
+      <filetype>gitkeep</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>00000000</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>3.1.0</identifier>
+        <min_compatible>3.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>564F5547</checksum>
     </file>
     <file>
       <filename>SimpleModel.osm</filename>
@@ -242,39 +273,22 @@
       <checksum>03619D54</checksum>
     </file>
     <file>
-      <filename>.gitkeep</filename>
-      <filetype>gitkeep</filetype>
-      <usage_type>doc</usage_type>
-      <checksum>00000000</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>46CEB194</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BE467EF8</checksum>
     </file>
     <file>
       <filename>shift_hours_of_operation_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>7820BD97</checksum>
+      <checksum>59E5AA36</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>3.1.0</identifier>
-        <min_compatible>3.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>8C482469</checksum>
+      <filename>target_hoo_from_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3F74E693</checksum>
     </file>
   </files>
 </measure>

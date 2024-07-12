@@ -65,6 +65,7 @@ class CoilCoolingDXTwoSpeedMultiplier < OpenStudio::Measure::ModelMeasure
       components = value.supplyComponents
       components.each do |component|
         next if component.to_CoilCoolingDXTwoSpeed.empty?
+
         show_loop = true
         loop_handles << component.handle.to_s
         loop_display_names << component.name.to_s
@@ -188,46 +189,43 @@ class CoilCoolingDXTwoSpeedMultiplier < OpenStudio::Measure::ModelMeasure
     coils.each do |coil|
       altered_coil = false
       # rated_highspeed_cooling_capacity_multiplier
-      if rated_highspeed_cooling_capacity_multiplier != 1.0
-        if coil.ratedHighSpeedTotalCoolingCapacity.is_initialized
-          runner.registerInfo("Applying ratedHighSpeedTotalCoolingCapacity #{rated_highspeed_cooling_capacity_multiplier}x multiplier to #{coil.name.get}.")
-          coil.setRatedHighSpeedTotalCoolingCapacity(coil.ratedHighSpeedTotalCoolingCapacity.get * rated_highspeed_cooling_capacity_multiplier)
-          altered_capacity << coil.handle.to_s
-          altered_coil = true
-        end
+      if rated_highspeed_cooling_capacity_multiplier != 1.0 && coil.ratedHighSpeedTotalCoolingCapacity.is_initialized
+        runner.registerInfo("Applying ratedHighSpeedTotalCoolingCapacity #{rated_highspeed_cooling_capacity_multiplier}x multiplier to #{coil.name.get}.")
+        coil.setRatedHighSpeedTotalCoolingCapacity(coil.ratedHighSpeedTotalCoolingCapacity.get * rated_highspeed_cooling_capacity_multiplier)
+        altered_capacity << coil.handle.to_s
+        altered_coil = true
       end
 
       # rated_lowspeed_cooling_capacity_multiplier
-      if rated_lowspeed_cooling_capacity_multiplier != 1.0
-        if coil.ratedLowSpeedTotalCoolingCapacity.is_initialized
-          runner.registerInfo("Applying ratedLowSpeedTotalCoolingCapacity #{rated_lowspeed_cooling_capacity_multiplier}x multiplier to #{coil.name.get}.")
-          coil.setRatedLowSpeedTotalCoolingCapacity(coil.ratedLowSpeedTotalCoolingCapacity.get * rated_lowspeed_cooling_capacity_multiplier)
-          altered_capacity << coil.handle.to_s
-          altered_coil = true
-        end
+      if rated_lowspeed_cooling_capacity_multiplier != 1.0 && coil.ratedLowSpeedTotalCoolingCapacity.is_initialized
+        runner.registerInfo("Applying ratedLowSpeedTotalCoolingCapacity #{rated_lowspeed_cooling_capacity_multiplier}x multiplier to #{coil.name.get}.")
+        coil.setRatedLowSpeedTotalCoolingCapacity(coil.ratedLowSpeedTotalCoolingCapacity.get * rated_lowspeed_cooling_capacity_multiplier)
+        altered_capacity << coil.handle.to_s
+        altered_coil = true
       end
 
       # modify rated_highspeed_cop_multiplier
       if rated_highspeed_cop_multiplier != 1.0
-          runner.registerInfo("Applying ratedHighSpeedCOP #{rated_highspeed_cop_multiplier}x multiplier to #{coil.name.get}.")
-          coil.setRatedHighSpeedCOP(coil.ratedHighSpeedCOP * rated_highspeed_cop_multiplier)
-          altered_coilefficiency << coil.handle.to_s
-          altered_coil = true
+        runner.registerInfo("Applying ratedHighSpeedCOP #{rated_highspeed_cop_multiplier}x multiplier to #{coil.name.get}.")
+        coil.setRatedHighSpeedCOP(coil.ratedHighSpeedCOP * rated_highspeed_cop_multiplier)
+        altered_coilefficiency << coil.handle.to_s
+        altered_coil = true
       end
 
       # modify rated_lowspeed_cop_multiplier
       if rated_lowspeed_cop_multiplier != 1.0
-          runner.registerInfo("Applying ratedLowSpeedCOP #{rated_lowspeed_cop_multiplier}x multiplier to #{coil.name.get}.")
-          coil.setRatedLowSpeedCOP(coil.ratedLowSpeedCOP * rated_lowspeed_cop_multiplier)
-          altered_coilefficiency << coil.handle.to_s
-          altered_coil = true
+        runner.registerInfo("Applying ratedLowSpeedCOP #{rated_lowspeed_cop_multiplier}x multiplier to #{coil.name.get}.")
+        coil.setRatedLowSpeedCOP(coil.ratedLowSpeedCOP * rated_lowspeed_cop_multiplier)
+        altered_coilefficiency << coil.handle.to_s
+        altered_coil = true
       end
 
       next unless altered_coil
+
       altered_coils << coil.handle.to_s
       change_name(coil, rated_highspeed_cop_multiplier, rated_highspeed_cooling_capacity_multiplier, rated_lowspeed_cop_multiplier, rated_lowspeed_cooling_capacity_multiplier)
       runner.registerInfo("coil name changed to: #{coil.name.get}")
-    end # end coil loop
+    end
 
     # na if nothing in model to look at
     if altered_coils.empty?

@@ -10,14 +10,8 @@
 
 require 'openstudio-standards'
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-
 # start the measure
 class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
-  # resource file modules
-  include OsLib_HelperMethods
 
   # human readable name
   def name
@@ -45,14 +39,18 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_start_weekday.setDescription('Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later')
     hoo_start_weekday.setDefaultValue(0.0)
     hoo_start_weekday.setUnits('Hours')
+    hoo_start_weekday.setMinValue(-24.0)
+    hoo_start_weekday.setMaxValue(24.0)
     args << hoo_start_weekday
 
     # delta hoo_dur for weekday
     hoo_dur_weekday = OpenStudio::Measure::OSArgument.makeDoubleArgument('hoo_dur_weekday', true)
     hoo_dur_weekday.setDisplayName('Extend the weekday of hours of operation.')
     hoo_dur_weekday.setDescription('Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.')
-    hoo_dur_weekday .setDefaultValue(0.0)
+    hoo_dur_weekday.setDefaultValue(0.0)
     hoo_dur_weekday.setUnits('Hours')
+    hoo_dur_weekday.setMinValue(-24.0)
+    hoo_dur_weekday.setMaxValue(24.0)
     args << hoo_dur_weekday
 
     # TODO: - could include every day of the week
@@ -63,6 +61,8 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_start_saturday.setDescription('Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later')
     hoo_start_saturday.setDefaultValue(0.0)
     hoo_start_saturday.setUnits('Hours')
+    hoo_start_saturday.setMinValue(-24.0)
+    hoo_start_saturday.setMaxValue(24.0)
     args << hoo_start_saturday
 
     # delta hoo_dur for saturday
@@ -71,6 +71,8 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_dur_saturday.setDescription('Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.')
     hoo_dur_saturday.setDefaultValue(0.0)
     hoo_dur_saturday.setUnits('Hours')
+    hoo_dur_saturday.setMinValue(-24.0)
+    hoo_dur_saturday.setMaxValue(24.0)
     args << hoo_dur_saturday
 
     # delta hoo_start for sundays
@@ -79,6 +81,8 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_start_sunday.setDescription('Use decimal hours so an 1 hour and 15 minute shift would be 1.25. Positive value moves the hour of operation later')
     hoo_start_sunday.setDefaultValue(0.0)
     hoo_start_sunday.setUnits('Hours')
+    hoo_start_sunday.setMinValue(-24.0)
+    hoo_start_sunday.setMaxValue(24.0)
     args << hoo_start_sunday
 
     # delta hoo_dur for sunday
@@ -87,6 +91,8 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     hoo_dur_sunday.setDescription('Use decimal hours so an 1 hour and 15 minute would be 1.25. Positive value makes the hour of operation longer.')
     hoo_dur_sunday.setDefaultValue(0.0)
     hoo_dur_sunday.setUnits('Hours')
+    hoo_dur_sunday.setMinValue(-24.0)
+    hoo_dur_sunday.setMaxValue(24.0)
     args << hoo_dur_sunday
 
     # TODO: - could include start and end days to have delta or absolute values applied to. (maybe decimal between 1.0 and 13.0 month where 3.50 would be March 15th)
@@ -111,6 +117,8 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     fraction_of_daily_occ_range.setDescription('This determine what fraction of occupancy be considered operating conditions. This fraction is normalized to expanded to range seen over the full year and does not necessary equal fraction of design occupancy. This value should be between 0 and 1.0 and is only used if dynamically generated parametric schedules are used.')
     fraction_of_daily_occ_range.setDefaultValue(0.25)
     fraction_of_daily_occ_range.setUnits('Hours')
+    fraction_of_daily_occ_range.setMinValue(0.0)
+    fraction_of_daily_occ_range.setMaxValue(1.0)
     args << fraction_of_daily_occ_range
 
     # argument to choose hour of operation variable method
@@ -150,7 +158,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
         runner.registerWarning("Hours of Operation Schedule is not set for #{space.name}.")
         next
       end
-      hours_of_operation_hash = standard.space_hours_of_operation(space)
+      hours_of_operation_hash = OpenstudioStandards::Space.space_hours_of_operation(space)
       hours_of_operation_hash.each do |hoo_key, val|
         if val[:hoo_hours] == 0.0
           hoo_summary_hash[:zero_hoo] << val[:hoo_hours]
@@ -234,7 +242,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       # use this to link to hoo from hours_of_operation_hash
       counter_of_orig_index = hours_of_operation_hash.size - 2 # this is not impacted by cloning that may have happened above
 
-      hoo_sch.scheduleRules.reverse.each do |rule|
+      hoo_sch.scheduleRules.reverse_each do |rule|
         # inspect days of the week
         actual_days_of_week_for_profile = []
         if rule.applyMonday then actual_days_of_week_for_profile << 'mon' end
@@ -390,22 +398,15 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     super(model, runner, user_arguments)
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments(model))
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
 
-    # check expected values of double arguments
-    fraction = OsLib_HelperMethods.checkDoubleAndIntegerArguments(runner, user_arguments, 'min' => 0.0, 'max' => 1.0, 'min_eq_bool' => true, 'max_eq_bool' => true, 'arg_array' => ['fraction_of_daily_occ_range'])
+    # open channel to log messages
+    reset_log
 
-    neg_24__24 = ['hoo_start_weekday',
-                  'hoo_dur_weekday',
-                  'hoo_start_saturday',
-                  'hoo_dur_saturday',
-                  'hoo_start_sunday',
-                  'hoo_dur_sunday']
-    time_hours = OsLib_HelperMethods.checkDoubleAndIntegerArguments(runner, user_arguments, 'min' => -24.0, 'max' => 24.0, 'min_eq_bool' => true, 'max_eq_bool' => true, 'arg_array' => neg_24__24)
-
-    # setup log messages that will come from standards
-    OsLib_HelperMethods.setup_log_msgs(runner, true) # bool is debug
+    # Turn debugging output on/off
+    debug = false
 
     # load standards
     standard = Standard.build('90.1-2004') # selected template doesn't matter
@@ -414,19 +415,19 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       # infer hours of operation for the building
       # @param fraction_of_daily_occ_range [Double] fraction above/below daily min range required to start and end hours of operation
       occ_fraction = args['fraction_of_daily_occ_range']
-      standard.model_infer_hours_of_operation_building(model, fraction_of_daily_occ_range: occ_fraction, gen_occ_profile: true)
+      OpenstudioStandards::Schedules.model_infer_hours_of_operation_building(model, fraction_of_daily_occ_range: occ_fraction, gen_occ_profile: true)
       runner.registerInfo('Inferring initial hours of operation for the building and generating parametric profile formulas.')
 
       # report back hours of operation
       initial_hoo_range = []
-      hours_of_operation_hash_test = standard.space_hours_of_operation(model.getSpaces.first)
+      hours_of_operation_hash_test = OpenstudioStandards::Space.space_hours_of_operation(model.getSpaces.first)
       hours_of_operation_hash_test.each do |hoo_key, val|
         initial_hoo_range << val[:hoo_hours]
         runner.registerInfo("For Profile Index #{hoo_key} hours of operation run for #{val[:hoo_hours]} hours, from #{val[:hoo_start]} to #{val[:hoo_end]} and is used for #{val[:days_used].size} days of the year.")
       end
 
       # model_setup_parametric_schedules
-      standard.model_setup_parametric_schedules(model, gather_data_only: false, hoo_var_method: args['hoo_var_method'])
+      OpenstudioStandards::Schedules.model_setup_parametric_schedules(model, gather_data_only: false, hoo_var_method: args['hoo_var_method'])
     end
 
     # report initial condition of model
@@ -446,7 +447,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
         runner.registerWarning("Hours of Operation Schedule is not set for #{space.name}.")
         next
       end
-      hours_of_operation_hash = standard.space_hours_of_operation(space)
+      hours_of_operation_hash = OpenstudioStandards::Space.space_hours_of_operation(space)
       used_hoo_sch_sets[hours_of_operation.get] = hours_of_operation_hash
     end
 
@@ -468,7 +469,7 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
     # TODO: - need to address this error when manipulating schedules
     # [openstudio.standards.ScheduleRuleset] <1> Pre-interpolated processed hash for Large Office Bldg Equip Default Schedule has one or more out of order conflicts: [[3.5, 0.8], [4.5, 0.6], [5.0, 0.6], [7.0, 0.5], [9.0, 0.4], [6.0, 0.4], [10.0, 0.9], [16.5, 0.9], [17.5, 0.8], [18.5, 0.9], [21.5, 0.9]]. Method will stop because Error on Out of Order was set to true.
     # model_build_parametric_schedules
-    parametric_schedules = standard.model_apply_parametric_schedules(model, ramp_frequency: nil, infer_hoo_for_non_assigned_objects: true, error_on_out_of_order: true)
+    parametric_schedules = OpenstudioStandards::Schedules.model_apply_parametric_schedules(model, ramp_frequency: nil, infer_hoo_for_non_assigned_objects: true, error_on_out_of_order: false)
     runner.registerInfo("Created #{parametric_schedules.size} parametric schedules.")
 
     # report final condition of model
@@ -479,8 +480,9 @@ class ShiftHoursOfOperation < OpenStudio::Measure::ModelMeasure
       runner.registerFinalCondition("Across the building the hours of operation range from #{hoo_summary_hash[:final_hoo_dur_range].min} hours to #{hoo_summary_hash[:final_hoo_dur_range].max} hours. Start of hours of operation range from #{hoo_summary_hash[:final_hoo_start_range].min} to #{hoo_summary_hash[:final_hoo_start_range].max}.")
     end
 
-    # get log messages (if debug in setup is true this will fail for error)
-    OsLib_HelperMethods.log_msgs
+    # gather log
+    log_messages_to_runner(runner, debug)
+    reset_log
 
     # TODO: - adding hours of operation to a schedule that doesn't have them to start with, like a sunday, can be problematic
     # todo - start of day may not be reliable and there may not be formula inputs to show what occupied behavior is

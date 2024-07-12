@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+# Specify your gem's dependencies in openstudio-model-articulation.gemspec
 gemspec
 
 # Local gems are useful when developing and integrating the various dependencies.
@@ -9,7 +10,6 @@ gemspec
 # Note that if allow_local is true, but the gem is not found locally, then it will
 # checkout the latest version (develop) from github.
 allow_local = ENV['FAVOR_LOCAL_GEMS']
-
 
 if allow_local && File.exist?('../OpenStudio-extension-gem')
   gem 'openstudio-extension', path: '../OpenStudio-extension-gem'

@@ -464,7 +464,7 @@ class GeneralCalibrationMeasurePercentChange < OpenStudio::Measure::ModelMeasure
           runner.registerInfo("Skipping change to #{internalmass_def.name.get}")
         end
       end
-    end # end space_type loop
+    end
 
     runner.registerInfo("altered_lights_definitions: #{altered_lights_definitions}")
     runner.registerInfo("altered_luminaires_definitions: #{altered_luminaires_definitions}")
@@ -697,7 +697,7 @@ class GeneralCalibrationMeasurePercentChange < OpenStudio::Measure::ModelMeasure
           runner.registerInfo("Skipping change to #{internalmass_def.name.get}")
         end
       end
-    end # end spaces loop
+    end
 
     runner.registerInfo("altered_lights_definitions: #{altered_lights_definitions}")
     runner.registerInfo("altered_luminaires_definitions: #{altered_luminaires_definitions}")

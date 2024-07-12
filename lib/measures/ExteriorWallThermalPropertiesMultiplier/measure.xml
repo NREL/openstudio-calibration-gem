@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>exterior_wall_thermal_properties_multiplier</name>
   <uid>6ab39cf2-1f9e-4570-a797-360a814aaa74</uid>
-  <version_id>ff402058-f27c-4320-b847-86f6d776ca55</version_id>
-  <version_modified>20230602T154652Z</version_modified>
+  <version_id>684ac24d-dc00-4718-95a6-f0b4de85366c</version_id>
+  <version_modified>20240428T231344Z</version_modified>
   <xml_checksum>EB1A0C08</xml_checksum>
   <class_name>ExteriorWallThermalPropertiesMultiplier</class_name>
   <display_name>Exterior Wall Thermal Properties Multiplier</display_name>
@@ -89,6 +89,12 @@
       <checksum>BFFB1AA6</checksum>
     </file>
     <file>
+      <filename>ExteriorWallThermalPropertiesMultiplier_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>593F94D8</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>0.11.5</identifier>
@@ -97,13 +103,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>B6F3A89B</checksum>
-    </file>
-    <file>
-      <filename>ExteriorWallThermalPropertiesMultiplier_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>593F94D8</checksum>
+      <checksum>9267EE80</checksum>
     </file>
   </files>
 </measure>

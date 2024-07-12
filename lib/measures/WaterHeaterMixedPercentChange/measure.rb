@@ -156,33 +156,27 @@ class WaterHeaterMixedPercentChange < OpenStudio::Measure::ModelMeasure
     water_heaters.each do |water_heater|
       altered_heater = false
       # modify maximum_capacity_multiplier
-      if maximum_capacity_multiplier != 0.0
-        if water_heater.heaterMaximumCapacity.is_initialized
-          runner.registerInfo("Applying #{maximum_capacity_multiplier}x maximum capacity Percent Change to #{water_heater.name.get}.")
-          water_heater.setHeaterMaximumCapacity(water_heater.heaterMaximumCapacity.get + water_heater.heaterMaximumCapacity.get * maximum_capacity_multiplier * 0.01)
-          altered_max_cap << water_heater.handle.to_s
-          altered_heater = true
-        end
+      if maximum_capacity_multiplier != 0.0 && water_heater.heaterMaximumCapacity.is_initialized
+        runner.registerInfo("Applying #{maximum_capacity_multiplier}x maximum capacity Percent Change to #{water_heater.name.get}.")
+        water_heater.setHeaterMaximumCapacity(water_heater.heaterMaximumCapacity.get + water_heater.heaterMaximumCapacity.get * maximum_capacity_multiplier * 0.01)
+        altered_max_cap << water_heater.handle.to_s
+        altered_heater = true
       end
 
       # modify minimum_capacity_multiplier
-      if minimum_capacity_multiplier != 0.0
-        if water_heater.heaterMinimumCapacity.is_initialized
-          runner.registerInfo("Applying #{minimum_capacity_multiplier}x minimum capacity Percent Change to #{water_heater.name.get}.")
-          water_heater.setHeaterMaximumCapacity(water_heater.heaterMinimumCapacity.get + water_heater.heaterMinimumCapacity.get * minimum_capacity_multiplier * 0.01)
-          altered_min_cap << water_heater.handle.to_s
-          altered_heater = true
-        end
+      if minimum_capacity_multiplier != 0.0 && water_heater.heaterMinimumCapacity.is_initialized
+        runner.registerInfo("Applying #{minimum_capacity_multiplier}x minimum capacity Percent Change to #{water_heater.name.get}.")
+        water_heater.setHeaterMaximumCapacity(water_heater.heaterMinimumCapacity.get + water_heater.heaterMinimumCapacity.get * minimum_capacity_multiplier * 0.01)
+        altered_min_cap << water_heater.handle.to_s
+        altered_heater = true
       end
 
       # modify thermal_efficiency_multiplier
-      if thermal_efficiency_multiplier != 0.0
-        if water_heater.heaterThermalEfficiency.is_initialized
-          runner.registerInfo("Applying #{thermal_efficiency_multiplier}x thermal efficiency Percent Change to #{water_heater.name.get}.")
-          water_heater.setHeaterThermalEfficiency(water_heater.heaterThermalEfficiency.get + water_heater.heaterThermalEfficiency.get * thermal_efficiency_multiplier * 0.01)
-          altered_thermalefficiency << water_heater.handle.to_s
-          altered_heater = true
-        end
+      if thermal_efficiency_multiplier != 0.0 && water_heater.heaterThermalEfficiency.is_initialized
+        runner.registerInfo("Applying #{thermal_efficiency_multiplier}x thermal efficiency Percent Change to #{water_heater.name.get}.")
+        water_heater.setHeaterThermalEfficiency(water_heater.heaterThermalEfficiency.get + water_heater.heaterThermalEfficiency.get * thermal_efficiency_multiplier * 0.01)
+        altered_thermalefficiency << water_heater.handle.to_s
+        altered_heater = true
       end
 
       orig_fuel_type = water_heater.heaterFuelType
@@ -193,10 +187,11 @@ class WaterHeaterMixedPercentChange < OpenStudio::Measure::ModelMeasure
       end
 
       next unless altered_heater
+
       altered_heaters << water_heater.handle.to_s
       change_name(water_heater, maximum_capacity_multiplier, minimum_capacity_multiplier, thermal_efficiency_multiplier, fuel_type, orig_fuel_type)
       runner.registerInfo("WaterHeater name changed to: #{water_heater.name.get}")
-    end # end water_heater loop
+    end
 
     # na if nothing in model to look at
     if altered_heaters.empty?
