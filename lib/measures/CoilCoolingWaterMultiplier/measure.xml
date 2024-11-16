@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>coil_cooling_water_multiplier</name>
   <uid>0fb42580-a644-4291-9a08-05521a6e7940</uid>
-  <version_id>c5a49988-bac0-438f-ad85-1cc3a4e2bf62</version_id>
-  <version_modified>20240428T231349Z</version_modified>
+  <version_id>0891c8f9-60bf-42f2-a9de-1dd90224bfb0</version_id>
+  <version_modified>2024-11-16T23:44:49Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingWaterMultiplier</class_name>
   <display_name>Cooling Coils Water Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{77f90bca-84b4-4e1d-ad1b-6fab71450590}</default_value>
+      <default_value>{361898b3-4c80-4f20-bff4-296675ed448d}</default_value>
       <choices>
         <choice>
-          <value>{77f90bca-84b4-4e1d-ad1b-6fab71450590}</value>
+          <value>{361898b3-4c80-4f20-bff4-296675ed448d}</value>
           <display_name>*All Water Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -98,10 +98,10 @@
   </attributes>
   <files>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -110,10 +110,10 @@
       <checksum>3C509F3A</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
