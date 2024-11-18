@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>coil_heating_gas_multiplier</name>
   <uid>a4843fc4-4cc7-4112-b5a9-aef81cbeac63</uid>
-  <version_id>d7386049-e873-42ab-91ab-e8fb1bcb854e</version_id>
-  <version_modified>20240428T231344Z</version_modified>
+  <version_id>ae70a39c-c633-4bcc-b94c-c5c542836b7d</version_id>
+  <version_modified>2024-11-16T23:44:47Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingGasMultiplier</class_name>
   <display_name>Heating Coils Gas Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{a52407fd-38d7-41da-8814-d4aebd7a3b77}</default_value>
+      <default_value>{6a5cccf6-a939-410f-8fe9-70215fd94b0f}</default_value>
       <choices>
         <choice>
-          <value>{a52407fd-38d7-41da-8814-d4aebd7a3b77}</value>
+          <value>{6a5cccf6-a939-410f-8fe9-70215fd94b0f}</value>
           <display_name>*All Gas Heating Coils*</display_name>
         </choice>
         <choice>
@@ -80,10 +80,10 @@
   </attributes>
   <files>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -92,10 +92,10 @@
       <checksum>B3D94A28</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>

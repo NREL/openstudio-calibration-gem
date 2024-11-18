@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>shift_hours_of_operation</name>
   <uid>e8ae02a4-4be2-45c3-b85b-2a1d94662653</uid>
-  <version_id>b960e0ec-2792-4cb7-aadc-e29fa84034bb</version_id>
-  <version_modified>2024-07-11T19:58:17Z</version_modified>
+  <version_id>5a50a17e-fdca-47d3-b480-9c77ef5523a0</version_id>
+  <version_modified>2024-11-16T23:44:49Z</version_modified>
   <xml_checksum>4098406A</xml_checksum>
   <class_name>ShiftHoursOfOperation</class_name>
   <display_name>Shift Hours of Operation</display_name>
@@ -229,7 +229,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

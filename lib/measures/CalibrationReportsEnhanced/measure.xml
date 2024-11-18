@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>calibration_reports_enhanced</name>
   <uid>e6642d40-7366-4647-8724-53a37991d668</uid>
-  <version_id>7cda1e46-566f-46e5-b89c-5bbc797fdda8</version_id>
-  <version_modified>20240428T231344Z</version_modified>
+  <version_id>e97d879f-dc9a-4af2-a4d7-b79b07ed9a4b</version_id>
+  <version_modified>2024-11-16T23:44:47Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>CalibrationReportsEnhanced</class_name>
   <display_name>Calibration Reports Enhanced</display_name>
@@ -311,34 +311,10 @@
   </attributes>
   <files>
     <file>
-      <filename>ExampleModel.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>5A314A0A</checksum>
-    </file>
-    <file>
-      <filename>USA_CO_Golden-NREL.724666_TMY3.epw</filename>
-      <filetype>epw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>BDF687C1</checksum>
-    </file>
-    <file>
-      <filename>report.html.in</filename>
-      <filetype>in</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>B112BA5D</checksum>
-    </file>
-    <file>
-      <filename>ExampleModel_FuelOil.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4FC9D41F</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -347,16 +323,10 @@
       <checksum>9073A0CD</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
-    </file>
-    <file>
-      <filename>CalibrationReportsEnhanced_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>97772676</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -368,6 +338,36 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>AD9FA578</checksum>
+    </file>
+    <file>
+      <filename>report.html.in</filename>
+      <filetype>in</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>B112BA5D</checksum>
+    </file>
+    <file>
+      <filename>CalibrationReportsEnhanced_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>97772676</checksum>
+    </file>
+    <file>
+      <filename>ExampleModel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>5A314A0A</checksum>
+    </file>
+    <file>
+      <filename>ExampleModel_FuelOil.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>4FC9D41F</checksum>
+    </file>
+    <file>
+      <filename>USA_CO_Golden-NREL.724666_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BDF687C1</checksum>
     </file>
   </files>
 </measure>
