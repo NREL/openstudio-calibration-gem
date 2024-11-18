@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>roof_thermal_properties_percent_change</name>
   <uid>07516685-60fd-4da8-9872-1154a995047d</uid>
-  <version_id>6c9d8dec-0134-4f58-924b-b12ba6ecb8cb</version_id>
-  <version_modified>20240428T231348Z</version_modified>
+  <version_id>bef34852-8624-44d9-ad41-79c3dbf26488</version_id>
+  <version_modified>2024-11-16T23:44:49Z</version_modified>
   <xml_checksum>EB1A0C08</xml_checksum>
   <class_name>RoofThermalPropertiesPercentChange</class_name>
   <display_name>Roof Thermal Properties Percent Change</display_name>
@@ -65,10 +65,10 @@
   </attributes>
   <files>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -77,22 +77,10 @@
       <checksum>76CA84A4</checksum>
     </file>
     <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>53D14E69</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
-    </file>
-    <file>
-      <filename>RoofThermalPropertiesMultiplier_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>3F4E0142</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -104,6 +92,18 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>D0AD2402</checksum>
+    </file>
+    <file>
+      <filename>RoofThermalPropertiesMultiplier_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3F4E0142</checksum>
+    </file>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>53D14E69</checksum>
     </file>
   </files>
 </measure>
