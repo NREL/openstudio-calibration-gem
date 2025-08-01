@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>general_calibration_measure_multiplier</name>
   <uid>d622534e-a3c9-4ba5-b616-53dce2a18ac8</uid>
-  <version_id>88b31200-6fb2-4839-ade3-f970bddafe9e</version_id>
-  <version_modified>2024-11-16T23:44:47Z</version_modified>
+  <version_id>db1e62b7-d8d8-40df-b47c-2599842b9e8e</version_id>
+  <version_modified>2025-08-01T20:02:39Z</version_modified>
   <xml_checksum>DEC0D835</xml_checksum>
   <class_name>GeneralCalibrationMeasureMultiplier</class_name>
   <display_name>General Calibration Measure Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{39e87638-19bf-46e0-8db3-3998901b9f40}</default_value>
+      <default_value>{2d511982-442f-434b-8ccb-e64221f17aa5}</default_value>
       <choices>
         <choice>
-          <value>{39e87638-19bf-46e0-8db3-3998901b9f40}</value>
+          <value>{2d511982-442f-434b-8ccb-e64221f17aa5}</value>
           <display_name>*All SpaceTypes*</display_name>
         </choice>
         <choice>
@@ -35,10 +35,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{39e87638-19bf-46e0-8db3-3998901b9f40}</default_value>
+      <default_value>{2d511982-442f-434b-8ccb-e64221f17aa5}</default_value>
       <choices>
         <choice>
-          <value>{39e87638-19bf-46e0-8db3-3998901b9f40}</value>
+          <value>{2d511982-442f-434b-8ccb-e64221f17aa5}</value>
           <display_name>*All Spaces*</display_name>
         </choice>
         <choice>
@@ -202,7 +202,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

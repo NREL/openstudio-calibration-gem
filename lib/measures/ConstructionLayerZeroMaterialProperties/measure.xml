@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>construction_layer_zero_material_properties</name>
   <uid>3c7a6751-bb54-4600-9410-8f042e1a413b</uid>
-  <version_id>63f3ce5b-bdea-4c11-aa59-fbe076c1213c</version_id>
-  <version_modified>2024-11-16T23:44:47Z</version_modified>
+  <version_id>012ffdf0-33e0-447c-b8e4-5665e8653965</version_id>
+  <version_modified>2025-08-01T20:02:39Z</version_modified>
   <xml_checksum>0BF71A3E</xml_checksum>
   <class_name>ConstructionLayerZeroMaterialProperties</class_name>
   <display_name>Change Parameters Of Material (Layer 0 of Construction)</display_name>
@@ -166,7 +166,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

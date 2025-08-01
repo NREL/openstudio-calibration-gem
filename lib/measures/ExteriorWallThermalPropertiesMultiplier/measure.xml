@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>exterior_wall_thermal_properties_multiplier</name>
   <uid>6ab39cf2-1f9e-4570-a797-360a814aaa74</uid>
-  <version_id>d7087cd3-5877-475e-8400-bfebd2bcebed</version_id>
-  <version_modified>2024-11-16T23:44:47Z</version_modified>
+  <version_id>78d31702-2f71-410a-b02f-46f77484d9e4</version_id>
+  <version_modified>2025-08-01T20:02:39Z</version_modified>
   <xml_checksum>EB1A0C08</xml_checksum>
   <class_name>ExteriorWallThermalPropertiesMultiplier</class_name>
   <display_name>Exterior Wall Thermal Properties Multiplier</display_name>
@@ -68,7 +68,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

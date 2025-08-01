@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>hard_size_hvac</name>
   <uid>d7da749f-6318-4077-b502-25994a713b27</uid>
-  <version_id>ef3718a4-fe8f-4a47-ab4b-6dea39027638</version_id>
-  <version_modified>2024-11-16T23:44:49Z</version_modified>
+  <version_id>bd69e957-eede-428e-8c93-ed548c726a5e</version_id>
+  <version_modified>2025-08-01T20:02:41Z</version_modified>
   <xml_checksum>2B526343</xml_checksum>
   <class_name>HardSizeHVAC</class_name>
   <display_name>Hard Size HVAC</display_name>
@@ -53,7 +53,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

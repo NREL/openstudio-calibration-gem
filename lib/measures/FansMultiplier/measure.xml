@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>fans_multiplier</name>
   <uid>af156383-cfe2-4798-b581-08a4cccb8877</uid>
-  <version_id>6c6d0c33-7de4-4c8e-acf5-6cd678447977</version_id>
-  <version_modified>2024-11-16T23:44:47Z</version_modified>
+  <version_id>c3532a48-62a5-498c-b895-2e4b214ad83d</version_id>
+  <version_modified>2025-08-01T20:02:39Z</version_modified>
   <xml_checksum>3C1DA54F</xml_checksum>
   <class_name>FansMultiplier</class_name>
   <display_name>Fans Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{324f484c-c364-4919-8cad-f30e88c18d74}</default_value>
+      <default_value>{67ab61ef-e195-4462-a139-51ae79b82ecb}</default_value>
       <choices>
         <choice>
-          <value>{324f484c-c364-4919-8cad-f30e88c18d74}</value>
+          <value>{67ab61ef-e195-4462-a139-51ae79b82ecb}</value>
           <display_name>*All Fans*</display_name>
         </choice>
         <choice>
@@ -139,7 +139,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
