@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_monthly_json_utility_data</name>
   <uid>6da969e0-4256-49bf-9607-26504cc3d423</uid>
-  <version_id>2dd7a637-0ecb-49bc-948b-b58861579022</version_id>
-  <version_modified>2024-11-16T23:44:46Z</version_modified>
+  <version_id>0d4e2462-a0c4-4c56-b4de-9e6664569ae0</version_id>
+  <version_modified>2025-08-01T20:02:37Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>AddMonthlyJSONUtilityData</class_name>
   <display_name>Add Monthly JSON Utility Data</display_name>
@@ -135,7 +135,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

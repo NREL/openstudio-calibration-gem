@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>coil_cooling_dx_two_speed_percent_change</name>
   <uid>2145d3a3-60fd-4b95-8faf-33e2402934fc</uid>
-  <version_id>ed3e9448-4ba4-4633-9897-41f65a428564</version_id>
-  <version_modified>2024-11-16T23:44:49Z</version_modified>
+  <version_id>b1b5252b-a882-4ad8-aab7-378b54f999c2</version_id>
+  <version_modified>2025-08-01T20:02:41Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXTwoSpeedPercentChange</class_name>
   <display_name>Cooling Coils DX Two Speed Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{4b6fffe0-aa6d-4359-bed3-6153f509193f}</default_value>
+      <default_value>{ebb4f0dd-22ee-48f4-9926-cda07f6cf75b}</default_value>
       <choices>
         <choice>
-          <value>{4b6fffe0-aa6d-4359-bed3-6153f509193f}</value>
+          <value>{ebb4f0dd-22ee-48f4-9926-cda07f6cf75b}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -83,7 +83,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

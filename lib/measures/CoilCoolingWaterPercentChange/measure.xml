@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>coil_cooling_water_percent_change</name>
   <uid>51bc1f02-f01b-4c5e-818a-db76ed783665</uid>
-  <version_id>9c856608-c6f6-486d-88e2-563c60f0c3b7</version_id>
-  <version_modified>2024-11-16T23:44:49Z</version_modified>
+  <version_id>21bdd73c-b8da-4682-be19-c1138c349499</version_id>
+  <version_modified>2025-08-01T20:02:41Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingWaterPercentChange</class_name>
   <display_name>Cooling Coils Water PercentChange</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{49c2f66b-6ec8-45fa-956e-06547f6b888c}</default_value>
+      <default_value>{6900f1b7-ad07-4bee-a9db-381768dac068}</default_value>
       <choices>
         <choice>
-          <value>{49c2f66b-6ec8-45fa-956e-06547f6b888c}</value>
+          <value>{6900f1b7-ad07-4bee-a9db-381768dac068}</value>
           <display_name>*All Water Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -101,7 +101,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

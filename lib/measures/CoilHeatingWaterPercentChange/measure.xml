@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>coil_heating_water_percent_change</name>
   <uid>85674ff6-4fdc-463f-9695-36bf6c6a2608</uid>
-  <version_id>7a8dcdec-d808-425a-9074-382a6a7cee5c</version_id>
-  <version_modified>2024-11-16T23:44:47Z</version_modified>
+  <version_id>990d2e5e-0655-46be-99d0-a4c756ab2f94</version_id>
+  <version_modified>2025-08-01T20:02:39Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingWaterPercentChange</class_name>
   <display_name>Heating Coils Water Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{16f6444c-4e12-411c-9246-6c3658da5564}</default_value>
+      <default_value>{1868977c-e573-423b-9594-d5599673f23e}</default_value>
       <choices>
         <choice>
-          <value>{16f6444c-4e12-411c-9246-6c3658da5564}</value>
+          <value>{1868977c-e573-423b-9594-d5599673f23e}</value>
           <display_name>*All Water Heating Coils*</display_name>
         </choice>
         <choice>
@@ -65,7 +65,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

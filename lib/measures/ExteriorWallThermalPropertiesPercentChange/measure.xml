@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>exterior_wall_thermal_properties_percent_change</name>
   <uid>6ab39cf2-1f9e-4570-a797-360a814aaa64</uid>
-  <version_id>01f72495-4f2e-4b3c-8c22-013769de918d</version_id>
-  <version_modified>2024-11-16T23:44:47Z</version_modified>
+  <version_id>4776d91b-016a-48a1-a431-04d512402a32</version_id>
+  <version_modified>2025-08-01T20:02:39Z</version_modified>
   <xml_checksum>EB1A0C08</xml_checksum>
   <class_name>ExteriorWallThermalPropertiesPercentChange</class_name>
   <display_name>Exterior Wall Thermal Percent Change</display_name>
@@ -68,7 +68,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

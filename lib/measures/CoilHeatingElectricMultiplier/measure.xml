@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>coil_heating_electric_multiplier</name>
   <uid>122e854c-d939-4bea-822a-89f2a5584a01</uid>
-  <version_id>a1be9710-f0e9-45a4-b025-3a6d11747cd6</version_id>
-  <version_modified>2024-11-16T23:44:47Z</version_modified>
+  <version_id>b7804c19-a3e3-4321-b05e-56a144d54597</version_id>
+  <version_modified>2025-08-01T20:02:39Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingElectricMultiplier</class_name>
   <display_name>Heating Coils Electric Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{d7884f70-8abc-470a-a1aa-ba304d7a3a24}</default_value>
+      <default_value>{24938b20-6ad1-49c2-9517-4b18d8e877d6}</default_value>
       <choices>
         <choice>
-          <value>{d7884f70-8abc-470a-a1aa-ba304d7a3a24}</value>
+          <value>{24938b20-6ad1-49c2-9517-4b18d8e877d6}</value>
           <display_name>*All Electric Heating Coils*</display_name>
         </choice>
         <choice>
@@ -65,7 +65,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>coil_heating_water_multiplier</name>
   <uid>48c50a83-4092-4f2b-9968-8c820759f321</uid>
-  <version_id>aadbca9a-c90d-43b4-b50b-1b94e5143f05</version_id>
-  <version_modified>2024-11-16T23:44:47Z</version_modified>
+  <version_id>663f1bb0-c4ee-43ae-8636-76a3c009a28b</version_id>
+  <version_modified>2025-08-01T20:02:39Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingWaterMultiplier</class_name>
   <display_name>Heating Coils Water Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{88c5b12a-013f-490d-8b50-be9b860b4776}</default_value>
+      <default_value>{4e2fb5c7-7b44-4139-b3f8-9ea304f61db3}</default_value>
       <choices>
         <choice>
-          <value>{88c5b12a-013f-490d-8b50-be9b860b4776}</value>
+          <value>{4e2fb5c7-7b44-4139-b3f8-9ea304f61db3}</value>
           <display_name>*All Water Heating Coils*</display_name>
         </choice>
         <choice>
@@ -65,7 +65,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
