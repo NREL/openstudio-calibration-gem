@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>coil_heating_electric_percent_change</name>
   <uid>7c681481-16d2-4a8e-b0a3-71a86639f53a</uid>
-  <version_id>ad31a8b3-c117-4052-bf96-c9680d99260b</version_id>
-  <version_modified>2024-11-16T23:44:47Z</version_modified>
+  <version_id>803a13d7-9d5f-4838-b64b-b3178dc457cb</version_id>
+  <version_modified>2025-08-01T20:02:39Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingElectricPercentChange</class_name>
   <display_name>Heating Coils Electric Percent Change</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{c10df945-8e68-4c68-930e-06771c0b7ffd}</default_value>
+      <default_value>{0e7682af-12db-41ee-86a7-853c07018576}</default_value>
       <choices>
         <choice>
-          <value>{c10df945-8e68-4c68-930e-06771c0b7ffd}</value>
+          <value>{0e7682af-12db-41ee-86a7-853c07018576}</value>
           <display_name>*All Electric Heating Coils*</display_name>
         </choice>
         <choice>
@@ -65,7 +65,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

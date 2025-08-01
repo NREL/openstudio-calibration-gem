@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>coil_heating_gas_multiplier</name>
   <uid>a4843fc4-4cc7-4112-b5a9-aef81cbeac63</uid>
-  <version_id>ae70a39c-c633-4bcc-b94c-c5c542836b7d</version_id>
-  <version_modified>2024-11-16T23:44:47Z</version_modified>
+  <version_id>a1e1b7ff-c67a-4f00-aa27-d108129ca0b5</version_id>
+  <version_modified>2025-08-01T20:02:38Z</version_modified>
   <xml_checksum>1F3D2430</xml_checksum>
   <class_name>CoilHeatingGasMultiplier</class_name>
   <display_name>Heating Coils Gas Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{6a5cccf6-a939-410f-8fe9-70215fd94b0f}</default_value>
+      <default_value>{7f75613f-6cd7-4235-bc52-cc2136808716}</default_value>
       <choices>
         <choice>
-          <value>{6a5cccf6-a939-410f-8fe9-70215fd94b0f}</value>
+          <value>{7f75613f-6cd7-4235-bc52-cc2136808716}</value>
           <display_name>*All Gas Heating Coils*</display_name>
         </choice>
         <choice>
@@ -83,7 +83,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>coil_cooling_dx_single_speed_multiplier</name>
   <uid>97d0dbdf-6245-4cfd-8dfc-a6a5eb853b16</uid>
-  <version_id>51335a12-c81c-409e-8eb8-200156d5a676</version_id>
-  <version_modified>2024-11-16T23:44:49Z</version_modified>
+  <version_id>a7fbb1a9-b5e6-4374-aa4f-5b4d5d507a7b</version_id>
+  <version_modified>2025-08-01T20:02:41Z</version_modified>
   <xml_checksum>8CBDDA1B</xml_checksum>
   <class_name>CoilCoolingDXSingleSpeedMultiplier</class_name>
   <display_name>Cooling Coils DX Single Speed Multiplier</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{94543b62-a5b5-43ca-a91c-7cf1d50e7be0}</default_value>
+      <default_value>{0856c5fd-bac7-4d25-a44a-4b810a2202ff}</default_value>
       <choices>
         <choice>
-          <value>{94543b62-a5b5-43ca-a91c-7cf1d50e7be0}</value>
+          <value>{0856c5fd-bac7-4d25-a44a-4b810a2202ff}</value>
           <display_name>*All DX Cooling Coils*</display_name>
         </choice>
         <choice>
@@ -65,7 +65,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

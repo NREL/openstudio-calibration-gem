@@ -5,6 +5,6 @@
 
 module OpenStudio
   module Calibration
-    VERSION = '0.11.1'.freeze
+    VERSION = '0.12.1'.freeze
   end
 end
