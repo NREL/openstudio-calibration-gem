@@ -1,5 +1,8 @@
 # OpenStudio Calibration Measures Gem
 
+## Version 0.12.2
+* Update dependency (extension gem 0.9.3)
+
 ## Version 0.12.1
 * Update licenses and measure meta data
 * Update depenencies (extension gem 0.9.2)
